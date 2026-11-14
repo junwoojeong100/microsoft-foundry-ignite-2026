@@ -1,0 +1,9 @@
+{
+  "tenantId": "00000000-0000-0000-0000-000000000000",
+  "subscriptionId": "00000000-0000-0000-0000-000000000000",
+  "workshopId": "foundry-ws-202612",
+  "location": "eastus2",
+  "participantCount": 75,
+  "seTestAccountCount": 5,
+  "nameFormat": "user-se"
+}
