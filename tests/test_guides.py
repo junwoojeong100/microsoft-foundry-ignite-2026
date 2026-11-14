@@ -1,7 +1,7 @@
 """Static checks for the published guide pages: local links, anchors, ids and Pages coverage."""
 
 from html.parser import HTMLParser
-import importlib.util
+import json
 from pathlib import Path
 import posixpath
 import re
@@ -11,9 +11,12 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = sorted(path.name for path in ROOT.glob("*.html"))
 EXTERNAL = ("http://", "https://", "mailto:", "data:", "javascript:")
-SWITCH_ORDER = ["index.html", "github-copilot.html", "operator.html", "github-copilot-operator.html"]
-# Single-file page outside the guide family: built from src/, linked from github-copilot.html, not in the switch.
-CODESPACES_GUIDE = "github-copilot-cli-codespaces/index.html"
+SWITCH_ORDER = ["index.html", "operator.html"]
+# The operator handoff template spells out absolute Pages URLs. Keep this in step with the published repository.
+SITE_URL = "https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/"
+SITE_HOST = urlsplit(SITE_URL).netloc
+# The guides were imported from this repository; nothing should still point back at it.
+SOURCE_REPOSITORY = "internal-guest-hands-on-guide"
 
 
 class PageParser(HTMLParser):
@@ -72,8 +75,13 @@ def dynamic_ids(text: str) -> set[str]:
     return stages | set(re.findall(r'\.id = "([\w-]+)"', text))
 
 
+def known_ids(name: str) -> set[str]:
+    parser, text = parse(name)
+    return set(parser.ids) | dynamic_ids(text)
+
+
 class GuidePageTests(unittest.TestCase):
-    def test_all_four_guides_exist(self):
+    def test_both_guides_exist(self):
         self.assertEqual(sorted(SWITCH_ORDER), PAGES)
 
     def test_ids_are_unique_and_pre_blocks_have_copy_labels(self):
@@ -84,10 +92,9 @@ class GuidePageTests(unittest.TestCase):
             self.assertTrue(all(parser.pre_labels), f"{name}: every <pre> needs an aria-label for its copy button")
 
     def test_local_links_and_anchors_resolve(self):
-        checked = [*PAGES, CODESPACES_GUIDE]
-        known = {name: set(parse(name)[0].ids) | dynamic_ids(parse(name)[1]) for name in checked}
+        known = {name: known_ids(name) for name in PAGES}
         problems = []
-        for name in checked:
+        for name in PAGES:
             for link in parse(name)[0].links:
                 if link.startswith(EXTERNAL):
                     continue
@@ -108,11 +115,33 @@ class GuidePageTests(unittest.TestCase):
             for script in ("assets/theme.js", "assets/navigation.js", "assets/copy.js"):
                 self.assertIn(script, parser.scripts, f"{name} must load {script}")
 
-    def test_github_guide_sidebars_list_every_section_in_order(self):
+    def test_operator_sidebar_lists_every_section_in_order(self):
         # navigation.js highlights the sidebar link whose target is an observed section.
-        for name in ("github-copilot.html", "github-copilot-operator.html"):
-            parser, _ = parse(name)
-            self.assertEqual(parser.observed_sections, parser.toc_targets, f"{name}: sidebar and sections differ")
+        # index.html is left out: it builds part of its sidebar and sections with script.
+        parser, _ = parse("operator.html")
+        self.assertEqual(parser.observed_sections, parser.toc_targets, "operator.html: sidebar and sections differ")
+
+    def test_absolute_links_to_this_site_resolve(self):
+        # The handoff template links to the published pages by absolute URL, so a rename would go unnoticed otherwise.
+        problems = []
+        for name in PAGES:
+            for url in re.findall(rf"https://{re.escape(SITE_HOST)}/[^\s\"'<>]*", parse(name)[1]):
+                if not url.startswith(SITE_URL):
+                    problems.append(f"{name}: {url} is not under {SITE_URL}")
+                    continue
+                parts = urlsplit(url)
+                page = posixpath.basename(parts.path) or "index.html"
+                if page not in PAGES:
+                    problems.append(f"{name}: {url} points at a page that does not exist")
+                elif parts.fragment and unquote(parts.fragment) not in known_ids(page):
+                    problems.append(f"{name}: {url} points at a missing anchor")
+        self.assertEqual([], problems)
+
+    def test_nothing_points_back_at_the_source_repository(self):
+        files = [*(ROOT / name for name in PAGES), *(ROOT / "assets").glob("*.js"),
+                 *(ROOT / "scripts").glob("*.py"), *(ROOT / "config").glob("*.json")]
+        stale = [path.name for path in files if SOURCE_REPOSITORY in path.read_text(encoding="utf-8")]
+        self.assertEqual([], stale)
 
     def test_pages_workflow_publishes_every_guide(self):
         workflow = (ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
@@ -122,28 +151,22 @@ class GuidePageTests(unittest.TestCase):
             self.assertIn(name, copy_line)
 
 
-class CodespacesGuideTests(unittest.TestCase):
-    def test_published_page_is_a_fresh_build_of_its_source(self):
-        script = ROOT / "github-copilot-cli-codespaces" / "build.py"
-        spec = importlib.util.spec_from_file_location("codespaces_guide_build", script)
-        build = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(build)
-        committed = (ROOT / CODESPACES_GUIDE).read_text(encoding="utf-8")
-        self.assertEqual(build.render(), committed, "run python3 github-copilot-cli-codespaces/build.py and commit index.html")
+class GuideDataTests(unittest.TestCase):
+    """index.html renders its screens and video chapters from assets/guide-data.js, so the data and the files must agree."""
 
-    def test_ids_are_unique(self):
-        parser, _ = parse(CODESPACES_GUIDE)
-        duplicates = {value for value in parser.ids if parser.ids.count(value) > 1}
-        self.assertFalse(duplicates, f"duplicate ids {sorted(duplicates)}")
+    @staticmethod
+    def load():
+        text = (ROOT / "assets" / "guide-data.js").read_text(encoding="utf-8")
+        return json.loads(re.fullmatch(r"window\.GUIDE_DATA = (.*?);?\s*", text, re.S).group(1))
 
-    def test_github_guide_links_to_the_page(self):
-        self.assertIn(CODESPACES_GUIDE, parse("github-copilot.html")[0].links)
+    def test_captured_screens_and_video_exist(self):
+        data = self.load()
+        files = [shot["image"] for shot in data["shots"]] + [data["recording"]["video"]]
+        self.assertEqual([], [name for name in files if not (ROOT / name).is_file()])
 
-    def test_pages_workflow_publishes_the_page_at_its_repository_path(self):
-        # The guide links use repository paths, so the published path has to be the same.
-        workflow = (ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
-        self.assertIn(f"test -s {CODESPACES_GUIDE}", workflow)
-        self.assertIn(f"cp {CODESPACES_GUIDE} _site/{posixpath.dirname(CODESPACES_GUIDE)}/", workflow)
+    def test_page_expects_the_number_of_captured_screens(self):
+        expected = int(re.search(r"data\.shots\.length !== (\d+)", parse("index.html")[1]).group(1))
+        self.assertEqual(expected, len(self.load()["shots"]))
 
 
 if __name__ == "__main__":

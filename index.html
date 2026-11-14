@@ -15,9 +15,9 @@
     <div class="topbar-inner">
       <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">FD</span> Microsoft Foundry <span class="top-meta">/ 실습자 가이드</span></a>
       <nav class="guide-switch" aria-label="가이드 선택">
-        <span class="group-label">실습자</span><a href="index.html" aria-current="page">Foundry</a><a href="github-copilot.html">GitHub</a>
+        <span class="group-label">실습자</span><a href="index.html" aria-current="page">Foundry</a>
         <span class="sep" aria-hidden="true"></span>
-        <span class="group-label">운영자</span><a href="operator.html">Foundry</a><a href="github-copilot-operator.html">GitHub</a>
+        <span class="group-label">운영자</span><a href="operator.html">Foundry</a>
       </nav>
       <div class="topbar-tools">
         <button class="button small theme-toggle" id="theme-toggle" type="button" aria-pressed="false">다크 테마</button>
@@ -38,7 +38,6 @@
             <a class="button primary" href="#prepare">시작 전 5가지 확인 <span aria-hidden="true">→</span></a>
             <a class="button dark" href="#summary">3분 요약 먼저 보기</a>
             <a class="button dark" href="#first-sign-in">실습 시작하기</a>
-            <a class="button dark" href="github-copilot.html">GitHub 실습자 가이드 ↗</a>
           </div>
         </div>
         <div class="proof" id="summary">
@@ -101,7 +100,6 @@
           <li><strong>모델 배정:</strong> 모델·버전·배포 유형·TPM·배포 개수, 지원되는 Reasoning Effort·출력 한도. <a href="#model-quota">배포 시 입력 기준 →</a></li>
           <li><strong>실습·지원·종료:</strong> 이번 실습 본문 URL, 완료 기준·종료/정리 정책, 승인된 문의 경로.</li>
         </ol>
-        <p class="intro">Copilot을 쓰는 실습이라면 <a href="github-copilot.html">GitHub 실습자 가이드</a>를 먼저 끝내세요. Copilot이 처음이어도 계정 만들기부터 안내합니다. 개인 GitHub 계정은 위 실습용 Entra UPN과 별개입니다.</p>
         <div class="notice warning"><strong>실제 입력값은 운영자의 배정표가 기준입니다.</strong> 아래 화면·영상의 계정·RG·지역·모델·자원 이름은 녹화 예시입니다. 이름을 복사하거나 기존 녹화 리소스에 연결하지 말고 본인이 만든 리소스를 사용하세요. 배정값이 없거나 본인 RG가 안 보이면 생성부터 시도하지 말고 <a href="#troubleshooting">문제 대응표</a>를 확인합니다.</div>
         <ol class="flow" aria-label="실습 구조">
           <li>배정 RG<small>운영자 준비</small></li>
@@ -768,10 +766,6 @@
         link.innerHTML = `<span class="nav-number">${escape(number)}</span>${escape(title)}`;
         toc.append(link);
       });
-      const githubGuide = document.createElement("a");
-      githubGuide.href = "github-copilot.html";
-      githubGuide.innerHTML = '<span class="nav-number">GH</span>GitHub 실습자 가이드 ↗';
-      toc.append(githubGuide);
       window.__guideReady = true;
     })();
   </script>

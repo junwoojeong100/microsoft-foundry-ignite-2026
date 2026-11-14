@@ -15,9 +15,9 @@
     <div class="topbar-inner">
       <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">FD</span> Microsoft Foundry <span class="top-meta">/ 운영자 가이드</span></a>
       <nav class="guide-switch" aria-label="가이드 선택">
-        <span class="group-label">실습자</span><a href="index.html">Foundry</a><a href="github-copilot.html">GitHub</a>
+        <span class="group-label">실습자</span><a href="index.html">Foundry</a>
         <span class="sep" aria-hidden="true"></span>
-        <span class="group-label">운영자</span><a href="operator.html" aria-current="page">Foundry</a><a href="github-copilot-operator.html">GitHub</a>
+        <span class="group-label">운영자</span><a href="operator.html" aria-current="page">Foundry</a>
       </nav>
       <div class="topbar-tools">
         <button class="button small theme-toggle" id="theme-toggle" type="button" aria-pressed="false">다크 테마</button>
@@ -39,7 +39,6 @@
             <a class="button dark" href="#automation">A. 스크립트 준비</a>
             <a class="button dark" href="#portal">B. 포털 수동 준비</a>
             <a class="button dark" href="index.html">Foundry 실습자 가이드 ↗</a>
-            <a class="button dark" href="github-copilot-operator.html">GitHub 운영자 가이드 ↗</a>
           </div>
         </div>
         <div class="proof">
@@ -175,8 +174,8 @@
         </div>
         <h3 class="role-title">1. 운영자가 실행 환경과 설정을 준비합니다.</h3>
         <p class="intro"><strong>Azure Cloud Shell Bash(영구 저장소), Linux/macOS 또는 WSL · Python 3.11+ · Azure CLI</strong>를 사용합니다. 네이티브 Windows PowerShell은 지원하지 않습니다. 실행 주체는 <a href="#operator-roles">사용자 생성·Entra 권한 조회·Azure RG 생성·RBAC 할당 권한</a>이 필요하며, 스크립트가 운영자에게 관리 역할이나 Graph 앱 동의를 부여하지는 않습니다.</p>
-        <pre role="group" aria-label="스크립트 설치와 설정">git clone https://github.com/junwoojeong100/internal-guest-hands-on-guide.git
-cd internal-guest-hands-on-guide
+        <pre role="group" aria-label="스크립트 설치와 설정">git clone https://github.com/junwoojeong100/microsoft-foundry-ignite-2026.git
+cd microsoft-foundry-ignite-2026
 cp config/workshop.example.json config/workshop.local.json
 # local.json을 편집하고 아래 값을 실제 tenantId로 바꾼 뒤 운영자 계정으로 로그인
 az login --tenant "REPLACE_WITH_TENANT_ID"</pre>
@@ -451,13 +450,12 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json</pre>
         <p class="section-label">HANDOFF WITHOUT SHARING SECRETS</p>
         <h2>참가자에게 환경 값과 해야 할 일만 명확히 전달합니다.</h2>
         <p class="intro">다른 실습을 만들 때도 <strong>배정 RG 안에서 참가자가 직접 리소스를 생성</strong>하는 틀을 유지하고 모델·데이터·본문 URL을 바꿉니다. 초기 암호는 이 인계표와 분리하고, 참가자 명단·Object ID 전체 대장은 공개 사이트에 올리지 않습니다.</p>
-        <div class="notice"><strong>GitHub Copilot도 제공한다면:</strong> <a href="github-copilot-operator.html">GitHub 운영자 가이드</a>의 준비·리허설·인계 템플릿을 따르고, 참가자에게는 <a href="github-copilot.html">GitHub 실습자 가이드</a>를 전달합니다. 조직 가입만으로 Copilot 권한이 생기지 않으며 Entra 계정·Azure RBAC와 별도입니다.</div>
         <pre role="group" aria-label="참가자 환경 인계 템플릿">실습명: &lt;workshop-name&gt;
 로그인 계정: &lt;participant-upn&gt;
 초기 암호: 승인된 별도 경로로 본인에게만 전달
 암호 정책: 초기 암호 유지·첫 변경 강제 없음 (변경은 선택)
 첫 로그인: 본인 MFA 등록·인증·재로그인 완료
-첫 로그인 실습 안내: https://junwoojeong100.github.io/internal-guest-hands-on-guide/#first-sign-in
+첫 로그인 실습 안내: https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/#first-sign-in
 계정 유형: &lt;Internal Guest / Internal Member / External Guest 등&gt;
 대상 Tenant ID / Subscription ID: &lt;tenant-id&gt; / &lt;subscription-id&gt;
 배정 RG / 지역: &lt;resource-group&gt; / &lt;approved-region&gt;
@@ -469,11 +467,9 @@ Foundry 프로젝트 URL: 참가자가 생성한 이후 확인
 모델 고정 단계 / 지정 모델·별도 배포 개수·TPM: &lt;fixed-model-step-and-allocation / 해당 없음&gt;
 모델 배포 고유 이름 / 실행 한도: &lt;deployment-name&gt; / &lt;limits&gt;
 개인별 모델 배포 개수 / TPM: &lt;approved-deployment-count&gt; / &lt;approved-tpm&gt;
-GitHub·Copilot 제공 여부 / 인계 값: &lt;제공 | 제공 안 함&gt; / GitHub 운영자 가이드의 인계 템플릿 사용
-GitHub 가입·Copilot 준비 안내: https://junwoojeong100.github.io/internal-guest-hands-on-guide/github-copilot.html
 사용할 실습 본문: &lt;customer-specific-lab-url&gt;
-계정·권한 공통 참고: https://junwoojeong100.github.io/internal-guest-hands-on-guide/#responsibilities
-문제 대응 공통 참고: https://junwoojeong100.github.io/internal-guest-hands-on-guide/#troubleshooting
+계정·권한 공통 참고: https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/#responsibilities
+문제 대응 공통 참고: https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/#troubleshooting
 종료 시각·정리 정책 / 문의 경로: &lt;time-policy&gt; / &lt;approved-support-channel&gt;
 초기 암호·인증 코드: 이 표에 기록하지 않음</pre>
         <ol class="task-list">
@@ -531,7 +527,7 @@ GitHub 가입·Copilot 준비 안내: https://junwoojeong100.github.io/internal-
           </table>
         </div>
         <div class="notice">Foundry 실습자 가이드의 63장 화면·3분 요약·51분 전체 영상은 <strong>2026.11.05의 배정 RG 안에서 리소스를 직접 생성한 기본 Agent 예시</strong>입니다. 다른 계정 유형·기능별 추가 권한 설명은 공식 문서 기반이며, 동일한 실환경 검증을 했다는 뜻은 아닙니다. 녹화는 Application Insights를 Azure Portal에서 먼저 만든 방식이며, 현재 가이드의 권장 방식(Traces에서 Create new resource)은 녹화에 포함되지 않았습니다.</div>
-        <p class="intro"><a href="index.html">Foundry 실습자 가이드</a> · <a href="github-copilot-operator.html">GitHub 운영자 가이드</a> · <a href="assets/verification.json">기존 읽기 전용 E2E 근거</a> · <a href="https://github.com/junwoojeong100/internal-guest-hands-on-guide">가이드 저장소</a></p>
+        <p class="intro"><a href="index.html">Foundry 실습자 가이드</a> · <a href="assets/verification.json">기존 읽기 전용 E2E 근거</a> · <a href="https://github.com/junwoojeong100/microsoft-foundry-ignite-2026">가이드 저장소</a></p>
       </section>
       <footer class="footnotes">
         <p>기준일 2026.11.10 · 실제 기본 Agent 검증일 2026.11.05. 역할 이름·UI·가용성·한도는 변경될 수 있으므로 다음 개최 전에 공식 문서와 참가자 권한으로 확인합니다.</p>
