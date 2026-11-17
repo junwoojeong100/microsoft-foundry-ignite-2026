@@ -1,6 +1,6 @@
 # Microsoft Foundry · Ignite 2026 실습 가이드
 
-Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 소개하고 직접 실습**하는 가이드를 만들기 위한 리포입니다. 기존 Foundry 워크샵의 **실습자·운영자 가이드를 그대로 가져온 기반(baseline)** 위에, 실습자 가이드 끝에 **PART 2 · 2026.11.17 새 Foundry 포털 화면**을 추가했습니다. 기존 PART 1 본문과 운영자 가이드는 **리전 안내를 North Central US로 통일한 것과 운영자 가이드에 'PART 2 준비' 섹션을 추가한 것 외에는** 바꾸지 않았으며, 영문판·동영상·슬라이드는 아직 없습니다.
+Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 소개하고 직접 실습**하는 가이드를 만들기 위한 리포입니다. 기존 Foundry 워크샵의 **실습자·운영자 가이드를 그대로 가져온 기반(baseline)** 위에, 실습자 가이드 끝에 **PART 2 · 2026.11.17 새 Foundry 포털 화면**을 추가했습니다. 기존 PART 1 본문과 운영자 가이드는 **리전 안내를 North Central US로 통일한 것, 2026.11.17 North Central US 재현에서 다르게 보인 점을 덧붙인 메모, 운영자 가이드의 'PART 2 준비' 섹션 외에는** 바꾸지 않았으며, 영문판·동영상·슬라이드는 아직 없습니다.
 
 > 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** 이 틀을 유지한 채 본문을 Ignite 2026 신규 기능으로 바꿔 나갑니다.
 
@@ -12,7 +12,7 @@ Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 �
 | 가져온 것 | Foundry 실습자·운영자 가이드, 공통 자산(CSS·JS·화면 63장·영상 2개·로그인/MFA 이미지·검증 JSON), 운영자 자동화 스크립트와 설정 예제, 오프라인 테스트, Pages 워크플로 |
 | 가져오지 않은 것 | GitHub Copilot 실습자·운영자 가이드, Codespaces·Copilot CLI 가이드, 고객 안내 EDM, 그 가이드들의 이미지 |
 | 가져오며 바꾼 것 | 가이드 전환 메뉴를 Foundry 2종으로 축소 · GitHub 가이드로 가는 링크·안내·인계 템플릿 줄 제거 · 저장소·Pages 주소를 이 리포로 변경 · 테스트와 워크플로를 2종 기준으로 조정하고 화면·영상 파일 점검 추가 · `ATTRIBUTION.txt`에서 가져오지 않은 이미지 항목 제거 · `.gitignore`에 `.playwright-mcp/` 추가 · README 재작성 |
-| 그대로인 것 | 본문, 화면·영상(2026.11.05 녹화, East US 2·GPT-5 mini), 검증 JSON, 스크립트. 다만 참가자가 입력·선택하는 리전 안내는 North Central US로 바꿨습니다(아래 PART 2 표의 '리전' 행). 이 부분(PART 1)은 Ignite 신규 기능 기준으로 다시 확인한 내용이 아닙니다. 신규 화면은 아래 PART 2에만 있습니다. |
+| 그대로인 것 | 본문, 화면·영상(2026.11.05 녹화, East US 2·GPT-5 mini), 검증 JSON, 스크립트. 다만 참가자가 입력·선택하는 리전 안내는 North Central US로 바꿨고(아래 PART 2 표의 '리전' 행), 2026.11.17 North Central US 재현에서 화면이 달랐던 점(Application insights 자동 생성·연결, 새 에이전트의 기본 모델 model-router, 메뉴 이름)은 해당 단계 아래에 메모로 덧붙였습니다. 화면·영상 자체는 Ignite 신규 기능 기준으로 다시 확인한 내용이 아닙니다. 신규 화면은 아래 PART 2에만 있습니다. |
 
 첫 커밋이 원본 그대로이므로 `git diff <첫 커밋> HEAD`로 가져오며 바꾼 내용을 모두 볼 수 있습니다.
 
@@ -24,12 +24,12 @@ Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 �
 | 흐름 | New Foundry 시작 → 가드레일·`gpt-6.1-terra` 배포 → Microsoft Copilot 하네스 에이전트 생성·도구 제한·실행 → Traces·Monitor → Insights·커스텀 루브릭 평가자·평가 실행·Optimize → Manage의 Fleet·Cost·Compliance·Gateways |
 | 화면 | `assets/ignite/screenshots/ko/` 51장(1600×900, 영문 UI + 한국어 입력). 계정·구독·테넌트 값은 가렸고 OCR로 개인 정보 문자열이 없는지 검사했습니다. **동영상은 아직 없습니다.** |
 | 데이터·코드 | `assets/ignite/ignite-data.js`(화면별 설명과 확인 위치 좌표), `assets/ignite-part2.js`(갤러리·사이드바 렌더링). 확대 창은 PART 1과 공유합니다. |
-| 직접 실행 | 가드레일 목록, `gpt-6.1-terra` 배포(Global Standard·100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4)·실행, Insights 스캔, 커스텀 루브릭 평가자, 합성 질문 15개 평가 실행(12행 채점·3행 rate limit 오류) |
-| 화면만 확인 | Manage의 Fleet·Operations·Cost·Compliance·Gateways, Routines·Workflows, Optimize |
-| 하지 않음 | Azure Policy 할당, AI Gateway 생성, Optimize 실행, Publish·채널 연결, 참가자 역할(RG Contributor + Foundry User + 구독 Usages Reader)만으로 재현, North Central US에서 PART 1(Foundry 리소스 생성~Prompt Agent)을 처음부터 재현(샌드박스 프로젝트에는 모델 배포·에이전트가 이미 있었음) |
-| 리전 | PART 1·PART 2 모두 **North Central US**(`northcentralus`)로 통일했습니다. 공식 하네스 지원 리전 22곳에 포함됩니다(2026.11.17 문서 기준). 예제 설정(`config/workshop.example.json`), `operator.html`의 JSON 예시·표, 실습자 가이드의 리전 안내를 맞췄고 값이 어긋나면 테스트가 실패합니다. PART 1 화면·영상은 East US 2에서 녹화해 바꿀 수 없으므로 '녹화 예시: East US 2'로 남기고 '화면은 녹화 당시 East US 2'라고 덧붙였습니다. |
-| 공식 자료 대조 | 2026.11.17에 공개 문서·Foundry 블로그 릴리스 노트와 맞춰 PART 2 개요의 '공식 자료와 맞춰 본 결과' 표에 정리했습니다. 하네스는 공개 프리뷰(2026.10.28 발표), gpt-6.1-terra는 GA(2026.10.26)이고 Insights·합성 데이터셋 생성·Agent optimizer·AI gateway는 문서상 preview입니다. **포털의 평가 기반 최적화는 하네스를 쓰지 않는 Prompt Agent만 지원한다고 문서가 안내**해 5-4에 경고를 넣었습니다. Ignite Book of News·발표 자료는 확인 시점에 찾지 못해 **Ignite 발표 여부는 확인하지 못했습니다.** |
-| 운영자에게 알릴 점 | 운영자 가이드의 [`#part2-prep`](operator.html#part2-prep) 섹션에 리전·하네스용 TPM(하네스 한 번 실행이 약 4만 토큰이라 **10,000 TPM 배정으로는 부족**할 수 있음, 평가 15행 중 3행이 rate limit)·필요 역할(Fleet·Cost는 Log Analytics Reader·Cost Management Reader, 평가자 트레이스 컨텍스트는 프로젝트 관리 ID의 Monitoring Reader)·비용·정리를 '공식 문서 기준 / 직접 실행 / 화면만 확인 / 확인하지 못함'으로 나누어 추가했습니다. 참가자 필수 역할 3개 표는 바꾸지 않았습니다(Fleet·Cost용 역할을 표에 넣을지는 미정). |
+| 직접 실행 | **① 샌드박스 프로젝트(소유자 권한):** 가드레일 목록, `gpt-6.1-terra` 배포(Global Standard·100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4)·실행, Insights 스캔, 커스텀 루브릭 평가자, 합성 질문 15개 평가 실행(12행 채점·3행 rate limit 오류). **② 참가자 권한 재현 프로젝트(별도 구독, North Central US, 계정 1개에 RG Contributor + Foundry User + 구독 Usages Reader만 부여):** PART 1을 처음부터(Foundry 리소스·프로젝트 생성 → `gpt-6.1-terra` 10,000 TPM 배포 → Prompt Agent → Traces), 하네스 에이전트 생성·실행(10,000 TPM은 실패, 30,000 TPM은 단건 통과), Manage의 Fleet·Cost·Operations·Compliance·Quota·Gateways 열기, Insights 스캔, 커스텀 루브릭 평가자와 평가(15행 모두 통과), 하네스를 쓰지 않는 Prompt Agent의 Optimize 실행(후보 승격은 안 함), Azure Policy Audit 할당·해제 |
+| 화면만 확인 | 샌드박스의 Manage(Fleet·Operations·Cost·Compliance·Gateways), Routines·Workflows, 하네스 에이전트의 Optimize 탭·마법사(제출하지 않음) |
+| 하지 않음 | AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격, 하네스 에이전트의 Optimize 제출, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터 확인, 여러 참가자의 동시 실행·부하 |
+| 리전 | PART 1·PART 2 모두 **North Central US**(`northcentralus`)로 통일했습니다. 공식 하네스 지원 리전 22곳에 포함됩니다(2026.11.17 문서 기준). 예제 설정(`config/workshop.example.json`), `operator.html`의 JSON 예시·표, 실습자 가이드의 리전 안내를 맞췄고 값이 어긋나면 테스트가 실패합니다. PART 1 화면·영상은 East US 2에서 녹화해 바꿀 수 없으므로 '녹화 예시: East US 2'로 남기고 '화면은 녹화 당시 East US 2'라고 덧붙였습니다. 참가자 권한 계정의 Create a Foundry resource 화면 Region 목록(39개)에 North Central US가 있음을 직접 확인했습니다. |
+| 공식 자료 대조 | 2026.11.17에 공개 문서·Foundry 블로그 릴리스 노트와 맞춰 PART 2 개요의 '공식 자료와 맞춰 본 결과' 표에 정리했습니다. 하네스는 공개 프리뷰(2026.10.28 발표), gpt-6.1-terra는 GA(2026.10.26)이고 Insights·합성 데이터셋 생성·Agent optimizer·AI gateway는 문서상 preview입니다. **포털의 평가 기반 최적화는 하네스를 쓰지 않는 Prompt Agent만 지원한다고 문서가 안내**해 5-4에 경고를 넣었고, 재현에서 Prompt Agent의 Optimize는 성공했으며 하네스 에이전트는 마법사만 열고 제출하지 않았습니다. Ignite Book of News·발표 자료는 확인 시점에 찾지 못해 **Ignite 발표 여부는 확인하지 못했습니다.** |
+| 운영자에게 알릴 점 | 운영자 가이드의 [`#part2-prep`](operator.html#part2-prep) 섹션에 리전·하네스용 TPM·필요 역할·Azure Policy·Optimize·비용·정리를 '공식 문서 기준 / 직접 실행 / 화면만 확인 / 확인하지 못함'으로 나누어 추가했습니다. 재현에서 나온 사전 결정 3가지: **① 평가자 만들기의 Resolve(프로젝트 MI의 Monitoring Reader)는 참가자가 누르면 권한 오류**가 나서 운영자가 할당해야 합니다(명령 예는 `#managed-identity`). **② 10,000 TPM 배포에서는 하네스 질문이 실패**했습니다(30,000 TPM은 천천히 보낼 때만 통과). **③ Compliance의 Asset 탭에 Foundry User 권한 안내**가 떴고 원인은 확인하지 못했습니다. 참가자 필수 역할 3개 표는 바꾸지 않았습니다(3개 역할만으로 화면이 열렸고 Cost 값 표시에 Cost Management Reader가 필요한지만 미확인). |
 
 화면 기준일은 2026.11.17입니다. Ignite의 Book of News·발표 자료가 공개되면 기능 이름과 상태(Preview/GA)를 다시 대조해야 합니다.
 
@@ -106,8 +106,8 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json
 
 ## 검증 현황
 
-- **확인한 것:** Internal Guest 1명의 기본 Prompt Agent E2E(2026.11.05, GPT-5 mini)와 새 Guest 1개의 초기 암호 + Software OATH(TOTP) MFA 로그인(2026.11.08). [비밀 값 없는 검증 JSON](assets/guest-auth-verification.json)을 제공합니다. PART 2는 2026.11.17에 샌드박스 프로젝트 1개에서 직접 실행한 범위(위 PART 2 표)만 확인했습니다.
-- **아직 확인하지 않은 것:** **PART 2에서 직접 실행하지 않은 신규 화면(Azure Policy 할당·AI Gateway·Optimize 실행 등)과 참가자 역할로의 PART 2 재현**, North Central US에서 PART 1(Foundry 리소스 생성 화면의 Region 포함)을 처음부터 재현, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000 TPM 배포에서의 하네스 실행, 75개 환경 생성·동시 부하, `gpt-6.1-terra` 참가자 E2E, 고객 교육망, Microsoft Authenticator 푸시, Traces의 Create new resource 이후 화면(녹화에는 Azure Portal 사전 생성 방식만 있음). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
+- **확인한 것:** Internal Guest 1명의 기본 Prompt Agent E2E(2026.11.05, GPT-5 mini)와 새 Guest 1개의 초기 암호 + Software OATH(TOTP) MFA 로그인(2026.11.08). [비밀 값 없는 검증 JSON](assets/guest-auth-verification.json)을 제공합니다. PART 2는 2026.11.17에 North Central US의 프로젝트 2곳(샌드박스, 참가자 역할 3개만 가진 계정 1개의 재현 프로젝트)에서 직접 실행한 범위(위 PART 2 표)만 확인했습니다. 재현에서는 `gpt-6.1-terra`·10,000 TPM으로 PART 1을 한 번 끝까지 따라 했습니다(계정 1개).
+- **아직 확인하지 않은 것:** **AI Gateway 생성·Publish·채널 연결·Optimize 후보 승격·하네스 에이전트의 Optimize 제출**, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000·30,000·100,000 TPM 외의 값에서의 하네스 실행, 비용 데이터가 쌓인 뒤의 Cost 화면(Cost Management Reader 필요 여부), Compliance 정책 평가가 나타나는 조건과 Asset 탭 권한 안내의 원인, 75개 환경 생성·여러 참가자의 동시 부하, 고객 교육망, Microsoft Authenticator 푸시(재현 계정은 TOTP로 등록), Traces의 Create new resource 이후 화면(재현에서는 Application Insights가 자동 생성돼 연결됨). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
 
 ## 테스트
 

@@ -19,8 +19,10 @@ Ignite 2026 가이드 작업 목록입니다. 끝낸 항목은 `[x]`로 바꿉�
    - [x] 리전을 PART 1·PART 2 모두 North Central US로 통일: 예제 설정·운영자 가이드의 `location`·실습자 가이드와 화면 설명의 리전 안내. 녹화 화면은 East US 2 그대로이며 '화면은 녹화 당시 East US 2'로 표기
    - [x] 공개 문서·Foundry 블로그 릴리스 노트와 대조(2026.11.17): PART 2 개요의 '공식 자료와 맞춰 본 결과' 표와 5-4 Optimize 경고(포털 최적화는 하네스를 쓰지 않는 Prompt Agent 대상) 반영
    - [ ] Ignite Book of News·발표 자료가 공개되면 기능 명칭·상태(Preview/GA)를 다시 대조하고 '확인하지 못함'을 갱신
-   - [x] 운영자 가이드(`operator.html`)에 PART 2 준비 사항 반영: `#part2-prep` 섹션(리전·하네스·평가용 TPM·Log Analytics Reader·Cost Management Reader·Monitoring Reader·비용·정리)과 `#plan`·`#capacity`의 연결 안내. 참가자 필수 역할 3개 표는 바꾸지 않았음(Fleet·Cost용 역할을 표에 넣을지 결정 필요)
-   - [ ] 미검증 항목 확인: 참가자 역할로 재현, Azure Policy 할당, AI Gateway, Optimize 실행(하네스 에이전트 지원 여부 포함), Publish·채널, North Central US에서 PART 1 처음부터 재현(Foundry 리소스 생성 화면의 Region 포함), 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000 TPM 배포에서의 하네스 실행
+   - [x] 운영자 가이드(`operator.html`)에 PART 2 준비 사항 반영: `#part2-prep` 섹션(리전·하네스·평가용 TPM·Log Analytics Reader·Cost Management Reader·Monitoring Reader·Azure Policy·Optimize·비용·정리)과 `#plan`·`#capacity`의 연결 안내, `#managed-identity`의 Monitoring Reader 할당 예. 참가자 필수 역할 3개 표는 바꾸지 않았음(재현에서 3개 역할만으로 화면이 열림. Cost 값 표시에 Cost Management Reader가 필요한지만 미확인이라 표 변경 여부는 사용자 확인 필요)
+   - [x] 미검증 항목 중 일부를 직접 확인(2026.11.17, 별도 구독의 North Central US, 참가자 역할 3개만 가진 계정 1개): PART 1 처음부터 재현(Foundry 리소스 생성 화면의 Region 포함), 10,000·30,000 TPM에서 하네스 실행(10,000 TPM은 실패), 참가자 역할로 Manage·Insights·평가자·평가 열기·실행, Prompt Agent의 Optimize 실행(후보 승격 안 함), Azure Policy Audit 할당·해제. 결과는 `index.html`의 검증 범위 상자·N1·N6·N7·5-4와 `operator.html`의 `#part2-prep`에 반영
+   - [ ] 남은 미검증 항목: AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격·하네스 에이전트의 Optimize 제출, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 비용 데이터가 쌓인 뒤 Cost 화면(Cost Management Reader 필요 여부), Compliance 정책 평가·Asset 탭 권한 안내의 원인, 여러 참가자의 동시 실행
+   - [ ] 재현용 구독의 테스트 계정·RG·모델 배포(별도 데모 구독)와 로컬 임시 파일(`config/workshop.local.json`, `.workshop-runs/`)을 정리(삭제는 사용자 승인 후)하거나 녹화에 재사용
 2. [ ] Portal 화면 캡처 및 동영상 녹화
    - [x] 정지 화면 51장 캡처(영문 UI + 한국어 입력, 개인 정보 가림·OCR 검사)
    - [ ] 동영상 녹화(하네스 생성·실행, 평가 실행, Manage 화면)와 가이드의 영상 버튼 연결
