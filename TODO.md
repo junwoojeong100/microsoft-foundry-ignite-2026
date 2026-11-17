@@ -10,13 +10,19 @@ Ignite 2026 가이드 작업 목록입니다. 끝낸 항목은 `[x]`로 바꿉�
 
 ## 사전 작업
 
-- [x] 내부 자료 정리와 구조 초안: `internal/01-source-notes.md` · `internal/02-guide-structure.md` · `internal/part2-skeleton.html` (Git 제외)
+- [x] 내부 자료 정리와 구조 초안: `internal/01-source-notes.md` · `internal/02-guide-structure.md` · `internal/part2-skeleton.html` (Git 제외). 골격은 아래 데이터 기반 PART 2로 대체돼 더는 쓰지 않습니다.
 
 ## 작업
 
 1. [ ] Ignite 2026에서 공개된 Microsoft Foundry 신규 기능 소개 및 실습 내용 추가
+   - [x] 2026.11.17 포털 화면 기준 국문 PART 2 추가: `index.html`의 `#ignite-*` 9개 섹션, 화면 51장
+   - [ ] 발표 자료·릴리스 노트와 대조해 공식 발표 기능과 명칭을 확정하고 PART 2에 반영
+   - [ ] 운영자 가이드(`operator.html`)에 PART 2 준비 사항 반영: 하네스 지원 리전(East US 2 없음), 하네스·평가용 TPM, Log Analytics Reader·Cost Management Reader·Monitoring Reader
+   - [ ] 미검증 항목 확인: 참가자 역할로 재현, Azure Policy 할당, AI Gateway, Optimize 실행, Publish·채널, East US 2 프로젝트의 하네스
 2. [ ] Portal 화면 캡처 및 동영상 녹화
-3. [ ] 가이드 영문화
+   - [x] 정지 화면 51장 캡처(영문 UI + 한국어 입력, 개인 정보 가림·OCR 검사)
+   - [ ] 동영상 녹화(하네스 생성·실행, 평가 실행, Manage 화면)와 가이드의 영상 버튼 연결
+3. [ ] 가이드 영문화(지시문·질문·평가 기준 문장도 영어로)
 4. [ ] 영문 Portal·영문 데이터 기준으로 Portal 화면 캡처 및 동영상 녹화
 5. [ ] 국문/영문 각 단계별 데모 PPT 슬라이드 작성
 6. [ ] github.io에 동영상과 PPT 슬라이드 링크 추가 (웹에서 모두 접근 가능하게)
