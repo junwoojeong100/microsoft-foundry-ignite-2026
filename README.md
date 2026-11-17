@@ -35,7 +35,7 @@ Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한
 |---|---|
 | 위치·흐름 | `index.html`의 Microsoft IQ 개요 → 시작 전 준비·영상 → 실습 1~10 → 문제 대응·완료 기준·참고·소개 카드. Microsoft IQ(`#ignite-microsoft-iq`) 뒤에 로드맵(`#ignite-at-a-glance`)이 나오고, 용어 풀이(`#ignite-glossary`)는 맨 아래 참고 구역에 있습니다. 기존 id·앵커는 유지했습니다. |
 | 화면 기준 | 실습 1~5는 2026.11.05 구 포털·East US 2·GPT-5 mini 녹화가 기본입니다. 가드레일과 선택 실습은 2026.11.17 New Foundry·North Central US의 화면이며, 실습 머리글에 각각의 근거·선행 실습을 표시합니다. 단일 시점의 새 포털 화면으로 오해하지 않도록 구분했습니다. |
-| 화면 | `assets/ignite/screenshots/ko/` 51장(1600×900, 영문 UI + 한국어 입력). 계정·구독·테넌트 값은 가렸고 OCR로 개인 정보 문자열이 없는지 검사했습니다. **동영상은 아직 없습니다.** |
+| New Foundry 화면 | `assets/ignite/screenshots/ko/` 51장(1600×900, 영문 UI + 한국어 입력). 계정·구독·테넌트 값은 가렸고 OCR로 개인 정보 문자열이 없는지 검사했습니다. **선택 실습의 새 동영상은 아직 없습니다.** |
 | 데이터·코드 | `assets/labs-data.js`(실습 구성·순서·선행·관련 카드), `assets/labs.js`(재배치·번호·목차), `assets/ignite/ignite-data.js`(화면 설명·확인 위치), `assets/ignite-part2.js`(New Foundry 갤러리). 확대 창은 모든 화면이 공유합니다. |
 | 직접 실행 | **① 샌드박스 프로젝트(소유자 권한):** 가드레일 목록, `gpt-6.1-terra` 배포(Global Standard·100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4)·실행, Insights 스캔, 커스텀 루브릭 평가자, 합성 질문 15개 평가 실행(12행 채점·3행 rate limit 오류). **② 참가자 권한 재현 프로젝트(별도 구독, North Central US, 계정 1개에 RG Contributor + Foundry User + 구독 Usages Reader만 부여):** 필수 실습을 처음부터(Foundry 리소스·프로젝트 생성 → `gpt-6.1-terra` 10,000 TPM 배포 → Prompt Agent → Traces), 하네스 생성·실행(10,000 TPM 실패, 30,000 TPM 단건 통과), Manage의 Fleet·Cost·Operations·Compliance·Quota·Gateways 열기, Insights·커스텀 루브릭 평가자·평가(15행 모두 통과), 하네스 없는 Prompt Agent의 Optimize 실행(후보 승격 안 함), Azure Policy Audit 할당·해제 |
 | 화면만 확인 | 샌드박스의 Manage(Fleet·Operations·Cost·Compliance·Gateways), Routines·Workflows, 하네스 에이전트의 Optimize 탭·마법사(제출하지 않음) |
@@ -123,7 +123,7 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json
 | 첫 로그인 | 초기 암호 그대로 로그인하며 변경을 강제하지 않습니다(`forceChangePasswordNextSignIn=false`). **MFA 등록·인증은 본인이 완료**하고 MFA·조건부 액세스는 해제하지 않습니다. |
 | 인계 전 필수 | **실제 교육망에서 MFA 미등록 테스트 Guest 2개의 첫 로그인·MFA 등록·재로그인**을 확인합니다. 스크립트 PASS나 운영자 계정 성공으로 대신하지 않습니다. |
 | 모델·TPM | 일반 실습은 **`gpt-6.1-terra`를 개인별 TPM으로 배분**합니다((70 + 5) × 10,000 = 750,000 TPM은 계산 예시). Optimizer 등 모델 고정 설정은 지정 모델을 유지합니다. |
-| 관측성 | 참가자가 Agent → Traces → **Connect → Create new resource**로 Application Insights를 본인 RG에 만들고 바로 연결합니다. |
+| 관측성 | 본인 RG의 Application Insights를 사용합니다. 연결이 없으면 구 포털의 Agent → Traces → **Connect → Create new resource** 경로를 따릅니다. North Central US 재현에서는 리소스 생성 때 자동 연결되어 다시 만들지 않았습니다. |
 | 비공개 파일 | `.workshop-runs/<workshopId>/`(초기 암호 포함)는 Git·Pages에서 제외하고 승인된 비공개 저장소에 백업합니다. 참가자 암호는 별도 경로로 개별 전달합니다. |
 
 ## 검증 현황
@@ -138,6 +138,8 @@ Azure에 접속하지 않고 스크립트(가짜 API), 링크·앵커, 화면·�
 ```bash
 python3 -m unittest discover -s tests -v
 ```
+
+2026.11.18 최종 점검: **오프라인 테스트 50개·외부 링크 75개 통과**. 두 가이드를 데스크톱·태블릿·모바일에서 확인해 오류·가로 넘침·깨진 이미지가 없었고, 10개 실습·13개 카드·기존 앵커·동적 재번호·딥링크·51장 갤러리·확대·테마를 확인했습니다. 최종 데스크톱/모바일 미리보기 8장을 직접 검토하고 OCR 금지 문자열 0건을 확인했습니다. 이는 Foundry IQ 등의 미실행 기능을 검증했다는 뜻이 아닙니다.
 
 ## 배포
 

@@ -623,7 +623,7 @@
           <p class="intro-status"><strong>발표 상태:</strong> SharePoint 인덱스 지식 소스 GA, 지식 그래프·Microsoft-Retriever-1·프로젝트별 리소스 Preview(Book of News). 에이전틱 검색 포털 경험 Preview(Learn). Serverless는 2026년 12월 GA 예정(블로그).</p>
           <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
           <p><strong>Foundry 연결:</strong> 프로젝트의 <strong>Build → Knowledge</strong>에서 검색 서비스·지식 소스·지식 베이스를 구성하고 Agents에서 연결합니다. 코드에서는 지식 베이스의 MCP 도구와 프로젝트 연결을 사용합니다.</p>
-          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 2026.11.18 일반 포털 로그인이 기존 OTP 입력에서 중단되어 지식 구성·연결·출처 응답의 <strong>참가자 권한 E2E를 확인하지 못했습니다.</strong> 기능 불가나 권한 오류를 확인한 것은 아닙니다. 검색 서비스·관리 ID 역할·지원 리전은 운영자 준비이며 무료 계층에도 모델 토큰 비용은 별도입니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 2026.11.18 검증용 참가자 계정의 일반 포털 로그인이 기존 OTP 입력에서 중단되어 지식 구성·연결·출처 응답의 <strong>참가자 권한 E2E를 확인하지 못했습니다.</strong> 기능 불가나 권한 오류를 확인한 것은 아닙니다. 검색 서비스·관리 ID 역할·지원 리전은 운영자 준비이며 무료 계층에도 모델 토큰 비용은 별도입니다.</p>
           <div class="intro-try"><strong>해 보려면 · 공식 절차 요약</strong><ol>
             <li>허브 기반이 아닌 Foundry 프로젝트·모델과 에이전틱 검색 지원 서비스를 준비합니다. 검색 무료 계층은 구독당 1개이므로 기존 서비스·지원 리전·SKU를 확인합니다.</li>
             <li>운영자가 프로젝트 관리 ID → 검색 서비스의 Search Index Data Reader와, LLM을 쓰면 검색 서비스 관리 ID → Foundry 리소스의 Cognitive Services User를 준비합니다. 연결 생성의 Foundry Project Manager 등 공식 권한 요건도 확인합니다.</li>
@@ -703,7 +703,7 @@
           <p>도구 묶음을 관리형 MCP 엔드포인트로 재사용하고 API 없는 웹 작업은 브라우저 도구로 연결합니다.</p>
           <p class="intro-status"><strong>발표 상태:</strong> Learn의 VS Code prompt-agent Toolbox 통합은 Preview·기본 비활성화, 브라우저 도구 자체는 GA입니다. Foundry 발표는 브라우저 업데이트의 별도 상태를 명시하지 않습니다.</p>
           <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
-          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 도구별 권한·연결과 Playwright 작업 영역이 필요합니다. 일반 포털 로그인이 기존 OTP에서 중단되어 10분 후보 점검·브라우저 실행은 하지 못했습니다. 기능 자체가 불가능하다고 판정한 것은 아닙니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 도구별 권한·연결과 Playwright 작업 영역이 필요합니다. 검증용 참가자 계정의 포털 로그인이 기존 OTP에서 중단되어 10분 후보 점검·브라우저 실행은 하지 못했습니다. 기능 자체가 불가능하다고 판정한 것은 아닙니다.</p>
           <p class="intro-links"><strong>공식 문서:</strong> <a href="https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/toolbox-overview" target="_blank" rel="noopener noreferrer">Toolbox 개념 ↗</a> · <a href="https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/create-prompt-agent-visual-studio-code#use-a-toolbox-preview" target="_blank" rel="noopener noreferrer">prompt-agent Preview 조건 ↗</a> · <a href="https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/browser-automation" target="_blank" rel="noopener noreferrer">브라우저 자동화·제약 ↗</a></p>
         </article>
         <article class="intro-card" id="learn-foundry-mcp-server" data-tier="B">
@@ -719,7 +719,7 @@
           <p>에이전트가 실행되는 동안 행동을 조직의 guardrail 정책과 대조하는 감독 기능입니다.</p>
           <p class="intro-status"><strong>발표 상태:</strong> Foundry 블로그는 런타임 제어 전체의 GA/Preview를 명시하지 않습니다. Learn은 콘텐츠 안전 agent guardrails·도구 호출/응답 검사를 Preview로 구분합니다.</p>
           <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
-          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 정책 변경 권한과 대상·위험별 지원을 확인해야 합니다. 일반 포털 로그인이 기존 OTP에서 중단되어 Safety 후보 점검·정책 변경은 하지 못했습니다. 포털에 기능이 없다고 확인한 것은 아닙니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 정책 변경 권한과 대상·위험별 지원을 확인해야 합니다. 검증용 참가자 계정의 포털 로그인이 기존 OTP에서 중단되어 Safety 후보 점검·정책 변경은 하지 못했습니다. 포털에 기능이 없다고 확인한 것은 아닙니다.</p>
           <p class="intro-links"><strong>공식 문서:</strong> <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/" target="_blank" rel="noopener noreferrer">런타임 감독 발표 ↗</a> · <a href="https://learn.microsoft.com/en-us/azure/foundry/guardrails/guardrails-overview" target="_blank" rel="noopener noreferrer">Guardrails·적용 범위 ↗</a></p>
         </article>
         <article class="intro-card" id="learn-training" data-tier="B">
