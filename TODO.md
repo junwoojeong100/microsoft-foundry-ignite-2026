@@ -10,7 +10,7 @@ Ignite 2026 가이드 작업 목록입니다. 끝낸 항목은 `[x]`로 바꿉�
 
 ## 사전 작업
 
-- [x] 내부 자료 정리와 구조 초안: `internal/01-source-notes.md` · `internal/02-guide-structure.md` · `internal/part2-skeleton.html` (Git 제외). 골격은 아래 데이터 기반 PART 2로 대체돼 더는 쓰지 않습니다.
+- [x] 공개 전 내부 메모·구조 초안·골격은 Ignite 공개 뒤 사용자 지시(2026-11-18)로 삭제했습니다. 가이드는 공개된 Book of News·공식 블로그·Learn 문서만 근거로 하며, 확인한 출처와 시각은 `internal/tools/facts-check-*.txt`(Git 제외)에 있습니다.
 
 ## 작업
 
@@ -19,7 +19,9 @@ Ignite 2026 가이드 작업 목록입니다. 끝낸 항목은 `[x]`로 바꿉�
    - [x] 리전을 PART 1·PART 2 모두 North Central US로 통일: 예제 설정·운영자 가이드의 `location`·실습자 가이드와 화면 설명의 리전 안내. 녹화 화면은 East US 2 그대로이며 '화면은 녹화 당시 East US 2'로 표기
    - [x] 공개 문서·Foundry 블로그 릴리스 노트와 대조(2026.11.17): PART 2 개요의 '공식 자료와 맞춰 본 결과' 표와 5-4 Optimize 경고(포털 최적화는 하네스를 쓰지 않는 Prompt Agent 대상) 반영
    - [x] Ignite Book of News가 공개되어 기능 명칭·상태(Preview/GA)를 다시 대조(2026.11.18): **가장 중요한 발표인 Microsoft IQ(GA)**를 PART 2 개요의 `#ignite-microsoft-iq`(구성·상태·이 가이드와의 관계)와 대조 표 첫 행에 올리고, Foundry 항목은 '발표·공식 자료와 맞춰 본 결과' 표(14행)·'한눈에 보기'의 발표 열·N3~N7 안내, PART 1의 02·05단계·모델 배포 한도·완료 기준 안내, 운영자 가이드 `#part2-prep`에 반영. 근거는 Book of News와 그 상세 블로그·Learn 문서
-   - [ ] 발표 뒤 포털 화면(메뉴 이름·배지·Insights·Optimize·Cost·Gateways) 재확인: 11/17 화면은 키노트 전 캡처이며 아직 다시 열어 보지 않음
+   - [ ] **실습 10개로 재구성(2026-11-18 결정)**: PART 1/PART 2 구분을 없애고 실습 1~10으로 번호·순서를 통일합니다. 실습 1~5는 필수(화면 2026-11-05 구 포털), 6~10은 선택(화면 2026-11-17 New Foundry). 기존 id·앵커는 유지하고 실습마다 화면 기준일을 표기하며, Microsoft IQ는 개요의 첫 항목으로 유지합니다. 영문판·영상 챕터·덱은 이 구조가 끝난 뒤 만듭니다. 계획은 `internal/next-session-prompt.md`(Git 제외)의 Phase R
+   - [ ] **Foundry IQ 실습 가능성 확인**: 참가자 3개 역할로 Build → Knowledge에서 지식 베이스를 만들고 에이전트에 연결할 수 있는지(별도 Search 서비스·역할 부여 필요 여부, 무료 계층, 소요 시간). 가능하면 실습으로 추가하고, 아니면 '이름만 소개'로 유지
+   - [ ] 발표 뒤 포털 화면(메뉴 이름·배지·Insights·Optimize·Cost·Gateways·Knowledge) 재확인: 11/17 화면은 키노트 전 캡처이며 아직 다시 열어 보지 않음
    - [x] 운영자 가이드(`operator.html`)에 PART 2 준비 사항 반영: `#part2-prep` 섹션(리전·하네스·평가용 TPM·Log Analytics Reader·Cost Management Reader·Monitoring Reader·Azure Policy·Optimize·비용·정리)과 `#plan`·`#capacity`의 연결 안내, `#managed-identity`의 Monitoring Reader 할당 예. 참가자 필수 역할 3개 표는 바꾸지 않았음(재현에서 3개 역할만으로 화면이 열림. Cost 값 표시에 Cost Management Reader가 필요한지만 미확인. **표를 바꾸지 않기로 결정, 2026-11-18**)
    - [x] 미검증 항목 중 일부를 직접 확인(2026.11.17, 별도 구독의 North Central US, 참가자 역할 3개만 가진 계정 1개): PART 1 처음부터 재현(Foundry 리소스 생성 화면의 Region 포함), 10,000·30,000 TPM에서 하네스 실행(10,000 TPM은 실패), 참가자 역할로 Manage·Insights·평가자·평가 열기·실행, Prompt Agent의 Optimize 실행(후보 승격 안 함), Azure Policy Audit 할당·해제. 결과는 `index.html`의 검증 범위 상자·N1·N6·N7·5-4와 `operator.html`의 `#part2-prep`에 반영
    - [ ] 남은 미검증 항목: AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격·하네스 에이전트의 Optimize 제출, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 비용 데이터가 쌓인 뒤 Cost 화면(Cost Management Reader 필요 여부), Compliance 정책 평가·Asset 탭 권한 안내의 원인, 여러 참가자의 동시 실행
