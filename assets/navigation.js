@@ -10,10 +10,13 @@
     new ResizeObserver(syncTopbarHeight).observe(topbar);
   }
   const activeLink = id => {
-    const lab = document.getElementById(id)?.closest("[data-lab]")?.dataset.lab;
+    const target = document.getElementById(id);
+    const lab = target?.closest("[data-lab]")?.dataset.lab;
+    const step = target?.closest("[data-lab-number]")?.dataset.labNumber;
     toc.querySelectorAll("a").forEach(link => {
-      const active = link.hash === `#${id}` || !!lab && link.dataset.labLink === lab;
+      const active = link.hash === `#${id}` || !!lab && link.dataset.labLink === lab || !!step && link.dataset.labStep === step;
       link.classList.toggle("active", active);
+      link.classList.toggle("lab-visible", !!lab && link.dataset.labChild === lab);
       if (active) link.setAttribute("aria-current", link.dataset.labLink ? "step" : "location");
       else link.removeAttribute("aria-current");
     });
@@ -46,12 +49,7 @@
     }
     target.scrollIntoView({block: "start", behavior: "instant"});
     const interactions = ["wheel", "touchstart", "keydown", "mousedown"];
-    let initialReport = true;
     const observer = new ResizeObserver(() => {
-      if (initialReport) {
-        initialReport = false;
-        return;
-      }
       target.scrollIntoView({block: "start", behavior: "instant"});
     });
     const stop = () => {

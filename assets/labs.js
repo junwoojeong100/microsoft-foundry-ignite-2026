@@ -82,13 +82,18 @@
         if (node.matches("section")) {
           const label = node.querySelector(".section-label");
           if (label) label.textContent = `${step} · ${label.textContent.replace(/^\d+-\d+\s*·\s*/, "")}`;
-          const badge = node.querySelector(".stage-number");
+          const badge = node.querySelector(":scope > .stage-header > .stage-number");
           if (badge) badge.textContent = step;
-        } else if (node.matches("h3")) node.textContent = `${step} ${node.textContent.replace(/^(?:실습 )?\d+-\d+\s+/, "")}`;
+        } else if (node.matches("h3")) {
+          node.textContent = `${step} ${node.textContent.replace(/^(?:실습 )?\d+-\d+\s+/, "")}`;
+          node.classList.add("observed-section");
+        }
       });
       const node = element(ids[0]);
       const child = link(node.id, sectionNumbers.get(node.id), node.matches("h3") ? node.textContent.replace(/^\d+-\d+\s+/, "") : title(node));
       child.className = "lab-child";
+      child.dataset.labChild = lab.key;
+      child.dataset.labStep = sectionNumbers.get(node.id);
       toc.append(child);
     });
     const more = document.createElement("p");
@@ -97,6 +102,17 @@
     main.append(more);
   });
   data.after.forEach(common);
+  const footer = main.querySelector(".footnotes");
+  if (footer) main.append(footer);
+  document.querySelectorAll("[data-lab-gallery]").forEach(host => {
+    const number = sectionNumbers.get(host.dataset.labGallery);
+    if (!number) fail(`갤러리의 실습 번호를 찾지 못했습니다: ${host.dataset.labGallery}`);
+    const label = `실습 ${number} · ${host.dataset.igniteLabel}`;
+    const gallery = host.querySelector(".gallery");
+    gallery.setAttribute("aria-label", label);
+    gallery.querySelector(".gallery-heading > span").textContent = `${label} · 사진을 누르면 확대`;
+    gallery.querySelector(".thumbnails").setAttribute("aria-label", `${label} 화면 선택`);
+  });
   document.querySelectorAll("[data-lab-ref]").forEach(node => {
     const [kind, key] = node.dataset.labRef.split(":");
     const number = kind === "lab" ? labNumbers.get(key) : kind === "sec" ? sectionNumbers.get(key) : null;

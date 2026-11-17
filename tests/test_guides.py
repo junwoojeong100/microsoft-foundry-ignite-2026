@@ -258,6 +258,7 @@ class LabMapTests(unittest.TestCase):
         numbers.update({f"sec:{section}": f"{i + 1}-{step + 1}" for i, lab in enumerate(labs)
                         for step, sections in enumerate(lab["steps"]) for section in sections})
         refs = re.findall(r'<a[^>]*data-lab-ref="([^"]+)"[^>]*>(.*?)</a>', parse("index.html")[1], re.S)
+        self.assertTrue(refs, "the guide must use computed references instead of hard-coded optional lab numbers")
         for key, text in refs:
             self.assertIn(key, numbers)
             self.assertEqual(f"실습 {numbers[key]}", html.unescape(text), key)
@@ -268,6 +269,15 @@ class LabMapTests(unittest.TestCase):
         table = text[text.index('id="ignite-official-check"'):]
         first_row = re.search(r"<tbody>\s*<tr>(.*?)</tr>", table, re.S).group(1)
         self.assertIn("<strong>Microsoft IQ</strong>", first_row)
+
+    def test_all_observed_sections_belong_to_the_lab_or_common_flow(self):
+        data = self.load()
+        common = {item["id"] for item in data["before"] + data["after"]}
+        labs = {section for lab in data["labs"] if lab["enabled"] for section in lab["sections"]}
+        parser, text = parse("index.html")
+        observed = set(parser.observed_sections) | {value for value in dynamic_ids(text) if value.startswith("step-")}
+        self.assertEqual(observed, common | labs)
+        self.assertIn("<body data-labs>", text)
 
 
 class IgnitePart2Tests(unittest.TestCase):
@@ -316,7 +326,7 @@ class IgnitePart2Tests(unittest.TestCase):
 
     def test_part2_scripts_load_data_before_renderer_and_before_navigation(self):
         scripts = parse("index.html")[0].scripts
-        order = [scripts.index(name) for name in ("assets/ignite/ignite-data.js", "assets/ignite-part2.js", "assets/navigation.js")]
+        order = [scripts.index(name) for name in ("assets/ignite/ignite-data.js", "assets/ignite-part2.js", "assets/labs-data.js", "assets/labs.js", "assets/navigation.js")]
         self.assertEqual(sorted(order), order)
 
 
