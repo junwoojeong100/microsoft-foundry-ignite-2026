@@ -55,7 +55,7 @@ class FakeCloud:
         if parsed.path == "/v1.0/domains":
             return [{"id": DOMAIN, "isInitial": True, "isVerified": True}]
         if parsed.path.endswith("/locations"):
-            return [{"name": "eastus2"}, {"name": "westus3"}]
+            return [{"name": "eastus2"}, {"name": "northcentralus"}, {"name": "westus3"}]
         if parsed.path.endswith("/transitiveMemberOf"):
             return deepcopy(self.members.get(parsed.path.split("/")[-2], []))
         if parsed.path == "/v1.0/roleManagement/directory/roleAssignments":

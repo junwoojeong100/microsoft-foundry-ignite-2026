@@ -1,6 +1,6 @@
 # Microsoft Foundry · Ignite 2026 실습 가이드
 
-Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 소개하고 직접 실습**하는 가이드를 만들기 위한 리포입니다. 기존 Foundry 워크샵의 **실습자·운영자 가이드를 그대로 가져온 기반(baseline)** 위에, 실습자 가이드 끝에 **PART 2 · 2026.11.17 새 Foundry 포털 화면**을 추가했습니다. 기존 PART 1 본문과 운영자 가이드는 바꾸지 않았으며, 영문판·동영상·슬라이드는 아직 없습니다.
+Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 소개하고 직접 실습**하는 가이드를 만들기 위한 리포입니다. 기존 Foundry 워크샵의 **실습자·운영자 가이드를 그대로 가져온 기반(baseline)** 위에, 실습자 가이드 끝에 **PART 2 · 2026.11.17 새 Foundry 포털 화면**을 추가했습니다. 기존 PART 1 본문과 운영자 가이드는 **리전 안내를 North Central US로 통일한 것 외에는** 바꾸지 않았으며, 영문판·동영상·슬라이드는 아직 없습니다.
 
 > 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** 이 틀을 유지한 채 본문을 Ignite 2026 신규 기능으로 바꿔 나갑니다.
 
@@ -12,7 +12,7 @@ Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 �
 | 가져온 것 | Foundry 실습자·운영자 가이드, 공통 자산(CSS·JS·화면 63장·영상 2개·로그인/MFA 이미지·검증 JSON), 운영자 자동화 스크립트와 설정 예제, 오프라인 테스트, Pages 워크플로 |
 | 가져오지 않은 것 | GitHub Copilot 실습자·운영자 가이드, Codespaces·Copilot CLI 가이드, 고객 안내 EDM, 그 가이드들의 이미지 |
 | 가져오며 바꾼 것 | 가이드 전환 메뉴를 Foundry 2종으로 축소 · GitHub 가이드로 가는 링크·안내·인계 템플릿 줄 제거 · 저장소·Pages 주소를 이 리포로 변경 · 테스트와 워크플로를 2종 기준으로 조정하고 화면·영상 파일 점검 추가 · `ATTRIBUTION.txt`에서 가져오지 않은 이미지 항목 제거 · `.gitignore`에 `.playwright-mcp/` 추가 · README 재작성 |
-| 그대로인 것 | 본문, 화면·영상(2026.11.05 녹화, GPT-5 mini), 검증 JSON, 스크립트. 이 부분(PART 1)은 Ignite 신규 기능 기준으로 다시 확인한 내용이 아닙니다. 신규 화면은 아래 PART 2에만 있습니다. |
+| 그대로인 것 | 본문, 화면·영상(2026.11.05 녹화, East US 2·GPT-5 mini), 검증 JSON, 스크립트. 다만 참가자가 입력·선택하는 리전 안내는 North Central US로 바꿨습니다(아래 PART 2 표의 '리전' 행). 이 부분(PART 1)은 Ignite 신규 기능 기준으로 다시 확인한 내용이 아닙니다. 신규 화면은 아래 PART 2에만 있습니다. |
 
 첫 커밋이 원본 그대로이므로 `git diff <첫 커밋> HEAD`로 가져오며 바꾼 내용을 모두 볼 수 있습니다.
 
@@ -26,8 +26,9 @@ Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 �
 | 데이터·코드 | `assets/ignite/ignite-data.js`(화면별 설명과 확인 위치 좌표), `assets/ignite-part2.js`(갤러리·사이드바 렌더링). 확대 창은 PART 1과 공유합니다. |
 | 직접 실행 | 가드레일 목록, `gpt-6.1-terra` 배포(Global Standard·100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4)·실행, Insights 스캔, 커스텀 루브릭 평가자, 합성 질문 15개 평가 실행(12행 채점·3행 rate limit 오류) |
 | 화면만 확인 | Manage의 Fleet·Operations·Cost·Compliance·Gateways, Routines·Workflows, Optimize |
-| 하지 않음 | Azure Policy 할당, AI Gateway 생성, Optimize 실행, Publish·채널 연결, 참가자 역할(RG Contributor + Foundry User + 구독 Usages Reader)만으로 재현 |
-| 운영자에게 알릴 점 | 공식 하네스 지원 리전 목록에 **East US 2가 없습니다**. 하네스 한 번 실행이 약 4만 토큰이라 **10,000 TPM 배정으로는 부족**할 수 있습니다(평가 15행 중 3행이 rate limit). Fleet·Cost는 Log Analytics Reader·Cost Management Reader, 평가자 트레이스 컨텍스트는 프로젝트 관리 ID의 Monitoring Reader가 필요합니다. **`operator.html`에는 아직 반영하지 않았습니다.** |
+| 하지 않음 | Azure Policy 할당, AI Gateway 생성, Optimize 실행, Publish·채널 연결, 참가자 역할(RG Contributor + Foundry User + 구독 Usages Reader)만으로 재현, North Central US에서 PART 1(Foundry 리소스 생성~Prompt Agent)을 처음부터 재현(샌드박스 프로젝트에는 모델 배포·에이전트가 이미 있었음) |
+| 리전 | PART 1·PART 2 모두 **North Central US**(`northcentralus`)로 통일했습니다. 공식 하네스 지원 리전 22곳에 포함됩니다(2026.11.17 문서 기준). 예제 설정(`config/workshop.example.json`), `operator.html`의 JSON 예시·표, 실습자 가이드의 리전 안내를 맞췄고 값이 어긋나면 테스트가 실패합니다. PART 1 화면·영상은 East US 2에서 녹화해 바꿀 수 없으므로 '녹화 예시: East US 2'로 남기고 '화면은 녹화 당시 East US 2'라고 덧붙였습니다. |
+| 운영자에게 알릴 점 | 하네스 한 번 실행이 약 4만 토큰이라 **10,000 TPM 배정으로는 부족**할 수 있습니다(평가 15행 중 3행이 rate limit). Fleet·Cost는 Log Analytics Reader·Cost Management Reader, 평가자 트레이스 컨텍스트는 프로젝트 관리 ID의 Monitoring Reader가 필요합니다. **`operator.html`에는 리전 값만 반영했고 TPM·역할 안내는 아직 반영하지 않았습니다.** |
 
 화면 기준일은 2026.11.17이며 어떤 항목이 Ignite에서 공식 발표된 기능인지는 발표 자료·릴리스 노트로 따로 확인해야 합니다.
 
@@ -61,7 +62,7 @@ python3 -m http.server 8000   # http://localhost:8000/index.html · /operator.ht
 | 화면 이미지·영상·자막 | `assets/screenshots/`, `assets/video/`. `assets/capture-manifest.json`은 같은 구조의 캡처 기록(다운로드용)이므로 함께 갱신합니다. |
 | 운영자 본문(역할·준비 절차·점검·인계·종료) | `operator.html` |
 | 참가자 Azure 역할·리소스 공급자(RP) 등록 목록 | `scripts/workshop_common.py`의 `ROLES`·`PROVIDERS`, 그리고 두 가이드의 역할 표 |
-| 계정·RG 규모와 이름 | `config/workshop.example.json`, `scripts/provision_workshop.py` |
+| 계정·RG 규모·이름·지역 | `config/workshop.example.json`, `scripts/provision_workshop.py`. 예제 설정은 `operator.html`의 JSON 예시·`location` 행과 같아야 하며 테스트가 확인합니다. |
 | 로그인·MFA 이미지와 출처 | `assets/onboarding/`, `assets/onboarding/ATTRIBUTION.txt` |
 | 기준일·검증 근거 | 두 가이드의 `기준일`과 `assets/verification.json`·`assets/guest-auth-verification.json`. 새 기능을 직접 검증하기 전에는 원본의 검증 범위를 신규 기능으로 확장해 쓰지 않습니다. |
 | 스타일·동작 | `assets/guide.css`, `theme.js`, `navigation.js`, `copy.js` |
@@ -105,11 +106,11 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json
 ## 검증 현황
 
 - **확인한 것:** Internal Guest 1명의 기본 Prompt Agent E2E(2026.11.05, GPT-5 mini)와 새 Guest 1개의 초기 암호 + Software OATH(TOTP) MFA 로그인(2026.11.08). [비밀 값 없는 검증 JSON](assets/guest-auth-verification.json)을 제공합니다. PART 2는 2026.11.17에 샌드박스 프로젝트 1개에서 직접 실행한 범위(위 PART 2 표)만 확인했습니다.
-- **아직 확인하지 않은 것:** **PART 2에서 직접 실행하지 않은 신규 화면(Azure Policy 할당·AI Gateway·Optimize 실행 등)과 참가자 역할로의 PART 2 재현**, East US 2 프로젝트에서의 하네스, 10,000 TPM 배포에서의 하네스 실행, 75개 환경 생성·동시 부하, `gpt-6.1-terra` 참가자 E2E, 고객 교육망, Microsoft Authenticator 푸시, Traces의 Create new resource 이후 화면(녹화에는 Azure Portal 사전 생성 방식만 있음). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
+- **아직 확인하지 않은 것:** **PART 2에서 직접 실행하지 않은 신규 화면(Azure Policy 할당·AI Gateway·Optimize 실행 등)과 참가자 역할로의 PART 2 재현**, North Central US에서 PART 1(Foundry 리소스 생성 화면의 Region 포함)을 처음부터 재현, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000 TPM 배포에서의 하네스 실행, 75개 환경 생성·동시 부하, `gpt-6.1-terra` 참가자 E2E, 고객 교육망, Microsoft Authenticator 푸시, Traces의 Create new resource 이후 화면(녹화에는 Azure Portal 사전 생성 방식만 있음). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
 
 ## 테스트
 
-Azure에 접속하지 않고 스크립트(가짜 API), 가이드의 링크·앵커(상대·절대 주소), 화면·영상 파일 존재, PART 2 화면 데이터(파일·1600×900·확인 위치 범위)와 갤러리 자리표시자·사이드바 연결, 전환 메뉴와 Pages 워크플로 범위를 검사합니다. 가이드나 자산을 고친 뒤에는 항상 실행하세요.
+Azure에 접속하지 않고 스크립트(가짜 API), 가이드의 링크·앵커(상대·절대 주소), 화면·영상 파일 존재, PART 2 화면 데이터(파일·1600×900·확인 위치 범위)와 갤러리 자리표시자·사이드바 연결, 예제 설정과 운영자 가이드 JSON 예시의 일치, 전환 메뉴와 Pages 워크플로 범위를 검사합니다. 가이드나 자산을 고친 뒤에는 항상 실행하세요.
 
 ```bash
 python3 -m unittest discover -s tests -v

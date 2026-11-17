@@ -1,5 +1,6 @@
 """Static checks for the published guide pages: local links, anchors, ids and Pages coverage."""
 
+import html
 from html.parser import HTMLParser
 import json
 from pathlib import Path
@@ -157,6 +158,18 @@ class GuidePageTests(unittest.TestCase):
         for name in PAGES:
             self.assertIn(f"test -s {name}", workflow)
             self.assertIn(name, copy_line)
+
+    def test_operator_example_matches_the_example_config(self):
+        # operator.html shows config/workshop.example.json as a JSON block and as a settings table. A value changed in one place must change in all of them.
+        config = json.loads((ROOT / "config" / "workshop.example.json").read_text(encoding="utf-8"))
+        text = parse("operator.html")[1]
+        block = re.search(r'<pre[^>]*aria-label="워크샵 JSON 설정 예시">(.*?)</pre>', text, re.S)
+        table = re.search(r'<table aria-label="설정 값의 의미">(.*?)</table>', text, re.S)
+        self.assertTrue(block and table, "operator.html: JSON example or settings table not found")
+        self.assertEqual(config, json.loads(html.unescape(block.group(1))), "operator.html: JSON example differs from config/workshop.example.json")
+        rows = dict(re.findall(r"<tr><td><code>(\w+)</code></td><td><code>([^<]*)</code></td>", table.group(1)))
+        self.assertIn("location", rows)
+        self.assertEqual({key: str(config.get(key)) for key in rows}, rows, "operator.html: settings table differs from config/workshop.example.json")
 
 
 class GuideDataTests(unittest.TestCase):

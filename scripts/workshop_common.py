@@ -98,7 +98,7 @@ class Config:
         if not isinstance(data["location"], str) or not re.fullmatch(
             r"[a-z][a-z0-9]{1,39}", data["location"]
         ):
-            raise WorkshopError("Use an Azure location name such as eastus2.")
+            raise WorkshopError("Use an Azure location name such as northcentralus.")
         count = data["participantCount"]
         if type(count) is not int or not 1 <= count <= 999:
             raise WorkshopError("participantCount must be an integer from 1 to 999.")

@@ -97,7 +97,7 @@
         <ol class="task-list" aria-label="운영자에게 받을 다섯 가지">
           <li><strong>로그인 계정:</strong> 본인 UPN(User Principal Name)과 별도 전달된 초기 암호. 초기 암호 그대로 로그인하며 변경은 선택입니다. <strong>MFA 등록·인증은 본인이 완료</strong>합니다. <a href="#first-sign-in">첫 로그인 절차 →</a></li>
           <li><strong>대상 테넌트·구독:</strong> 사용할 디렉터리와 Subscription ID. 기존 회사·개인 계정의 환경과 혼동하지 않습니다.</li>
-          <li><strong>본인 RG·지역·이름 규칙:</strong> 배정 RG 이름/링크와 허용 지역, 본인 고유 리소스 이름 규칙.</li>
+          <li><strong>본인 RG·지역·이름 규칙:</strong> 배정 RG 이름/링크와 허용 지역, 본인 고유 리소스 이름 규칙. <strong>이 워크샵의 지역은 North Central US</strong>입니다(PART 1 화면은 East US 2에서 녹화해 Region 값이 다르게 보일 수 있습니다).</li>
           <li><strong>모델 배정:</strong> 모델·버전·배포 유형·TPM·배포 개수, 지원되는 Reasoning Effort·출력 한도. <a href="#model-quota">배포 시 입력 기준 →</a></li>
           <li><strong>실습·지원·종료:</strong> 이번 실습 본문 URL, 완료 기준·종료/정리 정책, 승인된 문의 경로.</li>
         </ol>
@@ -460,7 +460,7 @@
         <div class="notice warning"><strong>검증 범위 · 2026.11.17, 샌드박스 프로젝트 1개(North Central US)</strong><br>
           <strong>직접 실행:</strong> New Foundry 환영 안내, 가드레일 목록, gpt-6.1-terra 배포(Global Standard · 100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4까지)·실행, Insights 스캔 1회, 커스텀 루브릭 평가자 생성, 합성 질문 15개 평가 실행.<br>
           <strong>화면만 확인:</strong> Manage의 Fleet·Operations·Cost·Compliance·Gateways, Routines·Workflows, Optimize.<br>
-          <strong>하지 않음:</strong> Azure Policy 할당, AI Gateway 생성, Optimize 실행, Publish·채널 연결, 그리고 참가자 역할(RG Contributor + Foundry User + 구독 Usages Reader)만으로 같은 화면이 열리는지 재현.<br>
+          <strong>하지 않음:</strong> Azure Policy 할당, AI Gateway 생성, Optimize 실행, Publish·채널 연결, 그리고 참가자 역할(RG Contributor + Foundry User + 구독 Usages Reader)만으로 같은 화면이 열리는지 재현. North Central US에서 PART 1(Foundry 리소스 생성~Prompt Agent)을 처음부터 재현하지 못함(샌드박스 프로젝트는 모델 배포·에이전트가 11/04부터 이미 있었음).<br>
           토큰·비용·점수는 이 환경에서 한 번 실행한 결과이며 같은 값을 맞추라는 뜻이 아닙니다.</div>
         <h3 class="role-title" id="ignite-menu-changes">PART 1 캡처와 달라진 메뉴</h3>
         <div class="table-wrap">
@@ -495,7 +495,7 @@
           <table aria-label="PART 2 시작 전 확인 항목">
             <thead><tr><th>항목</th><th>이 실습에서 확인한 값</th><th>주의</th></tr></thead>
             <tbody>
-              <tr><td>프로젝트 리전</td><td>North Central US</td><td>공식 문서의 하네스 지원 리전 22곳 목록에 <strong>East US 2가 없습니다</strong>(2026.11.17 확인). PART 1의 예시 리전이 East US 2였으므로 같은 리전 프로젝트에서 하네스가 보이는지는 확인하지 못했습니다. 운영자가 지원 리전을 배정했는지 확인하세요.</td></tr>
+              <tr><td>프로젝트 리전</td><td>North Central US</td><td>이 워크샵의 기본 리전입니다. 하네스는 공식 문서의 지원 리전 22곳에 있는 프로젝트에서만 쓸 수 있고 North Central US가 포함됩니다(2026.11.17 문서 기준). 다른 리전을 배정받았다면 공식 목록(<a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">하네스 지원 리전·한도 ↗</a>)을 확인하세요.</td></tr>
               <tr><td>모델·TPM</td><td>gpt-6.1-terra · Global Standard · 100,000 TPM</td><td>하네스 한 번 실행이 약 4만 토큰(질문 1회에 41,653토큰)이었습니다. 한도가 10,000 TPM이면 속도 한도에 걸릴 수 있으나 그 설정으로는 시험하지 못했습니다. 모델은 reasoning과 tool calling을 지원해야 합니다(공식 문서).</td></tr>
               <tr><td>에이전트 생성·호출</td><td>프로젝트의 Foundry User</td><td>공식 문서 기준입니다. 모델 배포·리소스 생성에는 PART 1처럼 본인 RG의 Contributor가 따로 필요합니다.</td></tr>
               <tr><td>Fleet · Cost 화면</td><td>프로젝트·구독 읽기 + 연결된 Application Insights의 Log Analytics Reader + 구독의 Cost Management Reader</td><td>공식 문서 기준입니다. 비용이 비어 있으면 Cost Management Reader부터 확인합니다.</td></tr>
@@ -703,7 +703,7 @@
               <tr class="group-row"><th colspan="3" scope="colgroup">하네스·모델</th></tr>
               <tr><td><code>Model deployment rate limit exceeded. Retry later.</code><br>평가 Error 열의 <code>rate_limit_exceeded</code></td><td>같은 질문을 반복 전송하지 않습니다. 사용 중인 배포의 TPM을 확인합니다. 하네스 한 번 실행이 수만 토큰입니다. 배포를 바꾸면 도구 제한이 풀릴 수 있으니 <a href="#ignite-harness-tools">3-2</a>를 따릅니다.</td><td>하네스·평가용 TPM 배정과 같은 쿼터 풀의 동시 사용. 이 실습은 100,000 TPM이었습니다.</td></tr>
               <tr><td>모델 선택 시 <strong>Unsupported tools</strong></td><td>Cancel은 모델을 유지하고 Confirm은 지원되지 않는 도구를 제거합니다. Confirm한 뒤에는 Harness tools를 다시 열어 확인하고 저장합니다.</td><td>하네스에서 쓸 수 있는 모델 목록. 공식 문서는 reasoning과 tool calling 지원 모델을 요구합니다.</td></tr>
-              <tr><td>하네스 선택 칸이 보이지 않거나 만들 수 없음</td><td>프로젝트 리전이 하네스 지원 리전인지 확인합니다(공식 목록에 East US 2가 없습니다). 기존 에이전트는 하네스로 바꿀 수 없으니 새 에이전트로 만듭니다.</td><td>지원 리전의 프로젝트 배정, 프로젝트의 Foundry User 역할.</td></tr>
+              <tr><td>하네스 선택 칸이 보이지 않거나 만들 수 없음</td><td>프로젝트 리전이 하네스 지원 리전인지 확인합니다(이 워크샵의 North Central US는 공식 지원 리전 22곳에 포함됩니다. 다른 리전을 배정받았다면 공식 목록(<a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">하네스 지원 리전·한도 ↗</a>)을 확인하세요). 기존 에이전트는 하네스로 바꿀 수 없으니 새 에이전트로 만듭니다.</td><td>지원 리전의 프로젝트 배정, 프로젝트의 Foundry User 역할.</td></tr>
               <tr class="group-row"><th colspan="3" scope="colgroup">관찰·평가</th></tr>
               <tr><td>Traces·Monitor의 토큰·비용이 0 또는 Not available</td><td>Playground의 실행 칩, Operations와 비교합니다. 새 실행 뒤 수집을 기다린 뒤에도 같으면 화면과 값을 기록합니다. 이 PART에서는 원인을 확인하지 못했습니다.</td><td>연결된 Application Insights와 Log Analytics Reader, 가격 정보가 없는 모델인지.</td></tr>
               <tr><td>평가자의 <strong>Setup incomplete … Monitoring Reader</strong></td><td>Resolve의 동작은 확인하지 못했고 역할 변경이 필요한 안내입니다. 참가자가 직접 처리하지 말고 화면 문구를 운영자에게 전달합니다.</td><td>프로젝트 관리 ID에 Application Insights의 Monitoring Reader 할당. 화면은 권한 전파에 몇 분 걸릴 수 있다고 안내합니다.</td></tr>
@@ -974,7 +974,7 @@
 
       const stages = [
         {id:"account",title:"계정·테넌트·배정 RG 확인",lead:"Azure Portal에서 내 Guest 계정, 본인 RG, 운영자가 할당한 세 역할을 확인합니다.",note:"본인 UPN·초기 암호 로그인과 본인 MFA 등록·재로그인을 완료한 뒤 진행합니다. 새 RG나 역할은 참가자가 만들지 않습니다."},
-        {id:"resource",title:"Foundry 리소스 + 기본 프로젝트 생성",lead:"Azure Portal → Foundry → Create a Foundry resource에서 본인 RG와 운영자가 배정한 지역을 선택합니다.",note:"이 화면은 Foundry 리소스와 Default project를 함께 만듭니다. 본인의 고유 리소스·프로젝트 이름으로 Review + create → Create를 진행합니다. 녹화 예시는 East US 2·프로젝트 guest-portal-lab입니다."},
+        {id:"resource",title:"Foundry 리소스 + 기본 프로젝트 생성",lead:"Azure Portal → Foundry → Create a Foundry resource에서 본인 RG와 운영자가 배정한 지역을 선택합니다.",note:"이 화면은 Foundry 리소스와 Default project를 함께 만듭니다. 본인의 고유 리소스·프로젝트 이름으로 Review + create → Create를 진행합니다. 녹화 예시는 East US 2·프로젝트 guest-portal-lab입니다. Region은 North Central US를 선택합니다(화면은 녹화 당시 East US 2)."},
         {id:"project",title:"Foundry Portal에서 프로젝트 열기",lead:"생성 완료 후 Go to Foundry portal로 이동해 Guest 환영 문구와 프로젝트 이름을 확인합니다.",note:"기본 프로젝트는 이미 생성됐으므로 별도 프로젝트를 중복 생성하지 않습니다. 포털 홈의 키 필드는 화면·영상에서 가렸습니다."},
         {id:"model",title:"배정 모델 배포와 테스트",lead:"Models → Deploy a base model → gpt-6.1-terra 검색 → Deploy → Custom settings를 선택합니다. 모델 고정 단계는 지정 모델을 사용합니다.",note:"모델·버전·배포 유형·개인별 TPM은 배정표를 따릅니다. 녹화는 gpt-5-mini-workshop · 2025-08-07 · Global Standard · 10,000 TPM 예시입니다. 배정값이 10,000 TPM이면 TPM 단위 필드에는 10000을 입력합니다. capacity 단위와 혼동하지 않습니다. Playground의 기본 Web search를 추론 전에 제거합니다."},
         {id:"agent",title:"지시문을 넣고 Prompt Agent 생성",lead:"모델 Playground에 Instructions를 작성하고 Save as agent → Create and open playground를 선택합니다.",note:"본인의 고유 이름으로 일반 Prompt Agent를 저장합니다(녹화: guest-workshop-assistant). Tools는 비우고 Copilot harness·Hosted Agent·Publish는 사용하지 않습니다. 아직 에이전트 대화는 실행하지 않습니다."},
