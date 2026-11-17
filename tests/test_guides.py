@@ -234,6 +234,21 @@ class IntroCardTests(unittest.TestCase):
         self.assertIn("Foundry의 지속 개선", table)
         self.assertIn("Business plugins", table)
 
+    def test_unverified_foundry_iq_has_no_lab_sample_or_gallery(self):
+        data = LabMapTests.load()
+        iq = next(lab for lab in data["labs"] if lab["key"] == "foundry-iq")
+        self.assertFalse(iq["enabled"])
+        self.assertEqual([], iq["sections"])
+        self.assertEqual([], iq["steps"])
+        self.assertFalse(any("Foundry IQ" in lab["title"] for lab in data["labs"] if lab["enabled"]))
+        parser, text = parse("index.html")
+        self.assertFalse(any(group.startswith("foundry-iq") for group in parser.ignite_galleries))
+        self.assertFalse(any(shot["group"].startswith("foundry-iq") for shot in IgnitePart2Tests.load()["shots"]))
+        self.assertFalse((ROOT / "assets" / "foundry-iq-sample").exists())
+        card = re.search(r'<article[^>]*id="learn-foundry-iq"[^>]*>(.*?)</article>', text, re.S).group(1)
+        self.assertIn("기존 OTP", card)
+        self.assertIn("참가자 권한 E2E를 확인하지 못했습니다", card)
+
 
 class LabMapTests(unittest.TestCase):
     @staticmethod

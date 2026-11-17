@@ -21,8 +21,8 @@ Ignite 2026 가이드 작업 목록입니다. 끝낸 항목은 `[x]`로 바꿉�
    - [x] 공식 문서·릴리스 노트 대조(2026.11.17): 공식 자료 대조표와 Optimize의 '포털 최적화는 하네스를 쓰지 않는 Prompt Agent 대상' 경고 반영
    - [x] Book of News·공식 블로그·Learn 대조(2026.11.18): **Microsoft IQ(GA)**를 개요·로드맵·공식 대조표 첫 항목으로 두고 Foundry 발표·모델 배포·완료 기준·운영자 준비에 반영
    - [x] **실습 10개 재구성**: 필수 1~5, 선택 6~10(하네스·Insights·평가·Optimize·Manage). `labs-data.js`·`labs.js`가 순서·번호·선행·목차·관련 카드를 계산합니다. 기존 앵커 87개·영상 챕터를 보존하고 실습별 화면 근거 배지·필수/선택 완료 기준을 표시했습니다. Foundry IQ는 현재 실습으로 활성화하지 않았습니다.
-   - [ ] **Foundry IQ는 반드시 가이드에 넣습니다(2026-11-18 결정)**: 참가자 권한으로 직접 실행해 끝까지 확인되면 실습(실습 6: 지식 베이스를 만들어 에이전트에 연결하고 출처가 달린 답 확인)으로, 확인하지 못하면 소개 카드(개념·상태·전제 조건·공식 문서 링크)로 씁니다. 판정은 검색 서비스·역할·운영자 준비·무료 계층을 직접 시험한 결과를 따릅니다
-   - [x] **Microsoft IQ 블록 확장(2026-11-18)**: Foundry IQ·Web IQ·Work IQ·Fabric IQ를 각각 별도 행으로 명시하고 `#ignite-learn-more`에 Tier A 소개 카드 4개(개념·구성별 상태·Foundry 연결·실습하지 않는 이유·공식 절차 요약·문서 링크·확인 수준)를 추가했습니다. 컨텍스트 → 에이전트 → 지속 개선 도식, 용어 풀이와 공식 대조표의 네 IQ 행도 반영했습니다. Foundry IQ의 실습 판정은 별도입니다.
+   - [x] **Foundry IQ는 소개 카드로 확정**: 2026.11.18 일반 포털 로그인이 기존 OTP에서 중단되어 참가자 권한 E2E를 확인하지 못함. 기능 불가·권한 오류 판정은 아님. 개념·구성별 상태·관리 ID 역할·검색 무료 계층·공식 절차를 설명하고 미검증 실습·샘플 문서·갤러리는 만들지 않음
+   - [x] **Microsoft IQ 블록 확장**: Foundry IQ·Web IQ·Work IQ·Fabric IQ를 각각 별도 행·Tier A 소개 카드로 명시. 컨텍스트 → 에이전트 → 지속 개선 도식, 용어 풀이·공식 대조표에도 반영
    - [x] **Tier B 카드 9개·공식 대조표 누락 행**: Business plugins·Hosted agents·에이전트용 Microsoft 365 계정·Toolboxes/브라우저·Foundry MCP Server·Safety·Training·새 모델·Azure/Windows. Cost는 추정치/청구 기준을 구분하고 Fabric IQ MCP GA와 Foundry 도구 Preview를 분리. 실습별 관련 카드와 연결하며 공개 근거만 사용
    - [x] Toolboxes·Safety 후보 판정: 기존 OTP에서 포털 로그인이 중단되어 라이브 점검은 하지 못했으며 소개 카드로 처리. 포털 부재·기능 오류·참가자 권한 오류를 확인했다고 쓰지 않음
    - [ ] 발표 뒤 Foundry 포털(메뉴·배지·Insights·Optimize·Cost·Gateways·Knowledge) 재확인: 일반 포털 로그인은 기존 OTP 화면에서 중단되어 기능 화면은 재확인하지 못함
