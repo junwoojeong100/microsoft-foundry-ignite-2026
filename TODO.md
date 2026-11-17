@@ -4,9 +4,9 @@ Ignite 2026 가이드 작업 목록입니다. 끝낸 항목은 `[x]`로 바꿉�
 
 ## 원칙
 
-- 범위는 Microsoft Foundry 기능만입니다. 다른 서비스는 이 가이드의 범위가 아닙니다.
-- 신규 내용은 기존 가이드에 **추가만** 합니다. 기존 내용은 삭제하지 않습니다. 추가는 주로 실습자 가이드(`index.html`)입니다.
-- Ignite 공개 전 내부 자료는 `internal/`(Git 제외)에만 둡니다. 커밋·푸시하지 않고, 공개된 내용만 가이드로 옮깁니다.
+- 범위는 Microsoft IQ와 Microsoft Foundry입니다. Azure 인프라·Windows 등의 실습은 범위 밖입니다.
+- 기존 내용·id·앵커와 화면·영상은 보존하고 이동·번호 변경·추가로 재구성합니다.
+- 가이드의 근거는 공개 Book of News·공식 블로그·Learn뿐입니다. 비공개 설정·실행 기록은 Git 제외 경로에 보관합니다.
 - **실습은 직접 실행해 확인한 것만 추가합니다(2026-11-18 결정).** 실행하지 못한 기능은 소개 카드(무엇·발표 상태·왜 실습하지 않는지·해 보려면·공식 문서 링크)로 충분히 설명하고 링크로 갈음합니다. 절차를 지어내지 않습니다.
 
 ## 사전 작업
@@ -15,32 +15,32 @@ Ignite 2026 가이드 작업 목록입니다. 끝낸 항목은 `[x]`로 바꿉�
 
 ## 작업
 
-1. [ ] Ignite 2026에서 공개된 Microsoft Foundry 신규 기능 소개 및 실습 내용 추가
-   - [x] 2026.11.17 포털 화면 기준 국문 PART 2 추가: `index.html`의 `#ignite-*` 9개 섹션, 화면 51장
-   - [x] 리전을 PART 1·PART 2 모두 North Central US로 통일: 예제 설정·운영자 가이드의 `location`·실습자 가이드와 화면 설명의 리전 안내. 녹화 화면은 East US 2 그대로이며 '화면은 녹화 당시 East US 2'로 표기
-   - [x] 공개 문서·Foundry 블로그 릴리스 노트와 대조(2026.11.17): PART 2 개요의 '공식 자료와 맞춰 본 결과' 표와 5-4 Optimize 경고(포털 최적화는 하네스를 쓰지 않는 Prompt Agent 대상) 반영
-   - [x] Ignite Book of News가 공개되어 기능 명칭·상태(Preview/GA)를 다시 대조(2026.11.18): **가장 중요한 발표인 Microsoft IQ(GA)**를 PART 2 개요의 `#ignite-microsoft-iq`(구성·상태·이 가이드와의 관계)와 대조 표 첫 행에 올리고, Foundry 항목은 '발표·공식 자료와 맞춰 본 결과' 표(14행)·'한눈에 보기'의 발표 열·N3~N7 안내, PART 1의 02·05단계·모델 배포 한도·완료 기준 안내, 운영자 가이드 `#part2-prep`에 반영. 근거는 Book of News와 그 상세 블로그·Learn 문서
-   - [ ] **실습 10개로 재구성(2026-11-18 결정, Foundry IQ가 실습으로 확인되면 6번에 삽입해 11개)**: PART 1/PART 2 구분을 없애고 실습 번호·순서를 통일합니다. 실습 1~5는 필수(화면 2026-11-05 구 포털), 나머지는 선택(하네스·Insights·평가·Optimize·Manage, 화면 2026-11-17 New Foundry. Foundry IQ 실습이 있으면 그 앞에 6번). 기존 id·앵커는 유지하고 실습마다 화면 기준일을 표기하며, Microsoft IQ는 개요의 첫 항목으로 유지합니다. 영문판·영상 챕터·덱은 이 구조가 끝난 뒤 만듭니다. 계획은 `internal/next-session-prompt.md`(Git 제외)의 Phase R
+1. [ ] 한글 Microsoft IQ·Foundry 가이드 완성
+   - [x] 2026.11.17 New Foundry 화면 기반 본문과 화면 51장 추가
+   - [x] 참가자 리전을 North Central US로 통일: 예제 설정·운영자 `location`·실습자 안내. 구 포털 화면·영상의 East US 2는 녹화 예시로 보존
+   - [x] 공식 문서·릴리스 노트 대조(2026.11.17): 공식 자료 대조표와 Optimize의 '포털 최적화는 하네스를 쓰지 않는 Prompt Agent 대상' 경고 반영
+   - [x] Book of News·공식 블로그·Learn 대조(2026.11.18): **Microsoft IQ(GA)**를 개요·로드맵·공식 대조표 첫 항목으로 두고 Foundry 발표·모델 배포·완료 기준·운영자 준비에 반영
+   - [x] **실습 10개 재구성**: 필수 1~5, 선택 6~10(하네스·Insights·평가·Optimize·Manage). `labs-data.js`·`labs.js`가 순서·번호·선행·목차·관련 카드를 계산합니다. 기존 앵커 87개·영상 챕터를 보존하고 실습별 화면 근거 배지·필수/선택 완료 기준을 표시했습니다. Foundry IQ는 현재 실습으로 활성화하지 않았습니다.
    - [ ] **Foundry IQ는 반드시 가이드에 넣습니다(2026-11-18 결정)**: 참가자 권한으로 직접 실행해 끝까지 확인되면 실습(실습 6: 지식 베이스를 만들어 에이전트에 연결하고 출처가 달린 답 확인)으로, 확인하지 못하면 소개 카드(개념·상태·전제 조건·공식 문서 링크)로 씁니다. 판정은 검색 서비스·역할·운영자 준비·무료 계층을 직접 시험한 결과를 따릅니다
    - [x] **Microsoft IQ 블록 확장(2026-11-18)**: Foundry IQ·Web IQ·Work IQ·Fabric IQ를 각각 별도 행으로 명시하고 `#ignite-learn-more`에 Tier A 소개 카드 4개(개념·구성별 상태·Foundry 연결·실습하지 않는 이유·공식 절차 요약·문서 링크·확인 수준)를 추가했습니다. 컨텍스트 → 에이전트 → 지속 개선 도식, 용어 풀이와 공식 대조표의 네 IQ 행도 반영했습니다. Foundry IQ의 실습 판정은 별도입니다.
    - [ ] **공식 대조표 누락 행 추가(2026-11-18 점검)**: Book of News·공개 블로그·Learn으로 확인된 Foundry 항목 중 대조표에 없던 것 — Hosted agents(동시 세션 GA·시작 속도 Preview) · Microsoft 365 accounts for agents(Preview) · Toolboxes·브라우저 자동화 · Foundry MCP Server(Learn: Preview) · Cost in Foundry(값은 추정치, 청구 기준은 Azure Cost Management) · Foundry Safety의 에이전트 런타임 제어 · 새 모델(MAI·fal·Baseten) · Fabric IQ MCP(GA)와 Foundry의 Fabric IQ 도구(Preview) · Foundry→AKS(Azure 인프라, 범위 밖 한 줄). 공개 근거가 없는 항목은 쓰지 않으며, 대조표의 행은 짧게 두고 자세한 설명은 소개 카드로 연결합니다
-   - [ ] 발표 뒤 포털 화면(메뉴 이름·배지·Insights·Optimize·Cost·Gateways·Knowledge) 재확인: 11/17 화면은 키노트 전 캡처이며 아직 다시 열어 보지 않음
-   - [x] 운영자 가이드(`operator.html`)에 PART 2 준비 사항 반영: `#part2-prep` 섹션(리전·하네스·평가용 TPM·Log Analytics Reader·Cost Management Reader·Monitoring Reader·Azure Policy·Optimize·비용·정리)과 `#plan`·`#capacity`의 연결 안내, `#managed-identity`의 Monitoring Reader 할당 예. 참가자 필수 역할 3개 표는 바꾸지 않았음(재현에서 3개 역할만으로 화면이 열림. Cost 값 표시에 Cost Management Reader가 필요한지만 미확인. **표를 바꾸지 않기로 결정, 2026-11-18**)
-   - [x] 미검증 항목 중 일부를 직접 확인(2026.11.17, 별도 구독의 North Central US, 참가자 역할 3개만 가진 계정 1개): PART 1 처음부터 재현(Foundry 리소스 생성 화면의 Region 포함), 10,000·30,000 TPM에서 하네스 실행(10,000 TPM은 실패), 참가자 역할로 Manage·Insights·평가자·평가 열기·실행, Prompt Agent의 Optimize 실행(후보 승격 안 함), Azure Policy Audit 할당·해제. 결과는 `index.html`의 검증 범위 상자·N1·N6·N7·5-4와 `operator.html`의 `#part2-prep`에 반영
+   - [ ] 발표 뒤 Foundry 포털(메뉴·배지·Insights·Optimize·Cost·Gateways·Knowledge) 재확인: 일반 포털 로그인은 기존 OTP 화면에서 중단되어 기능 화면은 재확인하지 못함
+   - [x] 운영자 선택 실습 준비: 기존 `#part2-prep` 앵커를 유지하고 하네스·평가·Optimize·Manage의 리전·TPM·역할·비용·정리와 연결 안내를 새 용어로 통일. 참가자 필수 역할 3개 표는 변경하지 않음
+   - [x] 참가자 권한 재현(2026.11.17, North Central US, 역할 3개·계정 1개): 필수 실습 E2E, 10,000·30,000 TPM 하네스(10,000 실패), Manage·Insights·평가자·평가, 하네스 없는 Prompt Agent Optimize(승격 안 함), Azure Policy Audit 할당·해제. 결과를 해당 실습·문제 대응·운영자 준비에 반영
    - [ ] 남은 미검증 항목: AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격·하네스 에이전트의 Optimize 제출, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 비용 데이터가 쌓인 뒤 Cost 화면(Cost Management Reader 필요 여부), Compliance 정책 평가·Asset 탭 권한 안내의 원인, 여러 참가자의 동시 실행
    - [ ] 재현용 구독의 테스트 계정·RG·모델 배포(별도 데모 구독)와 로컬 임시 파일(`config/workshop.local.json`, `.workshop-runs/`): **녹화에 재사용하기로 결정(2026-11-18)**. 모든 녹화가 끝나면 정리(삭제는 사용자 승인 후) 여부를 다시 확인
-   - [x] 한글 가이드 점검·보완(2026-11-18): 외부 링크 40개·브라우저 렌더(데스크톱·태블릿·모바일, 갤러리 114장, 확대 창·테마 전환)·한국어 문구 점검, 기준일 정리, PART 2 개요에 '한눈에 보기'(흐름도·단계표)와 용어 풀이 추가, PART 1 TPM·429 안내에서 PART 2로 연결, 개요의 '30,000 TPM은 통과'를 '천천히 한 건씩 보낼 때만 통과'로 정정
-   - [x] 공개 전 개인 식별 정보 점검(2026-11-18): PART 2 화면 51장은 OCR 통과. PART 1 화면 19장에는 원본 E2E의 구독 표시 이름·테넌트 도메인·테스트 계정이 보이지만 원본 리포와 Pages가 이미 공개 상태라 새로 노출되는 것은 아님(원본에서 가릴지는 소유자 결정). 새로 찍는 화면·영상은 `internal/tools/ocr_scan`으로 검사
+   - [x] 한글 가이드 점검·보완(2026-11-18): 외부 링크·3개 뷰포트·화면 114장·확대·테마·한국어 점검, 흐름도·용어 풀이, TPM·429 교차 안내와 '30,000 TPM은 천천히 단건만 통과' 정정. 실습 재구성 후 87개 기존 앵커·전체 순서·동적 재번호·딥링크 정렬 재검증
+   - [x] 개인 식별 정보 점검: New Foundry 51장 OCR 통과. 구 포털 19장의 기존 공개 식별자는 소유자 결정 전 재마스킹하지 않음. 새 Azure 화면은 마스킹·OCR 필수
 2. [ ] Portal 화면 캡처 및 동영상 녹화
-   - **범위 조정(2026-11-18 지시): 일단 한글 가이드만 만듭니다.** 영문 가이드·영문 화면·동영상·PPT(아래 2~5번)는 한글 가이드(Foundry IQ 실습 포함)를 끝낸 뒤로 보류합니다(세부 보류 계획: `internal/deferred-plan.md`, Git 제외). 한글 가이드에 쓸 새 화면(Foundry IQ 실습) 캡처는 이 범위에 포함됩니다.
+   - **범위 조정(2026-11-18): 일단 한글 가이드만.** 영문 가이드·영문 화면·동영상·PPT는 보류입니다(`internal/deferred-plan.md`, Git 제외·이번 작업에서 읽거나 실행하지 않음). Foundry IQ는 실습 검증을 충족할 때만 촬영하며 미검증이면 소개 카드입니다. 실습 1~5의 New Foundry 재촬영도 보류입니다.
    - **진행 순서(2026-11-18 지시):** 2~5번(동영상 녹화·영문 가이드·영문 화면·PPT)은 Ignite 2026 발표 뒤에 공개된 자료와 대조한 다음 진행합니다. 발표(2026-11-17 PT 키노트)는 끝났고 Book of News 대조와 가이드 갱신은 2026-11-18에 마쳤습니다(위 항목). 인계 프롬프트는 `internal/next-session-prompt.md`(Git 제외)입니다.
-   - [ ] 녹화용 로그인 준비: 테스트 계정 `se01`의 인증 앱(Software OATH)을 `az`로는 초기화할 수 없음(Microsoft Graph 403, 토큰에 `UserAuthenticationMethod.*` 스코프 없음). 사용자 승인 뒤 `se02`를 만들거나 Entra 관리 센터에서 직접 삭제해야 함
+   - [ ] 녹화용 로그인 준비: `se01`의 일반 포털 로그인은 기존 OTP 입력까지 도달했으나 유효 코드가 없어 중단. 인증 방법 삭제·`se02` 생성은 미승인이라 하지 않았고 테넌트 설정도 변경하지 않음
    - [x] 정지 화면 51장 캡처(영문 UI + 한국어 입력, 개인 정보 가림·OCR 검사)
    - [ ] (보류) 동영상 녹화(하네스 생성·실행, 평가 실행, Manage 화면)와 가이드의 영상 버튼 연결
 3. [ ] (보류) 가이드 영문화(지시문·질문·평가 기준 문장도 영어로)
 4. [ ] (보류) 영문 Portal·영문 데이터 기준으로 Portal 화면 캡처 및 동영상 녹화
 5. [ ] (보류) 국문/영문 각 단계별 데모 PPT 슬라이드 작성
-6. [ ] github.io에 동영상과 PPT 슬라이드 링크 추가 (웹에서 모두 접근 가능하게)
+6. [ ] (보류) 원격 생성·push·Pages 게시와 github.io의 동영상·PPT 링크 추가
 
 ## 나중에
 

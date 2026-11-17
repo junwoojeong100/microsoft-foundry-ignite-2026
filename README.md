@@ -1,8 +1,8 @@
 # Microsoft Foundry · Ignite 2026 실습 가이드
 
-Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 소개하고 직접 실습**하는 가이드를 만들기 위한 리포입니다. 기존 Foundry 워크샵의 **실습자·운영자 가이드를 그대로 가져온 기반(baseline)** 위에, 실습자 가이드 끝에 **PART 2 · 2026.11.17 새 Foundry 포털 화면**을 추가했습니다. 기존 PART 1 본문과 운영자 가이드는 **리전 안내를 North Central US로 통일한 것, 2026.11.17 North Central US 재현에서 다르게 보인 점을 덧붙인 메모, 운영자 가이드의 'PART 2 준비' 섹션 외에는** 바꾸지 않았으며, 영문판·동영상·슬라이드는 아직 없습니다.
+Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한글 실습자·운영자 가이드**입니다. Microsoft IQ를 개요의 첫 항목으로 두고, 직접 실행한 범위는 **필수 실습 1~5·선택 실습 6~10**, 미검증 기능은 **소개 카드와 공식 문서**로 안내합니다. Foundry IQ·Web IQ·Work IQ·Fabric IQ를 각각 설명하며, 발표 상태와 실제 검증 수준을 구분합니다.
 
-> 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** 이 틀을 유지한 채 본문을 Ignite 2026 신규 기능으로 바꿔 나갑니다.
+> 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** 기존 내용·앵커와 구 포털 화면·영상은 보존하고 실습 순서·번호·교차 안내를 재구성했습니다. 영문판·신규 녹화·PPT는 보류입니다.
 
 ## 현재 상태 · 가져온 기반
 
@@ -12,22 +12,35 @@ Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 �
 | 가져온 것 | Foundry 실습자·운영자 가이드, 공통 자산(CSS·JS·화면 63장·영상 2개·로그인/MFA 이미지·검증 JSON), 운영자 자동화 스크립트와 설정 예제, 오프라인 테스트, Pages 워크플로 |
 | 가져오지 않은 것 | GitHub Copilot 실습자·운영자 가이드, Codespaces·Copilot CLI 가이드, 고객 안내 EDM, 그 가이드들의 이미지 |
 | 가져오며 바꾼 것 | 가이드 전환 메뉴를 Foundry 2종으로 축소 · GitHub 가이드로 가는 링크·안내·인계 템플릿 줄 제거 · 저장소·Pages 주소를 이 리포로 변경 · 테스트와 워크플로를 2종 기준으로 조정하고 화면·영상 파일 점검 추가 · `ATTRIBUTION.txt`에서 가져오지 않은 이미지 항목 제거 · `.gitignore`에 `.playwright-mcp/` 추가 · README 재작성 |
-| 그대로인 것 | 본문, 화면·영상(2026.11.05 녹화, East US 2·GPT-5 mini), 검증 JSON, 스크립트. 다만 참가자가 입력·선택하는 리전 안내는 North Central US로 바꿨고(아래 PART 2 표의 '리전' 행), 2026.11.17 North Central US 재현에서 화면이 달랐던 점(Application insights 자동 생성·연결, 새 에이전트의 기본 모델 model-router, 메뉴 이름)은 해당 단계 아래에 메모로 덧붙였습니다. 화면·영상 자체는 Ignite 신규 기능 기준으로 다시 확인한 내용이 아닙니다. 신규 화면은 아래 PART 2에만 있습니다. |
+| 보존한 근거 | 구 포털 화면 63장·영상 2개(2026.11.05, East US 2·GPT-5 mini), 검증 JSON, 프로비저닝 스크립트. 참가자 리전 안내는 North Central US이며 2026.11.17 재현에서 달랐던 Application insights 자동 연결·기본 모델·메뉴는 해당 실습에 별도 메모로 남겼습니다. 옛 화면·영상 자체를 새 포털의 증거로 쓰지 않습니다. |
 
 첫 커밋이 원본 그대로이므로 `git diff <첫 커밋> HEAD`로 가져오며 바꾼 내용을 모두 볼 수 있습니다.
 
-## PART 2 · 새 Foundry 포털 화면 (2026.11.17)
+## 실습 구성 · 화면별 근거
+
+| 실습 | 내용 | 구분 |
+|---|---|---|
+| 1 | 로그인·MFA와 내 계정·권한 확인 | 필수 |
+| 2 | Foundry 리소스와 프로젝트 만들기 | 필수 |
+| 3 | 모델 배포와 가드레일 확인 | 필수 |
+| 4 | Prompt Agent 만들고 실행하기 | 필수 |
+| 5 | Monitor·Traces로 확인하기 | 필수 |
+| 6 | 하네스 에이전트 만들고 실행·관찰하기 | 선택 |
+| 7 | Insights로 개선할 문제 찾기 | 선택 |
+| 8 | 평가자를 만들고 평가 실행하기 | 선택 |
+| 9 | Optimize로 개선안 만들기 | 선택 |
+| 10 | Manage로 운영·비용·정책 보기 | 선택 |
 
 | 항목 | 내용 |
 |---|---|
-| 위치 | 실습자 가이드 `index.html`의 `#ignite-overview`~`#ignite-finish` 9개 섹션(사이드바 `PART 2`·`N1`~`N8`). 개요 맨 위에 흐름도·단계표(`#ignite-at-a-glance`)와 용어 풀이(`#ignite-glossary`)가 있습니다. 기존 내용은 삭제·수정하지 않고 **추가만** 했습니다(히어로 버튼 1개, `#finish`의 다음 단계 링크 1줄, `#model-quota`의 TPM 안내 1개 포함). |
-| 흐름 | New Foundry 시작 → 가드레일·`gpt-6.1-terra` 배포 → Microsoft Copilot 하네스 에이전트 생성·도구 제한·실행 → Traces·Monitor → Insights·커스텀 루브릭 평가자·평가 실행·Optimize → Manage의 Fleet·Cost·Compliance·Gateways |
+| 위치·흐름 | `index.html`의 Microsoft IQ 개요 → 시작 전 준비·영상 → 실습 1~10 → 문제 대응·완료 기준·참고·소개 카드. Microsoft IQ(`#ignite-microsoft-iq`) 뒤에 로드맵(`#ignite-at-a-glance`)이 나오고, 용어 풀이(`#ignite-glossary`)는 맨 아래 참고 구역에 있습니다. 기존 id·앵커는 유지했습니다. |
+| 화면 기준 | 실습 1~5는 2026.11.05 구 포털·East US 2·GPT-5 mini 녹화가 기본입니다. 가드레일과 선택 실습은 2026.11.17 New Foundry·North Central US의 화면이며, 실습 머리글에 각각의 근거·선행 실습을 표시합니다. 단일 시점의 새 포털 화면으로 오해하지 않도록 구분했습니다. |
 | 화면 | `assets/ignite/screenshots/ko/` 51장(1600×900, 영문 UI + 한국어 입력). 계정·구독·테넌트 값은 가렸고 OCR로 개인 정보 문자열이 없는지 검사했습니다. **동영상은 아직 없습니다.** |
-| 데이터·코드 | `assets/ignite/ignite-data.js`(화면별 설명과 확인 위치 좌표), `assets/ignite-part2.js`(갤러리·사이드바 렌더링). 확대 창은 PART 1과 공유합니다. |
-| 직접 실행 | **① 샌드박스 프로젝트(소유자 권한):** 가드레일 목록, `gpt-6.1-terra` 배포(Global Standard·100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4)·실행, Insights 스캔, 커스텀 루브릭 평가자, 합성 질문 15개 평가 실행(12행 채점·3행 rate limit 오류). **② 참가자 권한 재현 프로젝트(별도 구독, North Central US, 계정 1개에 RG Contributor + Foundry User + 구독 Usages Reader만 부여):** PART 1을 처음부터(Foundry 리소스·프로젝트 생성 → `gpt-6.1-terra` 10,000 TPM 배포 → Prompt Agent → Traces), 하네스 에이전트 생성·실행(10,000 TPM은 실패, 30,000 TPM은 단건 통과), Manage의 Fleet·Cost·Operations·Compliance·Quota·Gateways 열기, Insights 스캔, 커스텀 루브릭 평가자와 평가(15행 모두 통과), 하네스를 쓰지 않는 Prompt Agent의 Optimize 실행(후보 승격은 안 함), Azure Policy Audit 할당·해제 |
+| 데이터·코드 | `assets/labs-data.js`(실습 구성·순서·선행·관련 카드), `assets/labs.js`(재배치·번호·목차), `assets/ignite/ignite-data.js`(화면 설명·확인 위치), `assets/ignite-part2.js`(New Foundry 갤러리). 확대 창은 모든 화면이 공유합니다. |
+| 직접 실행 | **① 샌드박스 프로젝트(소유자 권한):** 가드레일 목록, `gpt-6.1-terra` 배포(Global Standard·100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4)·실행, Insights 스캔, 커스텀 루브릭 평가자, 합성 질문 15개 평가 실행(12행 채점·3행 rate limit 오류). **② 참가자 권한 재현 프로젝트(별도 구독, North Central US, 계정 1개에 RG Contributor + Foundry User + 구독 Usages Reader만 부여):** 필수 실습을 처음부터(Foundry 리소스·프로젝트 생성 → `gpt-6.1-terra` 10,000 TPM 배포 → Prompt Agent → Traces), 하네스 생성·실행(10,000 TPM 실패, 30,000 TPM 단건 통과), Manage의 Fleet·Cost·Operations·Compliance·Quota·Gateways 열기, Insights·커스텀 루브릭 평가자·평가(15행 모두 통과), 하네스 없는 Prompt Agent의 Optimize 실행(후보 승격 안 함), Azure Policy Audit 할당·해제 |
 | 화면만 확인 | 샌드박스의 Manage(Fleet·Operations·Cost·Compliance·Gateways), Routines·Workflows, 하네스 에이전트의 Optimize 탭·마법사(제출하지 않음) |
 | 하지 않음 | AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격, 하네스 에이전트의 Optimize 제출, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터 확인, 여러 참가자의 동시 실행·부하 |
-| 리전 | PART 1·PART 2 모두 **North Central US**(`northcentralus`)로 통일했습니다. 공식 하네스 지원 리전 22곳에 포함됩니다(2026.11.17 문서 기준). 예제 설정(`config/workshop.example.json`), `operator.html`의 JSON 예시·표, 실습자 가이드의 리전 안내를 맞췄고 값이 어긋나면 테스트가 실패합니다. PART 1 화면·영상은 East US 2에서 녹화해 바꿀 수 없으므로 '녹화 예시: East US 2'로 남기고 '화면은 녹화 당시 East US 2'라고 덧붙였습니다. 참가자 권한 계정의 Create a Foundry resource 화면 Region 목록(39개)에 North Central US가 있음을 직접 확인했습니다. |
+| 리전 | 참가자 배정 리전은 **North Central US**(`northcentralus`)이며 공식 하네스 지원 리전 22곳에 포함됩니다(2026.11.17 문서 기준). 예제 설정·운영자 JSON·실습자 안내가 어긋나면 테스트가 실패합니다. 구 포털 화면·영상은 '녹화 예시: East US 2'로 보존했습니다. 참가자 계정의 리소스 생성 Region 목록(39개)에 North Central US가 있음을 직접 확인했습니다. |
 | 공식 자료 대조 | 2026.11.18에 [Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/), [Microsoft IQ 블로그](https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/), [Foundry 블로그](https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/), [모델 블로그](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609)와 Learn을 대조했습니다. **Microsoft IQ(GA)**를 개요 첫 항목으로 두고 **Foundry IQ·Web IQ·Work IQ·Fabric IQ를 각각 별도 행과 소개 카드**로 설명합니다. 새 SKU·구독이 없다는 발표가 하위 기능의 무료·GA를 뜻하지는 않습니다. Foundry IQ는 참가자 권한 직접 실행 후 실습 여부를 판정하며, 나머지 세 IQ는 유료 구독·관리자 동의·Fabric 용량 등의 전제 조건 때문에 소개만 합니다. Foundry의 지속 개선(하네스·Insights·평가·Optimize)은 직접 따라 합니다. Insights·Agent optimizer·멀티턴 평가는 GA, 주석·golden dataset·루브릭 안전 지원·스킬/비용 최적화·Programmed Training·Cost는 Preview입니다. 포털 Optimize는 하네스를 쓰지 않는 Prompt Agent 대상이라는 문서 경고를 유지합니다. 자동 모델 선택은 지원 프로젝트의 기본값이며, 새 프로젝트의 Foundry IQ 리소스(Preview)는 화면에서 확인하지 못했습니다. **발표 뒤 포털은 재확인하지 않았고**, 직접 실행 범위와 발표 상태를 구분합니다. |
 | 운영자에게 알릴 점 | 운영자 가이드의 [`#part2-prep`](operator.html#part2-prep) 섹션에 리전·하네스용 TPM·필요 역할·Azure Policy·Optimize·비용·정리를 '공식 문서 기준 / 직접 실행 / 화면만 확인 / 확인하지 못함'으로 나누어 추가했습니다. 재현에서 나온 사전 결정 3가지: **① 평가자 만들기의 Resolve(프로젝트 MI의 Monitoring Reader)는 참가자가 누르면 권한 오류**가 나서 운영자가 할당해야 합니다(명령 예는 `#managed-identity`). **② 10,000 TPM 배포에서는 하네스 질문이 실패**했습니다(30,000 TPM은 천천히 보낼 때만 통과). **③ Compliance의 Asset 탭에 Foundry User 권한 안내**가 떴고 원인은 확인하지 못했습니다. 참가자 필수 역할 3개 표는 바꾸지 않았습니다(3개 역할만으로 화면이 열렸고 Cost 값 표시에 Cost Management Reader가 필요한지만 미확인). |
 
@@ -49,7 +62,7 @@ flowchart LR
   O["Foundry 운영자 가이드<br/>계정·RG·권한·모델 쿼터"] -->|"계정·RG·역할·배정값"| P["Foundry 실습자 가이드<br/>로그인·MFA → 생성 → 실행·추적"]
 ```
 
-두 가이드는 라이트/다크 테마를 지원하고, 명령·JSON·인계 템플릿에는 **복사 버튼**이 있습니다. 실습자 가이드에는 63장의 실제 화면, 3분 요약 영상, 51분 전체 영상이 포함되며 끝에 PART 2(새 포털 화면 51장)가 이어집니다. CDN·빌드 없이 정적 파일로 열리며, 로컬에서는 다음처럼 확인합니다.
+두 가이드는 라이트/다크 테마와 **복사 버튼**을 지원합니다. 구 포털 화면 63장·3분 요약 영상·51분 전체 영상과 New Foundry 화면 51장을 해당 실습에서 봅니다. CDN·빌드 없이 정적 파일로 열리며, 로컬에서는 다음처럼 확인합니다.
 
 ```bash
 python3 -m http.server 8000   # http://localhost:8000/index.html · /operator.html
@@ -60,10 +73,11 @@ python3 -m http.server 8000   # http://localhost:8000/index.html · /operator.ht
 | 바꾸려는 것 | 고칠 곳 |
 |---|---|
 | 실습자 본문·문제 대응표·완료 기준 | `index.html` |
-| 실습 단계(제목·설명·순서) | `index.html` 아래쪽 인라인 스크립트의 `stages` |
+| 실습 제목·순서·필수/선택·선행·화면 근거·관련 카드 | `assets/labs-data.js`. 번호는 활성 배열 순서로 계산합니다. 재배치·번호·목차 렌더러는 `assets/labs.js`입니다. |
+| 기본 Prompt Agent 절의 제목·설명 | `index.html` 아래쪽 인라인 스크립트의 `stages` |
 | 단계별 화면·번호 표시·영상 시점·Instructions·녹화 예시값 | `assets/guide-data.js`. 화면 수가 바뀌면 `index.html`의 `data.shots.length !== 63`도 맞춥니다. |
-| PART 2(새 포털 화면) 본문 | `index.html`의 `id="ignite-*"` 섹션. 사이드바 이름은 섹션의 `data-ignite-nav`·`data-ignite-title`로 정합니다. |
-| PART 2 화면·설명·확인 위치 | `assets/ignite/ignite-data.js`와 `assets/ignite/screenshots/ko/`. 화면 그룹을 만들면 `index.html`에 `data-ignite-gallery="<그룹>"` 자리표시자를 하나씩 둡니다. 화면 번호는 파일 이름의 `NN`과 갤러리 순서가 같아야 합니다. |
+| New Foundry 본문·소개 카드 | `index.html`의 `id="ignite-*"` 섹션·`id="learn-*"` 카드. 실습 목차는 `labs-data.js`가 정합니다. |
+| New Foundry 화면·설명·확인 위치 | `assets/ignite/ignite-data.js`는 생성 파일입니다. 로컬 원본 `internal/tools/build_ignite_data.py`의 `SHOTS`를 고쳐 다시 생성합니다. 화면은 `assets/ignite/screenshots/ko/`, 그룹별 자리는 `index.html`의 `data-ignite-gallery="<그룹>"`입니다. 파일 이름·갤러리 순서를 맞추며 생성 JS는 직접 고치지 않습니다. |
 | 화면 이미지·영상·자막 | `assets/screenshots/`, `assets/video/`. `assets/capture-manifest.json`은 같은 구조의 캡처 기록(다운로드용)이므로 함께 갱신합니다. |
 | 운영자 본문(역할·준비 절차·점검·인계·종료) | `operator.html` |
 | 참가자 Azure 역할·리소스 공급자(RP) 등록 목록 | `scripts/workshop_common.py`의 `ROLES`·`PROVIDERS`, 그리고 두 가이드의 역할 표 |
@@ -110,12 +124,12 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json
 
 ## 검증 현황
 
-- **확인한 것:** Internal Guest 1명의 기본 Prompt Agent E2E(2026.11.05, GPT-5 mini)와 새 Guest 1개의 초기 암호 + Software OATH(TOTP) MFA 로그인(2026.11.08). [비밀 값 없는 검증 JSON](assets/guest-auth-verification.json)을 제공합니다. PART 2는 2026.11.17에 North Central US의 프로젝트 2곳(샌드박스, 참가자 역할 3개만 가진 계정 1개의 재현 프로젝트)에서 직접 실행한 범위(위 PART 2 표)만 확인했습니다. 재현에서는 `gpt-6.1-terra`·10,000 TPM으로 PART 1을 한 번 끝까지 따라 했습니다(계정 1개).
+- **확인한 것:** Internal Guest 1명의 기본 Prompt Agent E2E(2026.11.05, GPT-5 mini)와 새 Guest 1개의 초기 암호 + Software OATH(TOTP) MFA 로그인(2026.11.08). [비밀 값 없는 검증 JSON](assets/guest-auth-verification.json)을 제공합니다. New Foundry는 2026.11.17 North Central US의 두 프로젝트(샌드박스, 참가자 역할 3개만 가진 계정 1개의 재현 프로젝트)에서 위 표의 범위만 확인했습니다. 재현에서는 `gpt-6.1-terra`·10,000 TPM으로 필수 실습도 끝까지 실행했습니다(계정 1개).
 - **아직 확인하지 않은 것:** **AI Gateway 생성·Publish·채널 연결·Optimize 후보 승격·하네스 에이전트의 Optimize 제출**, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000·30,000·100,000 TPM 외의 값에서의 하네스 실행, 비용 데이터가 쌓인 뒤의 Cost 화면(Cost Management Reader 필요 여부), Compliance 정책 평가가 나타나는 조건과 Asset 탭 권한 안내의 원인, 75개 환경 생성·여러 참가자의 동시 부하, 고객 교육망, Microsoft Authenticator 푸시(재현 계정은 TOTP로 등록), Traces의 Create new resource 이후 화면(재현에서는 Application Insights가 자동 생성돼 연결됨). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
 
 ## 테스트
 
-Azure에 접속하지 않고 스크립트(가짜 API), 가이드의 링크·앵커(상대·절대 주소), 화면·영상 파일 존재, PART 2 화면 데이터(파일·1600×900·확인 위치 범위)와 갤러리 자리표시자·사이드바 연결, 예제 설정과 운영자 가이드 JSON 예시의 일치, 전환 메뉴와 Pages 워크플로 범위를 검사합니다. 가이드나 자산을 고친 뒤에는 항상 실행하세요.
+Azure에 접속하지 않고 스크립트(가짜 API), 링크·앵커, 화면·영상 파일, New Foundry 화면 데이터(1600×900·확인 위치), 실습 배정·선행·교차 참조·목차 순서, 소개 카드, 예제 설정과 운영자 JSON의 일치, 전환 메뉴·Pages 범위를 검사합니다.
 
 ```bash
 python3 -m unittest discover -s tests -v

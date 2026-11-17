@@ -279,6 +279,13 @@ class LabMapTests(unittest.TestCase):
         self.assertEqual(observed, common | labs)
         self.assertIn("<body data-labs>", text)
 
+    def test_published_sources_do_not_show_legacy_part_or_n_labels(self):
+        paths = list(ROOT.glob("*.html")) + list((ROOT / "assets").glob("*.js"))
+        paths += [ROOT / "assets" / "ignite" / "ignite-data.js", ROOT / "README.md", ROOT / "TODO.md"]
+        for path in paths:
+            with self.subTest(path=path.relative_to(ROOT)):
+                self.assertNotRegex(path.read_text(encoding="utf-8"), r"\bPART\s*[12]\b|\bN[1-8]\b")
+
 
 class IgnitePart2Tests(unittest.TestCase):
     """New Foundry capture data, screenshots and gallery placeholders must agree."""
