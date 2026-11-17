@@ -81,7 +81,11 @@ def parse(name: str) -> tuple[PageParser, str]:
 def dynamic_ids(text: str) -> set[str]:
     """Ids that the page scripts create at load time (index.html builds its step sections)."""
     stages = {f"step-{stage}" for stage in re.findall(r'\{id:"([a-z-]+)",title:', text)}
-    return stages | set(re.findall(r'\.id = "([\w-]+)"', text))
+    lab_ids = set()
+    if "assets/labs.js" in text:
+        labs = [lab for lab in LabMapTests.load()["labs"] if lab["enabled"]]
+        lab_ids = {f"lab-{number}" for number in range(1, len(labs) + 1)}
+    return stages | set(re.findall(r'\.id = "([\w-]+)"', text)) | lab_ids
 
 
 def known_ids(name: str) -> set[str]:
@@ -216,8 +220,58 @@ class IntroCardTests(unittest.TestCase):
         self.assertIn("Business plugins", table)
 
 
+class LabMapTests(unittest.TestCase):
+    @staticmethod
+    def load():
+        text = (ROOT / "assets" / "labs-data.js").read_text(encoding="utf-8")
+        return json.loads(re.fullmatch(r"window\.LABS_DATA = (.*?);?\s*", text, re.S).group(1))
+
+    def test_lab_map_preserves_sections_and_prerequisite_order(self):
+        data = self.load()
+        labs = [lab for lab in data["labs"] if lab["enabled"]]
+        numbers = {lab["key"]: i + 1 for i, lab in enumerate(labs)}
+        self.assertEqual(list(range(1, len(labs) + 1)), list(numbers.values()))
+        assigned = [section for lab in labs for section in lab["sections"]]
+        self.assertEqual(len(assigned), len(set(assigned)), "each section belongs to one lab")
+        original = {
+            "first-sign-in", "responsibilities", "model-quota", "ignite-guardrails",
+            "ignite-start", "ignite-harness", "ignite-observe", "ignite-improve",
+            "ignite-insights", "ignite-evaluator", "ignite-evaluation", "ignite-optimize", "ignite-fleet",
+        } | {f"step-{chapter['id']}" for chapter in GuideDataTests.load()["chapters"] if chapter["id"] != "monitoring-setup"}
+        self.assertEqual(original, set(assigned))
+        existing = known_ids("index.html")
+        for lab in labs:
+            with self.subTest(lab=lab["key"]):
+                self.assertTrue(lab["screens"] and lab["lead"])
+                self.assertTrue(set(lab["sections"]) <= existing)
+                self.assertTrue({section for step in lab["steps"] for section in step} <= existing)
+                self.assertTrue(all(numbers[key] < numbers[lab["key"]] for key in lab["prerequisites"]))
+                self.assertTrue(all(f"learn-{key}" in existing and key in data["cards"] for key in lab["more"]))
+        common = [item["id"] for item in data["before"] + data["after"]]
+        self.assertEqual(len(common), len(set(common)))
+        self.assertFalse(set(common) & set(assigned))
+        self.assertTrue(set(common) <= existing)
+
+    def test_static_references_match_computed_numbers(self):
+        labs = [lab for lab in self.load()["labs"] if lab["enabled"]]
+        numbers = {f"lab:{lab['key']}": str(i + 1) for i, lab in enumerate(labs)}
+        numbers.update({f"sec:{section}": f"{i + 1}-{step + 1}" for i, lab in enumerate(labs)
+                        for step, sections in enumerate(lab["steps"]) for section in sections})
+        refs = re.findall(r'<a[^>]*data-lab-ref="([^"]+)"[^>]*>(.*?)</a>', parse("index.html")[1], re.S)
+        for key, text in refs:
+            self.assertIn(key, numbers)
+            self.assertEqual(f"실습 {numbers[key]}", html.unescape(text), key)
+
+    def test_microsoft_iq_is_first_in_the_overview_and_official_table(self):
+        text = parse("index.html")[1]
+        self.assertLess(text.index('id="ignite-microsoft-iq"'), text.index('id="ignite-at-a-glance"'))
+        table = text[text.index('id="ignite-official-check"'):]
+        first_row = re.search(r"<tbody>\s*<tr>(.*?)</tr>", table, re.S).group(1)
+        self.assertIn("<strong>Microsoft IQ</strong>", first_row)
+
+
 class IgnitePart2Tests(unittest.TestCase):
-    """PART 2 renders its screens from assets/ignite/ignite-data.js, so data, screenshots and page placeholders must agree."""
+    """New Foundry capture data, screenshots and gallery placeholders must agree."""
 
     SHOT_KEYS = {"id", "group", "title", "action", "expected", "image", "width", "height", "hotspots"}
 

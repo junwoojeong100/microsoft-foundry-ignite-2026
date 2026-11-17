@@ -10,10 +10,11 @@
     new ResizeObserver(syncTopbarHeight).observe(topbar);
   }
   const activeLink = id => {
+    const lab = document.getElementById(id)?.closest("[data-lab]")?.dataset.lab;
     toc.querySelectorAll("a").forEach(link => {
-      const active = link.hash === `#${id}`;
+      const active = link.hash === `#${id}` || !!lab && link.dataset.labLink === lab;
       link.classList.toggle("active", active);
-      if (active) link.setAttribute("aria-current", "location");
+      if (active) link.setAttribute("aria-current", link.dataset.labLink ? "step" : "location");
       else link.removeAttribute("aria-current");
     });
   };
@@ -43,6 +44,7 @@
     for (let node = target; node; node = node.parentElement) {
       if (node instanceof HTMLDetailsElement) node.open = true;
     }
+    target.scrollIntoView({block: "start", behavior: "instant"});
     const interactions = ["wheel", "touchstart", "keydown", "mousedown"];
     let initialReport = true;
     const observer = new ResizeObserver(() => {

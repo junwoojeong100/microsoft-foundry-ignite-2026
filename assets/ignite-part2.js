@@ -1,7 +1,6 @@
 (() => {
   "use strict";
-  // PART 2 (2026.11.17 새 Foundry 포털 화면): fills the [data-ignite-gallery] placeholders in index.html
-  // from assets/ignite/ignite-data.js and adds the PART 2 sections to the sidebar.
+  // Fill the New Foundry galleries from their capture manifest.
   const data = window.IGNITE_DATA;
   const fail = message => {
     const box = document.getElementById("ignite-boot-error");
@@ -12,7 +11,7 @@
     throw new Error(message);
   };
   if (!data || !Array.isArray(data.shots) || !data.shots.length) {
-    fail("PART 2 화면 데이터 로드에 실패했습니다. index.html과 assets 폴더를 함께 보관했는지 확인하세요.");
+    fail("New Foundry 화면 데이터 로드에 실패했습니다. index.html과 assets 폴더를 함께 보관했는지 확인하세요.");
   }
 
   const escape = value => String(value).replace(/[&<>"']/g, character => ({
@@ -25,16 +24,16 @@
     ${shot.hotspots.map((box, index) => `<span class="hotspot" style="${position(box, shot)}" title="${escape(box.label)}"><b>${index + 1}</b></span>`).join("")}
   </span>`;
 
-  // The zoom dialog is shared with PART 1. index.html's own script already handles the size toggle,
+  // The zoom dialog is shared with the recorded walkthrough. index.html handles the size toggle,
   // the close button and a click on the backdrop, so only the content is set here.
   const zoom = document.getElementById("zoom");
   const zoomCanvas = document.getElementById("zoom-canvas");
   const zoomSize = document.getElementById("zoom-size");
   const zoomTitle = document.getElementById("zoom-title");
   const zoomCaption = document.getElementById("zoom-caption");
-  if (!zoom || !zoomCanvas || !zoomSize || !zoomTitle || !zoomCaption) fail("PART 2 확대 창을 찾지 못했습니다.");
+  if (!zoom || !zoomCanvas || !zoomSize || !zoomTitle || !zoomCaption) fail("New Foundry 확대 창을 찾지 못했습니다.");
   const openZoom = shot => {
-    zoomTitle.textContent = `PART 2 · 화면 ${number(shot)} · ${shot.title}`;
+    zoomTitle.textContent = `New Foundry · 화면 ${number(shot)} · ${shot.title}`;
     zoomCanvas.innerHTML = imageMarkup(shot);
     zoomCanvas.classList.remove("native");
     zoomSize.textContent = "100%로 보기";
@@ -90,22 +89,22 @@
   };
 
   const hosts = [...document.querySelectorAll("[data-ignite-gallery]")];
-  if (!hosts.length) fail("PART 2 화면 갤러리 자리를 찾지 못했습니다.");
+  if (!hosts.length) fail("New Foundry 화면 갤러리 자리를 찾지 못했습니다.");
   const used = new Set();
   hosts.forEach(host => {
     const group = host.dataset.igniteGallery;
     const shots = data.shots.filter(shot => shot.group === group);
-    if (!shots.length) fail(`PART 2 화면 그룹 ${group}에 해당하는 캡처가 없습니다.`);
+    if (!shots.length) fail(`New Foundry 화면 그룹 ${group}에 해당하는 캡처가 없습니다.`);
     used.add(group);
     gallery(host, shots, host.dataset.igniteLabel || group);
   });
   const unused = [...new Set(data.shots.map(shot => shot.group))].filter(group => !used.has(group));
-  if (unused.length) fail(`PART 2에서 사용하지 않은 화면 그룹이 있습니다: ${unused.join(", ")}`);
+  if (unused.length) fail(`New Foundry에서 사용하지 않은 화면 그룹이 있습니다: ${unused.join(", ")}`);
 
   // Sidebar links come from the sections themselves, so the order always matches the page.
   const toc = document.getElementById("toc");
-  if (!toc) fail("PART 2 목차를 찾지 못했습니다.");
-  document.querySelectorAll("[data-ignite-nav]").forEach(section => {
+  if (!toc) fail("New Foundry 목차를 찾지 못했습니다.");
+  if (!document.body.hasAttribute("data-labs")) document.querySelectorAll("[data-ignite-nav]").forEach(section => {
     const link = document.createElement("a");
     link.href = `#${section.id}`;
     link.innerHTML = `<span class="nav-number">${escape(section.dataset.igniteNav)}</span>${escape(section.dataset.igniteTitle)}`;
