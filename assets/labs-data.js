@@ -41,7 +41,7 @@ window.LABS_DATA = {
       "prerequisites": [],
       "sections": ["first-sign-in", "responsibilities", "step-account"],
       "steps": [["first-sign-in"], ["responsibilities", "step-account"]],
-      "more": ["work-iq"]
+      "more": ["work-iq", "m365-accounts-for-agents"]
     },
     {
       "key": "resource",
@@ -53,7 +53,7 @@ window.LABS_DATA = {
       "prerequisites": ["login"],
       "sections": ["step-resource", "step-project"],
       "steps": [["step-resource"], ["step-project"]],
-      "more": ["foundry-iq"]
+      "more": ["foundry-iq", "web-iq"]
     },
     {
       "key": "model",
@@ -65,7 +65,7 @@ window.LABS_DATA = {
       "prerequisites": ["resource"],
       "sections": ["model-quota", "step-model", "ignite-guardrails"],
       "steps": [["model-quota"], ["step-model"], ["ignite-guardrails"]],
-      "more": ["web-iq"]
+      "more": ["new-models", "foundry-safety"]
     },
     {
       "key": "agent",
@@ -77,7 +77,7 @@ window.LABS_DATA = {
       "prerequisites": ["model"],
       "sections": ["step-agent", "step-connect", "step-run"],
       "steps": [["step-agent"], ["step-connect"], ["step-run"]],
-      "more": ["foundry-iq", "work-iq"]
+      "more": ["toolbox", "hosted-agents", "business-plugins"]
     },
     {
       "key": "observe",
@@ -89,7 +89,7 @@ window.LABS_DATA = {
       "prerequisites": ["agent"],
       "sections": ["step-monitor", "step-traces"],
       "steps": [["step-monitor"], ["step-traces"]],
-      "more": ["foundry-iq"]
+      "more": ["foundry-mcp-server"]
     },
     {
       "key": "foundry-iq",
@@ -113,7 +113,7 @@ window.LABS_DATA = {
       "prerequisites": ["model", "observe"],
       "sections": ["ignite-start", "ignite-harness", "ignite-observe"],
       "steps": [["ignite-start"], ["ignite-harness-create"], ["ignite-harness-tools"], ["ignite-harness-run"], ["ignite-observe"]],
-      "more": ["web-iq", "work-iq"]
+      "more": ["foundry-mcp-server", "m365-accounts-for-agents"]
     },
     {
       "key": "insights",
@@ -137,7 +137,7 @@ window.LABS_DATA = {
       "prerequisites": ["agent", "observe"],
       "sections": ["ignite-evaluator", "ignite-evaluation"],
       "steps": [["ignite-evaluator"], ["ignite-evaluation"]],
-      "more": ["foundry-iq"]
+      "more": ["foundry-iq", "fabric-iq"]
     },
     {
       "key": "optimize",
@@ -149,7 +149,7 @@ window.LABS_DATA = {
       "prerequisites": ["evaluation"],
       "sections": ["ignite-optimize"],
       "steps": [["ignite-optimize"]],
-      "more": ["foundry-iq"]
+      "more": ["training", "new-models"]
     },
     {
       "key": "manage",
@@ -161,7 +161,7 @@ window.LABS_DATA = {
       "prerequisites": ["resource"],
       "sections": ["ignite-fleet"],
       "steps": [["ignite-fleet"]],
-      "more": ["fabric-iq"]
+      "more": ["foundry-safety", "azure-windows"]
     }
   ]
 };

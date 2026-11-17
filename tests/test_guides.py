@@ -195,19 +195,34 @@ class GuideDataTests(unittest.TestCase):
 
 
 class IntroCardTests(unittest.TestCase):
-    def test_iq_cards_distinguish_introductions_from_verified_labs(self):
+    def test_introduction_cards_distinguish_unverified_features_from_labs(self):
         text = parse("index.html")[1]
         section = re.search(r'<section[^>]*id="ignite-learn-more"[^>]*>(.*?)</section>', text, re.S)
         self.assertIsNotNone(section)
-        for key in ("foundry-iq", "web-iq", "work-iq", "fabric-iq"):
-            with self.subTest(card=key):
-                cards = re.findall(rf'<article[^>]*id="learn-{key}"[^>]*data-tier="A"[^>]*>(.*?)</article>', section.group(1), re.S)
-                self.assertEqual(1, len(cards))
-                for field in ("intro-status", "verification-badge", "Foundry 연결", "왜 실습하지 않나", "해 보려면", "공식 문서"):
-                    self.assertIn(field, cards[0])
-                self.assertIn("직접 실행하지 않음", cards[0])
-                self.assertRegex(cards[0], r'href="https://learn\.microsoft\.com/')
-                self.assertGreaterEqual(len(re.findall(r"<li>", cards[0])), 3)
+        tiers = {
+            "A": ("foundry-iq", "web-iq", "work-iq", "fabric-iq"),
+            "B": ("business-plugins", "hosted-agents", "m365-accounts-for-agents", "toolbox",
+                  "foundry-mcp-server", "foundry-safety", "training", "new-models", "azure-windows"),
+        }
+        official_hosts = {"learn.microsoft.com", "azure.microsoft.com", "news.microsoft.com", "techcommunity.microsoft.com", "aka.ms"}
+        self.assertEqual(sum(map(len, tiers.values())), len(re.findall(r'<article\b', section.group(1))))
+        for tier, keys in tiers.items():
+            for key in keys:
+                with self.subTest(card=key):
+                    cards = re.findall(rf'<article[^>]*id="learn-{key}"[^>]*data-tier="{tier}"[^>]*>(.*?)</article>', section.group(1), re.S)
+                    self.assertEqual(1, len(cards))
+                    card = cards[0]
+                    for field in ("intro-status", "verification-badge", "왜 실습하지 않나", "공식 문서"):
+                        self.assertIn(field, card)
+                    self.assertIn("직접 실행하지 않음", card)
+                    links = re.findall(r'href="(https://[^"]+)"', card)
+                    self.assertTrue(2 <= len(links) <= 4, key)
+                    self.assertTrue(all(urlsplit(link).netloc in official_hosts for link in links), key)
+                    if tier == "A":
+                        for field in ("Foundry 연결", "해 보려면"):
+                            self.assertIn(field, card)
+                        self.assertRegex(card, r'href="https://learn\.microsoft\.com/')
+                        self.assertGreaterEqual(len(re.findall(r"<li>", card)), 3)
 
     def test_iq_overview_has_separate_linked_rows(self):
         table = re.search(r'<table[^>]*aria-label="Microsoft IQ 구성과 이 가이드의 범위"[^>]*>(.*?)</table>', parse("index.html")[1], re.S).group(1)

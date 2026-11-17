@@ -46,9 +46,11 @@ Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한
 
 화면 기준일은 2026.11.17(키노트 전)이고 기능 이름·상태(Preview/GA)는 2026.11.18에 Ignite 2026 Book of News로 다시 대조했습니다. 발표 뒤 포털 화면을 다시 확인하는 일은 남아 있습니다.
 
-## Microsoft IQ 소개 카드
+## 소개 카드 · 직접 실행하지 않는 기능
 
 [`#ignite-learn-more`](index.html#ignite-learn-more)에 네 IQ의 개념·구성별 상태·Foundry 연결·실습하지 않는 이유·공식 절차 요약·Learn과 발표 링크·확인 수준 배지를 모았습니다. Foundry IQ는 지식 소스 → 지식 베이스 → 에이전트와 출처 확인, Web IQ는 유료 구독·별도 리소스, Work IQ는 전역 관리자 동의·Copilot Credits, Fabric IQ는 라이선스·데이터 에이전트 유료 용량을 구분합니다. 문서만 확인한 내용을 검증된 실습으로 쓰지 않습니다.
+
+Tier B 카드 9개는 Business plugins·Hosted agents·에이전트용 Microsoft 365 계정·Toolboxes/브라우저 자동화·Foundry MCP Server·Foundry Safety·Training·새 모델·Azure/Windows 연계를 다룹니다. 각 실습의 '더 알아보기'와 공식 대조표에서 연결합니다. Toolboxes·Safety는 기존 OTP로 포털 로그인이 중단되어 후보 점검을 하지 못했으며, 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다. Cost 실습에는 **추정치와 청구 기준(Azure Cost Management)**을 구분했습니다.
 
 ## 가이드
 
