@@ -1,6 +1,6 @@
 # Microsoft Foundry · Ignite 2026 실습 가이드
 
-Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 소개하고 직접 실습**하는 가이드를 만들기 위한 리포입니다. 기존 Foundry 워크샵의 **실습자·운영자 가이드를 그대로 가져온 기반(baseline)** 위에, 실습자 가이드 끝에 **PART 2 · 2026.11.17 새 Foundry 포털 화면**을 추가했습니다. 기존 PART 1 본문과 운영자 가이드는 **리전 안내를 North Central US로 통일한 것 외에는** 바꾸지 않았으며, 영문판·동영상·슬라이드는 아직 없습니다.
+Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 소개하고 직접 실습**하는 가이드를 만들기 위한 리포입니다. 기존 Foundry 워크샵의 **실습자·운영자 가이드를 그대로 가져온 기반(baseline)** 위에, 실습자 가이드 끝에 **PART 2 · 2026.11.17 새 Foundry 포털 화면**을 추가했습니다. 기존 PART 1 본문과 운영자 가이드는 **리전 안내를 North Central US로 통일한 것과 운영자 가이드에 'PART 2 준비' 섹션을 추가한 것 외에는** 바꾸지 않았으며, 영문판·동영상·슬라이드는 아직 없습니다.
 
 > 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** 이 틀을 유지한 채 본문을 Ignite 2026 신규 기능으로 바꿔 나갑니다.
 
@@ -28,7 +28,7 @@ Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 �
 | 화면만 확인 | Manage의 Fleet·Operations·Cost·Compliance·Gateways, Routines·Workflows, Optimize |
 | 하지 않음 | Azure Policy 할당, AI Gateway 생성, Optimize 실행, Publish·채널 연결, 참가자 역할(RG Contributor + Foundry User + 구독 Usages Reader)만으로 재현, North Central US에서 PART 1(Foundry 리소스 생성~Prompt Agent)을 처음부터 재현(샌드박스 프로젝트에는 모델 배포·에이전트가 이미 있었음) |
 | 리전 | PART 1·PART 2 모두 **North Central US**(`northcentralus`)로 통일했습니다. 공식 하네스 지원 리전 22곳에 포함됩니다(2026.11.17 문서 기준). 예제 설정(`config/workshop.example.json`), `operator.html`의 JSON 예시·표, 실습자 가이드의 리전 안내를 맞췄고 값이 어긋나면 테스트가 실패합니다. PART 1 화면·영상은 East US 2에서 녹화해 바꿀 수 없으므로 '녹화 예시: East US 2'로 남기고 '화면은 녹화 당시 East US 2'라고 덧붙였습니다. |
-| 운영자에게 알릴 점 | 하네스 한 번 실행이 약 4만 토큰이라 **10,000 TPM 배정으로는 부족**할 수 있습니다(평가 15행 중 3행이 rate limit). Fleet·Cost는 Log Analytics Reader·Cost Management Reader, 평가자 트레이스 컨텍스트는 프로젝트 관리 ID의 Monitoring Reader가 필요합니다. **`operator.html`에는 리전 값만 반영했고 TPM·역할 안내는 아직 반영하지 않았습니다.** |
+| 운영자에게 알릴 점 | 운영자 가이드의 [`#part2-prep`](operator.html#part2-prep) 섹션에 리전·하네스용 TPM(하네스 한 번 실행이 약 4만 토큰이라 **10,000 TPM 배정으로는 부족**할 수 있음, 평가 15행 중 3행이 rate limit)·필요 역할(Fleet·Cost는 Log Analytics Reader·Cost Management Reader, 평가자 트레이스 컨텍스트는 프로젝트 관리 ID의 Monitoring Reader)·비용·정리를 '공식 문서 기준 / 직접 실행 / 화면만 확인 / 확인하지 못함'으로 나누어 추가했습니다. 참가자 필수 역할 3개 표는 바꾸지 않았습니다(Fleet·Cost용 역할을 표에 넣을지는 미정). |
 
 화면 기준일은 2026.11.17이며 어떤 항목이 Ignite에서 공식 발표된 기능인지는 발표 자료·릴리스 노트로 따로 확인해야 합니다.
 

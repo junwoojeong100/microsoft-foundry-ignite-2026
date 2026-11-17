@@ -71,6 +71,7 @@
         <a href="#day-ops"><span class="nav-number">09</span>당일 장애 대응</a>
         <a href="#close"><span class="nav-number">10</span>종료·정리</a>
         <a href="#reuse"><span class="nav-number">11</span>다른 실습에 재사용</a>
+        <a href="#part2-prep"><span class="nav-number">P2</span>PART 2 · 신규 포털 실습 준비</a>
       </nav>
       <p class="sidebar-note">공개 문서에는 실제 고객 명단·암호·인증 코드·연결 문자열을 넣지 않습니다. 운영 대장은 별도 승인된 저장소에서 관리하세요.</p>
     </aside>
@@ -103,6 +104,7 @@
           </article>
         </div>
         <div class="notice warning"><strong>같은 참가자 환경을 A와 B로 중복 생성하지 않습니다.</strong> 준비 후에는 방법과 관계없이 <a href="#preflight">6가지 필수 점검</a>을 수행합니다. 운영자 로그인 성공이나 “생성 완료” 메시지만으로 참가자에게 인계하지 않습니다.</div>
+        <div class="notice"><strong>PART 2(선택 실습)를 함께 운영하나요?</strong> 기본 실습의 준비·점검은 그대로이고, 리전·하네스용 TPM·추가 역할·비용은 <a href="#part2-prep">PART 2 준비</a>에서 따로 확인합니다.</div>
       </section>
 
       <section class="panel observed-section" id="participant-roles">
@@ -425,6 +427,7 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json</pre>
         <div class="notice warning"><strong>지역·배포 유형을 바꾸면 다시 계산합니다.</strong> Global Standard·Data Zone Standard 등의 실제 Quota Scope·잔여량과 데이터 처리·거주 요건을 먼저 확인합니다. 다른 RG나 실습 시작 시간만 나눈다고 동시에 유지되는 배포의 할당량이 줄어들지는 않습니다.</div>
         <div class="notice"><strong>가장 큰 TPM이 가장 낮은 비용·높은 RPM을 뜻하지는 않습니다.</strong> gpt-6.1-terra의 capacity/TPM/RPM 관계·가격·응답 한도를 확인합니다. 녹화 GPT-5 mini의 capacity 10 = 10,000 TPM을 terra에 복사하지 않습니다. Batch의 enqueued tokens는 실시간 TPM과 다릅니다.</div>
         <div class="notice warning"><strong>gpt-6.1-terra에 녹화의 minimal을 복사하지 않습니다.</strong> 해당 버전에서 지원되는 Reasoning Effort·출력 한도를 운영자가 검증해 배정합니다. 고정 모델도 각 모델의 지원 설정을 따릅니다. 도구가 있는 실습은 API와 도구 지원도 확인합니다. 현재 공개 E2E 영상은 GPT-5 mini이며, terra의 배포·Agent 실행 또는 동시 부하 성공을 증명하는 자료가 아닙니다.</div>
+        <div class="notice warning"><strong>PART 2(선택 실습)에는 위 10,000 TPM 예시가 충분한지 따로 확인합니다.</strong> 하네스 한 번 실행이 약 4만 토큰이었고 10,000 TPM 배포에서의 실행은 확인하지 못했습니다. 근거와 확인 상태는 <a href="#part2-prep">PART 2 준비</a>에 있습니다.</div>
         <p class="intro"><a href="index.html#lightweight-models">참가자가 따를 모델 배정 안내</a> · <a href="https://learn.microsoft.com/azure/foundry/foundry-models/quotas-limits#check-quota-management-scope" target="_blank" rel="noopener noreferrer">실제 Quota Scope 확인</a> · <a href="https://learn.microsoft.com/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability" target="_blank" rel="noopener noreferrer">지역·배포 유형별 모델 가용성</a> · <a href="https://learn.microsoft.com/azure/foundry/openai/how-to/reasoning#reasoning-effort" target="_blank" rel="noopener noreferrer">Reasoning Effort 지원</a></p>
         <h3 class="role-title">TPM은 운영자가 기준을 정하고, 참가자가 모델 배포 시 입력합니다.</h3>
         <div class="table-wrap">
@@ -528,6 +531,27 @@ Foundry 프로젝트 URL: 참가자가 생성한 이후 확인
         </div>
         <div class="notice">Foundry 실습자 가이드의 63장 화면·3분 요약·51분 전체 영상은 <strong>2026.11.05의 배정 RG 안에서 리소스를 직접 생성한 기본 Agent 예시</strong>입니다. 다른 계정 유형·기능별 추가 권한 설명은 공식 문서 기반이며, 동일한 실환경 검증을 했다는 뜻은 아닙니다. 녹화는 Application Insights를 Azure Portal에서 먼저 만든 방식이며, 현재 가이드의 권장 방식(Traces에서 Create new resource)은 녹화에 포함되지 않았습니다.</div>
         <p class="intro"><a href="index.html">Foundry 실습자 가이드</a> · <a href="assets/verification.json">기존 읽기 전용 E2E 근거</a> · <a href="https://github.com/junwoojeong100/microsoft-foundry-ignite-2026">가이드 저장소</a></p>
+      </section>
+
+      <section class="panel observed-section" id="part2-prep">
+        <p class="section-label">PART 2 · OPTIONAL NEW PORTAL LAB · 2026.11.17</p>
+        <h2>PART 2(선택 실습)를 운영한다면 리전·TPM·역할·비용을 먼저 정합니다.</h2>
+        <p class="intro"><a href="index.html#ignite-overview">실습자 가이드의 PART 2</a>는 기본 실습(PART 1)을 끝낸 참가자가 New Foundry 포털에서 하네스 에이전트·관찰·평가·Manage 화면을 이어서 따라 하는 <strong>선택 실습</strong>입니다. 기본 실습의 인계 기준과 필수 점검은 그대로이고, 아래는 PART 2를 함께 운영할 때만 추가로 확인할 항목입니다. 값은 <strong>2026.11.17에 샌드박스 프로젝트 1개(North Central US)에서 직접 실행·확인한 결과와 공식 문서</strong>이며 ‘확인 상태’에 적은 범위만 확인했습니다. Ignite에서 공식 발표된 기능인지는 따로 확인해야 합니다.</p>
+        <div class="table-wrap">
+          <table aria-label="PART 2 운영 준비 항목">
+            <thead><tr><th>항목</th><th>운영자가 정하고 준비할 것</th><th>확인 상태</th></tr></thead>
+            <tbody>
+              <tr><td>리전</td><td>참가자 프로젝트를 <strong>North Central US</strong>(<code>northcentralus</code>)에 만들도록 배정하고 <code>config/workshop.example.json</code>의 <code>location</code>과 맞춥니다. 하네스는 공식 지원 리전 22곳의 프로젝트에서만 쓸 수 있으므로 다른 지역은 <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">공식 목록</a>에서 먼저 확인합니다. PART 1 화면·영상은 East US 2에서 녹화해 Region 값이 다르게 보일 수 있다고 참가자에게 알립니다.</td><td><strong>공식 문서 기준:</strong> 목록에 North Central US 포함(2026.11.17 확인).<br><strong>직접 실행:</strong> 샌드박스 프로젝트에서 하네스 생성·실행.<br><strong>확인하지 못함:</strong> 운영 구독의 North Central US <code>gpt-6.1-terra</code> 쿼터·공급, North Central US에서 PART 1을 처음부터 재현.</td></tr>
+              <tr><td>하네스·평가용 TPM</td><td>하네스는 한 번 실행에 토큰을 많이 씁니다(질문 1회에 41,653토큰). 합성 질문 15개 평가는 15분 43초가 걸렸고 12행이 채점되고 3행이 <code>rate_limit_exceeded</code>였습니다. <a href="#capacity">용량 계산</a>의 개인 10,000 TPM 예시가 PART 2에 충분한지 따로 확인하고, 더 큰 TPM 배정·평가 행 수(15~100) 조정·평가 시간대 분산 중에서 정합니다.</td><td><strong>직접 실행:</strong> <code>gpt-6.1-terra</code> Global Standard 100,000 TPM에서 하네스 실행과 평가 1회.<br><strong>확인하지 못함:</strong> 10,000 TPM 배포에서의 하네스 실행, 여러 참가자의 동시 실행.</td></tr>
+              <tr><td>역할 · 에이전트 생성·호출</td><td>하네스 에이전트를 만들고 호출하려면 프로젝트의 <strong>Foundry User</strong>가 필요합니다. <a href="#participant-roles">참가자 역할 3개</a>에 이미 있어 PART 2를 위해 더 주지 않습니다. 모델 배포·리소스 생성은 PART 1처럼 본인 RG의 Contributor입니다. 하네스에서 Toolbox 호출이나 생성 파일 반환을 쓰려면 에이전트의 인스턴스 ID에도 프로젝트 Foundry User를 따로 할당해야 합니다. 참가자는 역할 할당 권한이 없으므로 운영자 몫이며, PART 2는 그 기능을 실습하지 않습니다.</td><td><strong>공식 문서 기준</strong>(Copilot 하네스 사용 문서, 2026.11.17 확인).<br><strong>확인하지 못함:</strong> 참가자 3개 역할만으로 PART 2의 화면과 실행이 되는지.</td></tr>
+              <tr><td>역할 · Fleet·Cost 화면</td><td>Manage의 Fleet·Cost를 보려면 <strong>프로젝트·구독 읽기 + 연결된 Application Insights의 Log Analytics Reader + 구독의 Cost Management Reader</strong>가 필요합니다. 비용이 비면 Cost Management Reader부터 확인합니다. 뒤의 두 역할은 참가자 3개 역할에 없으며 이 가이드는 <a href="#participant-roles">참가자 역할 표</a>를 바꾸지 않았습니다. 참가자에게 이 화면이 필요한지, 필요하면 어떤 Scope로 줄지 운영자가 정합니다. 구독 범위의 Cost Management Reader는 그 구독의 다른 비용도 보게 하므로 구독 Reader·Owner를 일괄 부여하지 않는 기존 원칙과 함께 검토합니다.</td><td><strong>공식 문서 기준</strong>(Fleet 모니터링 문서, 2026.11.17 확인).<br><strong>화면만 확인:</strong> Fleet·Cost·Operations.<br><strong>확인하지 못함:</strong> 참가자 3개 역할(구독 Reader 없음)만으로 이 화면이 열리는지, 더 좁은 Scope(예: RG)로도 되는지.</td></tr>
+              <tr><td>역할 · 평가자 트레이스 컨텍스트</td><td>커스텀 평가자에서 Target agent를 고르면 화면이 <strong>프로젝트 관리 ID(MI)에 Application Insights의 Monitoring Reader</strong>가 필요하다고 안내합니다. 사용자가 아니라 프로젝트 MI에 주는 역할이므로 참가자가 프로젝트를 만든 뒤 운영자가 처리합니다(<a href="#managed-identity">프로젝트 MI 후속 점검</a>). 화면은 권한 전파에 몇 분 걸릴 수 있다고 안내합니다.</td><td><strong>화면만 확인:</strong> ‘Setup incomplete … Monitoring Reader’ 경고(Resolve는 누르지 않음).<br><strong>확인하지 못함:</strong> Resolve의 동작, 역할을 준 뒤 트레이스 컨텍스트가 평가에 반영되는지.</td></tr>
+              <tr><td>비용·정리</td><td><strong>AI Gateway</strong>(Manage → Gateways)는 Azure API Management 기반이라 만들면 리소스와 비용이 생길 수 있어 PART 2는 만들지 않았습니다. 화면은 처음 100,000 요청 무료라고 안내하며 요금 조건은 공식 가격 안내로 확인합니다. 평가와 Insights 스캔은 모델을 호출해 토큰 비용이 생기고(Insights는 첫 스캔의 예상 비용을 화면에 표시), Cost 화면은 최대 24시간 지연될 수 있다고 안내합니다. 종료할 때는 <a href="#close">승인된 정리 절차</a>에 평가 실행·합성 데이터셋·커스텀 평가자·에이전트(버전)와 하네스·평가용으로 늘린 모델 배포의 TPM을 포함해 RG 단위로 확인합니다.</td><td><strong>화면만 확인:</strong> Gateways 소개, Cost와 Insights의 비용 안내.<br><strong>직접 실행:</strong> Insights 스캔 1회, 평가 1회(청구된 실제 비용은 확인하지 못함).<br><strong>하지 않음:</strong> AI Gateway 생성, Optimize 실행, Azure Policy 할당.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>PART 2는 선택 실습이며 기본 실습의 필수 점검을 대체하지 않습니다.</strong> 참가자 3개 역할만으로 PART 2의 화면이 열리는지는 직접 확인하지 못했습니다. 개최 전 SE 테스트 계정(본인 RG의 Contributor·Foundry User, 구독의 Usages Reader)으로 실습자 가이드 PART 2의 N1~N6을 한 번 따라 해 보고, 막히는 화면과 필요한 추가 역할을 인계표에 적습니다.</div>
+        <p class="intro"><a href="index.html#ignite-overview">PART 2 개요</a> · <a href="index.html#ignite-start">N1 시작 전 확인</a> · <a href="index.html#ignite-troubleshooting">N7 막힐 때</a> · <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/use-tools-skills-copilot-harness" target="_blank" rel="noopener noreferrer">하네스 사용 문서</a> · <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">하네스 지원 리전·한도</a> · <a href="https://learn.microsoft.com/azure/foundry/control-plane/monitoring-across-fleet" target="_blank" rel="noopener noreferrer">Fleet 모니터링 권한</a></p>
       </section>
       <footer class="footnotes">
         <p>기준일 2026.11.10 · 실제 기본 Agent 검증일 2026.11.05. 역할 이름·UI·가용성·한도는 변경될 수 있으므로 다음 개최 전에 공식 문서와 참가자 권한으로 확인합니다.</p>
