@@ -1690,7 +1690,7 @@ window.IGNITE_DATA = {
       "group": "optimize",
       "title": "Optimize 시작 메뉴",
       "action": "Optimize 버튼을 누르면 Choose a goal(Improve quality·Reduce cost)과 Learn from past activity(최근 트레이스 기반) 메뉴가 열립니다. 이 실습에서는 실행하지 않았습니다.",
-      "expected": "목표 선택 하위 메뉴에 Improve quality와 Reduce cost가 보입니다. 데이터셋과 평가자를 사용하는 기능이므로 평가 실행을 마친 뒤에 시도하세요.",
+      "expected": "목표 선택 하위 메뉴에 Improve quality와 Reduce cost가 보입니다. 데이터셋과 평가자를 사용하는 기능입니다. 공식 문서는 포털 최적화를 Copilot 하네스를 쓰지 않는 Prompt Agent 대상으로 안내하므로, 하네스 에이전트인 이 에이전트에서 실행되는지는 확인하지 못했습니다.",
       "image": "assets/ignite/screenshots/ko/46-optimize-goal-menu.png",
       "width": 1600,
       "height": 900,

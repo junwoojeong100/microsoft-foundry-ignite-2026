@@ -28,9 +28,10 @@ Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 �
 | 화면만 확인 | Manage의 Fleet·Operations·Cost·Compliance·Gateways, Routines·Workflows, Optimize |
 | 하지 않음 | Azure Policy 할당, AI Gateway 생성, Optimize 실행, Publish·채널 연결, 참가자 역할(RG Contributor + Foundry User + 구독 Usages Reader)만으로 재현, North Central US에서 PART 1(Foundry 리소스 생성~Prompt Agent)을 처음부터 재현(샌드박스 프로젝트에는 모델 배포·에이전트가 이미 있었음) |
 | 리전 | PART 1·PART 2 모두 **North Central US**(`northcentralus`)로 통일했습니다. 공식 하네스 지원 리전 22곳에 포함됩니다(2026.11.17 문서 기준). 예제 설정(`config/workshop.example.json`), `operator.html`의 JSON 예시·표, 실습자 가이드의 리전 안내를 맞췄고 값이 어긋나면 테스트가 실패합니다. PART 1 화면·영상은 East US 2에서 녹화해 바꿀 수 없으므로 '녹화 예시: East US 2'로 남기고 '화면은 녹화 당시 East US 2'라고 덧붙였습니다. |
+| 공식 자료 대조 | 2026.11.17에 공개 문서·Foundry 블로그 릴리스 노트와 맞춰 PART 2 개요의 '공식 자료와 맞춰 본 결과' 표에 정리했습니다. 하네스는 공개 프리뷰(2026.10.28 발표), gpt-6.1-terra는 GA(2026.10.26)이고 Insights·합성 데이터셋 생성·Agent optimizer·AI gateway는 문서상 preview입니다. **포털의 평가 기반 최적화는 하네스를 쓰지 않는 Prompt Agent만 지원한다고 문서가 안내**해 5-4에 경고를 넣었습니다. Ignite Book of News·발표 자료는 확인 시점에 찾지 못해 **Ignite 발표 여부는 확인하지 못했습니다.** |
 | 운영자에게 알릴 점 | 운영자 가이드의 [`#part2-prep`](operator.html#part2-prep) 섹션에 리전·하네스용 TPM(하네스 한 번 실행이 약 4만 토큰이라 **10,000 TPM 배정으로는 부족**할 수 있음, 평가 15행 중 3행이 rate limit)·필요 역할(Fleet·Cost는 Log Analytics Reader·Cost Management Reader, 평가자 트레이스 컨텍스트는 프로젝트 관리 ID의 Monitoring Reader)·비용·정리를 '공식 문서 기준 / 직접 실행 / 화면만 확인 / 확인하지 못함'으로 나누어 추가했습니다. 참가자 필수 역할 3개 표는 바꾸지 않았습니다(Fleet·Cost용 역할을 표에 넣을지는 미정). |
 
-화면 기준일은 2026.11.17이며 어떤 항목이 Ignite에서 공식 발표된 기능인지는 발표 자료·릴리스 노트로 따로 확인해야 합니다.
+화면 기준일은 2026.11.17입니다. Ignite의 Book of News·발표 자료가 공개되면 기능 이름과 상태(Preview/GA)를 다시 대조해야 합니다.
 
 ## 가이드
 

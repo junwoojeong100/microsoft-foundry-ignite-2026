@@ -456,7 +456,7 @@
         <div id="ignite-boot-error" class="boot-error" hidden role="alert"></div>
         <noscript><p class="noscript">PART 2의 화면 갤러리는 로컬 JavaScript로 그립니다. 꺼져 있다면 assets/ignite/screenshots/ko 폴더의 PNG를 번호 순서대로 직접 여세요.</p></noscript>
         <p class="intro">위 PART 1(01~09단계)은 2026.11.05에 검증한 화면이며 그대로 유효합니다. PART 2는 <strong>2026.11.17에 같은 Foundry 포털(New Foundry)에서 직접 실행하며 캡처한 실제 화면 51장</strong>으로, 메뉴가 바뀐 곳과 새로 보이는 기능을 따라 해 보는 <strong>선택 실습</strong>입니다. Microsoft Foundry 화면만 다루며 다른 서비스는 범위 밖입니다.</p>
-        <p class="intro">Ignite 2026 Foundry 가이드를 준비하는 첫 단계로, 발표 자료가 아니라 <strong>포털에서 관찰한 화면</strong>을 기준으로 정리했습니다. 어떤 항목이 Ignite에서 공식 발표된 기능인지는 발표 자료와 릴리스 노트로 따로 확인하세요.</p>
+        <p class="intro">Ignite 2026 Foundry 가이드를 준비하는 첫 단계로, 발표 자료가 아니라 <strong>포털에서 관찰한 화면</strong>을 기준으로 정리했습니다. 어떤 항목이 Ignite에서 공식 발표된 기능인지는 발표 자료와 릴리스 노트로 따로 확인하세요. 공개된 공식 문서·릴리스 노트와 맞춰 본 결과는 <a href="#ignite-official-check">아래 표</a>에 있습니다.</p>
         <div class="notice warning"><strong>검증 범위 · 2026.11.17, 샌드박스 프로젝트 1개(North Central US)</strong><br>
           <strong>직접 실행:</strong> New Foundry 환영 안내, 가드레일 목록, gpt-6.1-terra 배포(Global Standard · 100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4까지)·실행, Insights 스캔 1회, 커스텀 루브릭 평가자 생성, 합성 질문 15개 평가 실행.<br>
           <strong>화면만 확인:</strong> Manage의 Fleet·Operations·Cost·Compliance·Gateways, Routines·Workflows, Optimize.<br>
@@ -477,6 +477,23 @@
           </table>
         </div>
         <p class="intro">표는 두 날짜의 캡처를 비교한 것이며 릴리스 노트가 아닙니다. 공식 문서(Control Plane)의 일부 안내는 Operate 메뉴를 선택하라고 쓰지만, 이 포털에는 Operate가 없고 <strong>Manage</strong> 아래에 Fleet·Cost·Operations가 있었습니다.</p>
+        <h3 class="role-title" id="ignite-official-check">공식 자료와 맞춰 본 결과 (2026.11.17 확인)</h3>
+        <p class="intro">위 이름과 상태는 포털에서 본 표시입니다. 이미 공개된 공식 문서와 Foundry 블로그의 릴리스 노트를 찾아 맞춰 보았습니다. <strong>Ignite(11.17~20)의 Book of News와 발표 자료는 확인 시점에 공개된 페이지를 찾지 못해</strong> '어떤 기능이 Ignite에서 발표됐는지'는 확인하지 못했습니다.</p>
+        <div class="table-wrap">
+          <table aria-label="PART 2 기능의 포털 표시와 공식 자료 대조">
+            <thead><tr><th>기능</th><th>포털 표시</th><th>공식 문서·릴리스 노트</th><th>대조 결과</th></tr></thead>
+            <tbody>
+              <tr><td>Microsoft Copilot 하네스</td><td>Preview</td><td>Foundry 블로그가 2026.10.28에 공개 프리뷰로 발표했고 10월 What's new(11.05)도 같습니다. Learn 문서도 preview입니다.</td><td>일치</td></tr>
+              <tr><td>gpt-6.1-terra</td><td>배포 화면의 모델 이름</td><td>10월 What's new: 2026.10.26 GA, Global Standard·Data Zone Standard 배포 지원.</td><td>참고 (GA)</td></tr>
+              <tr><td>Insights</td><td>배지 없음</td><td>Learn 문서 제목이 'Use Insights in Foundry (preview)'입니다.</td><td>다름 · 문서 기준 preview</td></tr>
+              <tr><td>커스텀 루브릭 평가자</td><td>NEW 안내 · Prompt·Code·Endpoint 유형은 Preview</td><td>'Rubric evaluators' 문서 제목에는 preview 표기가 없고 'Custom evaluators (preview)' 문서는 preview입니다.</td><td>일치</td></tr>
+              <tr><td>합성 평가 데이터셋</td><td>Synthetic generation (표기 없음)</td><td>Learn 문서 제목이 'Generate a synthetic evaluation dataset (preview)'입니다.</td><td>다름 · 문서 기준 preview</td></tr>
+              <tr><td>Optimize</td><td>Optimize 탭 · Choose a goal · Learn from past activity</td><td>Agent optimizer와 스킬 최적화(Learn from past activity)는 preview이고, 포털의 평가 기반 최적화는 <strong>Copilot 하네스를 쓰지 않는 Prompt Agent</strong>를 지원한다고 안내합니다.</td><td>하네스 에이전트 지원은 확인하지 못함 (<a href="#ignite-optimize">5-4</a>)</td></tr>
+              <tr><td>Manage의 Fleet · Cost · Operations · Gateways</td><td>Preview</td><td>확인한 Control Plane 문서(개요·Fleet 모니터링)는 Operate 메뉴의 Overview·Assets·Compliance를 설명하며 Fleet·Cost·Operations 항목은 없습니다. 'AI gateway in Microsoft Foundry'는 preview입니다.</td><td>메뉴 이름은 다름 (문서가 이전) · Gateways 상태는 일치</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="intro">관련 Ignite 세션은 세션 카탈로그에 있습니다(예: 개선 루프 BRK249, 관찰·평가·최적화 BRK251, 거버넌스·FinOps BRK253. 목록은 <a href="https://devblogs.microsoft.com/foundry/whats-new-in-microsoft-foundry-october-2026/" target="_blank" rel="noopener noreferrer">Foundry 블로그 10월 What's new ↗</a>). 발표 뒤 Book of News와 릴리스 노트로 이름과 상태를 다시 확인할 예정입니다.</p>
         <ol class="flow" aria-label="PART 2 실습 흐름">
           <li>모델 배포·가드레일<small>N2</small></li>
           <li>하네스 에이전트<small>N3</small></li>
@@ -661,7 +678,7 @@
         <ol class="task-list" aria-label="평가를 만들고 실행하는 순서">
           <li>평가자 상세의 <strong>Create evaluation</strong>을 누르면 <strong>Target → Scope → Data → Criteria → Review</strong> 5단계 마법사가 열립니다. Target은 <strong>Agent</strong>이며 목록에서 <code>workshop-harness-agent</code>를 고르고 Next를 누릅니다.</li>
           <li><strong>Scope</strong>는 Individual turns(질문-응답 한 쌍, 기본값)로 두고 Next를 누릅니다. Full conversations(여러 턴 대화 전체)도 고를 수 있습니다.</li>
-          <li><strong>Data</strong>의 Dataset source는 <strong>Synthetic generation</strong>입니다(Existing dataset · Benchmarks(Preview) · Existing traces · Live traffic도 선택할 수 있습니다). <strong>Prompt(optional)</strong>에 아래 문장을 붙여 넣고 Model은 gpt-6.1-terra, <strong>Number of rows</strong>는 <strong>15</strong>(허용 범위 15~100), 새 데이터셋 이름은 <code>workshop_harness_eval_set</code>으로 입력합니다. 5를 입력하면 'Enter a whole number from 15 to 100.' 오류로 Next가 비활성화됩니다.</li>
+          <li><strong>Data</strong>의 Dataset source는 <strong>Synthetic generation</strong>입니다(Existing dataset · Benchmarks(Preview) · Existing traces · Live traffic도 선택할 수 있습니다). <strong>Prompt(optional)</strong>에 아래 문장을 붙여 넣고 Model은 gpt-6.1-terra, <strong>Number of rows</strong>는 <strong>15</strong>(허용 범위 15~100), 새 데이터셋 이름은 <code>workshop_harness_eval_set</code>으로 입력합니다. 공식 문서는 합성 평가 데이터셋 생성을 preview로 표시합니다. 5를 입력하면 'Enter a whole number from 15 to 100.' 오류로 Next가 비활성화됩니다.</li>
           <li><strong>Criteria</strong>에서 Judge model(이 실습: contoso-judge)을 확인합니다. Evaluator catalog에는 처음에 Recommended 6개와 내가 만든 평가자가 선택돼 있습니다(Review selected (7)). 하네스 호출 비용을 줄이려고 <strong>Clear selection → Custom → All custom</strong>에서 <strong>Workshop answer quality</strong>만 체크하고 Next를 누릅니다.</li>
           <li><strong>Review</strong>에서 Evaluation name에 <code>workshop-harness-eval-1</code>을 입력하고 Summary를 확인한 뒤 <strong>Submit</strong>을 누릅니다.</li>
           <li>평가 상세의 <strong>Evaluation runs</strong>에서 Status를 확인합니다. 'In progress'로 시작해 이 실습은 총 <strong>15분 43초</strong> 걸렸습니다. 끝나면 실행 이름을 눌러 Run details를 열고 표의 <strong>View details</strong>로 행별 차원 점수와 이유를 봅니다.</li>
@@ -672,6 +689,7 @@
 
         <h3 class="role-title" id="ignite-optimize">5-4 Optimize 둘러보기</h3>
         <p class="intro">에이전트의 <strong>Optimize</strong> 탭은 데이터셋과 평가자를 사용해 지시문·스킬·도구 설명·모델 선택을 바꾼 후보를 만들고 평가 기준으로 순위를 매깁니다. <strong>후보를 승격하기 전까지 에이전트는 바뀌지 않습니다.</strong> 화면의 'tax agent 75.0 → 92.5(+17.5)'는 제품 소개용 예시이며 내 에이전트의 결과가 아닙니다. Optimize 버튼 메뉴에는 <strong>Choose a goal</strong>(Improve quality · Reduce cost)과 <strong>Learn from past activity</strong>(최근 트레이스 기반)가 있습니다. 이 실습은 메뉴만 열고 실행하지 않았습니다. 시도하려면 5-3의 평가를 먼저 마치고 <a href="https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent" target="_blank" rel="noopener noreferrer">공식 빠른 시작 ↗</a>의 조건과 비용을 확인하세요.</p>
+        <div class="notice warning"><strong>하네스 에이전트에서 실행되는지는 확인하지 못했습니다.</strong> 공식 문서는 Agent optimizer와 스킬 최적화를 preview로 표시하고, 포털의 평가 기반 최적화(공식 빠른 시작)는 <strong>Microsoft Copilot 하네스를 쓰지 않는 Prompt Agent</strong>를 지원한다고 안내합니다. 이 PART의 <code>workshop-harness-agent</code>는 하네스를 쓰므로 같은 마법사를 시도하려면 PART 1에서 만든 일반 Prompt Agent로 하세요. 'Learn from past activity'(스킬 최적화)는 문서에 'prompt or managed agent'가 대상으로 적혀 있으나 'managed agent'가 하네스 에이전트를 뜻하는지는 확인하지 못했습니다. 문서의 버튼 이름(Create optimization run)과 이 포털 화면(Choose a goal)이 달라 같은 마법사인지도 확인하지 못했습니다.</div>
         <div class="main-gallery" data-ignite-gallery="optimize" data-ignite-label="N5-4 Optimize 화면"></div>
       </section>
 
