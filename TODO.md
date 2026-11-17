@@ -43,6 +43,12 @@ Ignite 2026 가이드 작업 목록입니다. 끝낸 항목은 `[x]`로 바꿉�
    - [x] `junwoojeong100/microsoft-foundry-ignite-2026`을 공개 저장소로 생성하고 `origin/main`에 커밋 푸시
    - [x] Pages 원본을 GitHub Actions로 설정. `main` 푸시마다 테스트·정적 사이트 빌드·배포가 실행되며 실습자·운영자 HTML과 기존 영상을 웹에서 제공
    - 신규 동영상·PPT 제작과 완성 후 해당 링크 추가는 계속 보류. 비공개 로컬 설정·인증 파일·`internal/`은 게시하지 않음
+7. [x] SDK 2.0·Foundry 신규 기능 소개 보강(2026-11-18)
+   - [x] 요청한 공개 자료 4개를 재대조: SDK 2.0 기사·Book of News·Microsoft IQ 블로그·Foundry 지속 개선 블로그. 실제 실행 여부와 제품 상태는 분리
+   - [x] SDK 2.0·Voice agents 카드 추가: 전체 15개(Tier A 4·Tier B 11). SDK의 권한·저장·6가지 실행 구조·AHP, Voice의 처리 구조·Preview 경계·비용을 소개하고 관련 실습·용어·공식 대조표에서 연결
+   - [x] 네 IQ 세부 기능·Business plugins 계층 상속·모델별 역할·Training·Safety·스킬/비용 최적화 보강. 이미 설명된 주석·평가·Insights·외부 프레임워크 관측·배포 검증은 유지하고 연속 평가를 신규로 오인하지 않게 구분. Work IQ·Fabric의 출처 상충은 명시
+   - [x] 테스트 50개·한국어 lint 0·외부 링크 78/78·두 가이드/3뷰포트 통과. 펼침·키보드 접기·SDK 실행 구조 6개·모바일 레이아웃 확인. 카드 딥링크의 헤더 간격 중복 적용도 수정
+   - 게시 경로는 기존 `main` push → 테스트·정적 빌드·GitHub Pages 자동 배포를 사용합니다. SDK 앱·음성 채널·추가 Azure 리소스의 배포와는 별개입니다.
 
 ## 남은 현장 검증 · 가이드 완성과 별도
 

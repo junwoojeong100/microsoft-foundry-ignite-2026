@@ -201,10 +201,10 @@ class IntroCardTests(unittest.TestCase):
         self.assertIsNotNone(section)
         tiers = {
             "A": ("foundry-iq", "web-iq", "work-iq", "fabric-iq"),
-            "B": ("business-plugins", "hosted-agents", "m365-accounts-for-agents", "toolbox",
+            "B": ("copilot-sdk", "voice-agents", "business-plugins", "hosted-agents", "m365-accounts-for-agents", "toolbox",
                   "foundry-mcp-server", "foundry-safety", "training", "new-models", "azure-windows"),
         }
-        official_hosts = {"learn.microsoft.com", "azure.microsoft.com", "news.microsoft.com", "techcommunity.microsoft.com", "aka.ms"}
+        official_hosts = {"learn.microsoft.com", "azure.microsoft.com", "news.microsoft.com", "techcommunity.microsoft.com", "commandline.microsoft.com", "aka.ms"}
         self.assertEqual(sum(map(len, tiers.values())), len(re.findall(r'<article\b', section.group(1))))
         for tier, keys in tiers.items():
             for key in keys:
@@ -217,7 +217,11 @@ class IntroCardTests(unittest.TestCase):
                     self.assertIn("직접 실행하지 않음", card)
                     links = re.findall(r'href="(https://[^"]+)"', card)
                     self.assertTrue(2 <= len(links) <= 4, key)
-                    self.assertTrue(all(urlsplit(link).netloc in official_hosts for link in links), key)
+                    self.assertTrue(all(
+                        urlsplit(link).netloc in official_hosts
+                        or link.startswith("https://github.com/microsoft/copilot-sdk/")
+                        for link in links
+                    ), key)
                     if tier == "A":
                         for field in ("Foundry 연결", "해 보려면"):
                             self.assertIn(field, card)

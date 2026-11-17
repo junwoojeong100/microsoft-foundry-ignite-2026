@@ -1,6 +1,6 @@
 # Microsoft Foundry · Ignite 2026 실습 가이드
 
-Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한글 실습자·운영자 가이드**입니다. Microsoft IQ를 개요의 첫 항목으로 두고, 직접 실행한 범위는 **필수 실습 1~5·선택 실습 6~10**, 미검증 기능은 **소개 카드와 공식 문서**로 안내합니다. Foundry IQ·Web IQ·Work IQ·Fabric IQ를 각각 설명하며, 발표 상태와 실제 검증 수준을 구분합니다.
+Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한글 실습자·운영자 가이드**입니다. Microsoft IQ를 개요의 첫 항목으로 두고, 직접 실행한 범위는 **필수 실습 1~5·선택 실습 6~10**, 미검증 기능은 **소개 카드와 공식 문서**로 안내합니다. 네 IQ와 **Microsoft Copilot SDK 2.0·Voice agents**를 설명하며, 발표 상태와 실제 검증 수준을 구분합니다.
 
 > 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** 기존 내용·앵커와 구 포털 화면·영상은 보존하고 실습 순서·번호·교차 안내를 재구성했습니다. 영문판·신규 녹화·PPT는 보류입니다.
 
@@ -41,7 +41,7 @@ Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한
 | 화면만 확인 | 샌드박스의 Manage(Fleet·Operations·Cost·Compliance·Gateways), Routines·Workflows, 하네스 에이전트의 Optimize 탭·마법사(제출하지 않음) |
 | 하지 않음 | AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격, 하네스 에이전트의 Optimize 제출, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터 확인, 여러 참가자의 동시 실행·부하 |
 | 리전 | 참가자 배정 리전은 **North Central US**(`northcentralus`)이며 공식 하네스 지원 리전 22곳에 포함됩니다(2026.11.17 문서 기준). 예제 설정·운영자 JSON·실습자 안내가 어긋나면 테스트가 실패합니다. 구 포털 화면·영상은 '녹화 예시: East US 2'로 보존했습니다. 참가자 계정의 리소스 생성 Region 목록(39개)에 North Central US가 있음을 직접 확인했습니다. |
-| 공식 자료 대조 | 2026.11.18에 [Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/), [Microsoft IQ 블로그](https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/), [Foundry 블로그](https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/), [모델 블로그](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609)와 Learn을 대조했습니다. **Microsoft IQ(GA)**가 개요 첫 항목이며 **네 IQ는 각각 별도 행·소개 카드**입니다. 새 SKU·구독 없음이 하위 기능의 무료·GA를 뜻하지는 않습니다. Foundry IQ는 기존 OTP로 포털 로그인이 중단되어 참가자 권한 E2E를 검증하지 못해 **소개 카드로 확정**했습니다. 나머지 세 IQ도 유료 구독·관리자 동의·Fabric 용량 전제 때문에 소개합니다. Foundry의 지속 개선은 직접 실습합니다. Insights·Agent optimizer·멀티턴 평가는 GA, 주석·golden dataset·루브릭 안전 지원·스킬/비용 최적화·Programmed Training·Cost는 Preview입니다. 포털 Optimize는 하네스 없는 Prompt Agent 대상입니다. 자동 선택은 지원 프로젝트의 기본값이고 프로젝트별 Foundry IQ 리소스(Preview)는 미확인입니다. **발표 뒤 Foundry 기능 화면은 재확인하지 못했으며**, 발표 상태와 직접 확인을 구분합니다. |
+| 공식 자료 대조 | 2026.11.18에 [Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/), [Microsoft Copilot SDK 2.0 소개](https://commandline.microsoft.com/microsoft-copilot-sdk-2-0-github/), [Microsoft IQ 블로그](https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/), [Foundry 블로그](https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/)를 재대조하고 [모델 블로그](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609)·Learn·공식 SDK 문서로 보완했습니다. **Microsoft IQ(GA)**가 개요 첫 항목이며 **네 IQ는 각각 별도 행·소개 카드**입니다. 새 SKU·구독 없음이 하위 기능의 무료·GA를 뜻하지는 않습니다. Foundry IQ는 기존 OTP로 포털 로그인이 중단되어 참가자 권한 E2E를 검증하지 못해 **소개 카드로 확정**했습니다. 나머지 세 IQ도 유료 구독·관리자 동의·Fabric 용량 전제 때문에 소개합니다. Foundry의 지속 개선은 직접 실습합니다. Insights·Agent optimizer·멀티턴 평가는 GA, 주석·golden dataset·루브릭 안전 지원·스킬/비용 최적화·Programmed Training·Cost는 Preview입니다. 포털 Optimize는 하네스 없는 Prompt Agent 대상입니다. 자동 선택은 지원 프로젝트의 기본값이고 프로젝트별 Foundry IQ 리소스(Preview)는 미확인입니다. **발표 뒤 Foundry 기능 화면은 재확인하지 못했으며**, 발표 상태와 직접 확인을 구분합니다. |
 | 운영자에게 알릴 점 | 운영자 가이드의 [`#part2-prep`](operator.html#part2-prep) 섹션에 리전·하네스용 TPM·필요 역할·Azure Policy·Optimize·비용·정리를 '공식 문서 기준 / 직접 실행 / 화면만 확인 / 확인하지 못함'으로 나누어 추가했습니다. 재현에서 나온 사전 결정 3가지: **① 평가자 만들기의 Resolve(프로젝트 MI의 Monitoring Reader)는 참가자가 누르면 권한 오류**가 나서 운영자가 할당해야 합니다(명령 예는 `#managed-identity`). **② 10,000 TPM 배포에서는 하네스 질문이 실패**했습니다(30,000 TPM은 천천히 보낼 때만 통과). **③ Compliance의 Asset 탭에 Foundry User 권한 안내**가 떴고 원인은 확인하지 못했습니다. 참가자 필수 역할 3개 표는 바꾸지 않았습니다(3개 역할만으로 화면이 열렸고 Cost 값 표시에 Cost Management Reader가 필요한지만 미확인). |
 
 화면 기준일은 2026.11.17(키노트 전)이고 기능 이름·상태(Preview/GA)는 2026.11.18에 Ignite 2026 Book of News로 다시 대조했습니다. 발표 뒤 포털 화면을 다시 확인하는 일은 남아 있습니다.
@@ -52,7 +52,9 @@ Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한
 
 **Foundry IQ 실습·샘플 문서·갤러리는 만들지 않았습니다.** 서비스가 불가능하거나 참가자 권한 오류를 확인한 것이 아니라 로그인 단계에서 검증이 멈춘 것입니다. 참가자 권한 검증과 필요한 운영자 준비의 직접 실행이 남아 있습니다.
 
-Tier B 카드 9개는 Business plugins·Hosted agents·에이전트용 Microsoft 365 계정·Toolboxes/브라우저 자동화·Foundry MCP Server·Foundry Safety·Training·새 모델·Azure/Windows 연계를 다룹니다. 각 실습의 '더 알아보기'와 공식 대조표에서 연결합니다. Toolboxes·Safety는 기존 OTP로 포털 로그인이 중단되어 후보 점검을 하지 못했으며, 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다. Cost 실습에는 **추정치와 청구 기준(Azure Cost Management)**을 구분했습니다.
+**소개 카드는 총 15개(Tier A 4개·Tier B 11개)**입니다. Tier B는 Microsoft Copilot SDK 2.0·Voice agents·Business plugins·Hosted agents·에이전트용 Microsoft 365 계정·Toolboxes/브라우저 자동화·Foundry MCP Server·Foundry Safety·Training·새 모델·Azure/Windows 연계를 다룹니다. 각 실습의 '더 알아보기'와 공식 대조표에서 연결합니다. Toolboxes·Safety는 기존 OTP로 포털 로그인이 중단되어 후보 점검을 하지 못했으며, 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다. Cost 실습에는 **추정치와 청구 기준(Azure Cost Management)**을 구분했습니다.
+
+[SDK 2.0 카드](index.html#learn-copilot-sdk)는 Rust 런타임·6개 언어·권한과 세션 저장·6가지 실행 구조·AHP를 설명합니다. **SDK의 GA와 Foundry 관리형 하네스의 Preview, 앱 수준 세션 분리와 OS/컨테이너 격리**를 구분하며 SDK 앱은 구현·배포하지 않았습니다. [Voice 카드](index.html#learn-voice-agents)는 음성 처리 방식·고급 기능의 Preview·추가 비용을 소개합니다. 네 IQ의 그래프·BYOL·업무 기능·온톨로지 공유와 모델별 역할, 스킬/비용 최적화도 보강했습니다. Work IQ의 Memory·Office 편집·외부 AI 연동과 Fabric 앱의 상태는 자료가 상충해 단정하지 않습니다. 세부 내용은 카드에서 펼쳐 봅니다.
 
 ## 가이드
 
@@ -139,7 +141,7 @@ Azure에 접속하지 않고 스크립트(가짜 API), 링크·앵커, 화면·�
 python3 -m unittest discover -s tests -v
 ```
 
-2026.11.18 최종 점검: **오프라인 테스트 50개·외부 링크 75개 통과**. 두 가이드를 데스크톱·태블릿·모바일에서 확인해 오류·가로 넘침·깨진 이미지가 없었고, 10개 실습·13개 카드·기존 앵커·동적 재번호·딥링크·51장 갤러리·확대·테마를 확인했습니다. 최종 데스크톱/모바일 미리보기 8장을 직접 검토하고 OCR 금지 문자열 0건을 확인했습니다. 이는 Foundry IQ 등의 미실행 기능을 검증했다는 뜻이 아닙니다.
+2026.11.18 SDK·신규 기능 소개 보강 후 점검: **오프라인 테스트 50개·외부 링크 78개 통과**. 두 가이드를 데스크톱·태블릿·모바일에서 확인해 오류·가로 넘침·깨진 이미지가 없었고, 10개 실습·15개 카드·기존 앵커·동적 재번호·딥링크·51장 갤러리·확대·테마를 확인했습니다. SDK·Work IQ·새 모델 카드의 펼침·키보드 접기와 SDK의 실행 구조 6개를 검사하고, 변경된 카드의 데스크톱/모바일 미리보기도 검토했습니다. 소개 카드의 앵커가 헤더 간격을 중복 적용하던 문제를 바로잡았습니다. 새 Azure 화면은 캡처하지 않았으며, 웹 문서 점검이 Foundry IQ·SDK·Voice 등의 기능 실행 검증을 뜻하지는 않습니다.
 
 ## 배포
 

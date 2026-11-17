@@ -20,6 +20,8 @@ window.LABS_DATA = {
     "web-iq": "Web IQ",
     "work-iq": "Work IQ",
     "fabric-iq": "Fabric IQ",
+    "copilot-sdk": "Microsoft Copilot SDK 2.0",
+    "voice-agents": "Voice agents",
     "business-plugins": "Business plugins",
     "hosted-agents": "Hosted agents",
     "m365-accounts-for-agents": "Microsoft 365 accounts for agents",
@@ -77,7 +79,7 @@ window.LABS_DATA = {
       "prerequisites": ["model"],
       "sections": ["step-agent", "step-connect", "step-run"],
       "steps": [["step-agent"], ["step-connect"], ["step-run"]],
-      "more": ["toolbox", "hosted-agents", "business-plugins"]
+      "more": ["copilot-sdk", "toolbox", "hosted-agents", "business-plugins"]
     },
     {
       "key": "observe",
@@ -113,7 +115,7 @@ window.LABS_DATA = {
       "prerequisites": ["model", "observe"],
       "sections": ["ignite-start", "ignite-harness", "ignite-observe"],
       "steps": [["ignite-start"], ["ignite-harness-create"], ["ignite-harness-tools"], ["ignite-harness-run"], ["ignite-observe"]],
-      "more": ["foundry-mcp-server", "m365-accounts-for-agents"]
+      "more": ["copilot-sdk", "voice-agents", "foundry-mcp-server", "m365-accounts-for-agents"]
     },
     {
       "key": "insights",
