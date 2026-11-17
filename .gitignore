@@ -12,3 +12,7 @@ _site/
 config/*.local.json
 __pycache__/
 *.pyc
+# 원본 녹화(webm)와 발표 덱(pptx)에는 가리지 않은 화면이 있을 수 있어 커밋하지 않습니다. 가린 뒤 만든 mp4만 별도 커밋으로 추가합니다.
+*.webm
+*.pptx
+raw-video/

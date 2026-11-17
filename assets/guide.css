@@ -141,6 +141,8 @@ th{background:#f4f7fb;font-size:12px;color:#4e657d}
 tr:last-child td{border-bottom:0}
 td:first-child{color:#567087;white-space:nowrap;width:158px}
 td code{user-select:all}
+.table-wide{min-width:680px}
+.table-wide td,.table-wide th{word-break:keep-all}
 details{border:1px solid var(--line);border-radius:10px;margin-top:20px;background:#fff;overflow:hidden}
 summary{padding:14px 17px;font-size:13px;font-weight:700;cursor:pointer;background:#f8fafc}
 details[open]>summary{border-bottom:1px solid var(--line)}

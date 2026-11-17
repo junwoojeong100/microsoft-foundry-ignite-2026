@@ -20,7 +20,7 @@ Microsoft Ignite 2026에서 발표되는 **Microsoft Foundry 신규 기능을 �
 
 | 항목 | 내용 |
 |---|---|
-| 위치 | 실습자 가이드 `index.html`의 `#ignite-overview`~`#ignite-finish` 9개 섹션(사이드바 `PART 2`·`N1`~`N8`). 기존 내용은 삭제·수정하지 않고 **추가만** 했습니다(히어로 버튼 1개, `#finish`의 다음 단계 링크 1줄 포함). |
+| 위치 | 실습자 가이드 `index.html`의 `#ignite-overview`~`#ignite-finish` 9개 섹션(사이드바 `PART 2`·`N1`~`N8`). 개요 맨 위에 흐름도·단계표(`#ignite-at-a-glance`)와 용어 풀이(`#ignite-glossary`)가 있습니다. 기존 내용은 삭제·수정하지 않고 **추가만** 했습니다(히어로 버튼 1개, `#finish`의 다음 단계 링크 1줄, `#model-quota`의 TPM 안내 1개 포함). |
 | 흐름 | New Foundry 시작 → 가드레일·`gpt-6.1-terra` 배포 → Microsoft Copilot 하네스 에이전트 생성·도구 제한·실행 → Traces·Monitor → Insights·커스텀 루브릭 평가자·평가 실행·Optimize → Manage의 Fleet·Cost·Compliance·Gateways |
 | 화면 | `assets/ignite/screenshots/ko/` 51장(1600×900, 영문 UI + 한국어 입력). 계정·구독·테넌트 값은 가렸고 OCR로 개인 정보 문자열이 없는지 검사했습니다. **동영상은 아직 없습니다.** |
 | 데이터·코드 | `assets/ignite/ignite-data.js`(화면별 설명과 확인 위치 좌표), `assets/ignite-part2.js`(갤러리·사이드바 렌더링). 확대 창은 PART 1과 공유합니다. |
