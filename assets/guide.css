@@ -63,6 +63,14 @@ main{min-width:0}
 .panel,.stage{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px;margin-bottom:25px}
 .section-label{color:var(--teal);font-size:11px;letter-spacing:.14em;font-weight:800;margin-bottom:8px}
 .role-title{font-size:17px;line-height:1.5;margin-top:24px;color:var(--navy)}
+.intro-card{margin-top:22px;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--bg);font-size:13px;scroll-margin-top:calc(var(--topbar-h,61px) + 27px)}
+.intro-card h3{color:var(--navy);font-size:18px;line-height:1.5;margin-bottom:10px}
+.intro-card p+p{margin-top:8px}
+.intro-try{margin-top:10px}
+.intro-try ol{margin:5px 0 0;padding-left:22px}
+.intro-links{overflow-wrap:anywhere}
+.verification-badge{display:inline-block;padding:3px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--teal);font-size:11px;font-weight:700}
+.iq-flow li:first-child{border-style:dashed}
 .task-list{font-size:13.5px;color:#365675;padding-left:21px;margin:15px 0 0}
 .task-list li+li{margin-top:9px}
 h2{font-size:24px;line-height:1.4;letter-spacing:-.035em;font-weight:750;word-break:keep-all}
@@ -328,6 +336,7 @@ dialog::backdrop{background:#0a1d32bd;backdrop-filter:blur(5px)}
   .toc a.active{border-bottom-color:var(--blue)}.nav-number{font-size:10px;min-width:12px}
   .panel,.stage{padding:20px 17px;border-radius:13px;margin-bottom:17px}h2{font-size:21px}
   .intro{font-size:13.5px}.flow{gap:18px;margin-top:19px}.flow li{font-size:11px;padding:10px 3px}.flow li+li:before{left:-15px;top:12px}.flow small{font-size:9px}
+  .iq-flow{flex-direction:column;gap:20px}.iq-flow li+li:before{content:"↓";left:50%;top:-19px;transform:translateX(-50%)}
   .runbook-grid{grid-template-columns:1fr;gap:12px;margin-top:18px}.runbook-card{padding:16px}.runbook-card h3{font-size:16px}.scope-badge{font-size:11px;padding:2px 5px}
   .cap-grid{grid-template-columns:1fr}
   .surface-map{padding:14px}.sm-chain{flex-direction:column;gap:20px}.sm-chain li+li:before{content:"↓";left:50%;top:-18px;transform:translateX(-50%)}

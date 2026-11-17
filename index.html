@@ -102,7 +102,7 @@
           <li><strong>실습·지원·종료:</strong> 이번 실습 본문 URL, 완료 기준·종료/정리 정책, 승인된 문의 경로.</li>
         </ol>
         <div class="notice warning"><strong>실제 입력값은 운영자의 배정표가 기준입니다.</strong> 아래 화면·영상의 계정·RG·지역·모델·자원 이름은 녹화 예시입니다. 이름을 복사하거나 기존 녹화 리소스에 연결하지 말고 본인이 만든 리소스를 사용하세요. 배정값이 없거나 본인 RG가 안 보이면 생성부터 시도하지 말고 <a href="#troubleshooting">문제 대응표</a>를 확인합니다.</div>
-        <div class="notice"><strong>2026.11.18 업데이트 · Ignite 2026 Book of News 반영 (Microsoft IQ·Foundry).</strong> PART 1의 화면과 절차는 그대로이고 상태 표기와 안내만 맞췄습니다. ① <strong>Microsoft IQ가 GA로 발표</strong>됐습니다(Ignite 2026에서 가장 중요한 발표). 이 가이드는 그중 Foundry의 지속 개선을 PART 2에서 따라 하고 Foundry IQ는 쓰지 않습니다(<a href="#ignite-microsoft-iq">요약</a>). ② 새 Prompt Agent의 기본 모델이 <code>model-router</code>로 보이는 이유(자동 모델 선택, <a href="#step-agent">05단계</a>) ③ 새 프로젝트에 Foundry IQ 리소스(Preview)가 생길 수 있다는 발표(<a href="#step-resource">02단계</a>) ④ 새 모델·model router 확대(<a href="#model-quota">모델 배포 한도</a>) ⑤ Insights·멀티턴 평가·Agent optimizer가 GA로 발표됨 → 이어서 <a href="#ignite-overview">PART 2</a>. 근거와 확인 범위는 <a href="#ignite-official-check">PART 2의 발표 대조 표</a>에 있습니다.</div>
+        <div class="notice"><strong>2026.11.18 업데이트 · Microsoft IQ·Foundry.</strong> ① <strong>Microsoft IQ가 GA로 발표</strong>됐습니다. 네 IQ(<strong>Foundry IQ · Web IQ · Work IQ · Fabric IQ</strong>)는 각각 <a href="#ignite-learn-more">소개 카드</a>에서 개념·전제 조건·공식 문서를 확인합니다. 직접 실습이 확인되면 Foundry IQ 실습으로 안내합니다. Foundry의 지속 개선(하네스·Insights·평가·Optimize)은 직접 따라 합니다(<a href="#ignite-microsoft-iq">요약</a>). ② 새 Prompt Agent의 기본 모델 <code>model-router</code>(<a href="#step-agent">05단계</a>) ③ 새 프로젝트의 Foundry IQ 리소스(Preview, <a href="#step-resource">02단계</a>) ④ 새 모델·model router 확대(<a href="#model-quota">모델 배포 한도</a>) ⑤ Insights·멀티턴 평가·Agent optimizer GA. 발표 상태와 직접 확인 범위는 <a href="#ignite-official-check">공식 대조표</a>에서 구분합니다.</div>
         <ol class="flow" aria-label="실습 구조">
           <li>배정 RG<small>운영자 준비</small></li>
           <li>Foundry + 프로젝트<small>Guest 생성</small></li>
@@ -462,19 +462,27 @@
         <p class="intro">위 PART 1(01~09단계)은 2026.11.05에 검증한 화면이며 그대로 유효합니다. PART 2는 <strong>2026.11.17에 같은 Foundry 포털(New Foundry)에서 직접 실행하며 캡처한 실제 화면 51장</strong>으로, 메뉴가 바뀐 곳과 새로 보이는 기능을 따라 해 보는 <strong>선택 실습</strong>입니다. Microsoft Foundry 화면만 다루며 다른 서비스는 범위 밖입니다.</p>
         <p class="intro">이 PART의 화면은 Ignite 2026 키노트 전(2026.11.17)에 <strong>포털에서 관찰한 것</strong>입니다. 2026.11.17에 공개된 <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a>의 Microsoft Foundry 항목과 그 상세인 Foundry 블로그, 2026.11.18에 다시 확인한 공식 문서로 기능 이름과 상태(GA·Preview)를 맞췄고 결과는 <a href="#ignite-official-check">아래 표</a>와 N3~N6의 '발표' 안내에 있습니다. 발표 뒤 포털 화면을 다시 열어 보지는 않았습니다. 이 가이드는 <strong>Microsoft IQ(가장 중요한 발표, <a href="#ignite-microsoft-iq">아래 요약</a>)</strong>와 Microsoft Foundry 항목을 다루며 Azure 인프라·Windows·GitHub·Agent 365 같은 다른 영역의 발표는 범위 밖입니다.</p>
         <h3 class="role-title" id="ignite-microsoft-iq">Ignite 2026의 가장 중요한 발표 · Microsoft IQ (GA)</h3>
-        <p class="intro"><strong>결론:</strong> Microsoft IQ는 조직의 데이터·지식·업무 방식을 앱과 에이전트에 연결하고(<strong>컨텍스트 관리</strong>) 운영 신호로 에이전트를 계속 개선하는(<strong>Foundry의 지속 개선</strong>) 엔터프라이즈 플랫폼입니다. Book of News는 Microsoft IQ가 <strong>generally available</strong>이며 새 SKU·구독 없이 이미 쓰는 제품 위에 구성되고 거버넌스는 Microsoft Agent 365와 함께 맡는다고 소개합니다. <strong>이 가이드의 실습은 그중 Foundry의 지속 개선을 직접 따라 합니다.</strong> 나머지 구성은 이름과 상태만 정리했고 이 실습에서 실행하지 않았습니다(<a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Book of News ↗</a> · <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>).</p>
+        <p class="intro"><strong>결론:</strong> Microsoft IQ는 조직의 데이터·지식·업무 방식을 에이전트에 연결하는 <strong>컨텍스트 관리</strong>와, 운영 신호로 에이전트를 개선하는 <strong>Foundry의 지속 개선</strong>을 묶은 플랫폼입니다. Book of News는 <strong>GA</strong>이며 새 SKU·구독 없이 이미 쓰는 제품 위에 구성되고 거버넌스는 Microsoft Agent 365와 함께 맡는다고 소개합니다. 이는 하위 기능까지 모두 GA이거나 무료라는 뜻은 아닙니다. <strong>Foundry IQ는 아래 소개 카드를 보세요(직접 실습이 확인되면 실습으로 안내합니다). Web IQ·Work IQ·Fabric IQ는 소개 카드로 다루며, 하네스·Insights·평가·Optimize는 직접 따라 합니다.</strong> (<a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Book of News ↗</a> · <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>)</p>
         <div class="table-wrap">
           <table class="table-wide" aria-label="Microsoft IQ 구성과 이 가이드의 범위">
-            <thead><tr><th>구성</th><th>하는 일</th><th>발표 상태 (Book of News)</th><th>이 가이드와의 관계</th></tr></thead>
+            <thead><tr><th>구성</th><th>하는 일</th><th>발표 상태</th><th>이 가이드에서</th></tr></thead>
             <tbody>
-              <tr><td><strong>Foundry의 지속 개선</strong></td><td>평가와 운영 신호(트레이스·Insights)를 Agent optimizer와 모델 학습(Training)으로 이어 에이전트를 계속 개선합니다. 개선을 적용하면 그 버전이 새 기준선이 됩니다.</td><td>Insights·Agent optimizer·멀티턴 평가 <strong>GA</strong> · 트레이스 주석·golden dataset·스킬/비용 최적화·Programmed Training Preview</td><td><strong>이 실습이 직접 따라 하는 부분</strong>: 하네스 에이전트 → 트레이스 → Insights → 평가 → Optimize(<a href="#ignite-harness">N3</a>~<a href="#ignite-improve">N5</a>)</td></tr>
-              <tr><td><strong>Foundry IQ</strong></td><td>비정형 문서 지식을 앱·에이전트에 연결합니다(키워드·벡터·하이브리드 검색과 에이전틱 검색).</td><td>SharePoint indexed knowledge source GA · 지식 그래프·Microsoft-Retriever-1·새 프로젝트의 Foundry IQ 리소스 Preview · Foundry IQ Serverless는 2026년 12월 GA 예정(Microsoft IQ 블로그)</td><td>직접 실행하지 않음. 새 프로젝트에 리소스가 생길 수 있다는 안내만 <a href="#step-resource">02단계</a>에 있음 (<a href="https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq" target="_blank" rel="noopener noreferrer">Learn ↗</a>)</td></tr>
-              <tr><td>Work IQ · Fabric IQ · Web IQ</td><td>업무 데이터와 맥락(Microsoft 365) · 비즈니스 데이터와 의미(Fabric) · 웹의 최신 정보(Web IQ)를 에이전트에 연결합니다.</td><td>각각 일부 GA · 일부 Preview(Web IQ는 모든 Azure 고객에게 GA)</td><td>Microsoft Foundry 포털 실습 범위 밖(실행·화면 확인 없음)</td></tr>
-              <tr><td>Business plugins</td><td>도메인 전문가가 컨텍스트·스킬·도구·권위 있는 출처를 묶어 두면 에이전트가 상속해 쓰는 재사용 단위입니다. Microsoft Foundry에서는 MCP로 씁니다.</td><td>Frontier 프로그램</td><td>하지 않음(확인하지 못함)</td></tr>
+              <tr><td><strong>Foundry IQ</strong></td><td>조직의 규정·공식 문서를 검색해 출처와 함께 에이전트에 전달합니다.</td><td>SharePoint 인덱스 지식 소스 GA · 지식 그래프·Microsoft-Retriever-1·프로젝트별 리소스 Preview · Serverless는 2026년 12월 GA 예정(Book of News·블로그)</td><td><a href="#learn-foundry-iq">소개 카드 · 실습 가능성 판정 후 갱신</a></td></tr>
+              <tr><td><strong>Web IQ</strong></td><td>웹·뉴스·이미지·동영상·장소의 최신 정보를 인용 가능한 컨텍스트로 제공합니다.</td><td>Auto·Auto Advanced·Scopes·Places·Weather GA · Commerce 비공개 Preview(Book of News)</td><td><a href="#learn-web-iq">소개 카드</a> · 유료 구독·별도 리소스</td></tr>
+              <tr><td><strong>Work IQ</strong></td><td>Microsoft 365의 문서·회의·대화·협업 맥락을 사용자 권한에 맞춰 제공합니다.</td><td>MCP 연결 GA · 내장 Work IQ 도구 Preview(Learn) · 세부 기능별 상태는 카드 참조</td><td><a href="#learn-work-iq">소개 카드</a> · 관리자 동의·Copilot Credits</td></tr>
+              <tr><td><strong>Fabric IQ</strong></td><td>OneLake·Power BI의 지표와 업무 개체·관계·규칙을 에이전트에 연결합니다.</td><td>Power BI 읽기 전용 MCP GA · Foundry의 Fabric IQ 도구 Preview(Learn) · 일부 통합 상태는 출처에 따라 다름</td><td><a href="#learn-fabric-iq">소개 카드</a> · Fabric 라이선스·용량</td></tr>
+              <tr><td><strong>Foundry의 지속 개선</strong></td><td>평가·운영 신호 → Agent optimizer·모델 학습 → 검증된 새 기준선을 반복합니다.</td><td>Insights·Agent optimizer·멀티턴 평가 GA · 주석·golden dataset·스킬/비용 최적화·Programmed Training Preview(Book of News·블로그)</td><td><strong>직접 실습:</strong> <a href="#ignite-harness">하네스</a> → <a href="#ignite-insights">Insights</a> → <a href="#ignite-evaluation">평가</a> → <a href="#ignite-optimize">Optimize</a></td></tr>
+              <tr><td>Business plugins</td><td>컨텍스트·스킬·도구·공식 출처를 재사용 단위로 묶습니다. Foundry에서는 MCP로 연결합니다.</td><td>Frontier 프로그램(Book of News)</td><td>소개 대상 · <a href="#ignite-learn-more">더 알아보기</a></td></tr>
             </tbody>
           </table>
         </div>
         <p class="intro">컨텍스트 기능(Work IQ·Fabric IQ·Foundry IQ·Web IQ와 플러그인·스킬·도구·에이전트의 재사용)은 Microsoft Copilot·GitHub Copilot·Microsoft Foundry와 MCP를 지원하는 에이전트 하네스에서 GA로 발표됐습니다. 이 가이드의 11/17 화면은 키노트 전에 캡처해 Microsoft IQ를 직접 보여 주는 화면은 없습니다.</p>
+        <ol class="flow iq-flow" aria-label="Microsoft IQ의 컨텍스트 관리와 지속 개선">
+          <li>컨텍스트 관리<small>Foundry IQ · Web IQ<br>Work IQ · Fabric IQ<br><span class="scope-badge">소개 카드</span></small></li>
+          <li>에이전트<small>조직의 근거로 응답<br><span class="scope-badge">Prompt Agent·하네스 실습</span></small></li>
+          <li>Foundry의 지속 개선<small>Insights → 평가 → Optimize<br>검증한 개선 → 새 기준선<br><span class="scope-badge">실습 · 후보 승격은 하지 않음</span></small></li>
+        </ol>
+        <div class="flow-bottom">Microsoft IQ = 컨텍스트 관리 + Foundry의 지속 개선. 아래 실습 대응은 이 가이드의 구성입니다.</div>
         <h3 class="role-title" id="ignite-at-a-glance">한눈에 보기 · 단계별로 하는 일과 확인 수준</h3>
         <p class="intro"><strong>결론:</strong> PART 2는 PART 1에서 만든 프로젝트에 <strong>하네스 에이전트</strong>를 더해 <strong>만들기 → 관찰 → 평가 → 개선 → 조직 단위 관리</strong> 순서로 새 포털의 흐름을 따라 해 보는 선택 실습입니다. Ignite 2026에서 Microsoft IQ의 지속 개선(Continuous improvement in Foundry: Establish → Identify → Optimize → Validate and repeat)의 앞부분을 같은 화면에서 따라 해 보는 흐름이기도 합니다. 아래 표는 단계마다 하는 일, 이 가이드가 어디까지 직접 실행했는지, 한 번 실행에서 본 시간, Ignite 발표에서의 상태를 한 장에 모았습니다. 시간은 환경과 TPM에 따라 달라지므로 일정을 짤 때의 참고값으로만 쓰세요.</p>
         <ol class="flow" aria-label="PART 2 실습 흐름">
@@ -488,6 +496,7 @@
           <table class="table-wide" aria-label="PART 2 단계별 한눈에 보기">
             <thead><tr><th>단계</th><th>하는 일</th><th>이 가이드의 확인 수준</th><th>한 번 실행에서 본 시간·주의</th><th>Ignite 발표 (2026.11.17)</th></tr></thead>
             <tbody>
+              <tr><td><a href="#learn-foundry-iq">Microsoft IQ · Foundry IQ</a></td><td>네 IQ의 차이와 지식 소스 → 지식 베이스 → 에이전트 연결을 이해합니다.</td><td>직접 실행하지 않음 · 공식 문서 기준</td><td>Foundry IQ 실습 가능성은 참가자 권한으로 판정합니다. 나머지 세 IQ는 소개 카드입니다.</td><td>Microsoft IQ GA · 하위 기능은 GA·Preview가 섞임</td></tr>
               <tr><td><a href="#ignite-start">N1</a> 시작 전 확인</td><td>리전·TPM·역할을 배정표와 대조하고 New Foundry를 켭니다.</td><td>직접 실행</td><td>하네스는 10,000 TPM 배포에서 실패했습니다.</td><td>—</td></tr>
               <tr><td><a href="#ignite-guardrails">N2</a> 가드레일·모델 배포</td><td>Guardrails 목록을 읽고 <code>gpt-6.1-terra</code>를 배포합니다.</td><td>직접 실행</td><td>정책은 만들거나 바꾸지 않습니다.</td><td>새 모델·model router 확대 발표(이 실습은 배정 모델만 사용)</td></tr>
               <tr><td><a href="#ignite-harness">N3</a> 하네스 에이전트</td><td>만들기 → Harness tools 제한 → 실행 → Details 확인</td><td>직접 실행</td><td>질문 1회 3~8초(응답 칩 값). 모델을 바꾸면 도구 제한이 풀렸습니다.</td><td>Microsoft Copilot harness는 Preview(Foundry 블로그)</td></tr>
@@ -509,7 +518,11 @@
                 <thead><tr><th>용어</th><th>이 가이드에서의 뜻</th></tr></thead>
                 <tbody>
                   <tr><td>Microsoft IQ (GA)</td><td>조직의 데이터·지식·업무 방식을 앱과 에이전트에 연결하는 엔터프라이즈 컨텍스트 관리와, 운영 신호로 에이전트를 계속 개선하는 Foundry의 지속 개선을 묶은 플랫폼입니다. Ignite 2026에서 GA로 발표됐고 새 SKU·구독이 필요 없다고 안내합니다. <a href="#ignite-microsoft-iq">요약</a></td></tr>
-                  <tr><td>Foundry IQ</td><td>Microsoft IQ에서 비정형 문서 지식을 앱·에이전트에 연결하는 부분입니다(검색과 에이전틱 검색). 이 실습에서는 쓰지 않았습니다.</td></tr>
+                  <tr><td>Foundry IQ</td><td>조직의 규정·공식 문서를 검색해 근거와 출처를 에이전트에 전달합니다. <a href="#learn-foundry-iq">개념·전제 조건</a></td></tr>
+                  <tr><td>Web IQ</td><td>웹의 최신 정보를 인용 가능한 형태로 주는 REST·MCP·SDK입니다. Foundry의 웹 검색 도구와 같은 제품인지는 확인하지 못했습니다. <a href="#learn-web-iq">소개 카드</a></td></tr>
+                  <tr><td>Work IQ</td><td>Microsoft 365의 문서·회의·대화와 업무 맥락을 로그인한 사용자 권한으로 제공합니다. <a href="#learn-work-iq">소개 카드</a></td></tr>
+                  <tr><td>Fabric IQ</td><td>OneLake·Power BI 지표와 업무 개체·관계·규칙을 일관된 의미로 연결합니다. <a href="#learn-fabric-iq">소개 카드</a></td></tr>
+                  <tr><td>지식 소스 · 지식 베이스 · 에이전틱 검색</td><td>지식 소스는 문서 저장소의 연결, 지식 베이스는 소스와 검색 설정의 묶음입니다. 에이전틱 검색은 질문을 나눠 소스를 찾고 결과를 합쳐 출처를 돌려주는 검색 흐름입니다.</td></tr>
                   <tr><td>Microsoft Copilot harness (Preview)</td><td>Foundry가 관리하는 에이전트 런타임입니다. 파일 읽기·파일 쓰기·웹·셸·서브에이전트 같은 내장 도구를 주며 <strong>에이전트를 만들 때 선택</strong>해야 합니다. 기존 에이전트는 하네스로 바꿀 수 없습니다. <a href="#ignite-harness">N3</a></td></tr>
                   <tr><td>Harness tools</td><td>하네스 에이전트의 내장 도구 5개(File system read · File system write · Web · Shell · Subagents)입니다. 기본값은 모두 켜져 있으므로 쓰지 않을 도구는 끕니다. <a href="#ignite-harness-tools">3-2</a></td></tr>
                   <tr><td>Guardrails</td><td>모델 배포에 연결되는 안전 정책입니다(Microsoft.Default · DefaultV2 · MAIDefault). 에이전트에 따로 지정하지 않으면 모델 배포의 가드레일을 상속한다고 표시됩니다. <a href="#ignite-guardrails">N2</a></td></tr>
@@ -559,7 +572,10 @@
               <tr><td>Microsoft Copilot 하네스 (<a href="#ignite-harness">N3</a>)</td><td>Preview</td><td>Foundry 블로그(2026.11.17): 하네스를 관리형으로 맡기려는 팀을 위한 'Microsoft Copilot harness (now in preview)'. 2026.10.28 발표와 10월 What's new도 같고 Learn 문서도 preview 표기입니다. Book of News에는 이 항목이 따로 없습니다.</td><td>일치 (Preview)</td></tr>
               <tr><td>Voice agents · 새 모델 (<a href="#ignite-harness-create">3-1</a>)</td><td>에이전트 만들기의 Interaction mode: Text · Voice(만든 뒤 변경 불가)</td><td>Foundry 블로그: voice agents GA. Book of News: Microsoft-Decision-1.1 GA, MAI-Code-2-Flash(Foundry 제한 공개 프리뷰)·MAI-Image-2.7(Preview)·fal·Baseten(Preview) 등 새 모델. 블로그는 Microsoft-Decision-1.1을 평가의 judge로도 쓸 수 있다고 안내합니다.</td><td>Voice 선택지는 화면과 일치 · 이 실습은 Text와 배정 모델만 다룸(새 모델·Voice는 하지 않음. Decision-1.1은 이 프로젝트에 배포하지 않아 judge로 쓰는 것은 확인하지 못함)</td></tr>
               <tr><td>모델 라우터 · 자동 모델 선택 (<a href="#step-agent">PART 1 05단계</a>)</td><td>재현에서 새 Prompt Agent의 기본 모델이 <code>model-router</code>(배포하지 않은 모델)로 표시됨</td><td>Foundry 블로그: 지원되는 프로젝트에서는 자동 모델 선택이 기본으로 켜져 있어 model router를 먼저 배포하지 않고 시작할 수 있습니다. Book of News: model router의 모델 풀 확대와 AI Gateway 지원. Learn: AI Gateway의 자동 모델 선택은 preview.</td><td>재현에서 본 동작과 같은 설명 · 이 실습은 배정 모델을 직접 배포·선택함</td></tr>
-              <tr><td>Foundry IQ 리소스 (Microsoft IQ의 일부 · <a href="#step-resource">PART 1 02단계</a>)</td><td>이 가이드의 화면에서 확인하지 못함</td><td>Book of News: 새 Foundry 프로젝트마다 Foundry IQ 리소스(Preview)가 생겨 첫날부터 grounding을 제공하며 사용량 기반 서버리스 요금제입니다. Microsoft IQ 블로그: Foundry IQ Serverless는 2026년 12월 GA 예정입니다.</td><td>확인하지 못함 · 이 실습은 Foundry IQ를 쓰지 않음 · 리소스·과금은 운영자 가이드 <a href="operator.html#part2-prep">PART 2 준비</a></td></tr>
+              <tr><td>Foundry IQ</td><td>Knowledge 메뉴는 보였지만 지식 베이스 생성·연결은 확인하지 못함</td><td>Book of News: SharePoint 인덱스 지식 소스 GA · 지식 그래프·Microsoft-Retriever-1·프로젝트별 리소스 Preview. 블로그: Serverless는 2026년 12월 GA 예정. Learn: 에이전틱 검색 포털 경험은 Preview.</td><td><a href="#learn-foundry-iq">개념·연결·전제 조건 소개 카드</a> · 참가자 권한 실습 가능성은 별도 판정</td></tr>
+              <tr><td>Web IQ</td><td>해당 없음(이 포털 실습 범위 밖)</td><td>Book of News: 모든 Azure 고객에게 GA. Learn: 유료 Azure 구독·Web IQ 리소스 필요, Azure 크레딧 사용 불가.</td><td><a href="#learn-web-iq">소개 카드</a> · Foundry 웹 검색 도구와 동일하다고 단정하지 않음</td></tr>
+              <tr><td>Work IQ</td><td>해당 없음(이 포털 실습 범위 밖)</td><td>Learn: MCP 경로 GA, 내장 <code>work_iq_preview</code> 도구 Preview. 전역 관리자의 1회 설정·동의, Copilot Credits, 사용자 위임 인증 필요.</td><td><a href="#learn-work-iq">소개 카드</a> · 세부 기능 상태를 분리함</td></tr>
+              <tr><td>Fabric IQ · Fabric IQ MCP</td><td>해당 없음(이 포털 실습 범위 밖)</td><td>Learn: Power BI 읽기 전용 Fabric IQ MCP GA, Foundry의 Fabric IQ 도구 Preview. 온톨로지·데이터 에이전트 지원 범위와 일부 앱 통합 상태는 출처에 따라 다름.</td><td><a href="#learn-fabric-iq">소개 카드</a> · Fabric 라이선스·데이터 에이전트의 유료 용량 필요</td></tr>
               <tr><td>트레이스 주석 (<a href="#ignite-observe">N4</a>)</td><td>Traces 도구 막대의 Annotate · 목록의 Annotation 열</td><td>Book of News·Foundry 블로그: 트레이스에 전문가 평점·코멘트·기대 답변을 남기고 golden dataset을 만드는 기능(Preview). Learn: 'Annotate traces with human feedback (preview)'(트레이스 상세 → Annotate → 👍/👎와 설명).</td><td>기능 이름은 화면과 일치 · 이 실습에서는 사용하지 않음</td></tr>
               <tr><td>Insights (<a href="#ignite-insights">5-1</a>)</td><td>배지 없음</td><td>Book of News: now generally available(반복되는 실패를 묶고 가장 잦은 문제와 수정안을 순위로 보여 줌). Learn 문서 제목은 2026.11.17에 'Use Insights in Foundry (preview)'였고 2026.11.18에는 'Find recurring issues with insights'입니다. 문서의 'Fix insights with agent optimizer'(Insights에서 optimizer로 보내기)는 Preview.</td><td>일치 (GA) · 스캔은 직접 실행, Insights에서 optimizer로 보내기는 화면에서 확인하지 못함</td></tr>
               <tr><td>커스텀 루브릭 평가자 (<a href="#ignite-evaluator">5-2</a>)</td><td>NEW 안내 · Prompt·Code·Endpoint 유형은 Preview</td><td>Book of News: 검증된 golden dataset에서 과제별 루브릭 평가자를 만들 수 있고 안전(safety) 지원은 Preview. Learn 'Rubric evaluators'·'Custom evaluators' 제목에는 2026.11.18에 preview 표기가 없습니다(Custom evaluators는 11/17에 '(preview)').</td><td>일치 · 이 실습은 자연어 기준에서 'Auto-generate rubric'으로 만드는 방법만 실행함. golden dataset 방식·안전 평가자는 하지 않음</td></tr>
@@ -574,6 +590,69 @@
         </div>
         <p class="intro">표의 GA·Preview는 발표 자료와 공식 문서의 표기이며 이 가이드의 직접 실행·화면 확인과는 별개입니다. 근거는 위 링크와 <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>(Foundry IQ)이고, 단계별 Learn 문서 링크는 N3~N6의 '발표' 안내에 있습니다. 관련 Ignite 세션: BRK249(From traces to better agents: The Foundry improvement loop), BRK251(Agents in production: From issue detection to continuous improvement), BRK242(Build your self-improving AI Platform with Microsoft Foundry), BRK252(Turn your data into AI advantage with Training in Microsoft Foundry). 세션 목록은 Foundry 블로그의 안내를 따랐습니다. 발표 뒤 포털 화면에서 이름과 상태가 달라졌는지는 다시 확인할 예정입니다.</p>
         <p class="intro">사진을 누르면 확대되고, 주황색 번호는 확인할 위치입니다(사진 아래 범례). 계정·구독 이름은 <strong>Workshop User · Workshop-Subscription</strong>으로 가렸습니다. 화면 글자는 영문 UI 원문이고, 에이전트 지시문·질문·응답은 한국어입니다.</p>
+      </section>
+
+      <section class="panel observed-section" id="ignite-learn-more" data-ignite-nav="더보기" data-ignite-title="더 알아보기 · 실행하지 않는 발표">
+        <p class="section-label">LEARN MORE · PUBLIC SOURCES · 2026.11.18</p>
+        <h2>더 알아보기 · 이 가이드에서 실행하지 않는 Ignite 2026 발표</h2>
+        <p class="intro">실습은 참가자 권한으로 끝까지 직접 실행하고 증거가 남은 것만 제공합니다. 아래는 공식 문서의 요약이며 검증한 클릭 절차가 아닙니다. GA·Preview는 제품 상태, 배지는 이 가이드의 확인 수준입니다.</p>
+        <article class="intro-card" id="learn-foundry-iq" data-tier="A">
+          <h3>Foundry IQ · 조직의 문서를 출처 있는 답으로</h3>
+          <p>규정·정책·공식 문서를 검색해 에이전트가 근거를 제시하게 합니다. <strong>지식 소스 → 지식 베이스 → 에이전트</strong>가 핵심이며 키워드·벡터·하이브리드·에이전틱 검색을 사용합니다.</p>
+          <p class="intro-status"><strong>발표 상태:</strong> SharePoint 인덱스 지식 소스 GA, 지식 그래프·Microsoft-Retriever-1·프로젝트별 리소스 Preview(Book of News). 에이전틱 검색 포털 경험 Preview(Learn). Serverless는 2026년 12월 GA 예정(블로그).</p>
+          <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
+          <p><strong>Foundry 연결:</strong> 프로젝트의 <strong>Build → Knowledge</strong>에서 검색 서비스·지식 소스·지식 베이스를 구성하고 Agents에서 연결합니다. 코드에서는 지식 베이스의 MCP 도구와 프로젝트 연결을 사용합니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 검색 서비스·지식 소스·지원 리전과 관리 ID 간 데이터 권한을 준비해야 합니다. 무료 계층과 무료 검색 토큰 할당이 있지만 모델 호출은 별도 비용입니다. 참가자 역할 3개만으로 끝까지 되는지와 운영자 준비를 직접 확인한 뒤 판정을 갱신합니다.</p>
+          <div class="intro-try"><strong>해 보려면 · 공식 절차 요약</strong><ol>
+            <li>허브 기반이 아닌 Foundry 프로젝트·모델과 에이전틱 검색 지원 검색 서비스를 준비합니다.</li>
+            <li>운영자가 프로젝트 관리 ID의 Search Index Data Reader와, LLM을 쓰면 검색 서비스 관리 ID의 Cognitive Services User를 대상 리소스에 부여합니다. 프로젝트 연결 생성 권한도 확인합니다.</li>
+            <li>문서 저장소를 지식 소스로 추가하고 지식 베이스를 만든 뒤 에이전트에 연결합니다.</li>
+            <li>문서 안 질문의 정답·출처와 문서 밖 질문의 근거 없음 응답을 확인합니다. 자세한 절차는 아래 Learn을 따릅니다.</li>
+          </ol></div>
+          <p class="intro-links"><strong>공식 문서:</strong> <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq" target="_blank" rel="noopener noreferrer">개념·포털 흐름 ↗</a> · <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/foundry-iq-connect" target="_blank" rel="noopener noreferrer">연결·권한 ↗</a> · <a href="https://aka.ms/Ignite26FIQ" target="_blank" rel="noopener noreferrer">Ignite 발표 ↗</a></p>
+        </article>
+        <article class="intro-card" id="learn-web-iq" data-tier="A">
+          <h3>Web IQ · 웹의 최신 정보를 인용 가능한 컨텍스트로</h3>
+          <p>웹·뉴스·이미지·동영상·장소·날씨 정보를 구조화해 돌려주는 API입니다. 모델의 학습 시점 뒤에 생긴 정보를 근거 URL과 함께 가져오는 데 씁니다.</p>
+          <p class="intro-status"><strong>발표 상태:</strong> 모든 Azure 고객에게 GA. Auto·Auto Advanced·Scopes·Places·Weather GA, Commerce 비공개 Preview(Book of News). 가격은 블로그 기준 1,000회 호출당 $1부터이며 계약·현재 가격을 별도로 확인합니다.</p>
+          <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
+          <p><strong>Foundry 연결:</strong> REST·MCP·SDK로 검색 결과를 에이전트에 전달합니다. Foundry의 기본 웹 검색 도구와 Web IQ가 같은 경로인지는 확인하지 못했으므로 동일시하지 않습니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> <strong>유료 Azure 구독과 별도 Web IQ 리소스</strong>가 필요하고 Azure 크레딧은 사용할 수 없습니다(Learn). 이 워크샵의 무료 계층·모델 토큰 수준 승인 범위를 넘습니다.</p>
+          <div class="intro-try"><strong>해 보려면 · 공식 절차 요약</strong><ol>
+            <li>유료 구독·과금 승인을 확인하고 Azure Portal에서 Web IQ 리소스를 배포합니다.</li>
+            <li>Web IQ 포털에서 리소스를 연결하고 AppID·인증(API 키 또는 Entra)을 준비합니다. 비밀 값은 노출하지 않습니다.</li>
+            <li>REST·MCP·SDK 중 하나로 조회하고 출처 URL·시각·필터를 확인한 뒤 에이전트에 연결합니다.</li>
+          </ol></div>
+          <p class="intro-links"><strong>공식 문서:</strong> <a href="https://learn.microsoft.com/web-iq/overview" target="_blank" rel="noopener noreferrer">개념·연결 방식 ↗</a> · <a href="https://learn.microsoft.com/web-iq/get-started/deploy-azure-portal" target="_blank" rel="noopener noreferrer">리소스 배포 ↗</a> · <a href="https://aka.ms/webiqnews" target="_blank" rel="noopener noreferrer">Ignite 발표 ↗</a></p>
+        </article>
+        <article class="intro-card" id="learn-work-iq" data-tier="A">
+          <h3>Work IQ · Microsoft 365의 업무 맥락을 사용자 권한대로</h3>
+          <p>문서·메일·회의·대화와 과거 결정의 맥락을 조회하고 업무를 수행합니다. 요청은 로그인한 사용자의 권한을 존중하며 앱 전용 인증은 지원하지 않습니다.</p>
+          <p class="intro-status"><strong>발표 상태:</strong> 컨텍스트·실행 기능 GA, Listen·사람 승인 기반 거버넌스 Preview(Book of News). Foundry의 MCP 연결 GA, 내장 <code>work_iq_preview</code> 도구와 MCP의 retrieve 도구는 Preview(Learn). 세부 기능과 연결 경로의 상태를 구분합니다.</p>
+          <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
+          <p><strong>Foundry 연결:</strong> 프로젝트에 <code>https://workiq.svc.cloud.microsoft/mcp</code> 연결을 만들고 표준 MCP 도구로 추가합니다. 사용자 위임 인증과 <code>WorkIQAgent.Ask</code> 동의를 사용합니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> <strong>Entra 전역 관리자의 1회 테넌트 설정·동의와 Copilot Credits 과금</strong>이 필요합니다. 커넥터 기반 도구는 사용자별 Microsoft 365 Copilot 라이선스가 필요할 수 있습니다. 참가자 권한을 넘고 데이터가 Azure 규정 준수 경계 밖에서 처리될 수 있습니다.</p>
+          <div class="intro-try"><strong>해 보려면 · 공식 절차 요약</strong><ol>
+            <li>관리자가 테넌트 설정·앱 동의·Copilot Credits와 데이터 사용 승인을 준비합니다.</li>
+            <li>연결 생성자의 Foundry Project Manager와 사용자의 Foundry User, Microsoft 365 원본 권한을 확인합니다.</li>
+            <li>사용자 위임 인증으로 MCP 연결을 만들고 도구를 추가한 뒤 허용된 문서로 조회·권한 차단을 확인합니다.</li>
+          </ol></div>
+          <p class="intro-links"><strong>공식 문서:</strong> <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/tools/work-iq" target="_blank" rel="noopener noreferrer">Foundry 연결·과금·인증 ↗</a> · <a href="https://learn.microsoft.com/microsoft-365/copilot/extensibility/work-iq/mcp/quickstart/foundry" target="_blank" rel="noopener noreferrer">MCP 빠른 시작 ↗</a> · <a href="https://aka.ms/WorkIQIgnite2026" target="_blank" rel="noopener noreferrer">Ignite 발표 ↗</a></p>
+        </article>
+        <article class="intro-card" id="learn-fabric-iq" data-tier="A">
+          <h3>Fabric IQ · 비즈니스 데이터에 같은 의미를 부여</h3>
+          <p>OneLake 데이터·Power BI 시맨틱 모델의 지표·온톨로지(업무 개체·관계·규칙)와 데이터 에이전트를 연결해 업무 용어로 질문하게 합니다.</p>
+          <p class="intro-status"><strong>발표 상태:</strong> Book of News는 Copilot·Fabric 앱 통합 GA, Excel·GitHub Copilot·ChatGPT·Claude 연동 Preview로 안내하지만 블로그의 Fabric 앱 표기는 Preview여서 <strong>출처에 따라 다름</strong>입니다. Learn의 Power BI 읽기 전용 Fabric IQ MCP는 GA, Foundry의 Fabric IQ·데이터 에이전트 도구는 Preview입니다.</p>
+          <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
+          <p><strong>Foundry 연결:</strong> Build → Tools의 Fabric IQ(OneLake Catalog) 또는 데이터 에이전트 도구를 사용합니다(Learn). 항목에 맞는 MCP 서버·인증 대상을 검색하고 연결 ID의 원본 데이터 권한을 적용합니다. 읽기 전용 Fabric IQ MCP의 온톨로지·데이터 에이전트 지원 범위는 출처에 따라 다르며 별도 Foundry 도구와 혼동하지 않습니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> <strong>Fabric 라이선스</strong>가 필요합니다. 데이터 에이전트 경로는 게시된 에이전트와 <strong>유료 F2 이상 또는 Power BI Premium P1 이상 용량</strong>, 데이터와 용량의 동일 리전 조건이 필요합니다. 이 워크샵은 외부 라이선스·용량을 준비하지 않으며 데이터가 Azure 규정 준수 경계 밖에서 처리될 수 있습니다.</p>
+          <div class="intro-try"><strong>해 보려면 · 공식 절차 요약</strong><ol>
+            <li>질문에 맞는 Fabric 항목과 라이선스·원본 권한·지원 리전을 확인합니다. 데이터 에이전트는 위 유료 용량에 게시합니다.</li>
+            <li>OneLake Catalog나 공식 endpoint discovery로 항목의 MCP 서버 URL·인증 대상을 확인합니다.</li>
+            <li>Foundry 연결과 도구를 추가하고 허용된 데이터 응답·권한 없는 사용자의 차단을 확인합니다.</li>
+          </ol></div>
+          <p class="intro-links"><strong>공식 문서:</strong> <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/tools/fabric-iq" target="_blank" rel="noopener noreferrer">Foundry 도구·요건 ↗</a> · <a href="https://learn.microsoft.com/fabric/iq/connectors/fabric-iq-mcp" target="_blank" rel="noopener noreferrer">Power BI 읽기 전용 MCP ↗</a> · <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그의 Fabric IQ 발표 ↗</a></p>
+        </article>
       </section>
 
       <section class="panel observed-section" id="ignite-start" data-ignite-nav="N1" data-ignite-title="시작 · New Foundry 켜기">
@@ -1079,7 +1158,7 @@
 
       const stages = [
         {id:"account",title:"계정·테넌트·배정 RG 확인",lead:"Azure Portal에서 내 Guest 계정, 본인 RG, 운영자가 할당한 세 역할을 확인합니다.",note:"본인 UPN·초기 암호 로그인과 본인 MFA 등록·재로그인을 완료한 뒤 진행합니다. 새 RG나 역할은 참가자가 만들지 않습니다."},
-        {id:"resource",title:"Foundry 리소스 + 기본 프로젝트 생성",lead:"Azure Portal → Foundry → Create a Foundry resource에서 본인 RG와 운영자가 배정한 지역을 선택합니다.",note:"이 화면은 Foundry 리소스와 Default project를 함께 만듭니다. 본인의 고유 리소스·프로젝트 이름으로 Review + create → Create를 진행합니다. 녹화 예시는 East US 2·프로젝트 guest-portal-lab입니다. Region은 North Central US를 선택합니다(화면은 녹화 당시 East US 2). Ignite 2026 Book of News는 새 Foundry 프로젝트마다 Foundry IQ 리소스(Preview, 사용량 기반 서버리스)가 생겨 첫날부터 grounding을 제공한다고 발표했습니다. 이 실습은 Foundry IQ를 쓰지 않으며 2026.11.17 재현 화면에서는 이 리소스를 확인하지 못했습니다. 프로젝트를 만든 뒤 RG에 처음 보는 리소스가 보이면 지우지 말고 운영자에게 알리세요."},
+        {id:"resource",title:"Foundry 리소스 + 기본 프로젝트 생성",lead:"Azure Portal → Foundry → Create a Foundry resource에서 본인 RG와 운영자가 배정한 지역을 선택합니다.",note:"이 화면은 Foundry 리소스와 Default project를 함께 만듭니다. 본인의 고유 리소스·프로젝트 이름으로 Review + create → Create를 진행합니다. 녹화 예시는 East US 2·프로젝트 guest-portal-lab입니다. Region은 North Central US를 선택합니다(화면은 녹화 당시 East US 2). Ignite 2026 Book of News는 새 Foundry 프로젝트마다 Foundry IQ 리소스(Preview, 사용량 기반 서버리스)가 생겨 첫날부터 grounding을 제공한다고 발표했습니다. 2026.11.17 재현 화면에서는 이 리소스를 확인하지 못했습니다. Foundry IQ의 개념·연결·전제 조건은 더 알아보기의 소개 카드를 보세요. 프로젝트를 만든 뒤 RG에 처음 보는 리소스가 보이면 지우지 말고 운영자에게 알리세요."},
         {id:"project",title:"Foundry Portal에서 프로젝트 열기",lead:"생성 완료 후 Go to Foundry portal로 이동해 Guest 환영 문구와 프로젝트 이름을 확인합니다.",note:"기본 프로젝트는 이미 생성됐으므로 별도 프로젝트를 중복 생성하지 않습니다. 포털 홈의 키 필드는 화면·영상에서 가렸습니다."},
         {id:"model",title:"배정 모델 배포와 테스트",lead:"Models → Deploy a base model → gpt-6.1-terra 검색 → Deploy → Custom settings를 선택합니다. 모델 고정 단계는 지정 모델을 사용합니다.",note:"모델·버전·배포 유형·개인별 TPM은 배정표를 따릅니다. 녹화는 gpt-5-mini-workshop · 2025-08-07 · Global Standard · 10,000 TPM 예시입니다. 배정값이 10,000 TPM이면 TPM 단위 필드에는 10000을 입력합니다. capacity 단위와 혼동하지 않습니다. Playground의 기본 Web search를 추론 전에 제거합니다."},
         {id:"agent",title:"지시문을 넣고 Prompt Agent 생성",lead:"모델 Playground에 Instructions를 작성하고 Save as agent → Create and open playground를 선택합니다.",note:"본인의 고유 이름으로 일반 Prompt Agent를 저장합니다(녹화: guest-workshop-assistant). Tools는 비우고 Copilot harness·Hosted Agent·Publish는 사용하지 않습니다. 아직 에이전트 대화는 실행하지 않습니다. 2026.11.17 재현에서는 새 Prompt Agent의 기본 모델이 model-router로 표시됐고(배포하지 않은 모델), 배정 모델로 바꿔 저장한 뒤(Version 2) 실행했습니다. Foundry 블로그(2026.11.17)는 지원되는 프로젝트에서 자동 모델 선택(model router)이 기본으로 켜져 있어 먼저 배포하지 않고 시작할 수 있다고 설명합니다. 이 실습은 04단계에서 배포한 배정 모델을 직접 선택합니다."},

@@ -190,6 +190,32 @@ class GuideDataTests(unittest.TestCase):
         self.assertEqual(expected, len(self.load()["shots"]))
 
 
+class IntroCardTests(unittest.TestCase):
+    def test_iq_cards_distinguish_introductions_from_verified_labs(self):
+        text = parse("index.html")[1]
+        section = re.search(r'<section[^>]*id="ignite-learn-more"[^>]*>(.*?)</section>', text, re.S)
+        self.assertIsNotNone(section)
+        for key in ("foundry-iq", "web-iq", "work-iq", "fabric-iq"):
+            with self.subTest(card=key):
+                cards = re.findall(rf'<article[^>]*id="learn-{key}"[^>]*data-tier="A"[^>]*>(.*?)</article>', section.group(1), re.S)
+                self.assertEqual(1, len(cards))
+                for field in ("intro-status", "verification-badge", "Foundry 연결", "왜 실습하지 않나", "해 보려면", "공식 문서"):
+                    self.assertIn(field, cards[0])
+                self.assertIn("직접 실행하지 않음", cards[0])
+                self.assertRegex(cards[0], r'href="https://learn\.microsoft\.com/')
+                self.assertGreaterEqual(len(re.findall(r"<li>", cards[0])), 3)
+
+    def test_iq_overview_has_separate_linked_rows(self):
+        table = re.search(r'<table[^>]*aria-label="Microsoft IQ 구성과 이 가이드의 범위"[^>]*>(.*?)</table>', parse("index.html")[1], re.S).group(1)
+        rows = re.findall(r"<tr>(.*?)</tr>", table, re.S)
+        for name, key in (("Foundry IQ", "foundry-iq"), ("Web IQ", "web-iq"), ("Work IQ", "work-iq"), ("Fabric IQ", "fabric-iq")):
+            matches = [row for row in rows if re.search(rf"<td><strong>{name}</strong></td>", row)]
+            self.assertEqual(1, len(matches), name)
+            self.assertIn(f'href="#learn-{key}"', matches[0])
+        self.assertIn("Foundry의 지속 개선", table)
+        self.assertIn("Business plugins", table)
+
+
 class IgnitePart2Tests(unittest.TestCase):
     """PART 2 renders its screens from assets/ignite/ignite-data.js, so data, screenshots and page placeholders must agree."""
 
