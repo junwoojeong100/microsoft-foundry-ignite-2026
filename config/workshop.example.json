@@ -5,5 +5,6 @@
   "location": "northcentralus",
   "participantCount": 75,
   "seTestAccountCount": 5,
-  "nameFormat": "user-se"
+  "nameFormat": "user-se",
+  "foundryIq": true
 }

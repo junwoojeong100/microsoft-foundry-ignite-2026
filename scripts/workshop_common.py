@@ -31,6 +31,11 @@ ROLES = {
     "Foundry User": "53ca6127-db72-4b80-b1b0-d745d6d5456d",
     "Cognitive Services Usages Reader": "bba48692-92b0-4667-a9ad-c31c7b334ac2",
 }
+# Extra participant roles at RG scope for the Foundry IQ lab (config "foundryIq": true).
+IQ_ROLES = {
+    "Search Service Contributor": "7ca78c08-252a-4471-8644-bb5ff32d4ba0",
+    "Search Index Data Contributor": "8ebe5a00-799e-43f5-93ac-243d3dce84a7",
+}
 PROVIDERS = (
     "Microsoft.CognitiveServices", "Microsoft.OperationalInsights",
     "Microsoft.Insights", "Microsoft.Storage", "Microsoft.Search",
@@ -67,6 +72,7 @@ class Config:
     seTestAccountCount: int = 0
     namePrefix: str | None = None
     nameFormat: str | None = None
+    foundryIq: bool = False
 
     @classmethod
     def load(cls, path: str) -> "Config":
@@ -74,17 +80,20 @@ class Config:
             data = json.loads(Path(path).read_text(encoding="utf-8"))
         except (OSError, ValueError) as exc:
             raise WorkshopError("Cannot read the JSON config file.") from exc
-        required = set(cls.__annotations__) - {"seTestAccountCount", "namePrefix", "nameFormat"}
+        required = set(cls.__annotations__) - {"seTestAccountCount", "namePrefix", "nameFormat", "foundryIq"}
         if (
             not isinstance(data, dict) or not required <= set(data)
             or set(data) - set(cls.__annotations__)
         ):
             raise WorkshopError(
-                "Config needs the five required keys and optional seTestAccountCount/namePrefix/nameFormat."
+                "Config needs the five required keys and optional seTestAccountCount/namePrefix/nameFormat/foundryIq."
             )
         data.setdefault("seTestAccountCount", 0)
         data.setdefault("namePrefix", None)
         data.setdefault("nameFormat", None)
+        data.setdefault("foundryIq", False)
+        if type(data["foundryIq"]) is not bool:
+            raise WorkshopError("foundryIq must be true or false.")
         for key in ("tenantId", "subscriptionId"):
             try:
                 data[key] = str(uuid.UUID(data[key]))
@@ -190,11 +199,14 @@ class Participant:
 
     @property
     def expected_roles(self) -> set[tuple[str, str]]:
-        return {
+        roles = {
             (self.scope.lower(), ROLES["Contributor"]),
             (self.scope.lower(), ROLES["Foundry User"]),
             (self.config.scope.lower(), ROLES["Cognitive Services Usages Reader"]),
         }
+        if self.config.foundryIq:
+            roles |= {(self.scope.lower(), role) for role in IQ_ROLES.values()}
+        return roles
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -390,7 +402,7 @@ def preflight(client: AzureClient, config: Config) -> tuple[str, list[str]]:
     locations = client.collection(api_url(config.scope + "/locations", "2022-12-01"))
     if config.location not in {item.get("name", "").lower() for item in locations}:
         raise WorkshopError("Configured Azure location is not available in this subscription.")
-    for role in ROLES.values():
+    for role in (*ROLES.values(), *(IQ_ROLES.values() if config.foundryIq else ())):
         definition = client.request("GET", api_url(
             config.scope + "/providers/Microsoft.Authorization/roleDefinitions/" + role,
             AUTH_API,
@@ -557,6 +569,8 @@ def read_state(config: Config, domain: str) -> dict[str, Any]:
         del binding_config["namePrefix"]
     if config.nameFormat is None:
         del binding_config["nameFormat"]
+    # foundryIq only changes the expected roles, so switching it on later must still match an existing run.
+    del binding_config["foundryIq"]
     binding = hashlib.sha256(
         json.dumps({"config": binding_config, "domain": domain}, sort_keys=True).encode()
     ).hexdigest()

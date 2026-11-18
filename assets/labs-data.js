@@ -7,7 +7,7 @@ window.LABS_DATA = {
   ],
   "after": [
     {"id": "troubleshooting", "badge": "문제", "title": "계정·리소스·권한"},
-    {"id": "ignite-troubleshooting", "badge": "대응", "title": "하네스·평가·운영"},
+    {"id": "ignite-troubleshooting", "badge": "대응", "title": "IQ·하네스·평가·운영"},
     {"id": "finish", "badge": "필수", "title": "필수 실습 완료 기준"},
     {"id": "ignite-finish", "badge": "선택", "title": "선택 실습 완료 기준"},
     {"id": "ignite-menu-changes", "badge": "참고", "title": "두 날짜의 메뉴 비교"},
@@ -30,7 +30,8 @@ window.LABS_DATA = {
     "foundry-safety": "Foundry Safety",
     "training": "Training",
     "new-models": "새 모델 · 모델 라우터",
-    "azure-windows": "Azure · Windows 연계"
+    "azure-windows": "Azure · Windows 연계",
+    "cost-management": "비용 관리 · 여러 층의 제어"
   },
   "labs": [
     {
@@ -95,15 +96,27 @@ window.LABS_DATA = {
     },
     {
       "key": "foundry-iq",
-      "enabled": false,
+      "enabled": true,
       "title": "Foundry IQ로 에이전트에 지식 연결하기",
-      "lead": "참가자 권한으로 끝까지 검증하기 전에는 실습을 제공하지 않습니다.",
-      "required": false,
-      "screens": [],
-      "prerequisites": ["observe"],
-      "sections": [],
-      "steps": [],
-      "more": ["web-iq", "work-iq", "fabric-iq"]
+      "lead": "문서를 지식 소스·지식 베이스로 묶어 에이전트가 출처와 함께 답하고 문서 밖 질문은 거절하는지 확인합니다.",
+      "required": true,
+      "screens": ["2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정 + 운영자 사전 준비"],
+      "prerequisites": ["agent", "observe"],
+      "sections": ["ignite-foundry-iq"],
+      "steps": [["ignite-foundry-iq-prep"], ["ignite-foundry-iq-kb"], ["ignite-foundry-iq-agent"], ["ignite-foundry-iq-test"]],
+      "more": ["work-iq", "fabric-iq", "business-plugins"]
+    },
+    {
+      "key": "web-iq",
+      "enabled": true,
+      "title": "Web IQ로 최신 웹 정보 연결하기",
+      "lead": "에이전트에 웹 검색 도구를 직접 붙여 최신 소식을 출처 URL과 함께 답하게 하고 툴박스 경로와 비교합니다.",
+      "required": true,
+      "screens": ["2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정"],
+      "prerequisites": ["agent", "observe"],
+      "sections": ["ignite-web-iq"],
+      "steps": [["ignite-web-iq-add"], ["ignite-web-iq-test"], ["ignite-web-iq-compare"]],
+      "more": ["toolbox", "work-iq", "cost-management"]
     },
     {
       "key": "harness",
@@ -151,7 +164,19 @@ window.LABS_DATA = {
       "prerequisites": ["evaluation"],
       "sections": ["ignite-optimize"],
       "steps": [["ignite-optimize"]],
-      "more": ["training", "new-models"]
+      "more": ["training", "new-models", "cost-management"]
+    },
+    {
+      "key": "hosted-agent",
+      "enabled": true,
+      "title": "Hosted agent 호출하고 관찰하기",
+      "lead": "운영자가 배포한 코드 기반 에이전트를 Playground에서 호출하고 Traces·Monitor로 확인합니다. 배포는 하지 않습니다.",
+      "required": false,
+      "screens": ["2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정 + 운영자 사전 배포"],
+      "prerequisites": ["observe"],
+      "sections": ["ignite-hosted-agent"],
+      "steps": [["ignite-hosted-agent-find"], ["ignite-hosted-agent-test"], ["ignite-hosted-agent-observe"]],
+      "more": ["hosted-agents", "copilot-sdk", "cost-management"]
     },
     {
       "key": "manage",
@@ -163,7 +188,19 @@ window.LABS_DATA = {
       "prerequisites": ["resource"],
       "sections": ["ignite-fleet"],
       "steps": [["ignite-fleet"]],
-      "more": ["foundry-safety", "azure-windows"]
+      "more": ["foundry-safety", "azure-windows", "cost-management"]
+    },
+    {
+      "key": "cost",
+      "enabled": true,
+      "title": "비용 보기와 토큰 예산(Cost Control) 만들기",
+      "lead": "Monitor의 Cost를 읽고 프로젝트에 추적 전용 토큰 예산을 만들어 사용량이 한도에 얼마나 가까운지 봅니다.",
+      "required": false,
+      "screens": ["2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정"],
+      "prerequisites": ["observe"],
+      "sections": ["ignite-cost"],
+      "steps": [["ignite-cost-read"], ["ignite-cost-control-create"], ["ignite-cost-control-check"]],
+      "more": ["cost-management"]
     }
   ]
 };

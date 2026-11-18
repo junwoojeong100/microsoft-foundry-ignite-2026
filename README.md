@@ -1,6 +1,6 @@
 # Microsoft Foundry · Ignite 2026 실습 가이드
 
-Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한글 실습자·운영자 가이드**입니다. Microsoft IQ를 개요의 첫 항목으로 두고, 직접 실행한 범위는 **필수 실습 1~5·선택 실습 6~10**, 미검증 기능은 **소개 카드와 공식 문서**로 안내합니다. 네 IQ와 **Microsoft Copilot SDK 2.0·Voice agents**를 설명하며, 발표 상태와 실제 검증 수준을 구분합니다.
+Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한글 실습자·운영자 가이드**입니다. Microsoft IQ를 개요의 첫 항목으로 두고, 직접 실행한 범위는 **필수 실습 1~7(로그인 → 에이전트 → Foundry IQ·Web IQ)·선택 실습 8~14(하네스·개선 루프·Hosted agent·Manage·비용)**, 미검증 기능은 **소개 카드와 공식 문서**로 안내합니다. Work IQ·Fabric IQ와 **Microsoft Copilot SDK 2.0·Voice agents·비용 관리의 여러 층**을 설명하며, 발표 상태와 실제 검증 수준을 구분합니다.
 
 > 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** **실습자 가이드의 모든 화면·영상은 2026.11.18에 North Central US에서 참가자 권한 계정으로 새로 촬영했습니다.** 영문판·PPT는 보류입니다.
 
@@ -15,15 +15,19 @@ Foundry 가이드는 [junwoojeong100/internal-guest-hands-on-guide](https://gith
 | 3 | 모델 배포와 가드레일 확인 | 필수 |
 | 4 | Prompt Agent 만들고 실행하기 | 필수 |
 | 5 | Monitor·Traces로 확인하기 | 필수 |
-| 6 | 하네스 에이전트 만들고 실행·관찰하기 | 선택 |
-| 7 | Insights로 개선할 문제 찾기 | 선택 |
-| 8 | 평가자를 만들고 평가 실행하기 | 선택 |
-| 9 | Optimize로 개선안 만들기 | 선택 |
-| 10 | Manage로 운영·비용·정책 보기 | 선택 |
+| 6 | Foundry IQ로 에이전트에 지식 연결하기(운영자 사전 준비 필요) | 필수 |
+| 7 | Web IQ로 최신 웹 정보 연결하기 | 필수 |
+| 8 | 하네스 에이전트 만들고 실행·관찰하기 | 선택 |
+| 9 | Insights로 개선할 문제 찾기 | 선택 |
+| 10 | 평가자를 만들고 평가 실행하기 | 선택 |
+| 11 | Optimize로 개선안 만들기 | 선택 |
+| 12 | Hosted agent 호출하고 관찰하기(운영자가 사전 배포) | 선택 |
+| 13 | Manage로 운영·비용·정책 보기 | 선택 |
+| 14 | 비용 보기와 토큰 예산(Cost Control) 만들기 | 선택 |
 
 ## 소개 카드
 
-직접 실행하지 않은 기능은 [`#ignite-learn-more`](index.html#ignite-learn-more)의 소개 카드로 안내합니다. 네 IQ(Foundry·Web·Work·Fabric)와 [Microsoft Copilot SDK 2.0](index.html#learn-copilot-sdk)·[Voice agents](index.html#learn-voice-agents) 등을 개념·구성별 상태·실습하지 않는 이유·공식 문서 링크·확인 수준 배지로 정리했으며, 문서만 확인한 내용을 검증된 실습으로 쓰지 않습니다. **Foundry IQ는 참가자 권한 E2E를 검증하지 못해 실습 대신 소개 카드로 두었습니다**(기능 불가·권한 오류 판정이 아닙니다). Toolboxes·Safety도 후보 점검을 하지 못했으며 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다.
+직접 실행하지 않은 기능은 [`#ignite-learn-more`](index.html#ignite-learn-more)의 소개 카드로 안내합니다. Work IQ·Fabric IQ와 [Microsoft Copilot SDK 2.0](index.html#learn-copilot-sdk)·[Voice agents](index.html#learn-voice-agents)·[비용 관리](index.html#learn-cost-management) 등을 개념·구성별 상태·실습하지 않는 이유·공식 문서 링크·확인 수준 배지로 정리했으며, 문서만 확인한 내용을 검증된 실습으로 쓰지 않습니다. **Foundry IQ·Web IQ·Hosted agents는 실습과 연결된 개념 카드**이고, Microsoft Copilot 하네스·GitHub Copilot SDK·Microsoft Copilot SDK의 이름과 관계는 [이름 정리](index.html#ignite-harness-names)에 설명합니다. Toolboxes·Safety는 후보 점검을 하지 못했으며 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다.
 
 ## 가이드
 
@@ -37,7 +41,7 @@ flowchart LR
   O["Foundry 운영자 가이드<br/>계정·RG·권한·모델 쿼터"] -->|"계정·RG·역할·배정값"| P["Foundry 실습자 가이드<br/>로그인·MFA → 생성 → 실행·추적"]
 ```
 
-두 가이드는 라이트/다크 테마와 **복사 버튼**을 지원합니다. 실습자 가이드는 화면 54장(실습 1~5)·57장(실습 6~10)과 2분 37초 요약 영상·9분 27초 전체 영상(실습 1~5만)을 해당 실습에서 봅니다. CDN·빌드 없이 정적 파일로 열리며, 로컬에서는 다음처럼 확인합니다.
+두 가이드는 라이트/다크 테마와 **복사 버튼**을 지원합니다. 실습자 가이드는 화면 54장(실습 1~5)·98장(가드레일과 실습 6~14)과 2분 37초 요약 영상·9분 27초 전체 영상(실습 1~5만)을 해당 실습에서 봅니다. CDN·빌드 없이 정적 파일로 열리며, 로컬에서는 다음처럼 확인합니다.
 
 ```bash
 python3 -m http.server 8000   # http://localhost:8000/index.html · /operator.html
@@ -55,7 +59,9 @@ python3 -m http.server 8000   # http://localhost:8000/index.html · /operator.ht
 | New Foundry 화면·설명·확인 위치 | `assets/ignite/ignite-data.js`는 생성 파일입니다. 로컬 원본(Git 제외) `internal/tools/rec/`의 `assemble.py publish`가 촬영 결과와 `ignite_specs.json`·`ignite_overrides.json`으로 다시 생성합니다. 화면은 `assets/ignite/screenshots/ko/`(1600×900, 영문 UI + 한국어 입력), 그룹별 자리는 `index.html`의 `data-ignite-gallery="<그룹>"`입니다. 파일 이름·갤러리 순서를 맞추며 생성 JS는 직접 고치지 않습니다. |
 | 화면 이미지·영상·자막 | `assets/screenshots/`, `assets/video/` |
 | 운영자 본문(역할·준비 절차·점검·인계·종료) | `operator.html` |
-| 참가자 Azure 역할·리소스 공급자(RP) 등록 목록 | `scripts/workshop_common.py`의 `ROLES`·`PROVIDERS`, 그리고 두 가이드의 역할 표 |
+| 참가자 계정·권한(역할) | `scripts/workshop_common.py`의 `ROLES`(기본 3개)·`IQ_ROLES`(Foundry IQ용 RG 범위 2개, 설정의 `foundryIq`가 `true`일 때)·`PROVIDERS`, 그리고 두 가이드의 역할 표 |
+| Hosted agent 예제·배포 스크립트 | `assets/hosted-agent-sample/`(예제 소스)와 `scripts/deploy_hosted_agent.sh`(REST 배포·호출·삭제). 운영자 절차는 `operator.html#hosted-prep` |
+| Foundry IQ 실습 문서 | `assets/foundry-iq-sample/*.md`(가상 문서 3개). 실습 6의 내려받기 링크와 테스트가 확인합니다. |
 | 계정·RG 규모·이름·지역 | `config/workshop.example.json`, `scripts/provision_workshop.py`. 예제 설정은 `operator.html`의 JSON 예시·`location` 행과 같아야 하며 테스트가 확인합니다. |
 | 로그인·MFA 이미지와 출처 | `assets/onboarding/`, `assets/onboarding/ATTRIBUTION.txt` |
 | 기준일·검증 근거 | 두 가이드의 `기준일`과 `assets/verification.json`·`assets/guest-auth-verification.json`. 직접 검증하지 않은 기능으로 검증 범위를 넓혀 쓰지 않습니다. |
@@ -84,25 +90,26 @@ python3 scripts/provision_workshop.py --config config/workshop.local.json --appl
 python3 scripts/verify_workshop.py --config config/workshop.local.json
 ```
 
-예제 설정(`participantCount=75`, `seTestAccountCount=5`, `nameFormat="user-se"`)은 **고객 `user01`~`user70` + SE 테스트 `se01`~`se05`** 계정, RG `rg-user01`~`rg-user70`·`rg-se01`~`rg-se05`, 직접 RBAC **225개**를 만듭니다. 이름 충돌·재실행·복구·비공개 파일 취급은 [운영자 가이드 A](https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/operator.html#automation)를 따르세요.
+예제 설정(`participantCount=75`, `seTestAccountCount=5`, `nameFormat="user-se"`, `foundryIq=true`)은 **고객 `user01`~`user70` + SE 테스트 `se01`~`se05`** 계정, RG `rg-user01`~`rg-user70`·`rg-se01`~`rg-se05`, 직접 RBAC **375개**(계정당 Contributor·Foundry User·Search Service Contributor·Search Index Data Contributor는 본인 RG, Cognitive Services Usages Reader는 구독; `foundryIq=false`면 225개)를 만듭니다. Foundry IQ(실습 6)의 검색 서비스와 관리 ID 역할은 스크립트가 아니라 [운영자 가이드 필수 실습 6·7 준비](https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/operator.html#iq-prep)의 명령으로 준비합니다. 이름 충돌·재실행·복구·비공개 파일 취급은 [운영자 가이드 A](https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/operator.html#automation)를 따르세요.
 
 ## 꼭 지킬 기준
 
 | 주제 | 기준 |
 |---|---|
-| 참가자 권한 | **본인 RG의 Contributor·Foundry User + 구독의 Cognitive Services Usages Reader**. Entra 관리자 역할은 없습니다. 운영자 Owner 권한은 참가자에게 전달되지 않습니다. |
+| 참가자 권한 | **본인 RG의 Contributor·Foundry User + 구독의 Cognitive Services Usages Reader**(Foundry IQ 실습 6을 운영하면 본인 RG의 Search Service Contributor·Search Index Data Contributor를 더함). Entra 관리자 역할은 없습니다. 운영자 Owner 권한은 참가자에게 전달되지 않습니다. |
 | 첫 로그인 | 초기 암호 그대로 로그인하며 변경을 강제하지 않습니다(`forceChangePasswordNextSignIn=false`). **MFA 등록·인증은 본인이 완료**하고 MFA·조건부 액세스는 해제하지 않습니다. |
 | 인계 전 필수 | **실제 교육망에서 MFA 미등록 테스트 Guest 2개의 첫 로그인·MFA 등록·재로그인**을 확인합니다. 스크립트 PASS나 운영자 계정 성공으로 대신하지 않습니다. |
 | 모델·TPM | 일반 실습은 **`gpt-6.1-terra`를 개인별 TPM으로 배분**합니다((70 + 5) × 10,000 = 750,000 TPM은 계산 예시). Optimizer 등 모델 고정 설정은 지정 모델을 유지합니다. |
 | 리전 | 참가자 리전은 **North Central US**(`northcentralus`)로 통일합니다(공식 하네스 지원 리전, 2026.11.17 문서 기준). 포털의 Region 기본값은 East US이므로 목록에서 직접 고릅니다. 예제 설정·운영자 JSON·실습자 안내가 어긋나면 테스트가 실패합니다. |
 | 관측성 | 본인 RG의 Application Insights를 사용합니다. Foundry 리소스를 만들 때 Application insights를 함께 만들면 프로젝트에 자동 연결되고, Traces에 연결 안내가 보이면 Agent → Traces → **Connect → Create new resource**(대체 경로, 새 Application Insights와 `DefaultWorkspace-*`가 같은 RG에 생성)를 따릅니다. |
-| 선택 실습 준비 | 하네스·평가·Optimize·Manage(실습 6~10)는 개인 10,000 TPM으로 부족하고, 평가자 만들기의 Resolve(프로젝트 관리 ID의 Monitoring Reader)는 참가자가 누르면 권한 오류가 나므로 운영자가 할당합니다. 상세는 [운영자 가이드 `#part2-prep`](operator.html#part2-prep)를 따릅니다. |
+| 필수 실습 6·7 준비 | **Foundry IQ(실습 6)**는 RG마다 serverless Azure AI Search 1개, 검색 서비스 관리 ID의 Cognitive Services User, 프로젝트 관리 ID의 Search Index Data Reader(프로젝트 생성 뒤)가 필요하고 임베딩 모델 쿼터(Standard ada-002는 이번 구독·지역에서 350K TPM)를 확인합니다. **Web IQ(실습 7)**는 추가 리소스가 없지만 비용·데이터 경계 안내가 필요합니다. 상세는 [운영자 가이드 `#iq-prep`](operator.html#iq-prep)를 따릅니다. |
+| 선택 실습 준비 | 하네스·평가·Optimize·Manage(실습 8~13)는 개인 10,000 TPM으로 부족하고, 평가자 만들기의 Resolve(프로젝트 관리 ID의 Monitoring Reader)는 참가자가 누르면 권한 오류가 나므로 운영자가 할당합니다. Hosted agent(실습 12)는 운영자가 프로젝트마다 소스 ZIP을 배포합니다. 상세는 [운영자 가이드 `#part2-prep`](operator.html#part2-prep)를 따릅니다. |
 | 비공개 파일 | `.workshop-runs/<workshopId>/`(초기 암호 포함)는 Git·Pages에서 제외하고 승인된 비공개 저장소에 백업합니다. 참가자 암호는 별도 경로로 개별 전달합니다. |
 
 ## 검증 현황
 
-- **확인한 것:** 2026.11.18 North Central US에서 참가자 역할 3개만 가진 새 Internal Guest 계정 1개로 초기 암호 로그인·TOTP MFA 등록·재로그인과 실습 1~10을 처음부터 끝까지 실행하고 화면·영상을 새로 촬영했습니다. 환경은 기존 RG의 리소스를 모두 지운 뒤 새로 만들었습니다(`gpt-6.1-terra` 10,000 TPM으로 필수 실습, 선택 실습은 운영자가 100,000 TPM으로 상향). Manage의 Cost·Compliance·Gateways는 생성·할당 없이 화면만 확인했습니다. 화면·영상은 계정·구독·테넌트 값을 가렸고 OCR로 개인 정보 문자열이 없는지 점검했습니다. [읽기 전용 검증 JSON](assets/verification.json)(ID는 0으로 대체)과 2026.11.08 로그인 검증 [JSON](assets/guest-auth-verification.json)을 제공합니다.
-- **아직 확인하지 않은 것:** **AI Gateway 생성·Publish·채널 연결·Optimize 후보 승격·하네스 에이전트의 Optimize 제출·Azure Policy 할당**(2026.11.17에 별도 환경에서만 확인), 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000 TPM에서의 하네스 재현(2026.11.17 시험은 실패, 이번 재촬영은 100,000 TPM), 비용 데이터가 쌓인 뒤의 Cost 화면(Cost Management Reader 필요 여부), 75개 환경 생성·여러 참가자의 동시 부하, 고객 교육망, Microsoft Authenticator 푸시(촬영 계정은 TOTP로 등록). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
+- **확인한 것:** 2026.11.18 North Central US에서 참가자 역할 3개만 가진 새 Internal Guest 계정 1개로 초기 암호 로그인·TOTP MFA 등록·재로그인과 실습 1~14를 처음부터 끝까지 실행하고 화면을 새로 촬영했습니다(영상은 실습 1~5만). 실습 6(Foundry IQ)은 운영자가 검색 서비스·역할을, 실습 12(Hosted agent)는 운영자가 에이전트를 미리 준비한 상태였습니다. 환경은 기존 RG의 리소스를 모두 지운 뒤 새로 만들었습니다(`gpt-6.1-terra` 10,000 TPM으로 필수 실습 1~5, 이후 실습은 운영자가 100,000 TPM으로 상향). Manage의 Cost·Compliance·Gateways는 생성·할당 없이 화면만 확인했습니다. 화면·영상은 계정·구독·테넌트 값을 가렸고 OCR로 개인 정보 문자열이 없는지 점검했습니다. [읽기 전용 검증 JSON](assets/verification.json)(ID는 0으로 대체)과 2026.11.08 로그인 검증 [JSON](assets/guest-auth-verification.json)을 제공합니다.
+- **아직 확인하지 않은 것:** **여러 참가자의 동시 사용과 70명 규모**(Foundry IQ의 serverless Search 서비스 수 한도·임베딩 쿼터, Hosted agent 프로젝트별 일괄 배포), **Cost Control의 Send alert·Block usage·달러 예산**, **AI Gateway 생성·Publish·채널 연결·Optimize 후보 승격·하네스 에이전트의 Optimize 제출·Azure Policy 할당**(2026.11.17에 별도 환경에서만 확인), 별도 Azure Web IQ 리소스, SharePoint 지식 소스·지식 그래프, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000 TPM에서의 하네스 재현(2026.11.17 시험은 실패, 이번 재촬영은 100,000 TPM), 비용 데이터가 쌓인 뒤의 Cost 화면(Cost Management Reader 필요 여부), 고객 교육망, Microsoft Authenticator 푸시(촬영 계정은 TOTP로 등록). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
 - **공식 자료:** 기능 이름·상태(Preview/GA)는 2026.11.18에 Ignite 2026 [Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/)와 공식 블로그·Learn으로 대조했으며(표: [`#ignite-official-check`](index.html#ignite-official-check)), 발표된 모든 변경이 포털에 반영됐다고 단정하지 않습니다. 웹 문서 점검이 Foundry IQ·SDK·Voice 등의 기능 실행 검증을 뜻하지는 않습니다.
 
 ## 테스트

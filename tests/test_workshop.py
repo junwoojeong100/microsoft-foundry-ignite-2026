@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import provision_workshop
 import verify_workshop
 from workshop_common import (
-    ARM, GRAPH, PROVIDERS, ROLES, USER_SELECT, ApiError, AzureClient, Config,
+    ARM, GRAPH, IQ_ROLES, PROVIDERS, ROLES, USER_SELECT, ApiError, AzureClient, Config,
     RunStore, WorkshopError, run_path,
 )
 
@@ -182,6 +182,22 @@ class WorkshopTests(unittest.TestCase):
         self.assertEqual(len(set(passwords)), 50)
         self.assertTrue(all(len(password) >= 24 for password in passwords))
 
+    def test_foundry_iq_option_adds_two_rg_roles_and_can_be_enabled_after_a_run(self):
+        self.apply()
+        self.assertEqual(len(self.cloud.roles), 9)
+        config = replace(CONFIG, foundryIq=True)
+        plan = provision_workshop.provision(self.cloud, config)
+        self.assertEqual(plan["createRoleAssignments"], 6)
+        self.assertFalse(verify_workshop.verify(self.cloud, config)["passed"])
+        self.apply(self.cloud, config)
+        self.assertEqual(len(self.cloud.roles), 15)
+        self.assertTrue(verify_workshop.verify(self.cloud, config)["passed"])
+        iq = set(IQ_ROLES.values())
+        scopes = {r["properties"]["scope"] for r in self.cloud.roles.values()
+                  if r["properties"]["roleDefinitionId"].rsplit("/", 1)[-1] in iq}
+        self.assertEqual(scopes, {p.scope.lower() for p in config.participants(DOMAIN)})
+        self.assertFalse(verify_workshop.verify(self.cloud, CONFIG)["passed"], "extra roles need the option")
+
     def test_example_provisions_seventy_five_accounts_with_five_isolated_se_tests(self):
         config = Config.load(str(
             Path(__file__).resolve().parents[1] / "config" / "workshop.example.json"
@@ -190,7 +206,7 @@ class WorkshopTests(unittest.TestCase):
         plan = provision_workshop.provision(cloud, config)
         self.assertEqual(
             (plan["createUsers"], plan["createResourceGroups"], plan["createRoleAssignments"]),
-            (75, 75, 225),
+            (75, 75, 375),
         )
         self.assertEqual(cloud.writes, [])
         self.assertEqual(list(Path.cwd().iterdir()), [])
@@ -216,7 +232,7 @@ class WorkshopTests(unittest.TestCase):
             sum(row["accountPurpose"] == "se-test" for row in plan["participants"]), 5,
         )
         result = self.apply(cloud, config)
-        self.assertEqual((len(cloud.users), len(cloud.groups), len(cloud.roles)), (75, 75, 225))
+        self.assertEqual((len(cloud.users), len(cloud.groups), len(cloud.roles)), (75, 75, 375))
         verification = verify_workshop.verify(cloud, config)
         self.assertTrue(verification["passed"])
         self.assertEqual(len(verification["participants"]), 75)
@@ -253,6 +269,7 @@ class WorkshopTests(unittest.TestCase):
         del legacy["seTestAccountCount"]
         del legacy["namePrefix"]
         del legacy["nameFormat"]
+        del legacy["foundryIq"]
         Path("config.json").write_text(json.dumps(legacy))
         config = Config.load("config.json")
         self.assertEqual(config, CONFIG)
@@ -279,6 +296,7 @@ class WorkshopTests(unittest.TestCase):
         legacy = asdict(config)
         del legacy["namePrefix"]
         del legacy["nameFormat"]
+        del legacy["foundryIq"]
         Path("config.json").write_text(json.dumps(legacy))
         config = Config.load("config.json")
         result = self.apply(cloud, config)
@@ -302,6 +320,7 @@ class WorkshopTests(unittest.TestCase):
         cloud = FakeCloud(config)
         legacy = asdict(config)
         del legacy["nameFormat"]
+        del legacy["foundryIq"]
         Path("config.json").write_text(json.dumps(legacy))
         config = Config.load("config.json")
         result = self.apply(cloud, config)
@@ -575,6 +594,7 @@ class WorkshopTests(unittest.TestCase):
             ("namePrefix", "w-"), ("namePrefix", "1w"), ("namePrefix", True),
             ("namePrefix", "w" * 33),
             ("nameFormat", "unknown"), ("nameFormat", True),
+            ("foundryIq", "yes"), ("foundryIq", 1), ("foundryIq", None),
             ("location", "East US 2"), ("unknown", "do-not-log-this"),
         ):
             with self.subTest(key=key, value=value):

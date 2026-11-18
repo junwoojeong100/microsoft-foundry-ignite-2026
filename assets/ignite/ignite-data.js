@@ -2080,6 +2080,1485 @@ window.IGNITE_DATA = {
      "height": 41
     }
    ]
+  },
+  {
+   "id": "58-knowledge-connect-resource",
+   "group": "foundry-iq-connect",
+   "title": "Knowledge 첫 화면 · Foundry IQ 리소스 연결",
+   "action": "왼쪽 Create → Knowledge를 엽니다. 프로젝트에 연결된 Azure AI Search가 없으면 소개 영상 아래에 Foundry IQ resource와 Auth Type을 고르는 첫 화면이 나옵니다.",
+   "expected": "Foundry IQ resource 선택 칸, Auth Type(기본값 API Key), Connect 버튼과 \"Don't see your resource? Create new resource\" 링크가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/58-knowledge-connect-resource.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Foundry IQ resource",
+     "x": 561,
+     "y": 685,
+     "width": 290,
+     "height": 30
+    },
+    {
+     "label": "Auth Type",
+     "x": 899,
+     "y": 685,
+     "width": 248,
+     "height": 30
+    },
+    {
+     "label": "Connect",
+     "x": 1160,
+     "y": 682,
+     "width": 100,
+     "height": 32
+    },
+    {
+     "label": "Create new resource",
+     "x": 925,
+     "y": 728,
+     "width": 130,
+     "height": 22
+    }
+   ]
+  },
+  {
+   "id": "59-knowledge-create-resource-dialog",
+   "group": "foundry-iq-connect",
+   "title": "Create Foundry IQ resource 대화상자",
+   "action": "목록에 리소스가 없을 때 Create new resource로 여는 대화상자입니다. 이 실습에서는 운영자가 검색 리소스를 미리 만들어 두었으므로 항목만 확인하고 Cancel을 누릅니다.",
+   "expected": "Resource name, Subscription, Resource group, Region, Pricing tier(Serverless)와 추가 비용 동의 체크 상자가 보입니다. Create는 누르지 않습니다.",
+   "image": "assets/ignite/screenshots/ko/59-knowledge-create-resource-dialog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Resource name",
+     "x": 446,
+     "y": 249,
+     "width": 708,
+     "height": 30
+    },
+    {
+     "label": "Pricing tier",
+     "x": 446,
+     "y": 537,
+     "width": 708,
+     "height": 30
+    },
+    {
+     "label": "비용 동의 체크",
+     "x": 445,
+     "y": 616,
+     "width": 32,
+     "height": 32
+    },
+    {
+     "label": "Cancel",
+     "x": 1085,
+     "y": 720,
+     "width": 70,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "60-knowledge-select-resource",
+   "group": "foundry-iq-connect",
+   "title": "검색 리소스와 Auth Type 선택",
+   "action": "Foundry IQ resource에서 se02-lab-srch-rbvs를 고르고 Auth Type을 Project Managed Identity로 바꾼 뒤 Connect를 누릅니다. 이 실습의 검색 서비스는 키 인증을 꺼 두어, 기본값 API Key로 연결하면 에이전트 질문이 \"A user error occurred while executing a tool call.\" 오류로 끝났습니다.",
+   "expected": "Foundry IQ resource에 se02-lab-srch-rbvs, Auth Type에 Project Managed Identity가 표시됩니다.",
+   "image": "assets/ignite/screenshots/ko/60-knowledge-select-resource.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Foundry IQ resource",
+     "x": 561,
+     "y": 685,
+     "width": 290,
+     "height": 30
+    },
+    {
+     "label": "Auth Type",
+     "x": 899,
+     "y": 685,
+     "width": 248,
+     "height": 30
+    },
+    {
+     "label": "Connect",
+     "x": 1160,
+     "y": 682,
+     "width": 100,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "61-knowledge-connected",
+   "group": "foundry-iq-connect",
+   "title": "연결 완료 · Create a knowledge base",
+   "action": "Connect를 누르면 몇 초 안에 연결됩니다. 아직 지식 베이스가 없으므로 Create a knowledge base를 누릅니다.",
+   "expected": "Connection에 se02-lab-srch-rbvs가 표시되고 Create a knowledge base 버튼과 Manage connections 링크가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/61-knowledge-connected.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Connection",
+     "x": 245,
+     "y": 146,
+     "width": 244,
+     "height": 30
+    },
+    {
+     "label": "Create a knowledge base",
+     "x": 819,
+     "y": 616,
+     "width": 181,
+     "height": 32
+    },
+    {
+     "label": "Manage connections",
+     "x": 817,
+     "y": 660,
+     "width": 126,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "62-kb-create-form",
+   "group": "foundry-iq-kb",
+   "title": "지식 베이스 이름·설명 입력",
+   "action": "Name에 workshop-kb, Description에 \"컨토소 워크샵 실습용 가상 문서(일정·실습 환경 규칙·FAQ)\"를 입력합니다. 지식 소스가 아직 없으므로 Upload files를 눌러 샘플 문서를 올립니다.",
+   "expected": "Knowledge sources 영역에 Add sources와 Upload files 버튼이 보입니다. Improve retrieval과 Encryption settings는 접힌 채로 둡니다.",
+   "image": "assets/ignite/screenshots/ko/62-kb-create-form.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Name",
+     "x": 568,
+     "y": 210,
+     "width": 684,
+     "height": 30
+    },
+    {
+     "label": "Description",
+     "x": 568,
+     "y": 282,
+     "width": 684,
+     "height": 52
+    },
+    {
+     "label": "Add sources",
+     "x": 785,
+     "y": 665,
+     "width": 119,
+     "height": 32
+    },
+    {
+     "label": "Upload files",
+     "x": 908,
+     "y": 665,
+     "width": 126,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "63-source-embedding-model",
+   "group": "foundry-iq-kb",
+   "title": "지식 소스 만들기 · 임베딩 모델 선택",
+   "action": "Upload files에서 assets/foundry-iq-sample의 문서 3개를 고르면 Create a knowledge source 대화상자가 열립니다. Embedding model은 필수이며, 이 프로젝트에는 임베딩 배포가 text-embedding-ada-002 하나뿐이라 처음부터 선택되어 있을 수 있습니다. 이 화면은 선택을 지운 뒤 목록을 연 모습이며, 비어 있으면 Deployments에서 text-embedding-ada-002를 고릅니다.",
+   "expected": "선택한 파일 3개와 이름(ks-file-NNN)이 보이고, Embedding model 목록의 Deployments에 배포한 임베딩 모델이 나타납니다.",
+   "image": "assets/ignite/screenshots/ko/63-source-embedding-model.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "업로드할 파일 3개",
+     "x": 256,
+     "y": 259,
+     "width": 1089,
+     "height": 169
+    },
+    {
+     "label": "Name",
+     "x": 256,
+     "y": 492,
+     "width": 1088,
+     "height": 30
+    },
+    {
+     "label": "Embedding model",
+     "x": 256,
+     "y": 668,
+     "width": 1088,
+     "height": 30
+    },
+    {
+     "label": "text-embedding-ada-002",
+     "x": 268,
+     "y": 740,
+     "width": 1064,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "64-source-create-dialog",
+   "group": "foundry-iq-kb",
+   "title": "지식 소스 만들기 · Create",
+   "action": "Name은 기본값을 그대로 두고 Advanced settings는 건드리지 않습니다. Embedding model이 선택된 것을 확인하고 Create를 누릅니다.",
+   "expected": "Embedding model에 text-embedding-ada-002(Standard deployment)가 선택되어 있고 Create 버튼이 활성입니다.",
+   "image": "assets/ignite/screenshots/ko/64-source-create-dialog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Embedding model",
+     "x": 256,
+     "y": 679,
+     "width": 1056,
+     "height": 30
+    },
+    {
+     "label": "Advanced settings",
+     "x": 255,
+     "y": 722,
+     "width": 1090,
+     "height": 44
+    },
+    {
+     "label": "Create",
+     "x": 1199,
+     "y": 818,
+     "width": 68,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "65-source-uploading",
+   "group": "foundry-iq-kb",
+   "title": "파일 업로드·처리 진행",
+   "action": "Create를 누르면 지식 소스가 목록에 추가되고 파일이 업로드됩니다. Status가 Active로 바뀔 때까지 기다립니다.",
+   "expected": "목록의 Status가 Loading...이고 오른쪽 아래에 \"Uploading files to ks-file-515 · 0 of 3 processed\" 안내가 보입니다. Improve retrieval 영역에 \"Chat completions model is required\" 안내가 잠시 보이지만 Status가 Active가 되면 사라지며, 이 실습에서는 채팅 모델을 고르지 않아도 저장됩니다.",
+   "image": "assets/ignite/screenshots/ko/65-source-uploading.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "지식 소스",
+     "x": 577,
+     "y": 817,
+     "width": 77,
+     "height": 28
+    },
+    {
+     "label": "Status(Loading...)",
+     "x": 928,
+     "y": 816,
+     "width": 79,
+     "height": 28
+    },
+    {
+     "label": "업로드 진행 안내",
+     "x": 1288,
+     "y": 802,
+     "width": 292,
+     "height": 82
+    },
+    {
+     "label": "Chat completions model 필수 안내",
+     "x": 596,
+     "y": 478,
+     "width": 217,
+     "height": 28
+    }
+   ]
+  },
+  {
+   "id": "66-kb-saved",
+   "group": "foundry-iq-kb",
+   "title": "지식 베이스 저장",
+   "action": "상태가 Active가 된 것을 확인하고 Save knowledge base를 누릅니다. 저장되면 제목이 지식 베이스 이름으로 바뀌고 Use in an agent 버튼이 나타납니다.",
+   "expected": "제목 workshop-kb와 Save·Use in an agent·More options 버튼, 지식 소스 ks-file-515(3 files, File, Active)가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/66-kb-saved.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "지식 베이스 이름",
+     "x": 274,
+     "y": 70,
+     "width": 116,
+     "height": 28
+    },
+    {
+     "label": "Use in an agent",
+     "x": 1400,
+     "y": 68,
+     "width": 136,
+     "height": 32
+    },
+    {
+     "label": "지식 소스 Active",
+     "x": 937,
+     "y": 554,
+     "width": 45,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "67-iq-agent-remove-toolbox",
+   "group": "foundry-iq-agent",
+   "title": "에이전트 만들기 · 기본 툴박스 제거",
+   "action": "모델 Playground에서 지시문을 입력하고 Save as agent로 workshop-iq-agent를 만듭니다(실습 4와 같은 방법). 새 에이전트에는 Web search가 든 툴박스가 자동으로 붙으므로 Actions → Remove로 제거합니다.",
+   "expected": "workshop-iq-agent가 Version 1로 만들어지고 지시문이 입력되어 있습니다. 툴박스의 Actions 메뉴에 Remove가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/67-iq-agent-remove-toolbox.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "에이전트 이름",
+     "x": 274,
+     "y": 70,
+     "width": 167,
+     "height": 28
+    },
+    {
+     "label": "지시문",
+     "x": 244,
+     "y": 332,
+     "width": 451,
+     "height": 112
+    },
+    {
+     "label": "툴박스 Actions",
+     "x": 671,
+     "y": 611,
+     "width": 24,
+     "height": 24
+    },
+    {
+     "label": "Remove",
+     "x": 676,
+     "y": 753,
+     "width": 128,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "68-iq-agent-knowledge-add-menu",
+   "group": "foundry-iq-agent",
+   "title": "Knowledge → Add → Connect to Foundry IQ",
+   "action": "에이전트의 Knowledge 영역에서 Add를 누르고 Connect to Foundry IQ를 고릅니다.",
+   "expected": "Add 메뉴에 Connect to Foundry IQ 항목이 보입니다.",
+   "image": "assets/ignite/screenshots/ko/68-iq-agent-knowledge-add-menu.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Knowledge Add",
+     "x": 244,
+     "y": 660,
+     "width": 67,
+     "height": 32
+    },
+    {
+     "label": "Connect to Foundry IQ",
+     "x": 249,
+     "y": 697,
+     "width": 176,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "69-iq-agent-connect-dialog",
+   "group": "foundry-iq-agent",
+   "title": "지식 베이스 연결",
+   "action": "Connection은 se02-lab-srch-rbvs 그대로 두고 Knowledge base에서 workshop-kb를 골라 Connect를 누릅니다.",
+   "expected": "Connection se02-lab-srch-rbvs, Knowledge base workshop-kb가 선택되고 Connect 버튼이 활성입니다.",
+   "image": "assets/ignite/screenshots/ko/69-iq-agent-connect-dialog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Connection",
+     "x": 598,
+     "y": 399,
+     "width": 404,
+     "height": 30
+    },
+    {
+     "label": "Knowledge base",
+     "x": 598,
+     "y": 491,
+     "width": 404,
+     "height": 30
+    },
+    {
+     "label": "Connect",
+     "x": 857,
+     "y": 590,
+     "width": 79,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "70-iq-agent-knowledge-saved",
+   "group": "foundry-iq-agent",
+   "title": "에이전트 저장 · Version 2",
+   "action": "Knowledge 영역에 지식 베이스가 보이면 Save를 눌러 Version 2로 저장합니다.",
+   "expected": "Version이 2로 바뀌고 Save가 비활성이 되며, Knowledge에 workshop-kb가 들어 있습니다.",
+   "image": "assets/ignite/screenshots/ko/70-iq-agent-knowledge-saved.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Version",
+     "x": 1019,
+     "y": 73,
+     "width": 182,
+     "height": 22
+    },
+    {
+     "label": "Save 비활성",
+     "x": 1208,
+     "y": 68,
+     "width": 56,
+     "height": 32
+    },
+    {
+     "label": "연결된 지식 베이스",
+     "x": 270,
+     "y": 630,
+     "width": 79,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "71-iq-answer-schedule",
+   "group": "foundry-iq-answer",
+   "title": "질문 1 · 일정과 장소(문서 하나)",
+   "action": "New chat에서 질문을 보냅니다. 이 실습의 질문: 워크샵은 몇 시에 시작하고 점심은 어디서 먹나요?",
+   "expected": "답변에 시작 시각(오전 9시 30분)과 점심 장소(3층 라운지), 근거 문서 이름 01-workshop-overview.md가 나옵니다(답변 문구는 실행마다 조금 다를 수 있습니다). 응답 아래에 gpt-6.1-terra 3s 2028t 칩과 지식 베이스 도구 호출이 보입니다.",
+   "image": "assets/ignite/screenshots/ko/71-iq-answer-schedule.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "질문",
+     "x": 777,
+     "y": 228,
+     "width": 766,
+     "height": 20
+    },
+    {
+     "label": "응답 정보(모델·시간·토큰·도구)",
+     "x": 760,
+     "y": 349,
+     "width": 683,
+     "height": 24
+    },
+    {
+     "label": "지식 베이스 도구",
+     "x": 1046,
+     "y": 353,
+     "width": 113,
+     "height": 16
+    }
+   ]
+  },
+  {
+   "id": "72-iq-answer-rules",
+   "group": "foundry-iq-answer",
+   "title": "질문 2 · 여러 문서를 함께 사용",
+   "action": "New chat에서 질문을 보냅니다. 이 실습의 질문: 참가자가 배포할 모델과 TPM 한도는 무엇이고, 429 오류가 나면 어떻게 해야 하나요?",
+   "expected": "배포 모델·TPM 한도와 429 오류 대응이 한 답변에 합쳐지고 문장마다 근거 번호가 붙습니다. 두 내용은 샘플 문서 02-lab-environment-rules.md와 03-support-and-faq.md에 나뉘어 있습니다. 응답 아래에 gpt-6.1-terra 3s 2149t 칩과 지식 베이스 도구 호출이 보입니다.",
+   "image": "assets/ignite/screenshots/ko/72-iq-answer-rules.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "질문",
+     "x": 777,
+     "y": 228,
+     "width": 766,
+     "height": 20
+    },
+    {
+     "label": "응답 정보(모델·시간·토큰·도구)",
+     "x": 760,
+     "y": 389,
+     "width": 683,
+     "height": 24
+    },
+    {
+     "label": "지식 베이스 도구",
+     "x": 1046,
+     "y": 393,
+     "width": 113,
+     "height": 16
+    }
+   ]
+  },
+  {
+   "id": "73-iq-answer-not-found",
+   "group": "foundry-iq-answer",
+   "title": "질문 3 · 문서에 없는 내용",
+   "action": "New chat에서 질문을 보냅니다. 이 실습의 질문: 컨토소 교육센터의 주차 요금은 얼마인가요?",
+   "expected": "문서에 없는 내용은 \"지식 베이스에서 찾지 못했습니다.\"라고 답합니다(뒤에 확인한 문서 이름이 붙는 등 문구는 실행마다 조금 다를 수 있습니다). 응답 아래에 gpt-6.1-terra 5s 1289t 칩과 지식 베이스 도구 호출이 보입니다.",
+   "image": "assets/ignite/screenshots/ko/73-iq-answer-not-found.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "질문",
+     "x": 777,
+     "y": 228,
+     "width": 766,
+     "height": 20
+    },
+    {
+     "label": "응답 정보(모델·시간·토큰·도구)",
+     "x": 760,
+     "y": 349,
+     "width": 683,
+     "height": 24
+    },
+    {
+     "label": "지식 베이스 도구",
+     "x": 1046,
+     "y": 353,
+     "width": 113,
+     "height": 16
+    }
+   ]
+  },
+  {
+   "id": "74-iq-traces-list",
+   "group": "foundry-iq-traces",
+   "title": "Traces · 지식 베이스 질문 실행 목록",
+   "action": "에이전트의 Traces 탭을 엽니다. 질문을 보낸 뒤 트레이스가 도착하기까지 몇 분 걸릴 수 있으며, 처음에는 Loading...이 보입니다. 같은 이름으로 전에 실행한 기록이 있으면 함께 보입니다.",
+   "expected": "방금 보낸 질문이 Trace ID·Status(Completed)·Created at·Duration·Tokens가 있는 줄로 맨 위에 쌓입니다.",
+   "image": "assets/ignite/screenshots/ko/74-iq-traces-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Trace view",
+     "x": 246,
+     "y": 203,
+     "width": 92,
+     "height": 30
+    },
+    {
+     "label": "Status",
+     "x": 439,
+     "y": 380,
+     "width": 150,
+     "height": 32
+    },
+    {
+     "label": "Tokens",
+     "x": 889,
+     "y": 380,
+     "width": 150,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "75-iq-trace-detail",
+   "group": "foundry-iq-traces",
+   "title": "Trace 상세 · 지식 베이스 도구 호출",
+   "action": "성공한 트레이스의 Trace ID를 눌러 상세를 엽니다. Trajectories에서 에이전트 호출 아래의 단계를 확인합니다.",
+   "expected": "Invoke Agent 아래에 Execute Tool(지식 베이스 knowledge_base_retrieve 호출)과 Chat(gpt-6.1-terra) 단계가 보이고, 오른쪽에 지시문·질문·도구 응답이 보입니다.",
+   "image": "assets/ignite/screenshots/ko/75-iq-trace-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Trajectories",
+     "x": 137,
+     "y": 93,
+     "width": 89,
+     "height": 32
+    },
+    {
+     "label": "지식 베이스 도구 호출",
+     "x": 279,
+     "y": 220,
+     "width": 345,
+     "height": 20
+    },
+    {
+     "label": "모델 호출",
+     "x": 238,
+     "y": 252,
+     "width": 153,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "76-web-toolbox-info",
+   "group": "web-iq-toolbox",
+   "title": "툴박스 안의 Web search · Grounding with Bing 안내",
+   "action": "workshop-web-agent를 만들면(실습 4와 같은 방법) Web search가 든 workshop-web-agent-toolbox가 자동으로 붙습니다. 도구 옆 정보(i) 버튼을 눌러 안내를 읽습니다.",
+   "expected": "\"Web search uses Grounding with Bing, which has additional costs and terms … Customer data will flow outside the Azure compliance boundary.\" 안내가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/76-web-toolbox-info.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "툴박스",
+     "x": 244,
+     "y": 601,
+     "width": 427,
+     "height": 44
+    },
+    {
+     "label": "Web search 도구 정보(i)",
+     "x": 445,
+     "y": 684,
+     "width": 24,
+     "height": 24
+    },
+    {
+     "label": "Grounding with Bing 안내",
+     "x": 444,
+     "y": 572,
+     "width": 264,
+     "height": 106
+    }
+   ]
+  },
+  {
+   "id": "77-web-toolbox-answer",
+   "group": "web-iq-toolbox",
+   "title": "툴박스 경로(Grounding with Bing)로 같은 질문",
+   "action": "Version 1(툴박스의 Web search) 상태에서 질문을 보냅니다. 이 실습의 질문: Microsoft Ignite 2026에서 발표된 Microsoft IQ가 무엇인지 최신 공식 소식을 바탕으로 알려 주세요.",
+   "expected": "웹 검색 도구를 거쳐 한국어로 답하고 출처가 붙습니다. 응답 아래에 gpt-6.1-terra 30s 4070t 칩과 호출한 도구가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/77-web-toolbox-answer.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "질문",
+     "x": 777,
+     "y": 228,
+     "width": 766,
+     "height": 20
+    },
+    {
+     "label": "답변과 출처",
+     "x": 760,
+     "y": 275,
+     "width": 800,
+     "height": 92
+    },
+    {
+     "label": "응답 정보(모델·시간·토큰·도구)",
+     "x": 760,
+     "y": 407,
+     "width": 729,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "78-web-agent-add-tool-menu",
+   "group": "web-iq-direct",
+   "title": "Tools → Add → Web search",
+   "action": "툴박스를 제거한 뒤 Tools 영역의 Add를 누릅니다. Most popular 목록의 Web search를 고르면 툴박스 없이 에이전트에 바로 추가됩니다.",
+   "expected": "Add 메뉴에 Web search, Code interpreter, Add tools, Create toolbox, Browse toolboxes가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/78-web-agent-add-tool-menu.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Tools Add",
+     "x": 244,
+     "y": 673,
+     "width": 67,
+     "height": 32
+    },
+    {
+     "label": "Web search",
+     "x": 249,
+     "y": 450,
+     "width": 310,
+     "height": 48
+    },
+    {
+     "label": "Create toolbox",
+     "x": 249,
+     "y": 591,
+     "width": 310,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "79-web-agent-direct-tool",
+   "group": "web-iq-direct",
+   "title": "Web search 직접 추가 · 안내",
+   "action": "Tools에 Web search가 직접 추가된 것을 확인하고 정보(i) 버튼으로 안내를 읽습니다. Save를 눌러 Version 2로 저장합니다.",
+   "expected": "Tools에 툴박스 없이 Web search가 있고, \"When you connect to any non-Foundry tool, your Customer Data may be sent outside the Azure compliance boundary …\" 안내와 활성화된 Save 버튼이 보입니다.",
+   "image": "assets/ignite/screenshots/ko/79-web-agent-direct-tool.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "직접 추가한 Web search 도구",
+     "x": 244,
+     "y": 661,
+     "width": 451,
+     "height": 57
+    },
+    {
+     "label": "Web search 정보(i)",
+     "x": 371,
+     "y": 669,
+     "width": 24,
+     "height": 24
+    },
+    {
+     "label": "비공식 도구 안내",
+     "x": 370,
+     "y": 557,
+     "width": 264,
+     "height": 106
+    },
+    {
+     "label": "Save",
+     "x": 1208,
+     "y": 68,
+     "width": 56,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "80-web-direct-answer",
+   "group": "web-iq-direct",
+   "title": "Web search 직접 추가(Web IQ)로 질문",
+   "action": "Version 2(Web search 직접 추가)에서 New chat을 누르고 같은 질문을 보냅니다. 이 실습의 질문: Microsoft Ignite 2026에서 발표된 Microsoft IQ가 무엇인지 최신 공식 소식을 바탕으로 알려 주세요.",
+   "expected": "웹에서 확인한 내용을 한국어로 답하고 출처 링크가 붙습니다. 응답 아래에 gpt-6.1-terra 6s 15512t 칩과 호출한 도구가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/80-web-direct-answer.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "질문",
+     "x": 777,
+     "y": 228,
+     "width": 766,
+     "height": 20
+    },
+    {
+     "label": "답변과 출처",
+     "x": 760,
+     "y": 275,
+     "width": 800,
+     "height": 152
+    },
+    {
+     "label": "응답 정보(모델·시간·토큰·도구)",
+     "x": 760,
+     "y": 467,
+     "width": 541,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "81-hosted-agents-list",
+   "group": "hosted-find",
+   "title": "Agents 목록에서 Hosted 에이전트 찾기",
+   "action": "왼쪽 Create → Agents를 엽니다. 운영자가 미리 배포해 둔 workshop-hosted-agent 행에서 Type 열을 확인하고 이름을 눌러 엽니다.",
+   "expected": "Type 열에 Hosted 배지, Status에 Running이 표시되고 Interaction type·Harness 열은 '--'입니다. Prompt 에이전트와 달리 코드를 ZIP으로 올려 만든 에이전트라서 화면에서 지시문이나 도구를 고쳐 만드는 것이 아니라 목록에서 열어 시험·관찰합니다.",
+   "image": "assets/ignite/screenshots/ko/81-hosted-agents-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "workshop-hosted-agent",
+     "x": 261,
+     "y": 271,
+     "width": 126,
+     "height": 40
+    },
+    {
+     "label": "Type: Hosted",
+     "x": 734,
+     "y": 281,
+     "width": 51,
+     "height": 20
+    },
+    {
+     "label": "Status: Running",
+     "x": 614,
+     "y": 281,
+     "width": 50,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "82-hosted-playground-setup",
+   "group": "hosted-find",
+   "title": "Hosted 에이전트 Playground (세션 시작 전)",
+   "action": "에이전트를 열면 Playground가 열립니다. 왼쪽 Setup에서 Agent info, Code asset, Protocols를 펼쳐 보고 오른쪽 Log stream이 'Session not started'인 것을 확인합니다.",
+   "expected": "Agent info의 Kind가 hosted이고 Code asset에 code.zip, Protocols에 responses · v2.0.0이 보입니다. 모델·Instructions·Tools를 고르는 칸이 없는 것이 Prompt 에이전트의 Playground와 다릅니다(모델 선택과 지시문은 올려 둔 코드가 정합니다).",
+   "image": "assets/ignite/screenshots/ko/82-hosted-playground-setup.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Kind: hosted",
+     "x": 471,
+     "y": 260,
+     "width": 42,
+     "height": 20
+    },
+    {
+     "label": "Code asset: code.zip",
+     "x": 274,
+     "y": 439,
+     "width": 51,
+     "height": 20
+    },
+    {
+     "label": "Protocols: responses",
+     "x": 319,
+     "y": 616,
+     "width": 183,
+     "height": 20
+    },
+    {
+     "label": "Session not started",
+     "x": 1292,
+     "y": 513,
+     "width": 137,
+     "height": 22
+    },
+    {
+     "label": "Message the agent",
+     "x": 568,
+     "y": 786,
+     "width": 524,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "83-hosted-playground-chat",
+   "group": "hosted-test",
+   "title": "Playground에서 메시지 보내기",
+   "action": "Message the agent…에 '안녕하세요! 한 문장으로, 당신은 무엇을 할 수 있나요?'를 입력해 보냅니다. 응답이 오면 오른쪽 Log stream에 흐르는 컨테이너 로그와 응답 아래의 Traces 링크를 확인합니다.",
+   "expected": "응답이 한 문장으로 옵니다. 첫 메시지는 세션(컨테이너)을 새로 시작하느라 약 10초 걸렸고, 같은 대화에서 이어 묻는 메시지는 몇 초였습니다. Log stream에는 'Session: …' 식별자와 Inbound POST /responses 같은 서버 로그가 보입니다. 'experimental class' 경고 등은 정상입니다.",
+   "image": "assets/ignite/screenshots/ko/83-hosted-playground-chat.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "보낸 메시지",
+     "x": 580,
+     "y": 217,
+     "width": 500,
+     "height": 38
+    },
+    {
+     "label": "에이전트 응답",
+     "x": 580,
+     "y": 265,
+     "width": 500,
+     "height": 80
+    },
+    {
+     "label": "Traces 링크",
+     "x": 583,
+     "y": 321,
+     "width": 76,
+     "height": 24
+    },
+    {
+     "label": "Log stream",
+     "x": 1137,
+     "y": 214,
+     "width": 358,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "84-hosted-details",
+   "group": "hosted-test",
+   "title": "Details: 상태·버전·에이전트 ID·엔드포인트",
+   "action": "Details 탭에서 Agent configuration(Status, Active version), Identity & access(Entra agent identity), Endpoints(Responses protocol)를 확인합니다.",
+   "expected": "Status는 Running, Active version은 Latest(Version 1)입니다. Hosted 에이전트마다 전용 Entra agent identity가 만들어지고, Responses protocol 엔드포인트는 'People with Azure RBAC permissions can access'로 표시됩니다(권한이 있는 사람만 호출).",
+   "image": "assets/ignite/screenshots/ko/84-hosted-details.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Status: Running",
+     "x": 549,
+     "y": 274,
+     "width": 51,
+     "height": 20
+    },
+    {
+     "label": "Active version",
+     "x": 527,
+     "y": 398,
+     "width": 107,
+     "height": 20
+    },
+    {
+     "label": "Entra agent identity",
+     "x": 927,
+     "y": 286,
+     "width": 179,
+     "height": 20
+    },
+    {
+     "label": "Responses protocol",
+     "x": 523,
+     "y": 510,
+     "width": 124,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "85-hosted-traces-list",
+   "group": "hosted-observe",
+   "title": "Traces 목록 (Trace view)",
+   "action": "Traces 탭을 엽니다. 방금 보낸 메시지의 trace는 보통 1분 안에 올라옵니다(안 보이면 잠시 뒤 새로고침).",
+   "expected": "메시지 한 번에 trace가 2개 생깁니다. 토큰이 0인 긴 trace(플랫폼의 invoke_agent, 세션 시작이 포함되면 약 8초)와 토큰이 있는 짧은 trace(모델 호출, 1~2초, 입력 50~95·출력 6~29 토큰). Trace view·Conversation view·Session view로 볼 수 있습니다.",
+   "image": "assets/ignite/screenshots/ko/85-hosted-traces-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Session view 등 보기 탭",
+     "x": 484,
+     "y": 211,
+     "width": 108,
+     "height": 30
+    },
+    {
+     "label": "Tokens (In)·(Out) 열",
+     "x": 889,
+     "y": 458,
+     "width": 150,
+     "height": 32
+    },
+    {
+     "label": "가장 최근 trace",
+     "x": 245,
+     "y": 491,
+     "width": 1355,
+     "height": 45
+    }
+   ]
+  },
+  {
+   "id": "86-hosted-trace-detail",
+   "group": "hosted-observe",
+   "title": "Trace 상세: invoke_agent와 chat 스팬",
+   "action": "토큰이 있는 trace의 Trace ID를 눌러 엽니다. 왼쪽 스팬 트리에서 chat 스팬을 보고 오른쪽 Input + Output을 확인합니다.",
+   "expected": "'invoke_agent workshop-hosted-agent:1' 아래에 'chat gpt-6.1-terra-…' 스팬이 있고, Input에 코드에 적어 둔 Instructions와 User input, Output에 에이전트 답이 보입니다. trace는 Application Insights에서 읽어 오므로 읽기 권한이 필요합니다(이 환경에서는 참가자의 리소스 그룹 Contributor).",
+   "image": "assets/ignite/screenshots/ko/86-hosted-trace-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "invoke_agent 스팬",
+     "x": 141,
+     "y": 48,
+     "width": 348,
+     "height": 28
+    },
+    {
+     "label": "chat 스팬(모델 호출)",
+     "x": 238,
+     "y": 220,
+     "width": 153,
+     "height": 20
+    },
+    {
+     "label": "Input(Instructions·User input)",
+     "x": 1057,
+     "y": 406,
+     "width": 55,
+     "height": 14
+    },
+    {
+     "label": "Output(Agent)",
+     "x": 1057,
+     "y": 508,
+     "width": 31,
+     "height": 14
+    }
+   ]
+  },
+  {
+   "id": "87-hosted-monitor",
+   "group": "hosted-observe",
+   "title": "Monitor 개요",
+   "action": "Monitor 탭의 Overview에서 기간을 7D로 두고 Operational metrics, Agent runs, Token usage를 확인합니다.",
+   "expected": "Total token usage와 Agent runs(실행 수), gpt-6.1-terra 토큰 사용량이 보입니다. Estimated cost는 '--'였고, 청구 통화 비용은 Cost Management Reader가 없어서 안내 배너만 보입니다.",
+   "image": "assets/ignite/screenshots/ko/87-hosted-monitor.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "기간 선택",
+     "x": 1210,
+     "y": 156,
+     "width": 21,
+     "height": 20
+    },
+    {
+     "label": "Total token usage",
+     "x": 265,
+     "y": 380,
+     "width": 104,
+     "height": 20
+    },
+    {
+     "label": "Agent runs",
+     "x": 261,
+     "y": 567,
+     "width": 76,
+     "height": 22
+    }
+   ]
+  },
+  {
+   "id": "88-hosted-monitor-hosting",
+   "group": "hosted-observe",
+   "title": "Monitor: Hosting compute·Hosting memory",
+   "action": "Monitor 개요를 아래로 내려 Hosting compute와 Hosting memory 차트를 확인합니다.",
+   "expected": "Hosted 에이전트에만 있는 차트입니다. 이 화면에는 vCPU hours 0.73과 GiB hours 1.47이 막대로 보입니다. 세션이 끝난 뒤에야 사용량이 올라오므로 세션 직후에는 'No hosting compute data available'일 수 있습니다(촬영에서는 세션이 끝난 뒤 첫 점이 약 15분 뒤에 나타났습니다).",
+   "image": "assets/ignite/screenshots/ko/88-hosted-monitor-hosting.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Hosting compute",
+     "x": 245,
+     "y": 133,
+     "width": 656,
+     "height": 320
+    },
+    {
+     "label": "Hosting memory",
+     "x": 919,
+     "y": 133,
+     "width": 656,
+     "height": 320
+    },
+    {
+     "label": "vCPU hours",
+     "x": 738,
+     "y": 398,
+     "width": 130,
+     "height": 22
+    },
+    {
+     "label": "GiB hours",
+     "x": 1424,
+     "y": 398,
+     "width": 114,
+     "height": 22
+    }
+   ]
+  },
+  {
+   "id": "89-hosted-continue-in-code",
+   "group": "hosted-observe",
+   "title": "Continue in code: 코드로 호출하기",
+   "action": "에이전트 화면 위쪽의 Continue in code를 누릅니다. Language에서 언어를 고르면 이 에이전트를 호출하는 샘플 코드가 나옵니다(Python 기준 azure-ai-projects).",
+   "expected": "Project endpoint와 agent_name(workshop-hosted-agent)이 채워진 샘플이 보입니다. 실제 호출은 Azure CLI 등으로 로그인한 환경에서 합니다(이 실습에서는 보기만 합니다).",
+   "image": "assets/ignite/screenshots/ko/89-hosted-continue-in-code.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Agent name·Project endpoint",
+     "x": 679,
+     "y": 156,
+     "width": 400,
+     "height": 20
+    },
+    {
+     "label": "샘플 코드",
+     "x": 255,
+     "y": 230,
+     "width": 1090,
+     "height": 20
+    }
+   ]
+  },
+  {
+   "id": "90-cost-monitor-cost",
+   "group": "cost-read",
+   "title": "Monitor → Cost (Preview) · 카드와 Cost by agent",
+   "action": "왼쪽 Observe → Monitor를 열고 위쪽 탭에서 Cost를 누릅니다. 기간은 7D입니다. 카드 5개를 읽고 아래 Cost by agent 표에서 에이전트별 호출 수를 봅니다.",
+   "expected": "'up to 24h delay'와 'Data is based on Azure Cost Management and may be up to 24h behind.'가 보입니다. Latest billed cost는 <$0.01(No project-tagged billed usage this month yet), Month-end forecast는 'Not enough billing history to forecast yet', Project budget은 'No project-level budget set'(Create a cost control 링크), Total token usage 692.6K, Cost per successful run은 데이터 없음이었습니다. Cost by agent의 Estimated token cost 열은 모두 '—'였고 비용이 비어 있어도 사용량 0이 아닙니다.",
+   "image": "assets/ignite/screenshots/ko/90-cost-monitor-cost.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "지연 안내",
+     "x": 850,
+     "y": 143,
+     "width": 300,
+     "height": 28
+    },
+    {
+     "label": "카드 5개",
+     "x": 244,
+     "y": 237,
+     "width": 1332,
+     "height": 150
+    },
+    {
+     "label": "Create a cost control 링크",
+     "x": 790,
+     "y": 345,
+     "width": 150,
+     "height": 28
+    },
+    {
+     "label": "Estimated cost · Token usage 전환",
+     "x": 1332,
+     "y": 420,
+     "width": 228,
+     "height": 34
+    },
+    {
+     "label": "Cost by agent 표",
+     "x": 262,
+     "y": 558,
+     "width": 1297,
+     "height": 215
+    }
+   ]
+  },
+  {
+   "id": "91-cost-token-usage",
+   "group": "cost-read",
+   "title": "Cost by agent · Token usage 보기",
+   "action": "Cost by agent의 오른쪽 위 Token usage 버튼을 누릅니다. 비용 대신 에이전트별 토큰을 읽습니다.",
+   "expected": "Input · Output · Cached · Total tokens · Share · Invocations · Tokens per run 열이 나옵니다. 이 프로젝트에서는 workshop-assistant가 98.8%였고 'Non-agent requests' 행은 에이전트에 연결되지 않은 호출(Not linked)입니다. 위 카드의 Total token usage와 표의 합계는 집계 범위가 달라 같지 않았습니다.",
+   "image": "assets/ignite/screenshots/ko/91-cost-token-usage.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Token usage 선택",
+     "x": 1455,
+     "y": 420,
+     "width": 104,
+     "height": 34
+    },
+    {
+     "label": "토큰 열",
+     "x": 522,
+     "y": 528,
+     "width": 500,
+     "height": 34
+    },
+    {
+     "label": "Tokens per run",
+     "x": 1299,
+     "y": 528,
+     "width": 120,
+     "height": 34
+    },
+    {
+     "label": "Non-agent requests 행",
+     "x": 262,
+     "y": 648,
+     "width": 1297,
+     "height": 44
+    }
+   ]
+  },
+  {
+   "id": "92-cost-control-empty",
+   "group": "cost-control-create",
+   "title": "Monitor → Cost Control (Preview) · 예산 없음",
+   "action": "같은 Monitor의 Cost Control 탭을 엽니다. 예산이 없으면 'No cost controls yet'이 보입니다. Create를 누릅니다.",
+   "expected": "위쪽에 Project와 연결된 Application Insights가 표시되고 'Filters in Applies to'의 Project · Agent · Deployment · Session 칩이 있습니다.",
+   "image": "assets/ignite/screenshots/ko/92-cost-control-empty.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Cost Control 탭",
+     "x": 355,
+     "y": 98,
+     "width": 138,
+     "height": 28
+    },
+    {
+     "label": "연결된 Application Insights",
+     "x": 1272,
+     "y": 146,
+     "width": 306,
+     "height": 24
+    },
+    {
+     "label": "Create",
+     "x": 1482,
+     "y": 242,
+     "width": 94,
+     "height": 34
+    },
+    {
+     "label": "No cost controls yet",
+     "x": 745,
+     "y": 488,
+     "width": 330,
+     "height": 64
+    }
+   ]
+  },
+  {
+   "id": "93-cost-control-wizard",
+   "group": "cost-control-create",
+   "title": "Create cost control · 이름·범위·공유 방식",
+   "action": "Cost control name에 workshop-cost-control을 입력합니다. Scope는 이 프로젝트로 자동 입력되고, How should the budget be shared?는 One budget for everything을 그대로 둡니다.",
+   "expected": "이름은 주소(URL)에 쓰이며 만든 뒤 바꿀 수 없다는 안내가 있습니다. Scope에 'se02-lab · Project · foundry-se02-lab'과 '저장한 제어는 이 프로젝트 안에 머문다'는 안내가 보입니다. What does it apply to?는 프로젝트의 모든 사용량이 기본이며 Add filter로 좁힐 수 있습니다.",
+   "image": "assets/ignite/screenshots/ko/93-cost-control-wizard.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Cost control name",
+     "x": 470,
+     "y": 288,
+     "width": 880,
+     "height": 34
+    },
+    {
+     "label": "Scope(자동 입력)",
+     "x": 470,
+     "y": 358,
+     "width": 880,
+     "height": 86
+    },
+    {
+     "label": "Add filter",
+     "x": 470,
+     "y": 568,
+     "width": 108,
+     "height": 34
+    },
+    {
+     "label": "One budget for everything",
+     "x": 470,
+     "y": 643,
+     "width": 436,
+     "height": 106
+    }
+   ]
+  },
+  {
+   "id": "94-cost-control-budget",
+   "group": "cost-control-create",
+   "title": "Set the budget · Tokens 10M · Monthly",
+   "action": "Set the budget에서 Tokens를 고르고 Token types to count는 All token types, Token limit에 10M을 입력합니다. Resets는 Monthly 그대로 둡니다.",
+   "expected": "'Use K, M, B, or T; e.g. 10M = 10,000,000 tokens.' 안내가 보입니다. Resets 아래에는 재설정 시각이 브라우저 시간대로 표시됩니다(이 화면은 GMT+9, UTC 매월 1일 0시). 시작·종료일은 기본값(오늘부터 석 달)이었습니다. Spending(달러) 선택은 하지 않았습니다.",
+   "image": "assets/ignite/screenshots/ko/94-cost-control-budget.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Spending · Tokens",
+     "x": 470,
+     "y": 246,
+     "width": 162,
+     "height": 30
+    },
+    {
+     "label": "Token limit 10M",
+     "x": 470,
+     "y": 366,
+     "width": 440,
+     "height": 102
+    },
+    {
+     "label": "Resets Monthly",
+     "x": 912,
+     "y": 366,
+     "width": 428,
+     "height": 102
+    },
+    {
+     "label": "시작·종료일",
+     "x": 470,
+     "y": 484,
+     "width": 880,
+     "height": 102
+    }
+   ]
+  },
+  {
+   "id": "95-cost-control-actions",
+   "group": "cost-control-create",
+   "title": "Threshold actions · 선택지만 확인",
+   "action": "Threshold actions의 Add threshold를 눌러 Action 목록을 엽니다. Send alert와 Block usage 선택지만 확인하고 고르지 않습니다. Escape로 닫고 휴지통 버튼으로 이 행을 지웁니다.",
+   "expected": "Send alert는 'Send a notification through Azure Event Grid.', Block usage는 'Block new eligible requests when the budget is reached.'입니다. 임계값은 50 · 75 · 80 · 90 · 100%입니다. 불완전한 행이 있으면 Create가 비활성화됩니다. 이 실습은 동작을 추가하지 않습니다.",
+   "image": "assets/ignite/screenshots/ko/95-cost-control-actions.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Threshold actions",
+     "x": 470,
+     "y": 552,
+     "width": 300,
+     "height": 30
+    },
+    {
+     "label": "Send alert · Block usage",
+     "x": 482,
+     "y": 716,
+     "width": 264,
+     "height": 130
+    },
+    {
+     "label": "% of budget · When usage reaches",
+     "x": 755,
+     "y": 650,
+     "width": 540,
+     "height": 62
+    }
+   ]
+  },
+  {
+   "id": "96-cost-control-usage-data",
+   "group": "cost-control-create",
+   "title": "Usage data · 연결된 Application Insights와 Create",
+   "action": "Threshold actions를 비운 채 아래 Usage data에 프로젝트의 Application Insights가 선택돼 있는지 확인하고 Create를 누릅니다.",
+   "expected": "'Usage is tracked in Application Insights without affecting requests.'라는 안내대로 동작이 없으면 사용량만 기록합니다. Usage data에는 'Connected to … (Application Insights)'와 Change 버튼이 보입니다. 연결이 없으면 Change로 고르거나 운영자에게 확인합니다.",
+   "image": "assets/ignite/screenshots/ko/96-cost-control-usage-data.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Threshold actions 비움",
+     "x": 470,
+     "y": 552,
+     "width": 880,
+     "height": 120
+    },
+    {
+     "label": "Usage data 연결",
+     "x": 470,
+     "y": 722,
+     "width": 880,
+     "height": 100
+    },
+    {
+     "label": "Create",
+     "x": 1516,
+     "y": 855,
+     "width": 68,
+     "height": 34
+    }
+   ]
+  },
+  {
+   "id": "97-cost-control-created",
+   "group": "cost-control-check",
+   "title": "Cost Control 목록 · 새 예산",
+   "action": "Create를 누르면 목록에 새 예산이 나타납니다. Applies to · Budget · Closest to limit · State 열을 읽습니다.",
+   "expected": "Applies to는 se02-lab(Entire project), Budget은 '10,000,000 tokens / month · Per project', Closest to limit (estimated)는 '~0% · 0 of 10,000,000 tokens', State는 'On track · Estimated'였습니다. 아직 사용량이 없어 0%입니다.",
+   "image": "assets/ignite/screenshots/ko/97-cost-control-created.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "새 예산 행",
+     "x": 244,
+     "y": 357,
+     "width": 1331,
+     "height": 50
+    },
+    {
+     "label": "Budget",
+     "x": 650,
+     "y": 355,
+     "width": 230,
+     "height": 46
+    },
+    {
+     "label": "Closest to limit",
+     "x": 1206,
+     "y": 355,
+     "width": 180,
+     "height": 46
+    },
+    {
+     "label": "State",
+     "x": 1394,
+     "y": 355,
+     "width": 150,
+     "height": 46
+    }
+   ]
+  },
+  {
+   "id": "98-cost-control-detail",
+   "group": "cost-control-check",
+   "title": "예산 상세 · Edit·Delete",
+   "action": "행을 누르면 오른쪽에 상세 패널이 열립니다. Scope · Details · Usage this month를 읽습니다. 정리하려면 Delete를 누르고 확인합니다.",
+   "expected": "Token limit 10,000,000 tokens · Token measurement Overall tokens · Budget period Monthly · Resets at · Budget per Project가 보이고 Usage this month는 'No usage yet this month'였습니다. 변경은 반영에 약 15분이 걸립니다.",
+   "image": "assets/ignite/screenshots/ko/98-cost-control-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Edit · Delete",
+     "x": 1072,
+     "y": 184,
+     "width": 132,
+     "height": 34
+    },
+    {
+     "label": "Scope · Details",
+     "x": 1072,
+     "y": 230,
+     "width": 520,
+     "height": 360
+    },
+    {
+     "label": "Usage this month",
+     "x": 1072,
+     "y": 590,
+     "width": 300,
+     "height": 90
+    }
+   ]
   }
  ]
 };

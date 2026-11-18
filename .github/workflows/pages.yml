@@ -37,7 +37,7 @@ jobs:
           cp index.html operator.html _site/
           cp -R assets _site/assets
           mkdir -p _site/scripts _site/config
-          cp scripts/provision_workshop.py scripts/verify_workshop.py scripts/workshop_common.py _site/scripts/
+          cp scripts/provision_workshop.py scripts/verify_workshop.py scripts/workshop_common.py scripts/deploy_hosted_agent.sh _site/scripts/
           cp config/workshop.example.json _site/config/
           find _site -type f -name .DS_Store -delete
           touch _site/.nojekyll

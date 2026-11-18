@@ -171,9 +171,10 @@ class GuidePageTests(unittest.TestCase):
         table = re.search(r'<table aria-label="설정 값의 의미">(.*?)</table>', text, re.S)
         self.assertTrue(block and table, "operator.html: JSON example or settings table not found")
         self.assertEqual(config, json.loads(html.unescape(block.group(1))), "operator.html: JSON example differs from config/workshop.example.json")
-        rows = dict(re.findall(r"<tr><td><code>(\w+)</code></td><td><code>([^<]*)</code></td>", table.group(1)))
+        rows = {key: value for key, value in re.findall(r"<tr><td><code>(\w+)</code></td><td><code>([^<]*)</code></td>", table.group(1))}
         self.assertIn("location", rows)
-        self.assertEqual({key: str(config.get(key)) for key in rows}, rows, "operator.html: settings table differs from config/workshop.example.json")
+        expected = {key: (json.dumps(config.get(key)) if isinstance(config.get(key), bool) else str(config.get(key))) for key in rows}
+        self.assertEqual(expected, rows, "operator.html: settings table differs from config/workshop.example.json")
 
 
 class GuideDataTests(unittest.TestCase):
@@ -200,9 +201,10 @@ class IntroCardTests(unittest.TestCase):
         section = re.search(r'<section[^>]*id="ignite-learn-more"[^>]*>(.*?)</section>', text, re.S)
         self.assertIsNotNone(section)
         tiers = {
-            "A": ("foundry-iq", "web-iq", "work-iq", "fabric-iq"),
-            "B": ("copilot-sdk", "voice-agents", "business-plugins", "hosted-agents", "m365-accounts-for-agents", "toolbox",
-                  "foundry-mcp-server", "foundry-safety", "training", "new-models", "azure-windows"),
+            "A": ("work-iq", "fabric-iq"),
+            "B": ("copilot-sdk", "voice-agents", "business-plugins", "m365-accounts-for-agents", "toolbox",
+                  "foundry-mcp-server", "foundry-safety", "training", "new-models", "azure-windows", "cost-management"),
+            "C": ("foundry-iq", "web-iq", "hosted-agents"),
         }
         official_hosts = {"learn.microsoft.com", "azure.microsoft.com", "news.microsoft.com", "techcommunity.microsoft.com", "commandline.microsoft.com", "aka.ms"}
         self.assertEqual(sum(map(len, tiers.values())), len(re.findall(r'<article\b', section.group(1))))
@@ -212,9 +214,8 @@ class IntroCardTests(unittest.TestCase):
                     cards = re.findall(rf'<article[^>]*id="learn-{key}"[^>]*data-tier="{tier}"[^>]*>(.*?)</article>', section.group(1), re.S)
                     self.assertEqual(1, len(cards))
                     card = cards[0]
-                    for field in ("intro-status", "verification-badge", "왜 실습하지 않나", "공식 문서"):
+                    for field in ("intro-status", "verification-badge", "공식 문서"):
                         self.assertIn(field, card)
-                    self.assertIn("직접 실행하지 않음", card)
                     links = re.findall(r'href="(https://[^"]+)"', card)
                     self.assertTrue(2 <= len(links) <= 4, key)
                     self.assertTrue(all(
@@ -222,6 +223,13 @@ class IntroCardTests(unittest.TestCase):
                         or link.startswith("https://github.com/microsoft/copilot-sdk/")
                         for link in links
                     ), key)
+                    if tier == "C":
+                        # Cards for features with a lab say so and point at the lab; the lab itself holds the evidence.
+                        self.assertIn("직접 실행", card)
+                        self.assertRegex(card, r'data-lab-ref="lab:[a-z-]+"')
+                        continue
+                    self.assertIn("왜 실습하지 않나", card)
+                    self.assertIn("직접 실행하지 않음", card)
                     if tier == "A":
                         for field in ("Foundry 연결", "해 보려면"):
                             self.assertIn(field, card)
@@ -235,23 +243,52 @@ class IntroCardTests(unittest.TestCase):
             matches = [row for row in rows if re.search(rf"<td><strong>{name}</strong></td>", row)]
             self.assertEqual(1, len(matches), name)
             self.assertIn(f'href="#learn-{key}"', matches[0])
+        for key in ("foundry-iq", "web-iq"):
+            row = next(row for row in rows if f'href="#learn-{key}"' in row)
+            self.assertIn(f'data-lab-ref="lab:{key}"', row, "the IQ with a lab links to it from the overview")
         self.assertIn("Foundry의 지속 개선", table)
         self.assertIn("Business plugins", table)
 
-    def test_unverified_foundry_iq_has_no_lab_sample_or_gallery(self):
+    def test_foundry_iq_and_web_iq_are_required_labs_with_sample_and_galleries(self):
         data = LabMapTests.load()
-        iq = next(lab for lab in data["labs"] if lab["key"] == "foundry-iq")
-        self.assertFalse(iq["enabled"])
-        self.assertEqual([], iq["sections"])
-        self.assertEqual([], iq["steps"])
-        self.assertFalse(any("Foundry IQ" in lab["title"] for lab in data["labs"] if lab["enabled"]))
+        labs = [lab for lab in data["labs"] if lab["enabled"]]
+        keys = [lab["key"] for lab in labs]
+        self.assertEqual(["foundry-iq", "web-iq"], keys[keys.index("observe") + 1:keys.index("observe") + 3])
+        for key in ("foundry-iq", "web-iq"):
+            lab = labs[keys.index(key)]
+            self.assertTrue(lab["required"], key)
+            self.assertTrue(lab["sections"] and lab["steps"], key)
+        # Every required lab comes before every optional one.
+        flags = [lab["required"] for lab in labs]
+        self.assertEqual(sorted(flags, reverse=True), flags)
         parser, text = parse("index.html")
-        self.assertFalse(any(group.startswith("foundry-iq") for group in parser.ignite_galleries))
-        self.assertFalse(any(shot["group"].startswith("foundry-iq") for shot in IgnitePart2Tests.load()["shots"]))
-        self.assertFalse((ROOT / "assets" / "foundry-iq-sample").exists())
-        card = re.search(r'<article[^>]*id="learn-foundry-iq"[^>]*>(.*?)</article>', text, re.S).group(1)
-        self.assertIn("재촬영 범위", card)
-        self.assertIn("참가자 권한 E2E를 확인하지 못했습니다", card)
+        shots = IgnitePart2Tests.load()["shots"]
+        for prefix in ("foundry-iq", "web-iq"):
+            self.assertTrue(any(group.startswith(prefix) for group in parser.ignite_galleries), prefix)
+            self.assertTrue(any(shot["group"].startswith(prefix) for shot in shots), prefix)
+        sample = sorted(path.name for path in (ROOT / "assets" / "foundry-iq-sample").glob("*.md"))
+        self.assertGreaterEqual(len(sample), 3)
+        for name in sample:
+            self.assertIn(f"assets/foundry-iq-sample/{name}", text, f"the lab must link the sample document {name}")
+        for key in ("foundry-iq", "web-iq"):
+            card = re.search(rf'<article[^>]*id="learn-{key}"[^>]*>(.*?)</article>', text, re.S).group(1)
+            self.assertNotIn("직접 실행하지 않음", card)
+
+    def test_hosted_agent_and_cost_are_optional_labs_with_operator_assets(self):
+        data = LabMapTests.load()
+        labs = {lab["key"]: lab for lab in data["labs"] if lab["enabled"]}
+        for key in ("hosted-agent", "cost"):
+            self.assertFalse(labs[key]["required"], key)
+            self.assertTrue(labs[key]["steps"], key)
+        parser, text = parse("index.html")
+        shots = IgnitePart2Tests.load()["shots"]
+        for prefix in ("hosted", "cost"):
+            self.assertTrue(any(group.startswith(prefix) for group in parser.ignite_galleries), prefix)
+            self.assertTrue(any(shot["group"].startswith(prefix) for shot in shots), prefix)
+        for name in ("main.py", "requirements.txt", "metadata.json"):
+            self.assertTrue((ROOT / "assets" / "hosted-agent-sample" / name).is_file(), name)
+        self.assertTrue((ROOT / "scripts" / "deploy_hosted_agent.sh").is_file())
+        self.assertIn("deploy_hosted_agent.sh", (ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8"))
 
 
 class LabMapTests(unittest.TestCase):
@@ -269,8 +306,10 @@ class LabMapTests(unittest.TestCase):
         self.assertEqual(len(assigned), len(set(assigned)), "each section belongs to one lab")
         original = {
             "first-sign-in", "responsibilities", "model-quota", "ignite-guardrails",
+            "ignite-foundry-iq", "ignite-web-iq",
             "ignite-start", "ignite-harness", "ignite-observe", "ignite-improve",
-            "ignite-insights", "ignite-evaluator", "ignite-evaluation", "ignite-optimize", "ignite-fleet",
+            "ignite-insights", "ignite-evaluator", "ignite-evaluation", "ignite-optimize",
+            "ignite-hosted-agent", "ignite-fleet", "ignite-cost",
         } | {f"step-{chapter['id']}" for chapter in GuideDataTests.load()["chapters"] if chapter["id"] != "monitoring-setup"}
         self.assertEqual(original, set(assigned))
         existing = known_ids("index.html")

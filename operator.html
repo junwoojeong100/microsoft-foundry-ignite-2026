@@ -44,7 +44,7 @@
         <div class="proof">
           <p class="proof-label"><strong>환경 제공 방식</strong> · 고객 70명 + SE 테스트 5개 · 약 5시간 계획 예시</p>
           <div class="stats">
-            <div class="stat"><strong>3개</strong><span>참가자 Azure 역할</span></div>
+            <div class="stat"><strong>3+2개</strong><span>참가자 Azure 역할(+2는 Foundry IQ)</span></div>
             <div class="stat"><strong>개인 RG</strong><span>리소스 생성 범위</span></div>
             <div class="stat"><strong>6가지</strong><span>인계 전 필수 점검</span></div>
           </div>
@@ -66,12 +66,13 @@
         <a href="#automation"><span class="nav-number">04</span>A · 스크립트 일괄 준비</a>
         <a href="#portal"><span class="nav-number">05</span>B · 포털 수동 준비</a>
         <a href="#preflight"><span class="nav-number">06</span>공통 · 인계 전 필수 점검</a>
-        <a href="#capacity"><span class="nav-number">07</span>참고 · 모델·TPM·비용</a>
-        <a href="#handoff"><span class="nav-number">08</span>참가자 인계 템플릿</a>
-        <a href="#day-ops"><span class="nav-number">09</span>당일 장애 대응</a>
-        <a href="#close"><span class="nav-number">10</span>종료·정리</a>
-        <a href="#reuse"><span class="nav-number">11</span>다른 실습에 재사용</a>
-        <a href="#part2-prep"><span class="nav-number">선택</span>하네스·평가·운영 실습 준비</a>
+        <a href="#iq-prep"><span class="nav-number">07</span>필수 · Foundry IQ·Web IQ 준비</a>
+        <a href="#capacity"><span class="nav-number">08</span>참고 · 모델·TPM·비용</a>
+        <a href="#handoff"><span class="nav-number">09</span>참가자 인계 템플릿</a>
+        <a href="#day-ops"><span class="nav-number">10</span>당일 장애 대응</a>
+        <a href="#close"><span class="nav-number">11</span>종료·정리</a>
+        <a href="#reuse"><span class="nav-number">12</span>다른 실습에 재사용</a>
+        <a href="#part2-prep"><span class="nav-number">선택</span>하네스·Hosted·평가·비용 실습 준비</a>
       </nav>
       <p class="sidebar-note">공개 문서에는 실제 고객 명단·암호·인증 코드·연결 문자열을 넣지 않습니다. 운영 대장은 별도 승인된 저장소에서 관리하세요.</p>
     </aside>
@@ -104,7 +105,7 @@
           </article>
         </div>
         <div class="notice warning"><strong>같은 참가자 환경을 A와 B로 중복 생성하지 않습니다.</strong> 준비 후에는 방법과 관계없이 <a href="#preflight">6가지 필수 점검</a>을 수행합니다. 운영자 로그인 성공이나 “생성 완료” 메시지만으로 참가자에게 인계하지 않습니다.</div>
-        <div class="notice"><strong>하네스·평가·운영 선택 실습을 함께 운영하나요?</strong> 필수 실습 1~5의 준비·점검은 그대로이고, 리전·하네스용 TPM·추가 역할·비용은 <a href="#part2-prep">선택 실습 준비</a>에서 따로 확인합니다.</div>
+        <div class="notice"><strong>필수 실습 6·7(Foundry IQ·Web IQ)과 선택 실습을 함께 운영하나요?</strong> 필수 실습 1~5의 준비·점검은 그대로이지만 <strong>필수 실습 6(Foundry IQ)은 본인 RG의 역할 2개 + 검색 서비스 + 프로젝트 MI 역할</strong>이 더 필요합니다(<a href="#iq-prep">필수 실습 6·7 준비</a>). 하네스·Hosted agent·평가·Optimize·Manage·비용 선택 실습의 리전·TPM·추가 역할·비용은 <a href="#part2-prep">선택 실습 준비</a>에서 따로 확인합니다.</div>
       </section>
 
       <section class="panel observed-section" id="participant-roles">
@@ -121,6 +122,17 @@
             </tbody>
           </table>
         </div>
+        <h3 class="role-title" id="iq-roles">필수 실습 6(Foundry IQ)을 운영하면 본인 RG 역할 2개를 더 부여합니다.</h3>
+        <div class="table-wrap">
+          <table class="grant-table" aria-label="Foundry IQ 실습용 추가 역할" data-actor="participant">
+            <thead><tr><th>역할</th><th>정확한 Scope</th><th>허용할 작업</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Search Service Contributor</strong></td><td><span class="scope-badge">본인 RG</span></td><td>포털이 본인 RG의 Azure AI Search를 연결·관리하는 데 필요합니다. 검색 데이터 접근은 이 역할에 없습니다.</td></tr>
+              <tr><td><strong>Search Index Data Contributor</strong></td><td><span class="scope-badge">본인 RG</span></td><td>지식 소스가 만드는 인덱스·문서의 읽기·쓰기. 두 역할 중 하나라도 없으면 Knowledge 화면이 'Access needed'로 막힙니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="intro">설정 파일의 <code>foundryIq</code>가 <code>true</code>이면 스크립트가 이 두 역할도 할당·검증하고(기본 예제 값), <code>false</code>면 위 3개만 다룹니다. 검색 서비스와 관리 ID 역할은 <a href="#iq-prep">필수 실습 6·7 준비</a>를 따릅니다.</p>
         <div class="notice warning"><strong>주지 않는 권한:</strong> 참가자에게 구독 Contributor·Reader, Owner, RBAC Administrator, Entra 관리자 역할을 일괄 부여하지 않습니다. 모두를 묶은 그룹에 모든 개인 RG 역할을 주지 않습니다. <strong>RG 권한은 개인별 비용·TPM 하드캡이 아닙니다.</strong></div>
         <details>
           <summary>역할 GUID·Scope 예시와 계정 유형 참고</summary>
@@ -129,6 +141,8 @@
               <tr><td>Contributor</td><td><code data-copy>b24988ac-6180-42a0-ab88-20f7382dd24c</code></td></tr>
               <tr><td>Foundry User</td><td><code data-copy>53ca6127-db72-4b80-b1b0-d745d6d5456d</code></td></tr>
               <tr><td>Cognitive Services Usages Reader</td><td><code data-copy>bba48692-92b0-4667-a9ad-c31c7b334ac2</code></td></tr>
+              <tr><td>Search Service Contributor (Foundry IQ)</td><td><code data-copy>7ca78c08-252a-4471-8644-bb5ff32d4ba0</code></td></tr>
+              <tr><td>Search Index Data Contributor (Foundry IQ)</td><td><code data-copy>8ebe5a00-799e-43f5-93ac-243d3dce84a7</code></td></tr>
             </tbody></table></div>
             <p>앞의 두 역할 Scope: <code>/subscriptions/&lt;subscription-id&gt;/resourceGroups/&lt;my-rg&gt;</code><br>Usages Reader Scope: <code>/subscriptions/&lt;subscription-id&gt;</code></p>
             <p>Foundry User의 이전 이름은 Azure AI User이며 GUID는 같습니다. Internal Member 전환은 이 실습의 필수 조건이 아닙니다. External Guest는 외부 초대·로그인 정책을 별도로 검증해야 하며 일괄 생성 스크립트의 대상이 아닙니다.</p>
@@ -189,7 +203,8 @@ az login --tenant "REPLACE_WITH_TENANT_ID"</pre>
   "location": "northcentralus",
   "participantCount": 75,
   "seTestAccountCount": 5,
-  "nameFormat": "user-se"
+  "nameFormat": "user-se",
+  "foundryIq": true
 }</pre>
         <div class="table-wrap">
           <table aria-label="설정 값의 의미">
@@ -199,11 +214,12 @@ az login --tenant "REPLACE_WITH_TENANT_ID"</pre>
               <tr><td><code>participantCount</code></td><td><code>75</code></td><td><strong>SE 테스트를 포함한 총 계정 수</strong>(1~999).</td></tr>
               <tr><td><code>seTestAccountCount</code></td><td><code>5</code></td><td>그중 SE 테스트 계정 수(0~총 계정 수). 생략하면 0입니다.</td></tr>
               <tr><td><code>nameFormat</code></td><td><code>user-se</code></td><td>고객 <code>user01</code>·SE 테스트 <code>se01</code> 이름 양식. 새 행사는 이 값을 씁니다.</td></tr>
+              <tr><td><code>foundryIq</code></td><td><code>true</code></td><td>필수 실습 6(Foundry IQ)용으로 본인 RG의 Search Service Contributor·Search Index Data Contributor를 더 할당하고 검증합니다. 생략하면 <code>false</code>(역할 3개)이며 이 경우 실습 6은 진행할 수 없습니다. 적용한 뒤에 켜도 기존 환경에 누락분만 추가합니다.</td></tr>
               <tr><td><code>location</code></td><td><code>northcentralus</code></td><td>RG를 만들 허용 지역이며 참가자 Foundry 프로젝트의 지역으로도 안내합니다. <a href="index.html#ignite-start">Microsoft Copilot 하네스 지원 리전</a>이어야 합니다(North Central US는 포함).</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="intro"><strong>고객 70개 + SE 테스트 5개 = 계정 75개 + RG 75개 + 역할 할당 225개</strong>입니다. 번호는 두 자리이고 <strong>RG에는 <code>rg-</code>를 붙입니다</strong>. @ 뒤는 검증된 초기 <code>*.onmicrosoft.com</code> 도메인 그대로입니다. 모든 계정에 본인 RG의 Contributor·Foundry User, 구독의 Cognitive Services Usages Reader를 직접 할당합니다.</p>
+        <p class="intro"><strong>고객 70개 + SE 테스트 5개 = 계정 75개 + RG 75개 + 역할 할당 375개</strong>입니다(<code>foundryIq</code>를 끄면 225개). 번호는 두 자리이고 <strong>RG에는 <code>rg-</code>를 붙입니다</strong>. @ 뒤는 검증된 초기 <code>*.onmicrosoft.com</code> 도메인 그대로입니다. 모든 계정에 본인 RG의 Contributor·Foundry User, 구독의 Cognitive Services Usages Reader를 직접 할당하고, <code>foundryIq</code>가 켜져 있으면 본인 RG의 Search Service Contributor·Search Index Data Contributor도 할당합니다.</p>
         <div class="table-wrap">
           <table aria-label="짧은 UPN과 리소스 그룹 이름 예시">
             <thead><tr><th>용도</th><th>UPN 예시</th><th>RG 이름</th></tr></thead>
@@ -332,10 +348,10 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json</pre>
         <div class="notice warning"><strong>계정 생성 ≠ 최초 로그인·MFA 등록 성공.</strong> 운영자 계정·Owner·공용 키의 성공이나 <code>verify_workshop.py</code>의 PASS는 <a href="#network-mfa-rehearsal">실제 교육망에서의 신규 Guest 인증 리허설</a>을 대신하지 않습니다. 이미 MFA를 등록한 계정의 재로그인만으로 최초 등록을 검증했다고 판단하지 않습니다.</div>
         <div class="runbook-grid" role="group" aria-label="인계 전 여섯 가지 필수 점검">
           <article class="runbook-card"><h3>01 · 계정·첫 로그인·MFA</h3><p><strong>운영자가 실제 교육망에서 새 테스트 Guest로</strong> 초기 암호 로그인(변경 강제 없음)·본인 MFA 등록·재로그인을 확인합니다. 테넌트·구독·본인 RG 접근도 대조합니다. <a href="#network-mfa-rehearsal">필수 인증 리허설 →</a></p></article>
-          <article class="runbook-card"><h3>02 · 역할·참가자 간 격리</h3><p>개인 Object ID와 세 역할의 Scope를 대조합니다. 상위·다른 RG·그룹 경유 접근도 확인하고, 두 테스트 참가자의 <strong>상호 RG·프로젝트 접근 거부</strong>를 확인합니다.</p></article>
+          <article class="runbook-card"><h3>02 · 역할·참가자 간 격리</h3><p>개인 Object ID와 세 역할(Foundry IQ를 운영하면 다섯 역할)의 Scope를 대조합니다. 상위·다른 RG·그룹 경유 접근도 확인하고, 두 테스트 참가자의 <strong>상호 RG·프로젝트 접근 거부</strong>를 확인합니다.</p></article>
           <article class="runbook-card"><h3>03 · RP·정책·지역</h3><p>필요한 RP Registered, 허용 지역·SKU·네트워크를 확인합니다. 구독 오퍼의 외부 고객 교육 사용 허용 여부·조직 정책·데이터 처리 요건도 승인되어야 합니다.</p></article>
           <article class="runbook-card"><h3>04 · 모델·TPM·목표 부하</h3><p>일반 실습은 <strong>gpt-6.1-terra의 TPM을 개인별로 배분</strong>하고 Optimizer 등 모델 고정 설정은 지정 모델을 유지합니다. 각 풀의 잔여 쿼터·Scope·RPM·지역 공급·자원 수 한도를 확인하고 <strong>목표 동시 인원 부하</strong>를 검증합니다. <a href="#capacity">용량 계산 참고 →</a></p></article>
-          <article class="runbook-card"><h3>05 · 참가자 E2E·MI·Traces</h3><p>테스트 참가자가 배정 RG 안에 리소스를 직접 생성합니다. 배정할 각 모델·버전·SKU로 Playground → Agent 응답을 확인하고, <strong>Agent → Traces → Connect → Create new resource</strong>로 App Insights가 <strong>본인 RG 안에 생성·연결</strong>되는지(<code>DefaultResourceGroup-*</code>가 생기지 않는지) 확인한 뒤 새 실행 → Monitor·Traces를 봅니다. MI·도구 신원도 따로 점검합니다. 실패하면 <a href="index.html#step-connect">Azure Portal 사전 생성 대체 경로</a>를 안내합니다.</p></article>
+          <article class="runbook-card"><h3>05 · 참가자 E2E·MI·Traces</h3><p>테스트 참가자가 배정 RG 안에 리소스를 직접 생성합니다. 배정할 각 모델·버전·SKU로 Playground → Agent 응답을 확인하고, <strong>Agent → Traces → Connect → Create new resource</strong>로 App Insights가 <strong>본인 RG 안에 생성·연결</strong>되는지(<code>DefaultResourceGroup-*</code>가 생기지 않는지) 확인한 뒤 새 실행 → Monitor·Traces를 봅니다. MI·도구 신원도 따로 점검합니다. <strong>필수 실습 6·7은 <a href="#iq-prep">추가 준비</a> 뒤 같은 계정으로 지식 베이스 질문과 웹 검색 질문까지 확인</strong>합니다. 실패하면 <a href="index.html#step-connect">Azure Portal 사전 생성 대체 경로</a>를 안내합니다.</p></article>
           <article class="runbook-card"><h3>06 · 비용·인계·종료</h3><p>예산 알림·사용량 점검, 종료/보존 정책·지원 담당·대체 담당을 정합니다. 개인별 배정값과 암호 전달 경로를 분리합니다. <strong>5시간·TPM·예산 알림은 자동 비용 상한이나 종료 장치가 아닙니다.</strong></p></article>
         </div>
         <div class="notice warning"><strong>미확인 항목이 있으면 인계·개최 승인 전 보완합니다.</strong> 현재 공개 근거는 Internal Guest 1명의 기본 E2E입니다. 75개 계정·RG 환경 생성·동시 부하 성공, 모든 모델·도구 지원을 증명하지 않습니다.</div>
@@ -366,7 +382,7 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json</pre>
                 <thead><tr><th>권한을 받는 주체</th><th>운영자 확인·할당</th><th>시점·주의점</th></tr></thead>
                 <tbody>
                   <tr><td>참가자 사용자</td><td>본인 RG의 Contributor·Foundry User와 구독의 Usages Reader.</td><td>워크샵 전에 준비합니다. 사용자에게 역할을 줘도 프로젝트 MI에 같은 역할이 생기지 않습니다.</td></tr>
-                  <tr><td>프로젝트 MI</td><td>공식 시작 기준의 <strong>Foundry User · 부모 Foundry 리소스</strong>를 확인하고 필요한 미할당 권한은 운영자가 지원합니다.</td><td><strong>참가자가 프로젝트를 생성한 이후</strong> MI Object ID를 확인합니다. 역할 할당 권한 없는 생성자의 UI 자동 할당을 가정하지 않습니다.</td></tr>
+                  <tr><td>프로젝트 MI</td><td>공식 시작 기준의 <strong>Foundry User · 부모 Foundry 리소스</strong>를 확인하고 필요한 미할당 권한은 운영자가 지원합니다. 필수 실습 6(Foundry IQ)은 본인 RG의 <strong>Search Index Data Reader</strong>(<a href="#iq-prep">준비 4번</a>), 평가자 트레이스 컨텍스트는 Application Insights의 Monitoring Reader가 더 필요합니다.</td><td><strong>참가자가 프로젝트를 생성한 이후</strong> MI Object ID를 확인합니다. 역할 할당 권한 없는 생성자의 UI 자동 할당을 가정하지 않습니다.</td></tr>
                   <tr><td>도구·연결 실행 신원</td><td>실제 인증 주체가 사용하는 Search·Storage 등 대상 서비스의 데이터 권한.</td><td>인증 방식에 따라 사용자·프로젝트 MI·Foundry 리소스 MI 등이 다릅니다. 조회 전용이면 필요한 Reader 데이터 역할부터 검토합니다.</td></tr>
                 </tbody>
               </table>
@@ -383,6 +399,64 @@ az resource show --ids &lt;프로젝트 리소스 ID&gt; --query identity.princi
 az role assignment create --assignee-object-id &lt;위 Object ID&gt; --assignee-principal-type ServicePrincipal --role "Monitoring Reader" --scope &lt;Application Insights 리소스 ID&gt;</pre>
           </div>
         </details>
+      </section>
+
+      <section class="panel observed-section" id="iq-prep">
+        <p class="section-label">REQUIRED LABS 6–7 · FOUNDRY IQ AND WEB IQ · 2026.11.18</p>
+        <h2>필수 실습 6·7(Foundry IQ·Web IQ)은 인계 전에 추가 준비가 필요합니다.</h2>
+        <p class="intro"><a href="index.html#ignite-foundry-iq">실습 6(Foundry IQ)</a>은 참가자 본인 RG에 <strong>Azure AI Search(serverless)</strong> 1개와 관리 ID 역할 4가지가 있어야 끝낼 수 있습니다. <a href="index.html#ignite-web-iq">실습 7(Web IQ)</a>은 추가 리소스·역할이 없지만 비용·데이터 경계 안내가 필요합니다. 이 준비를 하지 않으면 필수 실습 6을 완료할 수 없습니다. 값은 <strong>2026.11.18 North Central US에서 참가자 역할 3개 + 아래 준비를 한 계정 1개</strong>로 끝까지 직접 실행·확인한 결과이며, <strong>70명 규모·동시 사용은 확인하지 못했습니다.</strong></p>
+        <div class="table-wrap">
+          <table class="table-wide" aria-label="실습 6 Foundry IQ 운영자 준비 항목">
+            <thead><tr><th>#</th><th>준비 항목</th><th>시점</th><th>확인한 것 · 빠지면 생기는 증상</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>검색 서비스</strong> · 참가자 RG마다 Azure AI Search <strong>serverless</strong>(Preview) 1개. 시스템 할당 관리 ID 사용, 키 인증 끔</td><td>참가자 로그인 전(RG 생성 뒤)</td><td>REST 한 번(PUT)으로 약 20초 만에 Succeeded. <code>az search service create</code>는 serverless SKU를 받지 않아 REST를 씁니다. 참가자가 포털의 'Create new resource'로 만들 수도 있지만 그 경우 관리 ID가 없고 아래 2·3번 역할도 참가자가 줄 수 없어 막힙니다.</td></tr>
+              <tr><td>2</td><td><strong>참가자 역할 2개</strong> · 본인 RG의 <strong>Search Service Contributor</strong> + <strong>Search Index Data Contributor</strong></td><td>인계 전</td><td>스크립트는 <code>foundryIq: true</code>일 때 이 둘을 할당·검증합니다(<a href="#automation">A 절차</a>). 없으면 Knowledge 화면이 'Access needed'로 막힙니다.</td></tr>
+              <tr><td>3</td><td><strong>검색 서비스 관리 ID → Cognitive Services User</strong> · 본인 RG 범위</td><td>1번 직후(RG 범위라 Foundry 리소스를 만들기 전에도 가능)</td><td>없으면 지식 소스 만들기 창의 임베딩 모델 선택에서 '관리자에게 문의' 경고가 나옵니다. RG 범위로 주면 참가자가 실습 2에서 Foundry 리소스를 만든 뒤에도 상속됩니다.</td></tr>
+              <tr><td>4</td><td><strong>프로젝트 관리 ID → Search Index Data Reader</strong> · 본인 RG 범위</td><td><strong>참가자가 실습 2에서 프로젝트를 만든 뒤</strong>, 실습 6 시작 전</td><td>프로젝트 MI는 프로젝트를 만들어야 생깁니다. 없으면 에이전트가 지식 베이스를 호출할 때 <code>A user error occurred while executing a tool call</code>로 실패하고, 역할을 준 뒤 전파에 몇 분이 걸렸습니다. 같은 오류는 <strong>연결의 Auth Type을 기본값 API Key로 만들 때도</strong> 났으므로(이 검색 서비스는 키 인증을 꺼 둠) 참가자에게 <strong>Project Managed Identity</strong>를 고르도록 안내합니다. <a href="#managed-identity">프로젝트 MI 후속 점검</a>과 한 번에 처리합니다.</td></tr>
+              <tr><td>5</td><td><strong>임베딩 모델 배포</strong> · <code>text-embedding-ada-002</code> 등</td><td>참가자 실습 중</td><td>지식 소스 만들기에서 <strong>Embedding model이 필수</strong>입니다(비우면 'No embedding model selected'로 막힘). 이번 환경에서는 참가자 계정이 gpt-6.1-terra를 배포하고 2분 뒤 <code>text-embedding-ada-002</code>(Standard 110K TPM) 배포를 만든 기록이 있고(어느 단계가 만들었는지는 확인하지 못함) 소스 만들기 창에 미리 채워졌습니다. <strong>이 구독·지역의 Standard ada-002 쿼터가 350K TPM이라 이미 가득 찼습니다</strong>(사용 350 / 한도 350). 이 자동 배포가 참가자마다 110K씩 잡으면 3명분뿐이므로 개최 전에 쿼터 증설이나 <code>text-embedding-3-small</code> 같은 Global Standard 임베딩(같은 지역 한도 2,000K)을 쓰는 대안을 정하고 리허설합니다. 대안은 이 가이드가 실행해 보지 못했습니다.</td></tr>
+              <tr><td>6</td><td><strong>서비스 수·쿼터·리전</strong></td><td>개최 전</td><td>serverless Search는 Preview이며 North Central US에서 만들어졌습니다. 구독당 서비스 수 한도는 공식 문서에서 값이 서로 달라 보여(예: 10,000/100과 30/5) <strong>확인하지 못했습니다.</strong> 75개를 만들기 전에 소량으로 시험하세요. 검색 서비스는 사용량 기반이며 지식 소스 인덱스의 저장소는 유휴에도 과금됩니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="role-title" id="iq-prep-commands">1~4번 준비 명령 (참가자 한 명 기준)</h3>
+        <p class="intro">아래는 <code>az</code> CLI로 <strong>이번 환경에서 실행해 확인한 형태</strong>입니다(대상 구독은 <code>--subscription</code>으로 명시하세요). 이름 같은 값은 행사에 맞게 바꾸고, 참가자 명단을 읽어 반복하는 부분은 운영자가 만듭니다. 2번 역할은 <code>foundryIq: true</code>면 <code>provision_workshop.py --apply</code>가 이미 할당하므로 CLI로 중복 할당하지 않습니다.</p>
+        <pre role="group" aria-label="Foundry IQ 실습용 검색 서비스·역할 준비 예">SUB=&lt;구독 ID&gt;
+RG=&lt;참가자 RG&gt;
+SEARCH=&lt;검색 서비스 이름: 전역 고유, 2~60자 소문자·숫자·하이픈&gt;
+RGSCOPE=/subscriptions/$SUB/resourceGroups/$RG
+API=2026-03-01-preview
+
+# 1) serverless 검색 서비스 + 시스템 할당 관리 ID(키 인증 끔). 약 20초 뒤 provisioningState가 Succeeded가 됩니다.
+az rest --method put --subscription $SUB \
+  --url "https://management.azure.com$RGSCOPE/providers/Microsoft.Search/searchServices/$SEARCH?api-version=$API" \
+  --body '{"location":"northcentralus","sku":{"name":"serverless"},"identity":{"type":"SystemAssigned"},"properties":{"disableLocalAuth":true}}'
+
+# 3) 검색 서비스 관리 ID에 Cognitive Services User(RG 범위)
+SEARCH_MI=$(az rest --method get --subscription $SUB \
+  --url "https://management.azure.com$RGSCOPE/providers/Microsoft.Search/searchServices/$SEARCH?api-version=$API" \
+  --query identity.principalId -o tsv)
+az role assignment create --subscription $SUB --assignee-object-id $SEARCH_MI \
+  --assignee-principal-type ServicePrincipal --role "Cognitive Services User" --scope $RGSCOPE
+
+# 4) 참가자가 프로젝트를 만든 뒤: 프로젝트 관리 ID에 Search Index Data Reader(RG 범위)
+PROJECT_MI=$(az resource show --subscription $SUB --ids &lt;프로젝트 리소스 ID&gt; --query identity.principalId -o tsv)
+az role assignment create --subscription $SUB --assignee-object-id $PROJECT_MI \
+  --assignee-principal-type ServicePrincipal --role "Search Index Data Reader" --scope $RGSCOPE</pre>
+        <p class="prompt-foot">프로젝트 리소스 ID 형식: <code>/subscriptions/&lt;구독 ID&gt;/resourceGroups/&lt;RG&gt;/providers/Microsoft.CognitiveServices/accounts/&lt;Foundry 리소스&gt;/projects/&lt;프로젝트&gt;</code>. 역할 할당에는 Owner 또는 User Access Administrator가 필요합니다. 참가자에게 이 권한을 주지 않습니다.</p>
+        <h3 class="role-title" id="iq-prep-web">실습 7(Web IQ)에서 운영자가 정할 것</h3>
+        <div class="table-wrap">
+          <table aria-label="실습 7 Web IQ 운영자 결정 항목">
+            <thead><tr><th>항목</th><th>운영자가 정하고 안내할 것</th><th>확인 상태</th></tr></thead>
+            <tbody>
+              <tr><td>추가 리소스·역할</td><td>에이전트의 <strong>Tools → Add → Web search</strong>는 대화상자·별도 리소스·추가 역할 없이 바로 붙었습니다. 참가자 3개 역할이면 충분했습니다.</td><td><strong>직접 실행</strong> · 참가자 3개 역할</td></tr>
+              <tr><td>데이터 경계</td><td>Foundry는 비(非)Foundry 도구를 연결하면 고객 데이터가 <strong>Azure 규정 준수 경계 밖으로 나갈 수 있다</strong>고 안내합니다. 공개된 최신 소식 질문만 쓰도록 참가자에게 안내하고(가이드의 질문이 그렇습니다) 고객 실데이터·내부 정보를 입력하지 않게 합니다. 승인이 필요한 데이터 처리 요건은 개최 전에 정합니다.</td><td>화면 문구 · 공식 문서(Web search)</td></tr>
+              <tr><td>비용</td><td>공식 문서는 웹 검색 도구에 비용이 발생할 수 있다고 안내합니다. <strong>툴박스 안의 웹 검색은 Grounding with Bing</strong>이라 별도 과금이며(새 에이전트에 자동으로 붙는 <code>*-toolbox</code>가 이 경로), 직접 추가한 웹 검색이 Web IQ를 씁니다. 이번 촬영의 한 번 호출에서 직접 추가 경로는 15,556토큰, 툴박스 경로는 4,795토큰이었습니다. 호출 요금은 <a href="https://learn.microsoft.com/web-iq/resources/pricing" target="_blank" rel="noopener noreferrer">공식 가격 ↗</a>으로 확인합니다(Azure Web IQ 리소스 기준 1,000회당 $1~$9).</td><td>토큰은 <strong>직접 실행</strong> · 금액은 확인하지 못함</td></tr>
+              <tr><td>Microsoft.Bing 등록</td><td>툴박스 경로는 Grounding with Bing을 쓰므로 구독의 <code>Microsoft.Bing</code> 공급자 등록 상태를 확인합니다. 이번 구독은 등록돼 있었습니다.</td><td>등록 상태만 확인</td></tr>
+              <tr><td>별도 Azure Web IQ 리소스</td><td>이 가이드는 만들지 않습니다. 유료 Azure 구독이 필요하고 Azure 크레딧·무료 체험·학생 구독은 쓸 수 없습니다. <code>Microsoft.WebIQ</code> 공급자가 NotRegistered이므로 쓰려면 별도 승인·등록이 필요합니다.</td><td>하지 않음 · <a href="index.html#learn-web-iq">소개 카드</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>정리·비용.</strong> 서버리스 검색 서비스·지식 소스·지식 베이스는 RG에 남습니다. 종료 때 <a href="#close">승인된 정리 절차</a>에 포함하세요. <strong>Foundry에서 지식 베이스를 지워도 지식 소스와 인덱스는 남습니다</strong>(이번 환경에서 확인). 지식 베이스에 남은 유일한 지식 소스는 따로 지울 수 없고('At least one knowledge source is required …'), 정리 순서는 ① Foundry의 More options → Delete knowledge base ② Azure Portal → 검색 서비스 → Agentic retrieval → Knowledge sources → 행 메뉴 → Delete(인덱스·인덱서·스킬셋도 함께 삭제) ③ Foundry Manage → 프로젝트 Connections에서 검색 연결 삭제였습니다. 새 에이전트에 자동으로 붙는 툴박스(<code>*-toolbox</code>)는 에이전트에서 빼도 프로젝트에 남습니다. 검색 서비스를 지우면 그 안의 인덱스도 함께 사라집니다. 이번 환경에서 지식 소스(문서 3개, 2.01 KB)는 수 초에서 약 3분 안에 Active가 됐고, 70명 규모의 지식 소스 동시 생성(임베딩 호출·Search 한도)은 시험하지 못했습니다.</div>
       </section>
 
       <section class="panel observed-section" id="capacity">
@@ -517,7 +591,7 @@ Foundry 프로젝트 URL: 참가자가 생성한 이후 확인
           <li><strong>완료 확인:</strong> 참가자의 완료 상태·실패 항목·지원 이슈·최종 자원·사용량을 운영 대장에 기록합니다.</li>
           <li><strong>보존 승인:</strong> 로그·프롬프트·출력의 고객 데이터 취급, 보존 기간과 필요한 내보내기를 확인합니다. 전체 로그를 공개 가이드나 영상으로 복사하지 않습니다.</li>
           <li><strong>접근 회수:</strong> 직접 Azure 역할과 그룹을 통한 접근을 확인해 승인된 순서로 회수합니다. 계정 차단·필요한 세션 회수는 Entra 담당자가 수행하고, 이미 발급된 토큰과 권한 전파 지연을 고려해 다시 확인합니다.</li>
-          <li><strong>자원 정리:</strong> 운영 대장·태그로 해당 워크샵의 정확한 RG와 리소스를 확인하고 승인된 대상만 정리합니다. RG 삭제는 Foundry·모델·프로젝트·로그를 함께 없앨 수 있으며, soft-delete·복구·보존 정책도 확인합니다.</li>
+          <li><strong>자원 정리:</strong> 운영 대장·태그로 해당 워크샵의 정확한 RG와 리소스를 확인하고 승인된 대상만 정리합니다. RG 삭제는 Foundry·모델·프로젝트·로그를 함께 없앨 수 있으며, soft-delete·복구·보존 정책도 확인합니다. 선택·필수 실습이 남기는 것: Foundry IQ의 검색 서비스(인덱스 포함)·지식 소스·지식 베이스·임베딩 배포, 하네스·Prompt·Hosted agent와 그 버전, 평가·합성 데이터셋·Optimize 기록, 비용 실습의 Cost Control, 운영자에게 부여한 임시 Foundry User 역할.</li>
           <li><strong>종료 검증:</strong> 역할·계정 상태·남은 배포·로그·비용을 재확인합니다. 사용자 삭제만으로 Azure RBAC 할당이 모두 지워진다고 가정하지 않습니다.</li>
         </ol>
         <div class="notice warning">이 가이드에는 자동 삭제 기능이 없습니다. 구독 전체 삭제·이름 패턴만 보고 일괄 삭제·로그 보존 결정 전 RG 삭제를 하지 않습니다. 다음 워크샵은 새 고유 이름·최신 모델 가용성·새 리허설 결과를 기준으로 준비합니다.</div>
@@ -536,15 +610,15 @@ Foundry 프로젝트 URL: 참가자가 생성한 이후 확인
             </tbody>
           </table>
         </div>
-        <div class="notice">Foundry 실습자 가이드의 필수 실습 화면 54장·2분 37초 요약·9분 27초 전체 영상은 <strong>2026.11.18에 참가자 권한 새 계정이 배정 RG 안에서 리소스를 직접 생성한 기본 Agent 예시</strong>입니다. 다른 계정 유형·기능별 추가 권한 설명은 공식 문서 기반이며, 동일한 실환경 검증을 했다는 뜻은 아닙니다. 영상에는 Foundry 리소스를 만들 때 함께 만든 Application insights의 자동 연결과, Traces에 연결 안내가 보일 때의 대체 경로(Create new resource)가 모두 들어 있습니다.</div>
+        <div class="notice">Foundry 실습자 가이드의 실습 1~5 화면 54장·2분 37초 요약·9분 27초 전체 영상은 <strong>2026.11.18에 참가자 권한 새 계정이 배정 RG 안에서 리소스를 직접 생성한 기본 Agent 예시</strong>입니다(실습 6~14 화면은 영상 없이 같은 계정으로 이어서 촬영한 화면 98장 중 Foundry IQ·Web IQ·Hosted agent·비용 41장 포함). 다른 계정 유형·기능별 추가 권한 설명은 공식 문서 기반이며, 동일한 실환경 검증을 했다는 뜻은 아닙니다. 영상에는 Foundry 리소스를 만들 때 함께 만든 Application insights의 자동 연결과, Traces에 연결 안내가 보일 때의 대체 경로(Create new resource)가 모두 들어 있습니다.</div>
         <p class="intro"><a href="index.html">Foundry 실습자 가이드</a> · <a href="assets/verification.json">기존 읽기 전용 E2E 근거</a> · <a href="https://github.com/junwoojeong100/microsoft-foundry-ignite-2026">가이드 저장소</a></p>
       </section>
 
       <section class="panel observed-section" id="part2-prep">
         <p class="section-label">OPTIONAL LABS · MICROSOFT IQ AND FOUNDRY · 2026.11.18</p>
-        <h2>하네스·평가·Optimize·Manage 준비(Microsoft IQ·Foundry)</h2>
-        <p class="intro"><a href="index.html#ignite-overview">실습자 가이드의 로드맵</a>은 필수 실습 1~5 이후 New Foundry에서 하네스·Insights·평가·Optimize·Manage를 따라 하는 <strong>선택 실습</strong>으로 이어집니다. 필수 실습의 인계 기준과 점검은 그대로이며 아래는 선택 실습을 운영할 때만 추가할 준비입니다. 값은 <strong>2026.11.17 North Central US 프로젝트 2곳의 직접 실행·확인 결과와 공식 문서</strong>이며 ‘확인 상태’에 적은 범위만 확인했습니다. 두 곳은 ① 사용자 샌드박스(소유자 권한)와 ② 이 저장소의 <code>provision_workshop.py</code>로 계정 1개를 만들고 <strong>참가자 역할 3개만</strong> 준 별도 데모 구독의 재현 프로젝트입니다. 운영 구독·동시 사용은 확인하지 못했습니다. 공개 문서·릴리스 노트와 <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a>(Microsoft IQ·Foundry)의 대조 결과는 <a href="index.html#ignite-official-check">발표·공식 자료 대조</a>에 있습니다.</p>
-        <div class="notice"><strong>Ignite 2026 Book of News 반영(2026.11.18, Microsoft IQ·Foundry).</strong> ① <strong>Microsoft IQ는 GA</strong>로 발표됐습니다. 새 SKU·구독 없이 이미 쓰는 제품 위에 구성되지만 하위 기능이 모두 무료·GA인 것은 아닙니다. <strong>Foundry IQ · Web IQ · Work IQ · Fabric IQ</strong>는 <a href="index.html#ignite-learn-more">각 소개 카드</a>로 다룹니다. Foundry IQ는 일반 포털 로그인이 기존 OTP에서 중단되어 참가자 권한 E2E를 검증하지 못했고, 나머지 세 IQ는 별도 구독·관리자 동의·라이선스 전제가 있어 실습하지 않습니다. Foundry의 지속 개선은 직접 따라 합니다(<a href="index.html#ignite-microsoft-iq">Microsoft IQ 요약</a>). ② <strong>Insights·Agent optimizer·멀티턴 평가는 GA</strong>이며 모델 호출 비용·역할·TPM 준비는 그대로입니다. 포털 Optimize는 하네스 없는 Prompt Agent 대상입니다. ③ 지원 프로젝트의 자동 모델 선택(<code>model-router</code>)은 기본이며 참가자는 배정 모델을 직접 고릅니다. ④ 프로젝트별 Foundry IQ 리소스는 Preview 발표로 실제 생성·과금은 미확인입니다. ⑤ <strong>Cost in Foundry는 Preview</strong>이며 cost controls(Preview)의 예산·경고·차단은 캡처에서 확인하지 못했습니다. 참가자 필수 역할 3개 표는 변경하지 않았습니다. 근거: <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Book of News ↗</a> · <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/" target="_blank" rel="noopener noreferrer">Foundry 블로그 ↗</a> · <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609" target="_blank" rel="noopener noreferrer">모델 블로그 ↗</a>.</div>
+        <h2>하네스·Hosted agent·평가·Optimize·Manage·비용 준비(Microsoft IQ·Foundry)</h2>
+        <p class="intro"><a href="index.html#ignite-overview">실습자 가이드의 로드맵</a>은 필수 실습 1~7 이후 New Foundry에서 하네스·Hosted agent·Insights·평가·Optimize·Manage·비용을 따라 하는 <strong>선택 실습</strong>으로 이어집니다. 필수 실습 1~7의 인계 기준과 점검은 앞 절을 따르며 아래는 선택 실습을 운영할 때만 추가할 준비입니다. 값은 <strong>2026.11.17 North Central US 프로젝트 2곳의 직접 실행·확인 결과와 공식 문서</strong>이며 ‘확인 상태’에 적은 범위만 확인했습니다. 두 곳은 ① 사용자 샌드박스(소유자 권한)와 ② 이 저장소의 <code>provision_workshop.py</code>로 계정 1개를 만들고 <strong>참가자 역할 3개만</strong> 준 별도 데모 구독의 재현 프로젝트입니다. 운영 구독·동시 사용은 확인하지 못했습니다. 공개 문서·릴리스 노트와 <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a>(Microsoft IQ·Foundry)의 대조 결과는 <a href="index.html#ignite-official-check">발표·공식 자료 대조</a>에 있습니다.</p>
+        <div class="notice"><strong>Ignite 2026 Book of News 반영(2026.11.18, Microsoft IQ·Foundry).</strong> ① <strong>Microsoft IQ는 GA</strong>로 발표됐습니다. 새 SKU·구독 없이 이미 쓰는 제품 위에 구성되지만 하위 기능이 모두 무료·GA인 것은 아닙니다. <strong>Foundry IQ · Web IQ는 필수 실습 6·7로 직접 실행</strong>하고(<a href="#iq-prep">준비</a>), <strong>Work IQ · Fabric IQ</strong>는 별도 구독·관리자 동의·라이선스 전제가 있어 <a href="index.html#ignite-learn-more">소개 카드</a>로만 다룹니다. Foundry의 지속 개선은 직접 따라 합니다(<a href="index.html#ignite-microsoft-iq">Microsoft IQ 요약</a>). ② <strong>Insights·Agent optimizer·멀티턴 평가는 GA</strong>이며 모델 호출 비용·역할·TPM 준비는 그대로입니다. 포털 Optimize는 하네스 없는 Prompt Agent 대상입니다. ③ 지원 프로젝트의 자동 모델 선택(<code>model-router</code>)은 기본이며 참가자는 배정 모델을 직접 고릅니다. ④ 이 실습의 Foundry IQ는 운영자가 만든 serverless Azure AI Search(Preview)를 연결해 썼고, 프로젝트별 Foundry IQ 리소스(Preview 발표)는 쓰지 않았습니다. ⑤ <strong>Cost in Foundry와 cost controls는 Preview</strong>입니다. 참가자 역할 3개로 프로젝트 범위의 추적 전용 토큰 예산을 만들고 지우는 것까지 확인했으며 경고·차단·달러 예산은 확인하지 못했습니다(<a href="index.html#ignite-cost">비용 실습</a>). ⑥ <strong>하네스 과금은 2026.12.01부터</strong>(샌드박스 vCPU·메모리)이고 Hosted agent 컴퓨트는 활성 세션마다 과금됩니다. 참가자 필수 역할 3개 표는 그대로이며 Foundry IQ용 2개는 <a href="#iq-roles">추가 역할</a>입니다. 근거: <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Book of News ↗</a> · <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/" target="_blank" rel="noopener noreferrer">Foundry 블로그 ↗</a> · <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609" target="_blank" rel="noopener noreferrer">모델 블로그 ↗</a>.</div>
         <div class="table-wrap">
           <table aria-label="하네스·평가·Optimize·Manage 운영 준비 항목">
             <thead><tr><th>항목</th><th>운영자가 정하고 준비할 것</th><th>확인 상태</th></tr></thead>
@@ -556,17 +630,33 @@ Foundry 프로젝트 URL: 참가자가 생성한 이후 확인
               <tr><td>역할 · 평가자 트레이스 컨텍스트</td><td>커스텀 평가자에서 Target agent를 고르면 화면이 <strong>프로젝트 관리 ID(MI)에 Application Insights의 Monitoring Reader</strong>가 필요하다고 안내합니다. 사용자가 아니라 프로젝트 MI에 주는 역할이므로 참가자가 프로젝트를 만든 뒤 운영자가 처리합니다(<a href="#managed-identity">프로젝트 MI 후속 점검</a>에 할당 예가 있습니다). 화면의 <strong>Resolve는 참가자 계정으로 누르면 권한 오류가 납니다.</strong> 화면은 권한 전파에 몇 분 걸릴 수 있다고 안내합니다.</td><td><strong>직접 실행:</strong> 참가자 계정에서 Target agent를 고르자 ‘Setup incomplete … Monitoring Reader’ 경고가 떴고, Resolve를 누르면 'You don't have permission to assign roles on this Application Insights resource … requires the Owner or User Access Administrator role'로 실패했습니다. 운영자가 <code>az</code>로 프로젝트 MI에 Application Insights의 Monitoring Reader를 할당한 뒤에도 대화상자의 경고 문구는 그대로였고, 경고가 있는 상태에서도 루브릭 평가자 저장과 평가 실행(15행 모두 통과)은 됐습니다.<br><strong>확인하지 못함:</strong> 역할을 준 뒤 트레이스 컨텍스트가 평가 결과에 반영되는지, 경고가 사라지는 시점.</td></tr>
               <tr><td>Azure Policy · Compliance 화면</td><td>Manage → Compliance에 정책을 보이려면 운영자가 Foundry 전용 기본 제공 정책(예: ‘Foundry model deployments should only use approved models’)을 RG·구독 범위에 할당합니다. 일반 Azure 정책(예: AI Services 네트워크 접근 감사)은 Azure Policy에서는 NonCompliant로 평가돼도 Foundry의 Policy 탭에는 나타나지 않았습니다. Security posture는 Defender for Cloud, Data security and governance는 Purview를 켜야 내용이 나옵니다. Deny 효과는 참가자의 배포·작업을 막을 수 있으므로 리허설 없이 쓰지 않습니다.</td><td><strong>직접 실행(재현 구독 RG 범위, Audit 효과 2개를 할당했다가 해제):</strong> 일반 정책은 Azure Policy에서 NonCompliant, Foundry Compliance에서는 ‘No policies assigned’. Foundry 전용 정책은 Policy 탭에 나타났지만(Area: Models · Violating assets 0) 평가 기록은 35분이 지나도 생기지 않았고, Asset 탭에는 ‘You need at least the Foundry User role’ 안내가 떴습니다(참가자는 RG 범위 Foundry User 보유, 원인은 확인하지 못함). Security posture는 Defender for Cloud 미사용 안내, Data security는 Purview 정책을 가져오지 못했다는 안내였습니다.<br><strong>확인하지 못함:</strong> 위반 평가가 Compliance에 표시되는 조건, 구독 범위 할당, Deny 효과의 영향.</td></tr>
               <tr><td>Optimize(프롬프트 최적화)</td><td>Optimize 마법사는 대상 에이전트·데이터·최적화 모델·평가 모델을 고르고 Review 화면에서 예상 비용(최소·예상·최대)을 보여 준 뒤 실행하며 모델을 여러 번 호출하므로 실행 전에 그 값을 확인합니다. 후보를 승격(Promote candidate)하면 에이전트의 새 버전이 되므로 운영자 승인 없이 누르지 않습니다. Agent optimizer는 Ignite 2026 Book of News에서 GA로 발표됐지만 공식 문서(2026.11.18)상 포털 Optimize는 하네스를 쓰지 않는 Prompt Agent가 대상이며, 트레이스에서 데이터를 만들려면 트레이스가 15개 이상 필요했습니다(‘Insufficient traces (11 found, minimum 15 recommended)’).</td><td><strong>직접 실행(재현 구독):</strong> Prompt Agent Optimize 1회(데이터셋은 평가의 합성 15행, 평가자는 커스텀 루브릭, 최적화 모델 <code>gpt-5.4</code>, 평가 모델 <code>gpt-5.4-mini</code>). Review 예상 비용은 최소 $0.27 · 예상 $0.42 · 최대 $1.41이었고, 9분 45초 만에 Succeeded, 후보 2개(기준 0.931 → 최고 0.954, 다른 후보 0.883), 361.8K 토큰이었습니다. 후보 승격은 하지 않았습니다. 하네스 에이전트는 마법사(Target → Data, 트레이스 29개 발견)까지만 열고 제출하지 않았습니다.<br><strong>확인하지 못함:</strong> 하네스 에이전트의 Optimize 제출·결과, <code>gpt-6.1-terra</code>가 최적화·평가 모델 목록에 있는지, 청구된 실제 비용.</td></tr>
-              <tr><td>비용·정리</td><td><strong>AI Gateway</strong>(Manage → Gateways)는 Azure API Management 기반이라 리소스·비용이 생길 수 있어 만들지 않았습니다. 화면은 처음 100,000 요청 무료라고 안내하며 실제 조건은 공식 가격 안내로 확인합니다. 평가·Insights는 모델 토큰 비용이 생기고(첫 스캔 예상 비용 표시), Cost는 최대 24시간 지연될 수 있습니다. <a href="#close">승인된 정리 절차</a>에 평가 실행·합성 데이터셋·평가자·에이전트 버전·Optimize 기록·추가/확대한 모델 배포 TPM을 포함해 RG별로 확인합니다. 재현에서 <code>text-embedding-ada-002</code> 배포(120)가 자동 생성됐으나 경로는 확인하지 못했습니다. Book of News의 프로젝트별 Foundry IQ 리소스(Preview, 사용량 기반 서버리스)는 개최 전 테스트 프로젝트에서 실제 생성·과금을 확인하고 정리 목록에 포함합니다.</td><td><strong>화면만 확인:</strong> Gateways·Cost·Insights 비용 안내.<br><strong>직접 실행:</strong> Insights 스캔(트레이스 51개), 평가 2회, Optimize 1회(실제 청구 비용 미확인).<br><strong>하지 않음:</strong> AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격.</td></tr>
+              <tr><td>비용·정리</td><td><strong>AI Gateway</strong>(Manage → Gateways)는 Azure API Management 기반이라 리소스·비용이 생길 수 있어 만들지 않았습니다. 화면은 처음 100,000 요청 무료라고 안내하며 실제 조건은 공식 가격 안내로 확인합니다. 평가·Insights는 모델 토큰 비용이 생기고(첫 스캔 예상 비용 표시), Cost는 최대 24시간 지연될 수 있습니다. <a href="#close">승인된 정리 절차</a>에 평가 실행·합성 데이터셋·평가자·에이전트 버전·Optimize 기록·추가/확대한 모델 배포 TPM을 포함해 RG별로 확인합니다. 재현에서 <code>text-embedding-ada-002</code> 배포(Standard, 110~120K TPM)가 자동 생성됐고 이 지역의 Standard 쿼터는 350K TPM입니다(<a href="#iq-prep">필수 실습 6 준비 5번</a>). Foundry IQ의 검색 서비스·지식 소스, Hosted agent(<a href="#hosted-prep">사전 배포</a>)도 <a href="#close">정리 목록</a>에 포함합니다. <strong>비용 실습(<a href="index.html#ignite-cost">실습 14</a>)</strong>은 참가자 3개 역할만으로 Monitor의 Cost·Cost Control 탭이 열리고 프로젝트 범위의 추적 전용 토큰 예산을 만들고 지울 수 있었습니다. Manage → Cost 전체와 청구 통화 표시는 구독 범위의 Cost Management Reader가 필요하며, 경고(Event Grid)·차단(Block usage) 동작은 요청을 막을 수 있어 운영 합의 뒤에만 쓰고 이번에는 확인하지 못했습니다. Azure 구독 예산(Budget)은 알림만 보내고 지출을 멈추지 않습니다.</td><td><strong>화면만 확인:</strong> Gateways·Cost·Insights 비용 안내.<br><strong>직접 실행:</strong> Insights 스캔(트레이스 51개), 평가 2회, Optimize 1회(실제 청구 비용 미확인).<br><strong>하지 않음:</strong> AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격.</td></tr>
             </tbody>
           </table>
         </div>
-        <h3 class="role-title">Foundry IQ를 쓰려면(참고)</h3>
-        <p>Foundry IQ는 <a href="index.html#learn-foundry-iq">소개 카드</a>이며 이 워크샵의 필수 준비가 아닙니다. 기존 OTP로 포털 로그인이 중단되어 참가자 권한의 지식 구성·연결·출처 응답과 운영자 준비를 직접 검증하지 못했습니다. 공식 문서상 검색 서비스·지식 소스·지원 리전·프로젝트 연결 권한과 관리 ID 간 데이터 역할을 별도로 확인해야 합니다. 검색 무료 계층은 구독당 1개이며 모델 호출은 별도 비용입니다. 역할·리소스를 일괄 추가하지 말고 <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/foundry-iq-connect" target="_blank" rel="noopener noreferrer">공식 연결·권한 요건 ↗</a>을 검토한 뒤 별도 검증합니다. 참가자 필수 역할 3개 표는 그대로입니다.</p>
+        <h3 class="role-title" id="hosted-prep">Hosted agent 사전 배포(선택 실습 12)</h3>
+        <p class="intro">참가자는 배포하지 않고 <strong>운영자가 미리 올린 코드 에이전트</strong>를 호출·관찰합니다(<a href="index.html#ignite-hosted-agent">실습 12</a>). 포털에서는 Hosted agent를 만들 수 없고(New agent 메뉴의 Code an agent는 안내 창만 엽니다) 배포는 REST·VS Code·<code>azd</code> 같은 코드 경로로 합니다. 이 저장소의 예제는 <strong>소스 ZIP을 REST로 올리는 방식</strong>이며 ACR·<code>azd provision</code>·새 인프라 없이 2026.11.18에 North Central US에서 배포·호출·삭제까지 확인했습니다(<code>deploy_hosted_agent.sh</code>를 임시 에이전트 이름으로 끝까지 다시 실행해 확인).</p>
+        <div class="table-wrap">
+          <table class="table-wide" aria-label="Hosted agent 사전 배포 운영 항목">
+            <thead><tr><th>항목</th><th>운영자가 정하고 준비할 것</th><th>확인 상태</th></tr></thead>
+            <tbody>
+              <tr><td>시점·단위</td><td>참가자가 실습 2·3에서 Foundry 리소스·프로젝트·모델 배포(<code>gpt-6.1-terra</code>)를 마친 뒤 <strong>참가자 프로젝트마다 1개</strong> 배포합니다. 배포는 프로젝트당 35~75초(<code>creating</code> → <code>active</code>)입니다. <strong>한 에이전트를 여럿이 공유하지 않습니다.</strong> Foundry User만 있어도 에이전트를 수정(새 버전)·비활성화·삭제할 수 있기 때문입니다.</td><td><strong>직접 실행</strong> · 참가자 계정에서 수정·비활성화·삭제 성공을 확인</td></tr>
+              <tr><td>운영자 권한</td><td><strong>구독 Owner만으로는 Agents 데이터 평면이 403</strong>입니다(<code>Microsoft.CognitiveServices/accounts/AIServices/agents/read</code> 권한 없음). 프로젝트(또는 RG·구독) 범위의 <strong>Foundry User</strong>를 운영자 계정에 부여합니다. 새 역할은 반영에 약 4분이 걸렸습니다. 공식 문서는 배포에 Foundry Project Manager를 요구하지만 이 환경에서는 Foundry User로 만들기·삭제까지 됐습니다.</td><td><strong>직접 실행</strong> · Project Manager는 시험하지 못함</td></tr>
+              <tr><td>배포 명령</td><td><a href="scripts/deploy_hosted_agent.sh" download><code>scripts/deploy_hosted_agent.sh</code></a>와 예제 소스 <code>assets/hosted-agent-sample/</code>(<code>main.py</code>·<code>requirements.txt</code>·<code>metadata.json</code>)를 씁니다. 저장소를 clone한 폴더에서 <code>SUB=&lt;구독&gt; ACCOUNT=&lt;Foundry 리소스&gt; PROJECT=&lt;프로젝트&gt; ./scripts/deploy_hosted_agent.sh deploy</code>를 실행하고 <code>status</code>·<code>invoke "안녕하세요"</code>로 확인합니다. 모델 배포 이름이 다르면 <code>MODEL</code>로 지정합니다. 참가자 계정과 리소스 이름은 참가자가 만든 이름이므로 <code>az cognitiveservices account list -g &lt;RG&gt;</code>로 찾습니다.</td><td><strong>직접 실행</strong> · 임시 에이전트 이름으로 deploy → status → invoke → delete를 이번에 다시 확인</td></tr>
+              <tr><td>참가자 권한 확인</td><td>참가자 3개 역할만으로 에이전트 목록(Type: Hosted)·Playground·Log stream·Details·Traces·Monitor가 열렸습니다. Traces·Monitor는 RG Contributor가 Application Insights를 읽는 경로였고, Learn은 Foundry User만으로는 메트릭만 보이고 트레이스는 안 보일 수 있다고 안내합니다.</td><td><strong>직접 실행</strong> · Foundry User만 가진 계정의 트레이스는 미확인</td></tr>
+              <tr><td>비용</td><td>활성 세션마다 vCPU·메모리 과금(리테일 가격: vCPU-시간당 $0.0994, GiB-시간당 $0.0118). 예제 에이전트(0.5 vCPU·1 GiB)는 활성 1시간에 약 $0.06이고 세션은 유휴 시간 제한(기본 15분) 뒤에 끝납니다. 이번 측정은 15분짜리 세션 1개 약 $0.016, 세션 8개 약 $0.056(목록 가격 기준 추정). 참가자 30명이 1~2세션씩 쓰면 약 $0.5~1입니다. 새 대화(New chat)마다 새 세션이 시작됩니다.</td><td>사용량 기반 추정 · 청구서 대조 안 함</td></tr>
+              <tr><td>정리</td><td>종료 때 <code>delete</code>로 에이전트를 지웁니다(<code>force=true</code>로 세션까지 함께 삭제. 세션이 남아 있으면 일반 삭제는 HTTP 409). 에이전트마다 Entra agent identity·blueprint가 자동으로 만들어지며 에이전트를 지운 뒤 같은 이름으로 다시 배포하는 것은 됐지만 ID 정리 자체는 확인하지 못했습니다.</td><td>삭제·재배포는 <strong>직접 실행</strong> · ID 정리는 미확인</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>이번 검증이 남긴 것.</strong> Hosted agent 검증을 위해 운영자 계정에 프로젝트 범위 <strong>Foundry User</strong>를 부여했습니다(대상 프로젝트 <code>se02-lab</code>). 다음 행사 전에 필요 여부를 정하고 불필요하면 해제하세요: <code>az role assignment delete --assignee-object-id &lt;운영자 Object ID&gt; --role "Foundry User" --scope &lt;프로젝트 리소스 ID&gt;</code></div>
+        <h3 class="role-title">실습하지 않는 IQ와 별도 리소스</h3>
+        <p class="intro">Foundry IQ와 Web IQ(웹 검색 도구)는 필수 실습 6·7로 직접 실행하므로 준비는 <a href="#iq-prep">필수 실습 6·7 준비</a>를 따릅니다. 아래는 직접 실행하지 않는 IQ와 Web IQ의 <strong>별도 Azure 리소스</strong> 경로입니다.</p>
         <div class="table-wrap">
           <table class="table-wide" aria-label="실습하지 않는 IQ의 운영자 전제 조건">
             <thead><tr><th>IQ</th><th>이 워크샵 범위 밖인 이유·해 보려면</th><th>참고</th></tr></thead>
             <tbody>
-              <tr><td>Web IQ</td><td>유료 Azure 구독·별도 Web IQ 리소스·AppID와 인증이 필요하며 Azure 크레딧은 사용할 수 없습니다. 별도 과금 승인이 필요합니다.</td><td><a href="index.html#learn-web-iq">개념·과금·공식 문서</a></td></tr>
+              <tr><td>Web IQ 별도 리소스</td><td>실습 7은 에이전트의 Web search 도구만 씁니다. 별도 <code>Microsoft.WebIQ</code> 리소스는 유료 Azure 구독·AppID와 인증이 필요하며 Azure 크레딧은 사용할 수 없습니다. 별도 과금 승인이 필요합니다.</td><td><a href="index.html#learn-web-iq">개념·과금·공식 문서</a></td></tr>
               <tr><td>Work IQ</td><td>Entra 전역 관리자의 1회 설정·동의, Copilot Credits와 사용자 위임 인증이 필요합니다. Microsoft 365 원본 권한·커넥터별 라이선스도 별도입니다.</td><td><a href="index.html#learn-work-iq">연결·동의·공식 문서</a></td></tr>
               <tr><td>Fabric IQ</td><td>Fabric 라이선스가 필요하고 데이터 에이전트 경로는 게시된 에이전트·유료 F2 이상 또는 Power BI Premium P1 이상 용량·리전 조건이 있습니다. 읽기 전용 MCP와 Foundry 도구의 범위도 구분합니다.</td><td><a href="index.html#learn-fabric-iq">용량·상태·공식 문서</a></td></tr>
             </tbody>
@@ -576,7 +666,7 @@ Foundry 프로젝트 URL: 참가자가 생성한 이후 확인
         <p class="intro"><a href="index.html#ignite-overview">Microsoft IQ · 실습 로드맵</a> · <a href="index.html#ignite-start">하네스 시작 전 확인</a> · <a href="index.html#ignite-troubleshooting">하네스·평가 문제 대응</a> · <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/use-tools-skills-copilot-harness" target="_blank" rel="noopener noreferrer">하네스 사용 문서</a> · <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">하네스 지원 리전·한도</a> · <a href="https://learn.microsoft.com/azure/foundry/control-plane/monitoring-across-fleet" target="_blank" rel="noopener noreferrer">Fleet 모니터링 권한</a></p>
       </section>
       <footer class="footnotes">
-        <p>문서 기준일 2026.11.18 · 기본 Agent 검증 2026.11.18 · 하네스·평가·운영 준비 2026.11.17 · Ignite 2026 발표 반영 2026.11.18. 역할 이름·UI·가용성·한도는 변경될 수 있으므로 다음 개최 전에 공식 문서와 참가자 권한으로 확인합니다.</p>
+        <p>문서 기준일 2026.11.18 · 기본 Agent 검증 2026.11.18 · Foundry IQ·Web IQ·Hosted agent·비용 실습 준비 2026.11.18 · 하네스·평가·운영 준비 2026.11.17 · Ignite 2026 발표 반영 2026.11.18. 역할 이름·UI·가용성·한도는 변경될 수 있으므로 다음 개최 전에 공식 문서와 참가자 권한으로 확인합니다.</p>
         <p><a href="https://learn.microsoft.com/entra/fundamentals/how-to-create-delete-users" target="_blank" rel="noopener noreferrer">Entra 계정 유형</a><a href="https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry" target="_blank" rel="noopener noreferrer">Foundry RBAC</a><a href="https://learn.microsoft.com/azure/foundry/openai/how-to/quota" target="_blank" rel="noopener noreferrer">쿼터</a><a href="https://learn.microsoft.com/azure/foundry/observability/how-to/trace-agent-setup" target="_blank" rel="noopener noreferrer">트레이싱</a></p>
       </footer>
     </main>
