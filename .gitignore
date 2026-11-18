@@ -1,7 +1,7 @@
 .DS_Store
 .playwright-mcp/
 node_modules/
-# Ignite 공개 전 내부 자료. 커밋하지 않고, 공개된 내용만 가이드로 옮깁니다.
+# 로컬 작업 자료(촬영 도구·원본 녹화·메모). 커밋하지 않고, 공개된 내용만 가이드로 옮깁니다.
 internal/
 *.private.*
 *.har

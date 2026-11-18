@@ -21,7 +21,7 @@ import provision_workshop
 import verify_workshop
 from workshop_common import (
     ARM, GRAPH, PROVIDERS, ROLES, USER_SELECT, ApiError, AzureClient, Config,
-    RunStore, WorkshopError, preflight, run_path,
+    RunStore, WorkshopError, run_path,
 )
 
 

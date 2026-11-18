@@ -15,5 +15,5 @@
 - 사진에는 실제 암호·QR·Secret key·인증 코드가 들어 있지 않습니다.
 
 파일
-- signin-1-upn.png ~ signin-12-return-code.png : 로그인과 MFA 등록 순서(가이드 첫 로그인 실습)
+- signin-1-upn.png ~ signin-12-return-code.png(7번은 없음) : 로그인과 MFA 등록 순서(가이드 첫 로그인 실습)
 - foundry-auto-setup.png : Foundry 포털(ai.azure.com)을 처음 열었을 때 나오는 “Setting up your project” 화면
