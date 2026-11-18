@@ -1,189 +1,140 @@
 {
-  "source": "assets/video/full-walkthrough.mp4",
-  "video": "assets/video/summary-walkthrough.mp4",
+  "source": "internal/tools/rec/out/stage/final/full-walkthrough.mp4",
+  "video": "internal/tools/rec/out/stage/final/summary-walkthrough.mp4",
   "speed": 2,
   "continuous": false,
   "narration": false,
   "burnedInKoreanLabels": true,
   "chapters": [
     {
-      "title": "01  Guest 계정 · 배정 RG · 역할 확인",
+      "title": "01  계정 · 배정 RG · 역할 확인",
+      "detail": "Azure Portal에서 내 계정과 배정 RG, 역할 세 개를 확인합니다.",
       "start": 0,
-      "end": 18.0,
+      "end": 15,
       "sourceClips": [
         {
-          "start": 75,
-          "duration": 18
+          "start": 9,
+          "duration": 30
+        }
+      ]
+    },
+    {
+      "title": "02  Foundry 리소스 만들기",
+      "detail": "North Central US와 Application insights(New)를 고르고 Create합니다.",
+      "start": 15,
+      "end": 38,
+      "sourceClips": [
+        {
+          "start": 53,
+          "duration": 26
         },
         {
-          "start": 265,
+          "start": 182,
+          "duration": 20
+        }
+      ]
+    },
+    {
+      "title": "03  Foundry 포털에서 프로젝트 열기",
+      "detail": "Go to Foundry portal로 기본 프로젝트를 엽니다.",
+      "start": 38,
+      "end": 48,
+      "sourceClips": [
+        {
+          "start": 208,
+          "duration": 20
+        }
+      ]
+    },
+    {
+      "title": "04  gpt-6.1-terra 배포와 테스트",
+      "detail": "Custom settings에서 10000 TPM으로 배포하고 질문합니다.",
+      "start": 48,
+      "end": 76,
+      "sourceClips": [
+        {
+          "start": 250,
+          "duration": 26
+        },
+        {
+          "start": 286,
+          "duration": 12
+        },
+        {
+          "start": 304,
           "duration": 18
         }
       ]
     },
     {
-      "title": "02  Foundry 리소스와 기본 프로젝트 함께 생성",
-      "start": 18.0,
-      "end": 36.0,
+      "title": "05  Prompt Agent 만들기",
+      "detail": "지시문을 넣고 Save as agent, Web search 도구를 지웁니다.",
+      "start": 76,
+      "end": 90,
       "sourceClips": [
         {
-          "start": 370,
-          "duration": 18
-        },
-        {
-          "start": 874,
-          "duration": 18
+          "start": 337,
+          "duration": 28
         }
       ]
     },
     {
-      "title": "03  배포 완료 후 Foundry Portal 열기",
-      "start": 36.0,
-      "end": 54.0,
+      "title": "06  에이전트 실행",
+      "detail": "연결된 Traces를 확인하고 세 번 질문합니다.",
+      "start": 90,
+      "end": 115,
       "sourceClips": [
         {
-          "start": 993,
-          "duration": 18
+          "start": 366,
+          "duration": 10
         },
         {
-          "start": 1095,
-          "duration": 18
+          "start": 378,
+          "duration": 40
         }
       ]
     },
     {
-      "title": "04  GPT-5 mini 배포 · 10,000 TPM · 모델 테스트",
-      "start": 54.0,
-      "end": 72.0,
+      "title": "07  대체 경로 · Traces에서 연결",
+      "detail": "연결 안내가 보이면 Create new resource로 Application Insights를 만듭니다.",
+      "start": 115,
+      "end": 128,
       "sourceClips": [
         {
-          "start": 1184,
-          "duration": 9
-        },
-        {
-          "start": 1283,
-          "duration": 9
-        },
-        {
-          "start": 1353,
-          "duration": 9
-        },
-        {
-          "start": 1410,
-          "duration": 9
+          "start": 450,
+          "duration": 26
         }
       ]
     },
     {
-      "title": "05  Instructions를 넣고 Prompt Agent 만들기",
-      "start": 72.0,
-      "end": 90.0,
+      "title": "08  Monitor 확인",
+      "detail": "실행 수·토큰·오류를 확인합니다.",
+      "start": 128,
+      "end": 139,
       "sourceClips": [
         {
-          "start": 1420,
-          "duration": 12
-        },
-        {
-          "start": 1445,
-          "duration": 12
-        },
-        {
-          "start": 1484,
-          "duration": 12
+          "start": 498,
+          "duration": 22
         }
       ]
     },
     {
-      "title": "06  Log Analytics + Application Insights 생성",
-      "start": 90.0,
-      "end": 108.0,
+      "title": "09  Traces 확인",
+      "detail": "입력·출력·토큰과 Conversation view를 확인합니다.",
+      "start": 139,
+      "end": 157,
       "sourceClips": [
         {
-          "start": 1733,
-          "duration": 18
-        },
-        {
-          "start": 1930,
-          "duration": 18
-        }
-      ]
-    },
-    {
-      "title": "07  실행 전에 프로젝트의 트레이싱 연결",
-      "start": 108.0,
-      "end": 126.0,
-      "sourceClips": [
-        {
-          "start": 2030,
-          "duration": 12
-        },
-        {
-          "start": 2064,
-          "duration": 12
-        },
-        {
-          "start": 2134,
-          "duration": 12
-        }
-      ]
-    },
-    {
-      "title": "08  설정 저장 · 새 대화 실행 · 응답 검토",
-      "start": 126.0,
-      "end": 144.0,
-      "sourceClips": [
-        {
-          "start": 2187,
-          "duration": 12
-        },
-        {
-          "start": 2231,
-          "duration": 12
-        },
-        {
-          "start": 2357,
-          "duration": 12
-        }
-      ]
-    },
-    {
-      "title": "09  Monitor에서 실행 수 · 토큰 · 오류 확인",
-      "start": 144.0,
-      "end": 162.0,
-      "sourceClips": [
-        {
-          "start": 2492,
-          "duration": 18
-        },
-        {
-          "start": 2522,
-          "duration": 18
-        }
-      ]
-    },
-    {
-      "title": "10  Traces에서 입력 · 출력 · 실행자 대조",
-      "start": 162.0,
-      "end": 180.0,
-      "sourceClips": [
-        {
-          "start": 2577,
-          "duration": 9
-        },
-        {
-          "start": 2648,
-          "duration": 9
-        },
-        {
-          "start": 2704,
-          "duration": 9
-        },
-        {
-          "start": 2784,
-          "duration": 9
+          "start": 527,
+          "duration": 36
         }
       ]
     }
   ],
-  "durationSeconds": 180.0
+  "durationSeconds": 157,
+  "fps": 25,
+  "width": 1600,
+  "height": 1000,
+  "bar": "top",
+  "barHeight": 100
 }

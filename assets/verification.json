@@ -1,173 +1,182 @@
 {
   "status": "passed",
-  "checkedAt": "2026-11-05T14:52:16.424189+00:00",
-  "auditMode": "GET-only; no administrator fallback; no additional inference",
+  "checkedAt": "2026-11-18T06:27:44.897911+00:00",
+  "recordingDate": "2026-11-18",
+  "auditMode": "GET-only; operator identity; no participant secrets; subscription·tenant·object IDs replaced",
   "identity": {
-    "objectId": "00000000-0000-0000-0000-000000000000",
     "userType": "Guest",
     "accountEnabled": true,
-    "creationType": null,
-    "externalUserState": null
+    "objectIdSha256": "78f8c465555feef733ddc2f6d4a263181c8bfcf9661086ddb19556b1becb68b2"
   },
-  "authenticationAudiences": {
-    "https://graph.microsoft.com/": {
-      "tenantId": "00000000-0000-0000-0000-000000000000",
-      "objectId": "00000000-0000-0000-0000-000000000000",
-      "authenticationMethods": [
-        "pwd",
-        "mfa"
-      ]
-    },
-    "https://management.azure.com/": {
-      "tenantId": "00000000-0000-0000-0000-000000000000",
-      "objectId": "00000000-0000-0000-0000-000000000000",
-      "authenticationMethods": [
-        "pwd",
-        "mfa"
-      ]
-    },
-    "https://ai.azure.com": {
-      "tenantId": "00000000-0000-0000-0000-000000000000",
-      "objectId": "00000000-0000-0000-0000-000000000000",
-      "authenticationMethods": [
-        "pwd",
-        "mfa"
-      ]
-    }
+  "authentication": {
+    "initialPasswordUsed": true,
+    "passwordChangeRequired": false,
+    "mfaMethod": "Software OATH (TOTP)"
   },
-  "resources": [
+  "roles": [
     {
-      "label": "Foundry resource",
-      "name": "foundry-guest-guide-abc123",
-      "type": "Microsoft.CognitiveServices/accounts",
-      "provisioningState": "Succeeded",
-      "createdBy": "user@contoso.com"
+      "role": "Cognitive Services Usages Reader",
+      "scope": "subscription"
     },
     {
-      "label": "Default project",
-      "name": "foundry-guest-guide-abc123/guest-portal-lab",
-      "type": "Microsoft.CognitiveServices/accounts/projects",
-      "provisioningState": "Succeeded",
-      "createdBy": "user@contoso.com"
+      "role": "Contributor",
+      "scope": "resourceGroup"
     },
     {
-      "label": "Model deployment",
-      "name": "gpt-5-mini-workshop",
-      "type": "Microsoft.CognitiveServices/accounts/deployments",
-      "provisioningState": "Succeeded",
-      "createdBy": "user@contoso.com"
-    },
-    {
-      "label": "Log Analytics",
-      "name": "law-guest-guide-abc123",
-      "type": "Microsoft.OperationalInsights/workspaces",
-      "provisioningState": "Succeeded",
-      "createdBy": null
-    },
-    {
-      "label": "Application Insights",
-      "name": "appi-guest-guide-abc123",
-      "type": "microsoft.insights/components",
-      "provisioningState": "Succeeded",
-      "createdBy": null
+      "role": "Foundry User",
+      "scope": "resourceGroup"
     }
   ],
-  "resourceInventory": [
+  "region": "northcentralus",
+  "resources": [
     {
-      "name": "foundry-guest-guide-abc123",
+      "name": "foundry-se02-lab",
       "type": "Microsoft.CognitiveServices/accounts"
     },
     {
-      "name": "foundry-guest-guide-abc123/guest-portal-lab",
+      "name": "se02-fb-lab-resource",
+      "type": "Microsoft.CognitiveServices/accounts"
+    },
+    {
+      "name": "foundry-se02-lab/se02-lab",
       "type": "Microsoft.CognitiveServices/accounts/projects"
     },
     {
-      "name": "law-guest-guide-abc123",
+      "name": "se02-fb-lab-resource/se02-fb-lab",
+      "type": "Microsoft.CognitiveServices/accounts/projects"
+    },
+    {
+      "name": "appi-foundry-se02-lab-5959",
+      "type": "Microsoft.Insights/components"
+    },
+    {
+      "name": "se02-fb-lab-appinsights-9508",
+      "type": "Microsoft.Insights/components"
+    },
+    {
+      "name": "DefaultWorkspace-00000000-0000-0000-0000-000000000000",
       "type": "Microsoft.OperationalInsights/workspaces"
     },
     {
-      "name": "appi-guest-guide-abc123",
-      "type": "microsoft.insights/components"
+      "name": "log-foundry-se02-lab-w7lsnurj7vk3i",
+      "type": "Microsoft.OperationalInsights/workspaces"
+    },
+    {
+      "name": "Failure Anomalies - appi-foundry-se02-lab-5959",
+      "type": "microsoft.alertsmanagement/smartDetectorAlertRules"
+    },
+    {
+      "name": "Failure Anomalies - se02-fb-lab-appinsights-9508",
+      "type": "microsoft.alertsmanagement/smartDetectorAlertRules"
     }
   ],
-  "roles": [
+  "deployments": [
     {
-      "scope": "/subscriptions/00000000-0000-0000-0000-000000000000",
-      "roleDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/bba48692-92b0-4667-a9ad-c31c7b334ac2"
+      "name": "gpt-6.1-terra",
+      "model": "gpt-6.1-terra",
+      "version": "2026-10-26",
+      "sku": "GlobalStandard",
+      "capacity": 100,
+      "createdAt": "2026-11-18T04:52:34.417823+00:00"
     },
     {
-      "scope": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-internal-guest-guide-abc123",
-      "roleDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+      "name": "text-embedding-ada-002",
+      "model": "text-embedding-ada-002",
+      "version": "2",
+      "sku": "Standard",
+      "capacity": 110,
+      "createdAt": "2026-11-18T04:54:52.720513+00:00"
     },
     {
-      "scope": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-internal-guest-guide-abc123",
-      "roleDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+      "name": "gpt-5.4-mini",
+      "model": "gpt-5.4-mini",
+      "version": "2026-03-17",
+      "sku": "GlobalStandard",
+      "capacity": 100,
+      "createdAt": "2026-11-18T05:01:00.184235+00:00"
+    },
+    {
+      "name": "gpt-5.4",
+      "model": "gpt-5.4",
+      "version": "2026-03-05",
+      "sku": "GlobalStandard",
+      "capacity": 100,
+      "createdAt": "2026-11-18T05:01:02.426321+00:00"
     }
   ],
   "model": {
-    "model": {
-      "format": "OpenAI",
-      "name": "gpt-5-mini",
-      "version": "2025-08-07"
-    },
-    "sku": {
-      "name": "GlobalStandard",
-      "capacity": 10
-    }
+    "name": "gpt-6.1-terra",
+    "version": "2026-10-26",
+    "sku": "GlobalStandard",
+    "capacityDuringLabs3To5": 10,
+    "tokensPerMinuteDuringLabs3To5": 10000,
+    "note": "실습 3~5는 10,000 TPM(capacity 10)으로 배포해 촬영했고, 선택 실습 6~10을 위해 운영자가 100,000 TPM으로 올렸습니다."
   },
   "agent": {
-    "name": "guest-workshop-assistant",
+    "name": "workshop-assistant",
     "version": "2",
     "kind": "prompt",
-    "model": "gpt-5-mini-workshop",
+    "model": "gpt-6.1-terra",
     "tools": [],
-    "instructionsMatch": true,
     "parameters": {
       "reasoning": {
-        "effort": "minimal"
-      }
-    }
-  },
-  "tracingConnection": {
-    "name": "appi-guest-guide-abc123-8655",
-    "category": "AppInsights",
-    "authType": "ApiKey",
-    "target": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-internal-guest-guide-abc123/providers/microsoft.insights/components/appi-guest-guide-abc123"
-  },
-  "monitorMetrics": {
-    "agentRuns": 3,
-    "totalTokens": 1060,
-    "errorRate": 0,
-    "dateRange": "Last Day",
-    "verifiedAt": "2026-11-05T14:27:10.384Z"
-  },
-  "traceCorrelations": [
-    {
-      "traceId": "586b4c7d54b14eb098e036a425f8e1e6",
-      "responseId": "resp_0e9d2d5690bbb704006aec91b812148190b228806e168eb08f",
-      "conversationId": "conv_0e9d2d5690bbb70400JxNzHgr3Sxf5u1KOWW0xucUm2y8sDT4a",
-      "userId": "00000000-0000-0000-0000-000000000000",
-      "spanCount": 2,
-      "modelSpan": {
-        "model": "gpt-5-mini-2025-08-07",
-        "inputTokens": 413,
-        "outputTokens": 54
+        "effort": "low"
       }
     },
+    "observedIn": "Foundry portal (agent data-plane read needs Foundry User)"
+  },
+  "tracingConnection": [
     {
-      "traceId": "10dc1432e03d4305a7cac88c2846503e",
-      "responseId": "resp_0e9d2d5690bbb704006aec916dddf4819096ea1d2a68fbc6d9",
-      "conversationId": "conv_0e9d2d5690bbb70400JxNzHgr3Sxf5u1KOWW0xucUm2y8sDT4a",
-      "userId": "00000000-0000-0000-0000-000000000000",
-      "spanCount": 2
-    },
-    {
-      "traceId": "eeb2745ad96241928e0e85c65b695f24",
-      "responseId": "resp_0e9d2d5690bbb704006aec913fb70c8190b106ed2a80b89974",
-      "conversationId": "conv_0e9d2d5690bbb70400JxNzHgr3Sxf5u1KOWW0xucUm2y8sDT4a",
-      "userId": "00000000-0000-0000-0000-000000000000",
-      "spanCount": 2
+      "name": "appinsights-rugmantka2gzs",
+      "category": "AppInsights",
+      "authType": "ApiKey",
+      "target": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-se01/providers/Microsoft.Insights/components/appi-foundry-se02-lab-5959"
     }
   ],
-  "credentialsIncluded": false
+  "monitorMetrics": {
+    "agentRuns": 3,
+    "totalTokens": 891,
+    "errorRate": 0,
+    "dateRange": "Last Day",
+    "verifiedAt": "2026-11-18T03:48:14.735Z"
+  },
+  "traceRows": [
+    {
+      "traceId": "42751ca62d1c4914bca475d96e4deeac",
+      "status": "Completed",
+      "createdAt": "11/18/26, 1:55:55 PM",
+      "durationSeconds": 1.405,
+      "inputTokens": 347,
+      "outputTokens": 52
+    },
+    {
+      "traceId": "489a37cc9f1649b7bf1b0d78961094d3",
+      "status": "Completed",
+      "createdAt": "11/18/26, 1:55:42 PM",
+      "durationSeconds": 0.985,
+      "inputTokens": 235,
+      "outputTokens": 53
+    },
+    {
+      "traceId": "33f3a3790aa6408b8cec1d68d147cff4",
+      "status": "Completed",
+      "createdAt": "11/18/26, 1:55:32 PM",
+      "durationSeconds": 1.007,
+      "inputTokens": 137,
+      "outputTokens": 67
+    }
+  ],
+  "autoCreated": [
+    {
+      "resource": "text-embedding-ada-002",
+      "type": "deployment",
+      "when": "에이전트를 처음 만들 때 참가자 계정이 만든 것으로 기록됨",
+      "note": "Standard SKU 배포. 지우지 않는다."
+    }
+  ],
+  "credentialsIncluded": false,
+  "limitations": [
+    "계정 1개·프로젝트 1개의 순차 실행입니다. 동시 접속과 다수 계정 부하는 확인하지 않았습니다.",
+    "에이전트 정의는 포털 화면으로 확인했고 데이터 평면 API로 읽지 않았습니다."
+  ]
 }

@@ -21,7 +21,7 @@
       </nav>
       <div class="topbar-tools">
         <button class="button small theme-toggle" id="theme-toggle" type="button" aria-pressed="false">다크 테마</button>
-        <span class="top-meta">기준일 2026.11.18 (화면: 구 포털 11.05 · New Foundry 11.17)</span>
+        <span class="top-meta">기준일 2026.11.18 (화면·영상: 2026.11.18 재촬영)</span>
       </div>
       <span class="sr-only" id="theme-status" role="status"></span>
     </div>
@@ -36,15 +36,15 @@
           <p class="hero-lead">운영자는 계정과 리소스 그룹까지 제공합니다.<br>참가자는 배정 RG 안에서 필요한 리소스를 직접 만듭니다.<br>계정·권한·문제 대응은 다른 Foundry 실습에서도 참고하세요.</p>
           <div class="hero-actions">
             <a class="button primary" href="#prepare">시작 전 5가지 확인 <span aria-hidden="true">→</span></a>
-            <a class="button dark" href="#summary">3분 요약 먼저 보기</a>
+            <a class="button dark" href="#summary">2분 요약 먼저 보기</a>
             <a class="button dark" href="#first-sign-in">실습 시작하기</a>
             <a class="button dark" href="#ignite-overview">Microsoft IQ · 실습 로드맵</a>
           </div>
         </div>
         <div class="proof" id="summary">
-          <p class="proof-label"><strong>3분 핵심 요약</strong> · 실제 포털 영상 · 한국어 화면 안내</p>
+          <p class="proof-label"><strong>2분 37초 핵심 요약</strong> · 실제 포털 영상 · 한국어 화면 안내</p>
           <div class="video-frame">
-            <video id="summary-video" controls autoplay muted playsinline preload="metadata" poster="assets/screenshots/01-guest-sign-in.png" aria-label="3분 핵심 요약 · 무음 자동재생">
+            <video id="summary-video" controls autoplay muted playsinline preload="metadata" poster="assets/screenshots/01-guest-sign-in.png" aria-label="2분 37초 핵심 요약 · 무음 자동재생">
               <source src="assets/video/summary-walkthrough.mp4" type="video/mp4">
               MP4 재생을 지원하는 브라우저에서 열거나 요약 MP4를 내려받으세요.
             </video>
@@ -52,24 +52,24 @@
           <p class="summary-status" id="summary-status" role="status">요약 영상 로딩 중 · 2배속 편집 · 무음</p>
           <div class="summary-links">
             <a class="button dark small" href="assets/video/summary-walkthrough.mp4" download>요약 MP4 다운로드</a>
-            <a class="button dark small" href="#video">51분 전체 영상 ↗</a>
+            <a class="button dark small" id="full-video-link" href="#video">전체 영상 ↗</a>
           </div>
-          <p class="proof-note">대기·오류 처리는 요약에서 생략했습니다. 모든 과정은 전체 영상과 단계별 화면에서 확인하세요. 녹화에서는 Application Insights를 Azure Portal에서 먼저 만들었으며, 현재 권장 방식은 <a href="#step-connect" data-lab-ref="sec:step-connect">실습 4-2</a>(Traces에서 바로 생성)입니다.</p>
+          <p class="proof-note">대기 구간은 8배속으로 줄였고 오류 처리와 선택 실습은 요약에서 생략했습니다. 모든 과정은 전체 영상과 단계별 화면에서 확인하세요. 녹화에서는 Foundry 리소스를 만들 때 Application insights를 함께 만들어 Traces에서 바로 확인했습니다(<a href="#step-resource" data-lab-ref="sec:step-resource">실습 2-1</a>·<a href="#step-connect" data-lab-ref="sec:step-connect">실습 4-2</a>).</p>
           <p class="proof-label">녹화에서 확인한 에이전트 실행 결과</p>
           <div class="stats">
             <div class="stat"><strong id="hero-runs">3</strong><span>완료된 실행</span></div>
-            <div class="stat"><strong id="hero-tokens">1,060</strong><span>총 토큰</span></div>
+            <div class="stat"><strong id="hero-tokens">891</strong><span>총 토큰</span></div>
             <div class="stat"><strong>0%</strong><span>실행 오류율</span></div>
           </div>
-          <p class="proof-note">Guest 유지 · 관리자 실행으로 대체하지 않음<br>세 응답의 Response ID와 서버 트레이스 일치 확인</p>
+          <p class="proof-note">Guest 유지 · 관리자 실행으로 대체하지 않음<br>세 응답의 토큰(204·288·399)이 Monitor·Traces 합계와 일치 확인</p>
         </div>
       </div>
       <div class="hero-meta">
-        <span><b id="shot-count">63</b>장의 실제 화면</span>
-        <span>3분 요약 · 무음 자동재생</span>
-        <span><b id="duration-label">51:33</b> 연속 녹화</span>
+        <span><b id="shot-count">54</b>장의 실제 화면</span>
+        <span>2분 37초 요약 · 무음 자동재생</span>
+        <span>전체 영상 <b id="duration-label">9:27</b></span>
         <span>10개 챕터 · 무음 · 한국어 안내 자막</span>
-        <span>녹화 예시 · East US 2 · GPT-5 mini</span>
+        <span>녹화 예시 · North Central US · gpt-6.1-terra</span>
       </div>
     </div>
   </div>
@@ -98,12 +98,12 @@
         <ol class="task-list" aria-label="운영자에게 받을 다섯 가지">
           <li><strong>로그인 계정:</strong> 본인 UPN(User Principal Name)과 별도 전달된 초기 암호. 초기 암호 그대로 로그인하며 변경은 선택입니다. <strong>MFA 등록·인증은 본인이 완료</strong>합니다. <a href="#first-sign-in">첫 로그인 절차 →</a></li>
           <li><strong>대상 테넌트·구독:</strong> 사용할 디렉터리와 Subscription ID. 기존 회사·개인 계정의 환경과 혼동하지 않습니다.</li>
-          <li><strong>본인 RG·지역·이름 규칙:</strong> 배정 RG 이름/링크와 허용 지역, 본인 고유 리소스 이름 규칙. <strong>이 워크샵의 지역은 North Central US</strong>입니다(구 포털 화면은 East US 2에서 녹화해 Region 값이 다르게 보일 수 있습니다).</li>
+          <li><strong>본인 RG·지역·이름 규칙:</strong> 배정 RG 이름/링크와 허용 지역, 본인 고유 리소스 이름 규칙. <strong>이 워크샵의 지역은 North Central US</strong>입니다(포털의 Region 기본값은 East US이므로 목록에서 North Central US를 직접 고릅니다).</li>
           <li><strong>모델 배정:</strong> 모델·버전·배포 유형·TPM·배포 개수, 지원되는 Reasoning Effort·출력 한도. <a href="#model-quota">배포 시 입력 기준 →</a></li>
           <li><strong>실습·지원·종료:</strong> 이번 실습 본문 URL, 완료 기준·종료/정리 정책, 승인된 문의 경로.</li>
         </ol>
         <div class="notice warning"><strong>실제 입력값은 운영자의 배정표가 기준입니다.</strong> 아래 화면·영상의 계정·RG·지역·모델·자원 이름은 녹화 예시입니다. 이름을 복사하거나 기존 녹화 리소스에 연결하지 말고 본인이 만든 리소스를 사용하세요. 배정값이 없거나 본인 RG가 안 보이면 생성부터 시도하지 말고 <a href="#troubleshooting">문제 대응표</a>를 확인합니다.</div>
-        <div class="notice"><strong>2026.11.18 업데이트 · Microsoft IQ·Foundry.</strong> ① <strong>Microsoft IQ가 GA로 발표</strong>됐습니다. 네 IQ(<strong>Foundry IQ · Web IQ · Work IQ · Fabric IQ</strong>)는 각각 <a href="#ignite-learn-more">소개 카드</a>에서 개념·전제 조건·공식 문서를 확인합니다. Foundry IQ는 참가자 권한 E2E를 검증하지 못해 실습을 제공하지 않습니다. Foundry의 지속 개선(하네스·Insights·평가·Optimize)은 직접 따라 합니다(<a href="#ignite-microsoft-iq">요약</a>). ② 새 Prompt Agent의 기본 모델 <code>model-router</code>(<a href="#step-agent" data-lab-ref="sec:step-agent">실습 4-1</a>) ③ 새 프로젝트의 Foundry IQ 리소스(Preview, <a href="#step-resource" data-lab-ref="sec:step-resource">실습 2-1</a>) ④ 새 모델·model router 확대(<a href="#model-quota">모델 배포 한도</a>) ⑤ Insights·멀티턴 평가·Agent optimizer GA ⑥ <a href="#learn-copilot-sdk">Microsoft Copilot SDK 2.0(GA)</a>·<a href="#learn-voice-agents">Voice agents</a> 소개. 발표 상태와 직접 확인 범위는 <a href="#ignite-official-check">공식 대조표</a>에서 구분합니다.</div>
+        <div class="notice"><strong>2026.11.18 업데이트 · Microsoft IQ·Foundry.</strong> ① <strong>Microsoft IQ가 GA로 발표</strong>됐습니다. 네 IQ(<strong>Foundry IQ · Web IQ · Work IQ · Fabric IQ</strong>)는 각각 <a href="#ignite-learn-more">소개 카드</a>에서 개념·전제 조건·공식 문서를 확인합니다. Foundry IQ는 참가자 권한 E2E를 검증하지 못해 실습을 제공하지 않습니다. Foundry의 지속 개선(하네스·Insights·평가·Optimize)은 직접 따라 합니다(<a href="#ignite-microsoft-iq">요약</a>). ② 새 하네스 에이전트의 기본 모델 <code>model-router</code>(<a href="#ignite-harness-tools" data-lab-ref="sec:ignite-harness-tools">실습 6-3</a>) ③ 새 모델·model router 확대(<a href="#model-quota">모델 배포 한도</a>) ④ Insights·멀티턴 평가·Agent optimizer GA ⑤ <a href="#learn-copilot-sdk">Microsoft Copilot SDK 2.0(GA)</a>·<a href="#learn-voice-agents">Voice agents</a> 소개. 발표 상태와 직접 확인 범위는 <a href="#ignite-official-check">공식 대조표</a>에서 구분합니다.</div>
         <ol class="flow" aria-label="실습 구조">
           <li>배정 RG<small>운영자 준비</small></li>
           <li>Foundry + 프로젝트<small>Guest 생성</small></li>
@@ -121,8 +121,8 @@
               </table>
             </div>
             <p>녹화는 Internal Guest 1명의 기본 Prompt Agent 검증입니다. 고객 70명 + SE 테스트 5개·약 5시간의 동시 부하·쿼터·비용·정책 준비는 <a href="operator.html#preflight">운영자 필수 점검</a> 대상입니다. 10,000 TPM은 속도 한도이지 비용 상한이 아닙니다.</p>
-            <p><strong>North Central US 재현(2026.11.17):</strong> 참가자 역할 3개만 가진 SE 테스트 계정 1개로 Foundry 리소스·프로젝트 생성(Region 목록에 North Central US가 있고 RG 목록에는 본인 RG만 보임) → gpt-6.1-terra 배포(10,000 TPM) → Prompt Agent 생성·질문 3회 → Traces 확인까지 처음부터 따라 해 봤습니다. 실습 1~5의 화면·영상은 East US 2 녹화 그대로이며, 재현에서 다르게 보인 점(Application insights 자동 생성·연결, 새 에이전트의 기본 모델 model-router, 일부 메뉴 이름)은 해당 단계와 <a href="#ignite-menu-changes">메뉴 비교</a>에 적었습니다. 동시 접속·다수 계정 부하는 확인하지 않았습니다.</p>
-            <p>녹화 계정에는 이전 E2E 테스트 RG 권한도 남아 있습니다. 실제 워크샵은 본인 배정 RG로 제한합니다. 다른 참가자의 RG·프로젝트가 보이거나 접근되면 사용하지 말고 운영자에게 알리세요.</p>
+            <p><strong>2026.11.18 재촬영:</strong> 기존 RG의 리소스를 모두 지우고 참가자 역할 3개만 가진 새 Internal Guest 계정 1개로 North Central US에서 처음부터 다시 따라 하며 모든 화면과 영상을 새로 촬영했습니다. Foundry 리소스·프로젝트 생성(Region 목록에 North Central US가 있고 RG 목록에는 본인 RG만 보임) → gpt-6.1-terra 배포(10,000 TPM) → Prompt Agent 생성·질문 3회 → Monitor·Traces 확인이 실습 1~5이고, 같은 계정으로 하네스·Insights·평가·Optimize·Manage(실습 6~10)를 이어서 수행했습니다. 선택 실습을 위해 운영자가 gpt-6.1-terra를 100,000 TPM으로 올리고 judge 모델(gpt-5.4-mini·gpt-5.4)을 미리 배포했으며 프로젝트 관리 ID에 Monitoring Reader를 부여했습니다. 동시 접속·다수 계정 부하는 확인하지 않았습니다.</p>
+            <p>촬영 계정에는 배정 RG(rg-se01) 하나만 보였습니다. 실제 워크샵도 본인 배정 RG로 제한합니다. 다른 참가자의 RG·프로젝트가 보이거나 접근되면 사용하지 말고 운영자에게 알리세요.</p>
             <p>다른 실습에서는 본문이 지시하는 자원을 본인 RG에 생성하고, 추가 권한은 <a href="#role-profiles">기능별 요건</a>과 <a href="#troubleshooting">문제 대응표</a>를 참조합니다.</p>
           </div>
         </details>
@@ -134,121 +134,176 @@
         <p class="intro"><a class="button" href="https://portal.azure.com/" target="_blank" rel="noopener noreferrer">Azure Portal 열기 ↗</a> · 승인된 교육망·기기의 InPrivate 또는 별도 프로필을 사용하세요.</p>
         <div class="screen-shortcuts"><a class="button small" href="#signin-upn">로그인</a><a class="button small" href="#signin-qr">QR 등록</a><a class="button small" href="#signin-approved">완료 확인</a><a class="button small" href="#signin-password">암호 변경(선택)</a></div>
         <div class="notice"><strong>암호 변경 강제 없음 ≠ MFA 생략.</strong> 초기 암호를 유지해도 조직이 요구하는 MFA·조건부 액세스를 완료합니다. 이미 등록한 본인 수단이 있으면 신규 등록 대신 인증만 나올 수 있습니다.</div>
-        <p class="intro">아래 앱 화면은 <strong>Microsoft Authenticator 알림 방식</strong>의 공식 예시입니다. 실제 화면에서 다른 인증 앱을 선택해 <strong>Enter the code</strong>가 나오면 <a href="#signin-totp">TOTP 코드 방식 안내</a>를 따르세요. 알림 승인 화면을 기다리지 않습니다.</p>
+        <p class="intro">아래 화면은 <strong>2026.11.18에 새 참가자 계정으로 처음 로그인하며 직접 촬영</strong>했습니다. 이메일 표시는 <code>user@contoso.com</code>으로 바꾸고, 입력칸의 값·QR·수동 등록 키는 가렸습니다. 이 계정은 앱 설치 화면의 <strong>Set up a different authentication app</strong>으로 <strong>6자리 코드(TOTP)</strong> 방식을 등록했습니다. Microsoft Authenticator를 쓰면 QR 화면까지는 같고 그다음에 알림 승인이나 코드 입력 화면이 나올 수 있으니 실제 화면의 안내를 따르세요.</p>
         <ol class="screen-grid screen-walkthrough" aria-label="로그인과 MFA를 완료하는 화면별 순서">
           <li class="screen-card" id="signin-upn">
-            <div class="screen-header"><span class="stage-number">1/6</span><h3>본인 UPN → 초기 암호</h3></div>
+            <div class="screen-header"><span class="stage-number">1/9</span><h3>본인 UPN 입력</h3></div>
             <div class="screen-body">
               <figure class="screen-figure">
-                <a class="screen-side-frame" href="assets/onboarding/entra-sign-in.png" target="_blank" rel="noopener noreferrer" aria-label="실제 Microsoft Entra ID 로그인 입력칸 크게 보기"><span class="screen-image"><img src="assets/onboarding/entra-sign-in.png" width="500" height="620" loading="lazy" alt="실제 Microsoft 로그인 화면의 전자 메일 전화 또는 Skype 입력칸과 다음 버튼, 입력값은 비어 있음"><span class="screen-side-tag" style="top:18%">1</span><span class="screen-side-tag" style="top:39%">2</span></span></a>
-                <figcaption><strong>실제 Microsoft Entra ID 익명 로그인 화면.</strong> My Account에서 캡처한 공통 인증 UI이며 계정·암호를 입력하지 않았습니다. 실제 실습은 위 Azure Portal에서 진행합니다. 원본은 수정하지 않았으며 번호는 사진 밖 안내입니다. Used with permission from Microsoft.</figcaption>
+                <a href="assets/onboarding/signin-1-upn.png" target="_blank" rel="noopener noreferrer" aria-label="Microsoft 로그인 화면 크게 보기"><img src="assets/onboarding/signin-1-upn.png" width="492" height="521" loading="lazy" alt="Sign in to continue to Microsoft Azure 화면의 전자 메일 입력칸(흐리게 가림)과 Next 버튼, 아래에 Sign-in options"></a>
+                <figcaption><strong>직접 촬영한 로그인 화면.</strong> 입력한 이메일은 흐리게 가렸습니다. Azure Portal을 열면 이 화면이 나옵니다.</figcaption>
               </figure>
               <div class="screen-instructions">
                 <ol class="field-steps">
                   <li><strong>전자 메일, 전화 또는 Skype</strong> 칸에 운영자가 준 <strong>본인 UPN 전체</strong>를 입력합니다. GitHub 사용자명이나 평소 회사·개인 계정이 아닙니다.</li>
-                  <li><strong>다음 / Next</strong> → 다음 암호 화면에서 <strong>별도 경로로 받은 초기 암호</strong> 입력 → <strong>로그인 / Sign in</strong>.</li>
+                  <li><strong>Next</strong>를 선택합니다.</li>
                 </ol>
-                <p class="screen-check"><strong>다음 상태:</strong> 새 계정은 “Let's keep your account secure / More information required” 등의 MFA 등록 안내로 이어집니다. 이미 등록된 계정은 본인 수단으로 MFA 인증합니다.</p>
-                <p class="screen-action"><strong>누르지 않을 것:</strong> “계정을 만드세요”·다른 계정 로그인 옵션. 이미 발급된 실습 계정을 사용합니다.</p>
+                <p class="screen-check"><strong>다음 상태:</strong> 암호 입력 화면(Enter password)이 나옵니다.</p>
+                <p class="screen-action"><strong>누르지 않을 것:</strong> Create one!(계정 만들기)·Sign-in options·Sign in with GitHub. 이미 발급된 실습 계정을 사용합니다.</p>
               </div>
             </div>
           </li>
           <li class="screen-card">
-            <div class="screen-header"><span class="stage-number">2/6</span><h3>본인 휴대폰에 Authenticator 설치</h3></div>
+            <div class="screen-header"><span class="stage-number">2/9</span><h3>초기 암호 입력</h3></div>
             <div class="screen-body">
               <figure class="screen-figure">
-                <a href="assets/onboarding/mfa-get-app.png" target="_blank" rel="noopener noreferrer" aria-label="공식 Authenticator 설치 화면 크게 보기"><img src="assets/onboarding/mfa-get-app.png" width="894" height="450" loading="lazy" alt="Microsoft 공식 Start by getting the app 화면의 Download now와 Next 버튼"></a>
-                <figcaption><strong>Microsoft 공식 화면.</strong> 하단 선택사항만 잘라냈습니다. <a href="https://learn.microsoft.com/entra/identity/authentication/concept-registration-mfa-sspr-combined" target="_blank" rel="noopener noreferrer">원본·등록 정책 ↗</a></figcaption>
+                <a href="assets/onboarding/signin-2-password.png" target="_blank" rel="noopener noreferrer" aria-label="암호 입력 화면 크게 보기"><img src="assets/onboarding/signin-2-password.png" width="492" height="390" loading="lazy" alt="Enter password 화면. 위에 로그인 계정(user@contoso.com), 암호 입력칸(흐리게 가림), Forgot my password 링크와 Sign in 버튼"></a>
+                <figcaption><strong>직접 촬영.</strong> 입력한 암호는 흐리게 가렸습니다.</figcaption>
               </figure>
               <div class="screen-instructions">
-                <ol class="field-steps"><li><strong>Let's keep your account secure / Keep your account secure / More information required</strong>가 나오면 Next를 선택합니다.</li><li><strong>Install Microsoft Authenticator / Start by getting the app</strong>에서 본인 휴대폰에 앱을 설치합니다.</li><li>설치 후 컴퓨터에서 <strong>Next</strong>. 조직이 제공한 다른 인증 앱 경로는 안내에 따라 선택하며 임의로 정책을 바꾸지 않습니다.</li></ol>
-                <p class="screen-check"><strong>다음 상태:</strong> “Set up your account” 화면이 나타납니다. 다른 인증 방법을 조직이 지정했다면 그 안내를 따릅니다.</p>
+                <ol class="field-steps">
+                  <li><strong>별도 경로로 받은 초기 암호</strong>를 입력합니다. 이 화면의 계정이 본인 UPN인지 위쪽 표시로 확인합니다.</li>
+                  <li><strong>Sign in</strong>을 선택합니다.</li>
+                </ol>
+                <p class="screen-check"><strong>다음 상태:</strong> 처음 로그인하는 계정은 “Let's keep your account secure”(다음 카드)로, 이미 MFA를 등록한 계정은 코드 입력 화면으로 이어집니다. 암호 변경 창은 나오지 않는 것이 정상입니다.</p>
+                <p class="screen-action"><strong>누르지 않을 것:</strong> Forgot my password. 막히면 운영자에게 알립니다.</p>
               </div>
             </div>
           </li>
           <li class="screen-card">
-            <div class="screen-header"><span class="stage-number">3/6</span><h3>앱에 회사 또는 학교 계정 추가</h3></div>
+            <div class="screen-header"><span class="stage-number">3/9</span><h3>계정 보호 등록 시작</h3></div>
             <div class="screen-body">
               <figure class="screen-figure">
-                <a href="assets/onboarding/mfa-add-account.png" target="_blank" rel="noopener noreferrer" aria-label="공식 Authenticator 계정 추가 안내 크게 보기"><img src="assets/onboarding/mfa-add-account.png" width="600" height="403" loading="lazy" alt="Microsoft 공식 Set up your account 화면에서 Work or school 계정 추가 후 Next를 선택하는 안내"></a>
-                <figcaption><strong>Microsoft 공식 화면.</strong> App·Phone 구성은 문서의 예시입니다. <a href="https://learn.microsoft.com/entra/identity/authentication/howto-registration-mfa-sspr-combined" target="_blank" rel="noopener noreferrer">원본 ↗</a></figcaption>
+                <a href="assets/onboarding/signin-3-keep-secure.png" target="_blank" rel="noopener noreferrer" aria-label="Let's keep your account secure 화면 크게 보기"><img src="assets/onboarding/signin-3-keep-secure.png" width="492" height="449" loading="lazy" alt="Let's keep your account secure 화면. We'll help you set up another way to verify it's you. 아래에 Use a different account, Learn more about verifying your identity 링크와 Next 버튼"></a>
+                <figcaption><strong>직접 촬영.</strong> 조직 정책에 따라 문구가 “More information required”로 보일 수 있습니다.</figcaption>
               </figure>
               <div class="screen-instructions">
-                <ol class="field-steps"><li>본인 휴대폰에서 Microsoft Authenticator를 엽니다. 요청된 알림·카메라 권한을 확인합니다.</li><li><strong>계정 추가 → 회사 또는 학교 계정 / Work or school → QR 코드 스캔</strong>.</li><li>컴퓨터의 “Set up your account” 화면에서 <strong>Next</strong>.</li></ol>
-                <p class="screen-check"><strong>다음 상태:</strong> 컴퓨터에 “Scan the QR code”가 나타나고, 본인 앱은 카메라로 QR을 스캔할 준비가 됩니다.</p>
+                <ol class="field-steps"><li>화면 위의 계정이 본인 UPN인지 확인하고 <strong>Next</strong>를 선택합니다.</li></ol>
+                <p class="screen-check"><strong>다음 상태:</strong> “Install Microsoft Authenticator” 화면이 나옵니다.</p>
+                <p class="screen-action"><strong>누르지 않을 것:</strong> Use a different account. 다른 계정으로 바꾸지 않습니다.</p>
+              </div>
+            </div>
+          </li>
+          <li class="screen-card">
+            <div class="screen-header"><span class="stage-number">4/9</span><h3>Authenticator 설치 또는 다른 인증 앱 선택</h3></div>
+            <div class="screen-body">
+              <figure class="screen-figure">
+                <a href="assets/onboarding/signin-4-install-app.png" target="_blank" rel="noopener noreferrer" aria-label="Install Microsoft Authenticator 화면 크게 보기"><img src="assets/onboarding/signin-4-install-app.png" width="492" height="620" loading="lazy" alt="Install Microsoft Authenticator 화면. Google Play와 App Store 버튼, Set up a different authentication app 링크, Next 버튼"></a>
+                <figcaption><strong>직접 촬영.</strong> 앱 스토어 버튼은 설치 안내입니다.</figcaption>
+              </figure>
+              <div class="screen-instructions">
+                <ol class="field-steps">
+                  <li>Microsoft Authenticator를 쓰려면 <strong>본인 휴대폰</strong>에 앱을 설치합니다. 설치했으면 컴퓨터에서 <strong>Next</strong>를 선택합니다.</li>
+                  <li>조직이 허용한 다른 인증 앱(6자리 코드 방식)을 쓰려면 <strong>Set up a different authentication app</strong> 링크를 선택합니다. 이 촬영은 이 경로를 따랐습니다.</li>
+                </ol>
+                <p class="screen-check"><strong>다음 상태:</strong> “Set up your account in app” 화면이 나옵니다.</p>
+              </div>
+            </div>
+          </li>
+          <li class="screen-card">
+            <div class="screen-header"><span class="stage-number">5/9</span><h3>앱에 회사 또는 학교 계정 추가</h3></div>
+            <div class="screen-body">
+              <figure class="screen-figure">
+                <a href="assets/onboarding/signin-5-setup-in-app.png" target="_blank" rel="noopener noreferrer" aria-label="Set up your account in app 화면 크게 보기"><img src="assets/onboarding/signin-5-setup-in-app.png" width="492" height="528" loading="lazy" alt="Set up your account in app 화면. 휴대폰 그림과 If prompted, allow notifications. Then add an account, and select Work or school. 안내, Next 버튼"></a>
+                <figcaption><strong>직접 촬영.</strong> 이 안내는 앱을 처음 쓸 때 보입니다.</figcaption>
+              </figure>
+              <div class="screen-instructions">
+                <ol class="field-steps"><li>본인 휴대폰에서 인증 앱을 열고 요청된 알림 권한을 허용합니다.</li><li>앱에서 <strong>계정 추가 → 회사 또는 학교 계정(Work or school)</strong>을 선택합니다.</li><li>컴퓨터에서 <strong>Next</strong>를 선택합니다.</li></ol>
+                <p class="screen-check"><strong>다음 상태:</strong> “Scan the QR code” 화면이 나옵니다.</p>
               </div>
             </div>
           </li>
           <li class="screen-card" id="signin-qr">
-            <div class="screen-header"><span class="stage-number">4/6</span><h3>실제 본인 화면의 QR을 스캔</h3></div>
+            <div class="screen-header"><span class="stage-number">6/9</span><h3>실제 본인 화면의 QR을 스캔</h3></div>
             <div class="screen-body">
               <figure class="screen-figure">
-                <a href="assets/onboarding/mfa-qr-masked.png" target="_blank" rel="noopener noreferrer" aria-label="공식 QR 등록 화면 크게 보기, QR 정보는 가림"><img src="assets/onboarding/mfa-qr-masked.png" width="770" height="618" loading="lazy" alt="실제 공식 Scan the QR code 화면에서 QR 전체를 가리고 QR 영역과 Next에 1과 2 번호를 표시"></a>
-                <figcaption><strong>공식 문서 화면.</strong> QR 데이터는 완전히 제거하고 번호를 추가했습니다. 이 사진을 스캔하지 마세요. <a href="https://support.microsoft.com/en-us/accounts-billing/work-school/set-up-security-info-from-a-sign-in-page" target="_blank" rel="noopener noreferrer">현재 공식 등록 순서 ↗</a></figcaption>
+                <a href="assets/onboarding/signin-6-scan-qr.png" target="_blank" rel="noopener noreferrer" aria-label="Scan the QR code 화면 크게 보기, QR 정보는 가림"><img src="assets/onboarding/signin-6-scan-qr.png" width="492" height="591" loading="lazy" alt="Scan the QR code 화면. QR 그림 자리는 회색 상자로 가렸고 아래에 Can't scan the QR code? 링크와 Next 버튼"></a>
+                <figcaption><strong>직접 촬영.</strong> QR 그림은 회색 상자로 가렸습니다. 이 사진을 스캔하지 마세요.</figcaption>
               </figure>
               <div class="screen-instructions">
-                <ol class="field-steps"><li>본인 앱으로 <strong>실제 본인 브라우저의 QR</strong>을 스캔합니다. 이 문서의 가려진 그림이 아닙니다.</li><li>앱에 계정이 추가되면 컴퓨터에서 <strong>Next</strong>.</li></ol>
-                <p class="screen-check"><strong>다음 상태:</strong> 앱에 본인 실습 계정이 추가되고 컴퓨터에 “Let's try it out”이 나타납니다.</p>
-                <p class="screen-action">QR을 읽지 못하면 실제 화면의 “Can't scan the QR image”(그림의 옛 표기: “Can't scan image?”) 안내를 따르거나 운영자에게 지원을 요청합니다. QR·수동 등록 키를 다른 사람에게 보내지 않습니다.</p>
+                <ol class="field-steps"><li>본인 앱으로 <strong>실제 본인 브라우저의 QR</strong>을 스캔합니다. 이 문서의 가려진 그림이 아닙니다.</li><li>QR을 읽지 못하면 <strong>Can't scan the QR code?</strong>를 선택합니다. 화면에 Account name과 Secret key가 나오며 <strong>본인 앱에만</strong> 직접 입력합니다. 이 값은 다른 사람에게 보내거나 촬영하지 않습니다.</li><li>앱에 계정이 추가되면 컴퓨터에서 <strong>Next</strong>를 선택합니다.</li></ol>
+                <p class="screen-check"><strong>다음 상태:</strong> 인증 앱 종류에 따라 알림 승인 또는 “Enter the code”(6자리 코드) 화면이 나옵니다.</p>
               </div>
             </div>
           </li>
           <li class="screen-card">
-            <div class="screen-header"><span class="stage-number">5/6</span><h3>본인 인증 앱의 알림 또는 인증 코드로 확인</h3></div>
+            <div class="screen-header"><span class="stage-number">7/9</span><h3>인증 앱의 6자리 코드 입력</h3></div>
             <div class="screen-body">
               <figure class="screen-figure">
-                <a href="assets/onboarding/mfa-test-pending.png" target="_blank" rel="noopener noreferrer" aria-label="공식 MFA 테스트 승인 대기 화면 크게 보기"><img src="assets/onboarding/mfa-test-pending.png" width="739" height="505" loading="lazy" alt="공식 Let's try it out 화면의 Approve the notification 문구와 비활성화된 Next 버튼"></a>
-                <figcaption><strong>공식 문서의 승인 대기 상태.</strong> Next가 아직 비활성화되어 있습니다. <a href="https://support.microsoft.com/en-us/accounts-billing/work-school/set-up-security-info-from-a-sign-in-page" target="_blank" rel="noopener noreferrer">원본 절차 ↗</a></figcaption>
+                <a href="assets/onboarding/signin-9-enter-code.png" target="_blank" rel="noopener noreferrer" aria-label="Enter the code 화면 크게 보기"><img src="assets/onboarding/signin-9-enter-code.png" width="492" height="404" loading="lazy" alt="Enter the code 화면. Enter the 6-digit code from your authenticator app. 안내, 비어 있는 Code 입력칸, 비활성화된 Next 버튼"></a>
+                <figcaption><strong>직접 촬영.</strong> 코드를 입력하기 전이라 Next가 꺼져 있습니다.</figcaption>
               </figure>
               <div class="screen-instructions">
-                <ol class="field-steps"><li>알림 방식이면 본인 휴대폰의 테스트 알림을 열고 <strong>내가 시작한 요청</strong>과 숫자 일치를 확인·승인합니다.</li><li>조직이 허용한 다른 인증 앱이 <strong>Enter the code</strong>를 표시하면 본인 앱의 현재 6자리 코드를 입력합니다. 코드를 공유하지 않습니다.</li><li>컴퓨터가 인증 결과를 받을 때까지 기다립니다. 비활성화된 Next를 반복해서 누르지 않습니다.</li></ol>
-                <p class="screen-check"><strong>다음 상태:</strong> 알림 방식은 “Notification approved”와 초록색 체크·활성화된 Next, TOTP 방식은 실제 코드 확인 성공·다음 안내입니다.</p>
+                <ol class="field-steps"><li>본인 앱에 추가된 이 계정의 <strong>현재 6자리 코드</strong>를 입력합니다. 코드는 약 30초마다 바뀝니다.</li><li><strong>Next</strong>를 선택합니다. 코드를 다른 사람에게 보내지 않습니다.</li></ol>
+                <p class="screen-check"><strong>다음 상태:</strong> “Authenticator app added”가 나옵니다. 알림 방식 앱이면 알림을 열어 <strong>내가 시작한 요청</strong>인지 확인하고 승인합니다.</p>
+                <p class="screen-action">코드가 틀렸다는 안내가 나오면 새 코드가 표시될 때까지 기다렸다가 다시 입력합니다. 계속 실패하면 앱의 시계·계정 항목이 이 화면의 계정과 같은지 확인하고 운영자에게 알립니다.</p>
               </div>
             </div>
           </li>
           <li class="screen-card" id="signin-approved">
-            <div class="screen-header"><span class="stage-number">6/6</span><h3>앱 인증 성공 → 나머지 등록 완료</h3></div>
+            <div class="screen-header"><span class="stage-number">8/9</span><h3>앱 등록 완료 → Done</h3></div>
             <div class="screen-body">
               <figure class="screen-figure">
-                <a href="assets/onboarding/mfa-test-approved.png" target="_blank" rel="noopener noreferrer" aria-label="공식 MFA 테스트 승인 성공 화면 크게 보기"><img src="assets/onboarding/mfa-test-approved.png" width="740" height="505" loading="lazy" alt="공식 Notification approved 초록색 체크와 활성화된 파란색 Next 버튼"></a>
-                <figcaption><strong>공식 문서의 앱 테스트 성공 상태.</strong> 이 화면만으로 모든 필수 등록이 끝났다고 판단하지 않습니다. <a href="https://support.microsoft.com/en-us/accounts-billing/work-school/set-up-security-info-from-a-sign-in-page" target="_blank" rel="noopener noreferrer">원본 절차 ↗</a></figcaption>
+                <a href="assets/onboarding/signin-10-app-added.png" target="_blank" rel="noopener noreferrer" aria-label="Authenticator app added 화면 크게 보기"><img src="assets/onboarding/signin-10-app-added.png" width="492" height="493" loading="lazy" alt="초록색 체크와 Authenticator app added. Use codes from this app the next time you sign in. 안내와 Done 버튼"></a>
+                <figcaption><strong>직접 촬영.</strong> 앱 등록이 끝났다는 확인 화면입니다.</figcaption>
               </figure>
               <div class="screen-instructions">
-                <ol class="field-steps"><li><strong>Notification approved / 코드 확인 성공</strong> 등 실제 인증 결과를 확인하고 표시된 Next·계속 버튼을 선택합니다.</li><li>조직이 요구하는 추가 방법과 최종 <strong>Done / 완료</strong> 안내까지 진행합니다. 선택 추천 안내와 필수 MFA 등록을 혼동하지 않습니다.</li><li>로그아웃 후 새 세션에서 <strong>초기 암호·본인 MFA</strong>로 재로그인합니다. 선택적으로 암호를 바꿨다면 본인 새 암호를 사용합니다.</li></ol>
-                <p class="screen-check"><strong>최종 완료:</strong> 본인 UPN·대상 테넌트·구독·배정 RG가 일치하고 접근됩니다. 이제 <a href="#step-account" data-lab-ref="sec:step-account">실습 1-2</a>의 배정 RG 확인으로 진행하세요.</p>
+                <ol class="field-steps"><li><strong>Authenticator app added</strong>가 보이는지 확인하고 <strong>Done</strong>을 선택합니다.</li><li>조직이 다른 방법을 더 요구하면 그 안내까지 마칩니다. 선택 추천 안내와 필수 MFA 등록을 혼동하지 않습니다.</li></ol>
+                <p class="screen-check"><strong>다음 상태:</strong> “Stay signed in?” 화면이 나옵니다. 이후 로그인부터는 UPN → 암호 → 앱의 6자리 코드를 입력합니다.</p>
+              </div>
+            </div>
+          </li>
+          <li class="screen-card">
+            <div class="screen-header"><span class="stage-number">9/9</span><h3>Stay signed in? → 본인 환경에서 선택</h3></div>
+            <div class="screen-body">
+              <figure class="screen-figure">
+                <a href="assets/onboarding/signin-11-stay-signed-in.png" target="_blank" rel="noopener noreferrer" aria-label="Stay signed in 화면 크게 보기"><img src="assets/onboarding/signin-11-stay-signed-in.png" width="492" height="401" loading="lazy" alt="Stay signed in? 화면. Do this to reduce the number of times you are asked to sign in. 안내, Don't show this again 체크 상자, No와 Yes 버튼"></a>
+                <figcaption><strong>직접 촬영.</strong> 로그인 후 맨 마지막에 한 번 나타납니다.</figcaption>
+              </figure>
+              <div class="screen-instructions">
+                <ol class="field-steps"><li>본인 전용 기기·프로필이면 <strong>Yes</strong>, 공용 기기이면 <strong>No</strong>를 선택합니다.</li><li>이 촬영은 별도 브라우저 프로필에서 Yes를 선택했습니다.</li></ol>
+                <p class="screen-check"><strong>최종 완료:</strong> Azure Portal 홈이 열리고 본인 UPN·대상 테넌트·구독·배정 RG가 일치합니다. 이제 <a href="#step-account" data-lab-ref="sec:step-account">실습 1-2</a>의 배정 RG 확인으로 진행하세요.</p>
+                <p class="screen-action">Foundry 포털(ai.azure.com)을 <strong>먼저 열지 마세요.</strong> 처음 여는 계정에는 “Setting up your project”가 자동으로 리소스를 만들 수 있습니다. 자세한 내용은 <a href="#step-resource" data-lab-ref="sec:step-resource">실습 2-1</a>에 있습니다.</p>
               </div>
             </div>
           </li>
         </ol>
         <div class="notice success"><strong>완료 확인:</strong> 새 세션에서 초기 암호(변경했다면 새 암호)·본인 MFA로 재로그인 → 본인 UPN·테넌트·구독·배정 RG 확인 → <a href="#step-account" data-lab-ref="sec:step-account">실습 1-2</a>의 배정 RG 확인.</div>
-        <div class="notice warning"><strong>암호·QR·인증 코드는 공유하지 않습니다.</strong> 본인 인증수단만 등록하고 내가 시작하지 않은 알림은 거부합니다. 실물 로그인·MFA는 기존 녹화에 포함되지 않았습니다.</div>
+        <div class="notice warning"><strong>암호·QR·인증 코드는 공유하지 않습니다.</strong> 본인 인증수단만 등록하고 내가 시작하지 않은 알림은 거부합니다. 위 화면은 2026.11.18 첫 로그인 때 촬영했고, 영상에는 로그인·MFA 입력 장면을 넣지 않았습니다.</div>
         <details id="signin-totp">
-          <summary>다른 인증 앱을 선택해 Enter the code가 나온 경우 · TOTP</summary>
+          <summary>6자리 코드(TOTP) 방식 · 수동 등록과 다음 로그인</summary>
           <div class="details-body">
-            <p><strong>실제 조직 화면이 제공한 경우에만</strong> 사용합니다. 앱 설치 화면의 다른 인증 앱 선택 링크(공식 문서 표기: <strong>I want to use a different authenticator app</strong>)를 선택했다면 위 회사·학교 계정의 알림 설정 대신 다음 순서를 따릅니다.</p>
+            <p><strong>실제 조직 화면이 제공한 경우에만</strong> 사용합니다. 앱 설치 화면의 <strong>Set up a different authentication app</strong> 링크를 선택하면 알림 방식 대신 아래 순서로 등록합니다.</p>
             <ol class="task-list">
-              <li><strong>Set up your account in app:</strong> 본인 승인된 인증 앱에 실제 화면의 QR로 계정을 추가합니다. 수동 등록이 필요하면 본인 화면의 <strong>Copy name / Copy key</strong> 값을 본인 앱에만 입력합니다. QR·키를 촬영·제출하지 않습니다.</li>
-              <li><strong>Enter the code:</strong> 본인 앱의 현재 <strong>6자리 코드</strong> 입력 → Next → 실제 성공 결과와 남은 필수 안내 확인. 알림 승인·Notification approved 화면은 나오지 않을 수 있습니다.</li>
-              <li>새 세션에서 초기 암호(변경했다면 새 암호)와 본인 앱 코드를 사용해 재로그인합니다. 이미 TOTP로 MFA를 완료한 뒤 표시되는 선택 앱 추천은 필수 등록과 구분합니다. 방법이 없거나 차단되면 운영자에게 확인하며 정책을 우회하지 않습니다.</li>
+              <li><strong>Set up your account in app:</strong> 본인 승인된 인증 앱에 실제 화면의 QR로 계정을 추가합니다. QR을 쓸 수 없으면 <strong>Can't scan the QR code?</strong>의 <strong>Copy name / Copy key</strong> 값을 본인 앱에만 입력합니다. QR·키를 촬영·제출하지 않습니다.</li>
+              <li><strong>Enter the code:</strong> 본인 앱의 현재 <strong>6자리 코드</strong> 입력 → Next → <strong>Authenticator app added</strong> → Done. 알림 승인 화면은 나오지 않습니다.</li>
+              <li><strong>다음 로그인부터:</strong> UPN → 초기 암호 입력 뒤 <strong>Enter code</strong> 화면에 본인 앱의 현재 코드를 입력합니다. 이미 TOTP로 MFA를 완료한 뒤 표시되는 선택 앱 추천은 필수 등록과 구분합니다. 방법이 없거나 차단되면 운영자에게 확인하며 정책을 우회하지 않습니다.</li>
             </ol>
-            <p>11월 8일 새 테스트 Guest에서 확인한 방식은 이 <strong>Software OATH(TOTP)</strong>입니다. <a href="https://learn.microsoft.com/entra/identity/authentication/concept-authentication-oath-tokens" target="_blank" rel="noopener noreferrer">Microsoft 공식 OATH 설명 ↗</a></p>
+            <div class="screen-grid">
+              <figure class="screen-figure">
+                <a href="assets/onboarding/signin-8-secret-key.png" target="_blank" rel="noopener noreferrer" aria-label="수동 등록 화면 크게 보기"><img src="assets/onboarding/signin-8-secret-key.png" width="492" height="514" loading="lazy" alt="Enter the following into Authenticator 화면. Account name과 Copy name, Secret key(회색 상자로 가림)와 Copy key 링크, Next 버튼"></a>
+                <figcaption><strong>수동 등록 화면.</strong> Account name은 바꿔 표시했고 Secret key는 회색 상자로 가렸습니다. 실제 값은 본인 앱에만 입력합니다.</figcaption>
+              </figure>
+              <figure class="screen-figure">
+                <a href="assets/onboarding/signin-12-return-code.png" target="_blank" rel="noopener noreferrer" aria-label="다음 로그인의 Enter code 화면 크게 보기"><img src="assets/onboarding/signin-12-return-code.png" width="492" height="441" loading="lazy" alt="Enter code 화면. Enter the code displayed in the authenticator app on your mobile device. 안내, 코드 입력칸(흐리게 가림), Cancel과 Verify 버튼"></a>
+                <figcaption><strong>다음 로그인의 코드 확인 화면.</strong> 입력한 코드는 흐리게 가렸습니다. 코드를 입력하고 Verify를 선택합니다.</figcaption>
+              </figure>
+            </div>
+            <p>2026.11.08과 2026.11.18에 새 테스트 Guest로 확인한 방식이 이 <strong>Software OATH(TOTP)</strong>입니다. <a href="https://learn.microsoft.com/entra/identity/authentication/concept-authentication-oath-tokens" target="_blank" rel="noopener noreferrer">Microsoft 공식 OATH 설명 ↗</a></p>
           </div>
         </details>
         <details id="signin-password">
           <summary>선택 · 내가 암호를 바꾸고 싶을 때만</summary>
           <div class="details-body">
-            <p><strong>이번 실습의 필수 단계가 아닙니다.</strong> 본인이 변경하려면 공식 암호 변경 페이지에서 현재 사용 중인 암호 → 새 암호 → 같은 새 암호 확인 → Submit을 진행합니다. 변경한 암호는 본인만 알고 이후 재로그인에 사용하며 운영자에게 보내지 않습니다.</p>
-            <figure class="screen-figure">
-              <a href="assets/onboarding/password-change-fields.png" target="_blank" rel="noopener noreferrer" aria-label="선택 암호 변경 입력칸 크게 보기"><img src="assets/onboarding/password-change-fields.png" width="620" height="475" loading="lazy" alt="선택 암호 변경 화면의 현재 암호, 새 암호, 확인과 submit 버튼"></a>
-              <figcaption>공식 문서의 입력 영역 확대·번호 추가 예시입니다. 화면의 문자 수·강도 기준 대신 실제 조직 정책을 따릅니다. <a href="https://support.microsoft.com/en-us/accounts-billing/work-school/change-your-work-or-school-account-password" target="_blank" rel="noopener noreferrer">공식 변경 절차 ↗</a></figcaption>
-            </figure>
+            <p><strong>이번 실습의 필수 단계가 아닙니다.</strong> 본인이 변경하려면 <a href="https://support.microsoft.com/en-us/accounts-billing/work-school/change-your-work-or-school-account-password" target="_blank" rel="noopener noreferrer">공식 암호 변경 절차 ↗</a>에서 현재 사용 중인 암호 → 새 암호 → 같은 새 암호 확인 → Submit을 진행합니다. 변경한 암호는 본인만 알고 이후 재로그인에 사용하며 운영자에게 보내지 않습니다. 화면의 문자 수·강도 기준 대신 실제 조직 정책을 따릅니다. 이 가이드는 암호를 바꾸는 화면을 촬영하지 않았습니다.</p>
           </div>
         </details>
         <details id="auth-test-evidence">
-          <summary>2026.11.08 새 Internal Guest의 초기 암호 + MFA 로그인 실측</summary>
+          <summary>로그인·MFA 실측 · 2026.11.08 로그인 검증과 2026.11.18 처음부터 재촬영</summary>
           <div class="details-body">
-            <p>비고객용 Guest 1개를 새로 만들고 암호 변경 요구 <code>false</code>, 초기 암호 유지, 새 브라우저 로그인과 정책이 제공한 <strong>Software OATH(TOTP)</strong> 등록·인증을 확인했습니다. 예상 Guest·테넌트가 일치했고 ARM·Graph가 토큰을 수락했으며 진단 정보에 <code>pwd</code>·<code>mfa</code>가 확인됐습니다. <a href="assets/guest-auth-verification.json">비밀 값 없는 검증 JSON</a>.</p>
-            <p><strong>검증 범위:</strong> 운영자 환경의 로그인 전용 테스트입니다. 이 계정에는 RG·Azure 역할을 추가하지 않아 구독 목록 0개가 정상입니다. 실제 참가자는 SE가 배정한 RG·세 역할을 확인해야 합니다. 교육장 네트워크·Microsoft Authenticator 푸시·Foundry E2E·동시 사용을 대신 증명하지 않습니다.</p>
+            <p><strong>2026.11.18:</strong> 참가자 권한 계정(Internal Guest)을 새로 만들어 초기 암호 로그인 → MFA 등록 → Stay signed in → 다음 로그인의 코드 입력까지 처음부터 따라 하며 위 화면을 촬영했습니다. 그 계정으로 Foundry 리소스 생성부터 Monitor·Traces 확인까지 이어서 실습 1~5와 선택 실습 6~10을 모두 다시 수행했습니다.</p>
+            <p><strong>2026.11.08:</strong> 비고객용 Guest 1개를 새로 만들고 암호 변경 요구 <code>false</code>, 초기 암호 유지, 새 브라우저 로그인과 정책이 제공한 <strong>Software OATH(TOTP)</strong> 등록·인증을 확인했습니다. 예상 Guest·테넌트가 일치했고 ARM·Graph가 토큰을 수락했으며 진단 정보에 <code>pwd</code>·<code>mfa</code>가 확인됐습니다. <a href="assets/guest-auth-verification.json">비밀 값 없는 검증 JSON</a>.</p>
+            <p><strong>검증 범위:</strong> 운영자 환경의 테스트 계정입니다. 실제 참가자는 SE가 배정한 RG·세 역할을 확인해야 합니다. 교육장 네트워크·Microsoft Authenticator 푸시·동시 사용을 대신 증명하지 않습니다.</p>
           </div>
         </details>
         <details>
@@ -258,7 +313,7 @@
             <p><a href="https://mysignins.microsoft.com/security-info" target="_blank" rel="noopener noreferrer">내 로그인 → 보안 정보</a>에서는 본인 계정·대상 테넌트를 확인한 뒤 등록 상태를 확인합니다. 운영자·다른 참가자의 인증수단으로 대신 등록하지 않습니다.</p>
           </div>
         </details>
-        <p class="screen-note">재구성 로그인·암호·MFA 그림 대신 실제 익명 인증 UI와 공식 문서 화면을 사용합니다. <a href="assets/onboarding/ATTRIBUTION.txt">출처·가림/확대·재사용 조건</a> · 참가자 계정·암호·QR을 촬영한 기록은 아닙니다.</p>
+        <p class="screen-note">이 화면들은 모두 2026.11.18에 직접 촬영했습니다. 이메일 표시는 <code>user@contoso.com</code>으로 바꾸고 입력값·QR·수동 등록 키는 가렸습니다. <a href="assets/onboarding/ATTRIBUTION.txt">촬영 방법·가림 처리</a></p>
       </section>
       <section class="panel observed-section" id="responsibilities">
         <p class="section-label">YOUR ACCOUNT AND ROLES</p>
@@ -339,9 +394,9 @@
           <table aria-label="참가자의 모델 배포 기준">
             <thead><tr><th>입력·확인 항목</th><th>참가자 기준</th></tr></thead>
             <tbody>
-              <tr><td>모델·지역·배포 유형</td><td>일반 실습은 <strong>gpt-6.1-terra</strong>와 운영자가 배정한 버전·지역·배포 유형을 씁니다. 화면·영상의 <strong>gpt-5-mini · East US 2 · Global Standard</strong>는 이전 녹화 예시입니다.</td></tr>
+              <tr><td>모델·지역·배포 유형</td><td>일반 실습은 <strong>gpt-6.1-terra</strong>와 운영자가 배정한 버전·지역·배포 유형을 씁니다. 화면·영상은 <strong>gpt-6.1-terra(2026-10-26) · North Central US · Global Standard</strong>로 촬영했습니다.</td></tr>
               <tr><td>개인별 TPM</td><td><strong>배정표의 TPM · 일반 실습용 배포 1개</strong>를 따릅니다. 1명당 10,000 TPM은 계산 예시이며 실제 잔여량에 따라 달라집니다. 입력 단위는 아래 ‘TPM 입력’에서 확인합니다.</td></tr>
-              <tr><td>실행 한도</td><td>녹화의 GPT-5 mini는 Max output tokens=1024·Reasoning Effort=minimal이었습니다. 다른 모델은 운영자가 검증해 안내한 지원 설정을 따릅니다. 응답 설정일 뿐 배포 TPM·비용 상한이 아닙니다.</td></tr>
+              <tr><td>실행 한도</td><td>녹화의 gpt-6.1-terra는 Max completion tokens=1024·Reasoning effort=low(기본값. terra는 minimal을 지원하지 않습니다)로 실행했습니다. 다른 모델은 운영자가 검증해 안내한 지원 설정을 따릅니다. 응답 설정일 뿐 배포 TPM·비용 상한이 아닙니다.</td></tr>
               <tr><td>설정 후 확인</td><td>실제 배포 이름·할당 TPM을 확인하고 운영자의 점검 요청에 응답합니다. 승인 없이 TPM을 늘리거나 추가 배포를 만들지 않습니다.</td></tr>
             </tbody>
           </table>
@@ -351,23 +406,23 @@
         <p class="intro"><strong>일반 실습 참가자는 gpt-6.1-terra를 하나씩 배포</strong>합니다. 실제 모델·버전·지역·배포 유형·TPM은 <strong>운영자의 배정표가 기준</strong>이며, RG가 달라도 같은 모델 쿼터 풀을 공유하므로 본인 배정량만 사용합니다.</p>
         <div class="notice"><strong>모델 고정 설정은 바꾸지 않습니다.</strong> Optimizer 등에서 특정 모델·버전을 요구하면 그 지정값을 유지하고, 모델을 자유롭게 고를 수 있는 설정만 gpt-6.1-terra를 씁니다. 고정 모델 단계의 추가 배포·TPM은 운영자가 따로 승인하며, terra의 남는 쿼터를 다른 모델로 옮겨 쓸 수 없습니다.</div>
         <ol class="task-list">
-          <li><strong>모델 검색:</strong> <a href="#step-model" data-lab-ref="sec:step-model">실습 3-2</a>의 Models → Deploy a base model에서 녹화의 <code>gpt-5-mini</code> 대신 <strong>gpt-6.1-terra</strong>를 검색하고 배정 버전·배포 유형을 고릅니다. 모델 고정 단계만 그 단계의 지정 모델을 검색합니다. 배포 이름은 본인의 고유 이름 규칙을 씁니다.</li>
-          <li><strong>TPM 입력:</strong> <strong>본인 배정값</strong>과 필드의 capacity/TPM 단위를 먼저 확인합니다. 10,000 TPM을 배정받았고 필드가 TPM 단위일 때만 <strong>10000</strong>을 입력합니다. 녹화의 API capacity=10을 그대로 쓰지 않습니다.</li>
-          <li><strong>모델·Agent 연결:</strong> Playground와 Agent에서 방금 만든 <strong>본인 배포</strong>를 선택합니다. gpt-6.1-terra에는 영상의 <code>minimal</code>을 복사하지 말고 운영자가 안내한 Reasoning Effort·출력 한도를 씁니다. 같은 지시문이어도 응답·토큰·지연은 달라질 수 있습니다.</li>
+          <li><strong>모델 검색:</strong> <a href="#step-model" data-lab-ref="sec:step-model">실습 3-2</a>의 Models → Deploy a base model에서 <strong>gpt-6.1-terra</strong>를 검색하고 배정 버전·배포 유형을 고릅니다. 모델 고정 단계만 그 단계의 지정 모델을 검색합니다. 배포 이름은 본인의 고유 이름 규칙을 씁니다.</li>
+          <li><strong>TPM 입력:</strong> <strong>본인 배정값</strong>과 필드의 capacity/TPM 단위를 먼저 확인합니다. 이 화면의 Tokens per Minute Rate Limit 칸은 TPM 단위(기본값 250000)라서 10,000 TPM을 배정받았다면 <strong>10000</strong>을 입력합니다. 배포 API·CLI의 capacity는 1,000 TPM 단위(10 = 10,000 TPM)입니다.</li>
+          <li><strong>모델·Agent 연결:</strong> Playground와 Agent에서 방금 만든 <strong>본인 배포</strong>를 선택합니다. 영상은 Max completion tokens=1024와 기본 Reasoning effort(low)로 실행했습니다. 운영자가 다른 Reasoning Effort·출력 한도를 안내하면 그 값을 씁니다. 같은 지시문이어도 응답·토큰·지연은 달라질 수 있습니다.</li>
           <li><strong>막히면 승인된 대안만:</strong> 모델이 검색되지 않거나 400·429·쿼터 오류가 나면 <a href="#troubleshooting">문제 대응표</a>를 확인하고 실습 단계·배정 모델·오류를 운영자에게 전달합니다. 임의로 다른 모델·지역·더 큰 TPM·추가 배포를 고르지 않습니다.</li>
         </ol>
-        <div class="notice warning"><strong>화면·영상은 GPT-5 mini 검증 기록입니다.</strong> gpt-6.1-terra의 버전·지역·배포 유형·실행 설정은 배정표로 확인하세요. 녹화가 terra의 Agent 실행·동시 부하를 검증한 것은 아니며 다른 모델로 자동 대체하지 않습니다. 안내된 TPM은 기술적 하드캡이 아니므로(RG Contributor는 배포 설정을 바꿀 수 있습니다) 공동 쿼터를 독점하지 않도록 배포 개수·TPM 규칙을 지키고, 429·쿼터 부족은 임의 증설 대신 <a href="#troubleshooting">문제 대응표</a>를 따릅니다.</div>
-        <div class="notice warning"><strong>하네스 실습을 이어서 한다면 개인 10,000 TPM으로는 부족합니다.</strong> 같은 프로젝트에서 하네스 에이전트를 실행하면 호출 한 번에 토큰을 많이 써서, 2026.11.17 재현의 10,000 TPM 배포에서는 단순 질문도 rate limit으로 실패했습니다. 필요한 TPM은 운영자의 배정표를 따르고, 근거는 <a href="#ignite-start" data-lab-ref="sec:ignite-start">실습 6-1</a>에 있습니다.</div>
+        <div class="notice warning"><strong>화면·영상은 gpt-6.1-terra 한 계정의 Prompt Agent 실행 기록입니다.</strong> 버전·지역·배포 유형·TPM·실행 설정은 배정표로 확인하세요. 동시 부하를 검증한 것은 아니며 다른 모델로 자동 대체하지 않습니다. 안내된 TPM은 기술적 하드캡이 아니므로(RG Contributor는 배포 설정을 바꿀 수 있습니다) 공동 쿼터를 독점하지 않도록 배포 개수·TPM 규칙을 지키고, 429·쿼터 부족은 임의 증설 대신 <a href="#troubleshooting">문제 대응표</a>를 따릅니다.</div>
+        <div class="notice warning"><strong>하네스 실습을 이어서 한다면 개인 10,000 TPM으로는 부족합니다.</strong> 같은 프로젝트에서 하네스 에이전트를 실행하면 호출 한 번에 토큰을 많이 써서(이번 촬영의 질문 1회는 35,913토큰), 2026.11.17 시험의 10,000 TPM 배포에서는 단순 질문도 rate limit으로 실패했습니다. 이번 재촬영의 선택 실습은 운영자가 100,000 TPM으로 올린 배포에서 실행했습니다. 필요한 TPM은 운영자의 배정표를 따르고, 근거는 <a href="#ignite-start" data-lab-ref="sec:ignite-start">실습 6-1</a>에 있습니다.</div>
         <div class="notice"><strong>Ignite 2026 발표(Foundry 모델).</strong> Book of News는 Microsoft-Decision-1.1 GA, MAI 코딩·이미지 모델(Preview·제한 공개), fal·Baseten 모델(Preview), model router의 모델 풀 확대처럼 모델 선택지가 늘었다고 발표했습니다(<a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Book of News ↗</a> · <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609" target="_blank" rel="noopener noreferrer">Foundry 모델 블로그 ↗</a>). 이 실습의 일반 모델은 배정표의 <code>gpt-6.1-terra</code>이며 새 모델은 범위 밖입니다. 새 모델을 쓰려면 모델·버전·배포 유형·쿼터를 운영자 승인으로 따로 정합니다.</div>
         <p class="intro"><a href="operator.html#model-groups">운영자의 terra TPM 배분·고정 모델 예외 기준</a> · <a href="operator.html#capacity">TPM 계획·할당 점검</a> · <a href="https://learn.microsoft.com/azure/foundry/openai/how-to/quota" target="_blank" rel="noopener noreferrer">공식 쿼터 관리</a> · <a href="https://learn.microsoft.com/azure/foundry/openai/how-to/reasoning#reasoning-effort" target="_blank" rel="noopener noreferrer">Reasoning Effort 지원</a></p>
       </section>
       <section class="panel observed-section" id="video">
         <p class="section-label">FULL WALKTHROUGH</p>
         <h2>실제 포털 조작을 처음부터 끝까지.</h2>
-        <p class="intro">슬라이드쇼가 아닌 연속 브라우저 녹화입니다. 생성 대기와 실제 RP 등록 오류도 포함합니다. 로그인·암호 변경·MFA 등록은 보안상 제외했으므로 <a href="#first-sign-in">필수 첫 로그인 실습</a>을 먼저 완료하세요. 키 필드는 가렸고 음성 내레이션은 없습니다.</p>
-        <div class="notice warning"><strong>영상 속 번호는 녹화 당시의 10개 챕터 기준입니다.</strong> 이 영상은 실습 1~5의 구 포털 화면입니다. 녹화에서는 Application Insights를 Azure Portal에서 먼저 만들었습니다(영상 06). 영상 07~10은 <a href="#step-connect" data-lab-ref="sec:step-connect">실습 4-2</a>부터 <a href="#step-traces" data-lab-ref="sec:step-traces">실습 5-2</a>까지에 해당합니다. 챕터 버튼의 <strong>‘가이드 실습’</strong> 라벨을 따라가세요. 영상 06은 관측성 연결의 <a href="#connect-alternate">대체 경로</a>입니다.</div>
+        <p class="intro">실제 포털을 조작한 브라우저 녹화입니다(2026.11.18). 실습별로 따로 녹화한 장면을 이어 붙였고, 배포·생성처럼 기다리는 구간은 8배속으로 빠르게 재생하며 화면에 표시합니다. 로그인·암호 변경·MFA 등록은 보안상 영상에서 제외했으므로 <a href="#first-sign-in">필수 첫 로그인 실습</a>을 먼저 완료하세요. 입력한 이메일·이름·ID는 가렸고 음성 내레이션은 없습니다.</p>
+        <div class="notice"><strong>영상 챕터는 실습 1~5와 대체 경로입니다.</strong> 챕터 버튼의 <strong>‘가이드 실습’</strong> 라벨을 따라가세요. ‘대체 경로’ 챕터는 Application Insights가 연결되지 않은 프로젝트에서 Traces로 직접 연결하는 장면(<a href="#connect-alternate">실습 4-2 대체 경로</a>)입니다. 선택 실습 6~10은 영상 없이 화면과 설명으로 제공합니다.</div>
         <div class="video-frame">
-          <video id="walkthrough" controls playsinline preload="metadata" poster="assets/screenshots/57-agent-trace-list.png" aria-label="Internal Guest 전체 포털 실습 녹화">
+          <video id="walkthrough" controls playsinline preload="metadata" poster="assets/screenshots/47-agent-trace-list.png" aria-label="참가자 계정으로 촬영한 전체 포털 실습 녹화">
             <source src="assets/video/full-walkthrough.mp4" type="video/mp4">
             MP4 재생을 지원하는 브라우저에서 열거나 아래 파일을 내려받으세요.
           </video>
@@ -406,7 +461,7 @@
               <tr><td>리소스 생성 <code>403</code></td><td>선택한 구독·본인 RG·허용 지역을 확인합니다. Foundry User만으로 리소스 생성은 안 됩니다.</td><td>본인 RG의 Contributor, 오류의 거부된 작업과 Azure Policy·허용 SKU/지역.</td></tr>
               <tr><td>Agent 생성 거부·모델/Agent 호출 <code>403</code></td><td>올바른 프로젝트·배포·계정인지 확인합니다. 모델 배포 성공·RG Contributor가 있어도 Foundry 데이터 권한은 별개입니다.</td><td><strong>Guest 자신의 Foundry User · 본인 RG</strong>. 운영자 Owner 권한은 Guest에게 전달되지 않습니다. 도구 실패라면 실제 실행 MI·연결 대상 서비스의 데이터 권한도 점검.</td></tr>
               <tr><td>역할 추가 후에도 거부</td><td>운영자가 할당을 확인한 뒤 재로그인합니다. 일반 역할 변경은 최대 10분이 걸릴 수 있으므로 계속 역할을 추가하지 않습니다.</td><td>정확한 Object ID·Scope·상위/그룹 할당·캐시. MI의 그룹 권한 변경은 더 오래 걸릴 수 있습니다.</td></tr>
-              <tr><td><code>*/register/action</code><br>사전 검증 실패</td><td>오류에 적힌 공급자 이름과 작업을 전달합니다. 본인 역할을 구독 Contributor·Owner로 바꾸지 않습니다.</td><td>운영자가 구독 RP를 등록. 실제 예시 오류는 <strong>Microsoft.KeyVault → Microsoft.DocumentDB</strong> 순서였습니다.</td></tr>
+              <tr><td><code>*/register/action</code><br>사전 검증 실패</td><td>오류에 적힌 공급자 이름과 작업을 전달합니다. 본인 역할을 구독 Contributor·Owner로 바꾸지 않습니다.</td><td>운영자가 구독 RP를 등록. 11월 5일 환경에서 만난 예시 오류는 <strong>Microsoft.KeyVault → Microsoft.DocumentDB</strong> 순서였습니다. 이번 재촬영 구독에는 이미 등록돼 있어 화면을 다시 만들지 못했습니다.</td></tr>
               <tr class="group-row"><th colspan="3" scope="colgroup">쿼터·모델·배포</th></tr>
               <tr><td>쿼터 목록 비어 있음·조회 <code>403</code></td><td>빈 화면을 실제 쿼터 0으로 단정하지 않습니다. Guest 자신의 역할·Scope를 확인하고 전파 후 재로그인·Manage → Quota 새로고침을 합니다.</td><td><strong>Cognitive Services Usages Reader · 구독</strong>. RG 할당은 구독 Usages API를 허용하지 않습니다. Owner로 같은 구독·모델·배포 유형·Quota Scope의 실제 한도·배포 할당을 대조하고 부족할 때만 증설을 검토합니다.</td></tr>
               <tr><td>배포 실패·<code>QuotaExceeded</code></td><td>실습이 지정한 지역·모델·버전·배포 유형·TPM 입력 단위를 확인합니다. 10,000 TPM은 이번 예시 값이지 모든 모델의 고정값이 아닙니다.</td><td>잔여 쿼터·현재 배포 할당·지역 공급·리소스 한도. 승인된 대안만 사용.</td></tr>
@@ -414,10 +469,14 @@
               <tr><td><code>400</code><br>Reasoning Effort·파라미터 오류</td><td>gpt-6.1-terra 등 새 배정 모델에는 영상의 minimal을 그대로 쓰지 않습니다. 운영자가 안내한 지원 설정·출력 한도를 확인합니다.</td><td>배정 모델·버전·지원 파라미터. 도구를 쓰는 확장 실습이면 API·도구 호출 지원도 확인.</td></tr>
               <tr><td><code>429</code><br>속도 한도</td><td>반복 전송을 멈추고 Retry-After/대기 안내에 따라 재시도합니다. 요청 빈도와 출력 한도를 줄입니다. 하네스에서 'Model deployment rate limit exceeded'가 나오면 <a href="#ignite-troubleshooting">하네스·평가 문제 대응표</a>를 따릅니다.</td><td>개별 배포 TPM/RPM·버스트·같은 쿼터 풀의 동시 사용, 운영자가 계획한 시작 분산.</td></tr>
               <tr><td>이름 충돌·이미 존재함</td><td>운영자가 준 고유 이름 규칙을 사용합니다. 녹화 예시 이름이나 다른 사람 리소스를 재사용·삭제하지 않습니다.</td><td>이름 사용·soft-delete·구독 한도 여부. 필요한 경우 승인된 새 고유 이름.</td></tr>
+              <tr class="group-row"><th colspan="3" scope="colgroup">프로젝트·에이전트·모델 호출</th></tr>
+              <tr><td><code>Project not found</code><br>(프로젝트 홈·모델 채팅·에이전트 생성)</td><td>방금 만든 프로젝트라면 삭제된 것이 아니라 포털에 반영되기 전입니다. 다시 만들지 말고 5~10분 기다린 뒤 같은 주소를 새로 고칩니다. 10분이 지나도 계속되면 같은 이름으로 다시 만들지 말고 오류 화면의 시각과 프로젝트 이름을 운영자에게 알립니다.</td><td>프로젝트 상태(Succeeded)와 참가자의 Foundry User 역할 전파, 같은 이름의 Foundry 리소스·프로젝트를 최근에 삭제하고 다시 만들었는지. 촬영 중 같은 계정 이름을 삭제 직후 다시 만들었을 때는 17분이 지나도 열리지 않았으므로 새 이름을 씁니다.</td></tr>
+              <tr><td>Models 목록에 <code>text-embedding-ada-002</code>가 저절로 생김</td><td>에이전트를 처음 만들 때 프로젝트에 자동으로 생기는 배포입니다. 지우거나 바꾸지 않습니다.</td><td>Standard 120K TPM 배포가 참가자마다 하나 더 생깁니다. 모델 쿼터·TPM 계획에 포함해 계산합니다.</td></tr>
               <tr class="group-row"><th colspan="3" scope="colgroup">Traces·관측성</th></tr>
               <tr><td>Traces에 <strong>Connect</strong> 막대가 없음</td><td>Traces 화면 오른쪽에 Connect가 보이지 않으면 <strong>Manage → Project details → Connected resources → Add connection → Application Insights</strong>로 연결합니다. 이미 연결되어 있으면 Traces에서 새 대화를 실행해 기록을 확인합니다.</td><td>프로젝트가 New Foundry 화면인지, 이미 연결된 App Insights가 있는지.</td></tr>
-              <tr><td>Create new resource 실패 · <code>Multiple connection ... AppInsights</code></td><td>오류 문구를 그대로 운영자에게 전달합니다. <code>Multiple connection</code> 오류는 이미 연결이 있다는 뜻이므로 새로 만들지 말고 기존 연결을 사용합니다. 권한·정책 오류이거나 다른 RG(예: <code>DefaultResourceGroup-*</code>)를 만들려 하면 멈추고 <a href="#connect-alternate">대체 경로</a>로 Azure Portal에서 본인 RG에 먼저 만든 뒤 목록에서 선택합니다.</td><td>본인 RG의 Contributor, RP(<code>Microsoft.Insights</code>·<code>Microsoft.OperationalInsights</code>) 등록, 정책, 새 리소스가 만들어지는 RG·지역.</td></tr>
-              <tr><td>Traces가 비어 있음</td><td>Traces에서 만든 App Insights가 <strong>연결됨(Connected)</strong>인지 확인하고 연결 후 <strong>새 대화 실행</strong> → Date range·Version 필터 → 수집 대기·새로고침. 연결 이전 실행은 소급되지 않습니다.</td><td>올바른 프로젝트·App Insights 연결, 새 Response ID·실행 시각·수집 상태.</td></tr>
+              <tr><td>Create new resource 실패 · <code>Multiple connection ... AppInsights</code></td><td>오류 문구를 그대로 운영자에게 전달합니다. <code>Multiple connection</code> 오류는 이미 연결이 있다는 뜻이므로 새로 만들지 말고 기존 연결을 사용합니다. 권한·정책 오류이거나 다른 RG(예: <code>DefaultResourceGroup-*</code>)에 만들려 하면 멈추고 운영자에게 알립니다.</td><td>본인 RG의 Contributor, RP(<code>Microsoft.Insights</code>·<code>Microsoft.OperationalInsights</code>) 등록, 정책, 새 리소스가 만들어지는 RG·지역. 정상이면 새 Application Insights와 <code>DefaultWorkspace-…</code> 작업 영역이 프로젝트가 있는 RG에 만들어집니다.</td></tr>
+              <tr><td>Monitor settings에 <code>Setup incomplete … Monitoring Reader</code> 경고</td><td>실습 5의 Monitor·Traces에는 영향이 없습니다. 경고의 Resolve를 누르거나 역할을 직접 추가하지 말고 운영자에게 알립니다.</td><td>프로젝트 관리 ID에 Application Insights의 <strong>Monitoring Reader</strong>를 할당합니다. 선택 실습의 Insights·평가자 컨텍스트에는 이 역할이 필요합니다. 할당 뒤 전파에 몇 분 걸립니다.</td></tr>
+              <tr><td>Traces가 비어 있음</td><td>Traces에서 만든 App Insights가 <strong>연결됨(Connected)</strong>인지 확인하고 연결 후 <strong>새 대화 실행</strong> → Date range·Version 필터 → 수집 대기·새로고침. 연결 이전 실행은 소급되지 않습니다. 실행 직후에는 몇 분 늦게 나타나며 촬영에서도 세 번 실행한 뒤 처음에는 1~2건만 보였습니다.</td><td>올바른 프로젝트·App Insights 연결, 새 Response ID·실행 시각·수집 상태.</td></tr>
               <tr><td>Traces·로그 조회 <code>403</code></td><td>모델 호출이 성공하는지와 로그 조회 거부를 구분합니다. 다른 참가자의 로그나 연결 문자열을 공유받지 않습니다.</td><td>연결된 App Insights의 Log Analytics Reader, 워크스페이스 접근 모드·보호 테이블 권한.</td></tr>
               <tr class="group-row"><th colspan="3" scope="colgroup">네트워크·화면·기타</th></tr>
               <tr><td>접속 시간 초과·사설망 <code>403</code></td><td>실습에 승인된 URL·VPN·네트워크를 사용합니다. 인증서 경고 우회나 public access 설정 변경은 하지 않습니다.</td><td>IP 제한·Private Endpoint·DNS·네트워크 경로와 인증 거부를 구분한 점검.</td></tr>
@@ -428,7 +487,7 @@
           </table>
         </div>
         <details>
-          <summary>실제 발생한 RP 미등록 오류 화면 2장</summary>
+          <summary>실제로 겪은 오류 화면 · 프로젝트를 만든 직후 Project not found</summary>
           <div class="details-body"><div id="error-gallery"></div></div>
         </details>
         <div class="notice"><strong>지원 요청에 포함:</strong> 발생 시각(시간대 포함), 계정·대상 테넌트·배정 RG, 수행 작업, 리소스/모델 이름, 오류 코드·Correlation/Request ID, 민감 필드를 가린 화면. 승인된 문의 경로만 사용하고 <strong>암호·MFA 코드·토큰·API 키·연결 문자열은 전달하지 않습니다.</strong></div>
@@ -438,16 +497,16 @@
       <section class="panel observed-section" id="finish">
         <p class="section-label">DONE MEANS VERIFIED</p>
         <h2>필수 실습 1~5 · 완료는 생성이 아니라 실행과 추적입니다.</h2>
-        <p class="intro"><strong>아래 3회·1,060토큰은 녹화 결과</strong>이며 같은 수치를 맞추라는 뜻이 아닙니다. 본인이 만든 배포·Agent의 응답과 새 Traces, 본인 실행자를 대조하고 이번 실습 본문의 완료 기준을 따릅니다.</p>
+        <p class="intro"><strong>아래 <span id="finish-runs-text">3</span>회·<span id="finish-tokens-text">877</span>토큰은 이번 촬영 결과</strong>이며 같은 수치를 맞추라는 뜻이 아닙니다. 본인이 만든 배포·Agent의 응답과 새 Traces, 본인 실행자를 대조하고 이번 실습 본문의 완료 기준을 따릅니다.</p>
         <div class="result-grid">
-          <div class="result-card"><strong>3회</strong><span>에이전트 실행 완료</span></div>
-          <div class="result-card"><strong>1,060</strong><span>Monitor·Traces 토큰 일치</span></div>
+          <div class="result-card"><strong id="finish-runs">3회</strong><span>에이전트 실행 완료</span></div>
+          <div class="result-card"><strong id="finish-tokens">877</strong><span>Monitor·Traces 토큰 일치</span></div>
           <div class="result-card"><strong>Guest</strong><span>세 트레이스의 실행자 일치</span></div>
         </div>
         <div style="margin-top:20px">
           <p class="check-row">본인 계정·MFA로 로그인하고 배정 RG와 역할 세 개 확인</p>
           <p class="check-row">Foundry 리소스 + 기본 프로젝트, 모델 배포, 일반 Prompt Agent 생성</p>
-          <p class="check-row">Traces에서 내 Application Insights를 만들고 프로젝트에 연결</p>
+          <p class="check-row">Traces에서 내 Application Insights가 프로젝트에 연결되어 있는지 확인(연결 안내가 보이면 대체 경로로 직접 연결)</p>
           <p class="check-row">실제 응답, Monitor 실행 수·토큰·오류율, Traces 입력·출력·지연 확인</p>
           <p class="check-row">Response ID ↔ Trace ID ↔ Conversation ID ↔ Guest 실행자 대조</p>
         </div>
@@ -461,10 +520,10 @@
         <h2>Microsoft IQ에서 시작하는 Foundry 실습 로드맵</h2>
         <div id="ignite-boot-error" class="boot-error" hidden role="alert"></div>
         <noscript><p class="noscript">실습 순서와 화면 갤러리는 로컬 JavaScript로 그립니다. 꺼져 있다면 assets/ignite/screenshots/ko 폴더의 PNG를 번호 순서대로 직접 여세요.</p></noscript>
-        <p class="intro"><strong>실습 1~5는 필수</strong>이며 로그인부터 에이전트 실행·추적까지 진행합니다. 이후 하네스·Insights·평가·Optimize·Manage는 <strong>선택 실습</strong>입니다. 기본 화면·영상은 <strong>2026.11.05 구 포털 · East US 2 · GPT-5 mini</strong>, 추가 화면 51장은 <strong>2026.11.17 New Foundry · North Central US · 샌드박스</strong>입니다. 두 기록을 한 화면처럼 보지 말고 실습별 화면 근거 배지를 확인하세요. 참가자 역할 3개로 재현한 범위는 아래 검증 상자에 구분했습니다.</p>
-        <p class="intro">New Foundry 화면은 Ignite 2026 키노트 전(2026.11.17)에 <strong>포털에서 관찰한 것</strong>입니다. 2026.11.17에 공개된 <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a>의 Microsoft Foundry 항목과 그 상세인 Foundry 블로그, 2026.11.18에 다시 확인한 공식 문서로 기능 이름과 상태(GA·Preview)를 맞췄고 결과는 <a href="#ignite-official-check">공식 대조표</a>와 각 실습의 '발표' 안내에 있습니다. 발표 뒤 포털 화면은 재확인하지 못했습니다. 이 가이드는 <strong>Microsoft IQ(가장 중요한 발표, <a href="#ignite-microsoft-iq">아래 요약</a>)</strong>와 Microsoft Foundry 항목을 다루며 Azure 인프라·Windows·GitHub·Agent 365 같은 다른 영역의 실습은 범위 밖입니다.</p>
+        <p class="intro"><strong>실습 1~5는 필수</strong>이며 로그인부터 에이전트 실행·추적까지 진행합니다. 이후 하네스·Insights·평가·Optimize·Manage는 <strong>선택 실습</strong>입니다. <strong>모든 화면과 영상은 2026.11.18에 New Foundry · North Central US에서 새로 촬영한 것입니다.</strong> 실습 1~5는 화면 54장과 전체 영상(9분 27초), 선택 실습 6~10은 화면 57장이며 같은 참가자 권한 계정 1개(RG Contributor + Foundry User + 구독 Usages Reader)로 이어서 수행했습니다. 화면 근거와 직접 실행하지 않은 범위는 아래 검증 상자에 구분했습니다.</p>
+        <p class="intro">화면은 2026.11.18에 포털에서 직접 촬영했습니다. 기능 이름과 상태(GA·Preview)는 2026.11.17에 공개된 <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a>의 Microsoft Foundry 항목과 그 상세인 Foundry 블로그, 2026.11.18에 다시 확인한 공식 문서로 맞췄고 결과는 <a href="#ignite-official-check">공식 대조표</a>와 각 실습의 '발표' 안내에 있습니다. 발표된 기능이 모두 이 포털에 이미 반영됐다는 뜻은 아닙니다. 이 가이드는 <strong>Microsoft IQ(가장 중요한 발표, <a href="#ignite-microsoft-iq">아래 요약</a>)</strong>와 Microsoft Foundry 항목을 다루며 Azure 인프라·Windows·GitHub·Agent 365 같은 다른 영역의 실습은 범위 밖입니다.</p>
         <h3 class="role-title" id="ignite-microsoft-iq">Ignite 2026의 가장 중요한 발표 · Microsoft IQ (GA)</h3>
-        <p class="intro"><strong>결론:</strong> Microsoft IQ는 조직의 데이터·지식·업무 방식을 에이전트에 연결하는 <strong>컨텍스트 관리</strong>와 운영 신호로 에이전트를 개선하는 <strong>Foundry의 지속 개선</strong>을 묶은 플랫폼입니다. Book of News는 <strong>GA</strong>이며 새 SKU·구독 없이 이미 쓰는 제품 위에 구성되고 거버넌스는 Microsoft Agent 365와 함께 맡는다고 소개합니다. 하위 기능까지 모두 GA이거나 무료라는 뜻은 아닙니다. <strong>Foundry IQ·Web IQ·Work IQ·Fabric IQ는 소개 카드로, 하네스·Insights·평가·Optimize는 직접 실습으로 다룹니다.</strong> Foundry IQ는 기존 OTP로 포털 로그인이 중단되어 참가자 권한 E2E를 확인하지 못했습니다. (<a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Book of News ↗</a> · <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>)</p>
+        <p class="intro"><strong>결론:</strong> Microsoft IQ는 조직의 데이터·지식·업무 방식을 에이전트에 연결하는 <strong>컨텍스트 관리</strong>와 운영 신호로 에이전트를 개선하는 <strong>Foundry의 지속 개선</strong>을 묶은 플랫폼입니다. Book of News는 <strong>GA</strong>이며 새 SKU·구독 없이 이미 쓰는 제품 위에 구성되고 거버넌스는 Microsoft Agent 365와 함께 맡는다고 소개합니다. 하위 기능까지 모두 GA이거나 무료라는 뜻은 아닙니다. <strong>Foundry IQ·Web IQ·Work IQ·Fabric IQ는 소개 카드로, 하네스·Insights·평가·Optimize는 직접 실습으로 다룹니다.</strong> Foundry IQ는 이번 재촬영 범위(실습 1~10)에 넣지 않아 참가자 권한 E2E를 확인하지 못했습니다. (<a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Book of News ↗</a> · <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>)</p>
         <div class="table-wrap">
           <table class="table-wide" aria-label="Microsoft IQ 구성과 이 가이드의 범위">
             <thead><tr><th>구성</th><th>하는 일</th><th>발표 상태</th><th>이 가이드에서</th></tr></thead>
@@ -478,7 +537,7 @@
             </tbody>
           </table>
         </div>
-        <p class="intro">컨텍스트 기능(Work IQ·Fabric IQ·Foundry IQ·Web IQ와 플러그인·스킬·도구·에이전트의 재사용)은 Microsoft Copilot·GitHub Copilot·Microsoft Foundry와 MCP를 지원하는 에이전트 하네스에서 GA로 발표됐습니다. Microsoft IQ 블로그는 네 IQ에 <strong>350개 이상의 타사 커넥터</strong>를 더해 조직의 컨텍스트를 구성한다고 설명합니다. 전체 생태계의 규모이지 이 실습에서 연결한 도구 개수는 아닙니다. 이 가이드의 11/17 화면은 키노트 전에 캡처해 Microsoft IQ를 직접 보여 주는 화면은 없습니다.</p>
+        <p class="intro">컨텍스트 기능(Work IQ·Fabric IQ·Foundry IQ·Web IQ와 플러그인·스킬·도구·에이전트의 재사용)은 Microsoft Copilot·GitHub Copilot·Microsoft Foundry와 MCP를 지원하는 에이전트 하네스에서 GA로 발표됐습니다. Microsoft IQ 블로그는 네 IQ에 <strong>350개 이상의 타사 커넥터</strong>를 더해 조직의 컨텍스트를 구성한다고 설명합니다. 전체 생태계의 규모이지 이 실습에서 연결한 도구 개수는 아닙니다. 이 가이드의 화면에는 Microsoft IQ를 직접 보여 주는 화면이 없고, Build 왼쪽 메뉴에 Knowledge가 보이는 정도입니다.</p>
         <ol class="flow iq-flow" aria-label="Microsoft IQ의 컨텍스트 관리와 지속 개선">
           <li>컨텍스트 관리<small>Foundry IQ · Web IQ<br>Work IQ · Fabric IQ<br><span class="scope-badge">소개 카드</span></small></li>
           <li>에이전트<small>조직의 근거로 응답<br><span class="scope-badge">Prompt Agent·하네스 실습</span></small></li>
@@ -501,23 +560,23 @@
             <tbody>
               <tr><td><a href="#ignite-microsoft-iq">Microsoft IQ · 네 IQ</a></td><td>컨텍스트 관리와 지속 개선, 지식 소스 → 지식 베이스 → 에이전트 연결을 이해합니다.</td><td>직접 실행하지 않음 · 공식 문서 기준</td><td><a href="#learn-foundry-iq">Foundry IQ</a> · <a href="#learn-web-iq">Web IQ</a> · <a href="#learn-work-iq">Work IQ</a> · <a href="#learn-fabric-iq">Fabric IQ</a> 소개 카드</td><td>Microsoft IQ GA · 하위 기능은 GA·Preview가 섞임</td></tr>
               <tr><td><a href="#first-sign-in" data-lab-ref="lab:login">실습 1</a> · 필수</td><td>본인 로그인·MFA·계정·역할·배정 RG를 확인합니다.</td><td>직접 실행 · 로그인은 별도 보안 예시</td><td>본인 인증 수단을 사용하며 암호·코드를 공유하지 않습니다.</td><td>—</td></tr>
-              <tr><td><a href="#step-resource" data-lab-ref="lab:resource">실습 2</a> · 필수</td><td>Foundry 리소스와 기본 프로젝트를 함께 만들고 엽니다.</td><td>직접 실행(참가자 권한)</td><td>이미 만들어진 기본 프로젝트를 중복 생성하지 않습니다.</td><td>프로젝트별 Foundry IQ 리소스는 Preview · 재현에서는 미확인</td></tr>
+              <tr><td><a href="#step-resource" data-lab-ref="lab:resource">실습 2</a> · 필수</td><td>Foundry 리소스와 기본 프로젝트를 함께 만들고 엽니다.</td><td>직접 실행(참가자 권한)</td><td>이미 만들어진 기본 프로젝트를 중복 생성하지 않습니다.</td><td>프로젝트별 Foundry IQ 리소스는 Preview · 이번 North Central US 재촬영에서는 만들어지지 않음</td></tr>
               <tr><td><a href="#model-quota" data-lab-ref="lab:model">실습 3</a> · 필수</td><td>배정 모델·TPM으로 배포하고 Guardrails 목록과 배포 정책을 읽습니다.</td><td>직접 실행(참가자 권한) · 가드레일은 화면 확인</td><td>정책은 만들거나 바꾸지 않습니다. 이미 배포했으면 중복 배포하지 않습니다.</td><td>새 모델·model router 확대 · 이 실습은 배정 모델만 사용</td></tr>
               <tr><td><a href="#step-agent" data-lab-ref="lab:agent">실습 4</a> · 필수</td><td>지시문 → Prompt Agent → 관측성 연결 → 새 대화를 실행합니다.</td><td>직접 실행(참가자 권한)</td><td>이미 연결된 App Insights가 있으면 재사용합니다.</td><td>지원 프로젝트에서 자동 모델 선택이 기본</td></tr>
               <tr><td><a href="#step-monitor" data-lab-ref="lab:observe">실습 5</a> · 필수</td><td>Monitor·Traces에서 본인 실행·입출력·토큰·지연을 대조합니다.</td><td>직접 실행(참가자 권한)</td><td>실행 성공과 답변 정확성은 별개입니다.</td><td>—</td></tr>
-              <tr><td><a href="#ignite-start" data-lab-ref="lab:harness">실습 6</a> · 선택</td><td>리전·TPM·역할·New Foundry 확인 → 하네스 생성 → 도구 제한 → 실행·Details → Traces·Monitor</td><td>직접 실행(참가자 권한) · 화면은 샌드박스</td><td>질문 1회 3~8초(칩 값). 10,000 TPM 실패·모델 변경 시 도구 제한 해제. Traces 수 분·Cost 최대 24시간 지연, 화면별 값 차이.</td><td>Microsoft Copilot harness Preview · 트레이스 주석 Preview(미실행)</td></tr>
-              <tr><td><a href="#ignite-insights" data-lab-ref="lab:insights">실습 7</a> · 선택</td><td>이미 쌓인 트레이스를 스캔해 문제와 근거를 찾습니다.</td><td>직접 실행(참가자 권한)</td><td>화면 안내 2~5분. 0건이 문제없음을 보장하지 않습니다.</td><td>Insights <strong>GA</strong></td></tr>
-              <tr><td><a href="#ignite-evaluator" data-lab-ref="lab:evaluation">실습 8</a> · 선택</td><td>커스텀 루브릭 평가자를 만들고 합성 질문 15개를 평가합니다.</td><td>직접 실행(운영자 준비 포함)</td><td>Resolve는 운영자 몫. 하네스 15분 43초(샌드박스, 3행 rate limit), Prompt Agent 7분 12.85초(재현, 15행 통과).</td><td>멀티턴 평가 <strong>GA</strong>(실행은 Individual turns) · 루브릭 안전 지원 Preview(미실행)</td></tr>
-              <tr><td><a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a> · 선택</td><td>목표를 고르고 후보를 비교합니다.</td><td>Prompt Agent만 실행 · 하네스는 제출하지 않음</td><td>Prompt Agent 9분 45초(재현). 후보 승격은 하지 않았습니다.</td><td>Agent optimizer <strong>GA</strong> · 스킬·비용 최적화 Preview</td></tr>
+              <tr><td><a href="#ignite-start" data-lab-ref="lab:harness">실습 6</a> · 선택</td><td>리전·TPM·역할·New Foundry 확인 → 하네스 생성 → 도구 제한 → 실행·Details → Traces·Monitor</td><td>직접 실행(참가자 권한)</td><td>질문 1회 9초·약 3.6만 토큰(칩 값, 첫 실행은 4분 넘게 걸리기도 함). 10,000 TPM은 부족. Traces 수 분·Cost 최대 24시간 지연, 화면별 값 차이.</td><td>Microsoft Copilot harness Preview · 트레이스 주석 Preview(미실행)</td></tr>
+              <tr><td><a href="#ignite-insights" data-lab-ref="lab:insights">실습 7</a> · 선택</td><td>이미 쌓인 트레이스를 스캔해 문제와 근거를 찾습니다.</td><td>직접 실행(참가자 권한)</td><td>화면 안내 2~5분. 스캔 1회에 judge 토큰 약 10만 개(트레이스 3개 분석). 0건이 문제없음을 보장하지 않습니다.</td><td>Insights <strong>GA</strong></td></tr>
+              <tr><td><a href="#ignite-evaluator" data-lab-ref="lab:evaluation">실습 8</a> · 선택</td><td>커스텀 루브릭 평가자를 만들고 합성 질문 15개를 평가합니다.</td><td>직접 실행(운영자 준비 포함)</td><td>Resolve는 운영자 몫. 하네스 에이전트 7분 16.87초(질문 15행 모두 통과). 같은 100,000 TPM에서도 2026.11.17에는 15행 중 3행이 rate limit으로 실패했습니다.</td><td>멀티턴 평가 <strong>GA</strong>(실행은 Individual turns) · 루브릭 안전 지원 Preview(미실행)</td></tr>
+              <tr><td><a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a> · 선택</td><td>목표를 고르고 후보를 비교합니다.</td><td>Prompt Agent만 실행 · 하네스는 제출하지 않음</td><td>Prompt Agent 5분 52초(후보 점수가 baseline보다 낮아 No improvement). 후보 승격은 하지 않았습니다.</td><td>Agent optimizer <strong>GA</strong> · 스킬·비용 최적화 Preview</td></tr>
               <tr><td><a href="#ignite-fleet" data-lab-ref="lab:manage">실습 10</a> · 선택</td><td>Fleet · Operations · Cost · Compliance · Gateways를 읽습니다.</td><td>화면만 확인 · 참가자 권한으로 모두 열림</td><td>AI Gateway는 만들지 않았습니다.</td><td>Cost Preview · AI Gateway의 자동 모델 선택 Preview</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="intro">‘직접 실행’은 2026.11.17에 North Central US의 프로젝트 2곳(샌드박스, 참가자 권한 재현)에서 실제로 실행한 범위입니다. ‘Ignite 발표’ 열의 GA·Preview는 Book of News와 Foundry 블로그의 표기이며 이 가이드가 그 기능을 직접 실행했다는 뜻이 아닙니다(바로 앞 열들이 확인 수준입니다). 자세한 범위와 하지 않은 작업은 바로 아래 검증 범위 상자에 있습니다.</p>
-        <div class="notice warning"><strong>검증 범위 · 2026.11.17, North Central US의 프로젝트 2곳</strong><br>
-          <strong>① 샌드박스 프로젝트</strong>(모델 배포·에이전트가 11/04부터 이미 있었음, 소유자 권한) · <strong>직접 실행:</strong> New Foundry 환영 안내, 가드레일 목록, gpt-6.1-terra 배포(Global Standard · 100,000 TPM), 하네스 에이전트 생성·도구 제한·저장(Version 4까지)·실행, Insights 스캔 1회, 커스텀 루브릭 평가자 생성, 합성 질문 15개 평가 실행. <strong>화면만 확인:</strong> Manage의 Fleet·Operations·Cost·Compliance·Gateways, Routines·Workflows, Optimize 탭.<br>
-          <strong>② 참가자 권한 재현 프로젝트</strong>(별도 구독, SE 테스트 계정에 RG Contributor + Foundry User + 구독 Usages Reader만 부여) · <strong>직접 실행:</strong> 리소스 생성(Region=North Central US)·gpt-6.1-terra 배포·Prompt Agent 생성·실행·Traces 확인, 하네스 에이전트 생성·실행(10,000 TPM 실패, 30,000 TPM은 천천히 한 건씩만 통과), Manage의 Fleet·Cost·Operations·Compliance·Quota·Gateways 열기, Insights 스캔, 커스텀 루브릭 평가자와 합성 질문 15개 평가(15개 모두 통과), 하네스 없는 Prompt Agent의 Optimize 실행(후보 승격 안 함), Azure Policy(Audit) 할당과 해제.<br>
-          <strong>하지 않음:</strong> AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격, 하네스 에이전트의 Optimize 제출, 운영 구독의 North Central US 쿼터 확인, 여러 참가자의 동시 실행·부하.<br>
+        <p class="intro">‘직접 실행’은 2026.11.18에 North Central US의 프로젝트 1개(참가자 권한 계정)에서 실제로 실행한 범위입니다. ‘Ignite 발표’ 열의 GA·Preview는 Book of News와 Foundry 블로그의 표기이며 이 가이드가 그 기능을 직접 실행했다는 뜻이 아닙니다(바로 앞 열들이 확인 수준입니다). 자세한 범위와 하지 않은 작업은 바로 아래 검증 범위 상자에 있습니다.</p>
+        <div class="notice warning"><strong>검증 범위 · 2026.11.18, North Central US의 프로젝트 1개(참가자 권한 계정)</strong><br>
+          <strong>직접 실행:</strong> 리소스 생성(Region=North Central US)·gpt-6.1-terra 배포·Prompt Agent 생성과 질문 3회·Monitor·Traces 확인(실습 1~5), 가드레일 목록과 배포 대화상자 확인, 하네스 에이전트 생성·도구 제한·저장(Version 2)·실행·Details·Routines·Workflows 열기, Insights 스캔 1회, 커스텀 루브릭 평가자 생성, 합성 질문 15개 평가 실행(15개 모두 통과), 하네스 없는 Prompt Agent의 Optimize 실행(후보 승격 안 함), Manage의 Fleet·Operations·Cost·Compliance·Gateways 열기.<br>
+          <strong>운영자가 미리 준비한 것(참가자 계정은 하지 않음):</strong> gpt-6.1-terra를 100,000 TPM으로 상향, judge·최적화용 모델 gpt-5.4-mini·gpt-5.4 배포, 프로젝트 관리 ID에 Application Insights의 Monitoring Reader 부여.<br>
+          <strong>하지 않음:</strong> AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격, 하네스 에이전트의 Optimize 제출, Azure Policy 할당(2026.11.17 별도 확인만 있음), 운영 구독의 North Central US 쿼터 확인, 여러 참가자의 동시 실행·부하.<br>
           토큰·비용·점수는 이 환경에서 한 번 실행한 결과이며 같은 값을 맞추라는 뜻이 아닙니다.</div>
       </section>
       <section class="panel observed-section" id="ignite-glossary" data-ignite-nav="용어" data-ignite-title="처음 보는 용어 풀이">
@@ -541,12 +600,12 @@
                   <tr><td>AHP (Agent Host Protocol)</td><td>여러 클라이언트가 같은 실행 중 세션에 연결하는 공개 프로토콜입니다. 에이전트가 외부 도구를 호출하는 MCP와 역할이 다릅니다. <a href="#learn-copilot-sdk">SDK 2.0의 연결 구조</a></td></tr>
                   <tr><td>Harness tools</td><td>하네스 에이전트의 내장 도구 5개(File system read · File system write · Web · Shell · Subagents)입니다. 기본값은 모두 켜져 있으므로 쓰지 않을 도구는 끕니다. <a href="#ignite-harness-tools" data-lab-ref="sec:ignite-harness-tools">실습 6-3</a></td></tr>
                   <tr><td>Guardrails</td><td>모델 배포에 연결되는 안전 정책입니다(Microsoft.Default · DefaultV2 · MAIDefault). 에이전트에 따로 지정하지 않으면 모델 배포의 가드레일을 상속한다고 표시됩니다. <a href="#ignite-guardrails" data-lab-ref="sec:ignite-guardrails">실습 3-3</a></td></tr>
-                  <tr><td>TPM (Tokens per Minute)</td><td>모델 배포가 1분에 처리할 수 있는 토큰 한도입니다. 속도 한도이며 비용 상한이 아닙니다. 하네스는 호출 한 번에 토큰을 많이 써서 작은 TPM에서는 'Model deployment rate limit exceeded'가 났습니다. <a href="#ignite-start" data-lab-ref="sec:ignite-start">실습 6-1</a></td></tr>
+                  <tr><td>TPM (Tokens per Minute)</td><td>모델 배포가 1분에 처리할 수 있는 토큰 한도입니다. 속도 한도이며 비용 상한이 아닙니다. 하네스는 호출 한 번에 토큰을 많이 써서 작은 TPM에서는 'Model deployment rate limit exceeded'가 났습니다(2026.11.17 시험). <a href="#ignite-start" data-lab-ref="sec:ignite-start">실습 6-1</a></td></tr>
                   <tr><td>Traces · Monitor</td><td>Traces는 실행 한 번마다의 기록이고 Monitor는 실행 수·토큰 같은 지표 화면입니다. Application Insights가 프로젝트에 연결돼 있어야 기록됩니다. <a href="#ignite-observe" data-lab-ref="sec:ignite-observe">실습 6-5</a></td></tr>
                   <tr><td>Insights</td><td>최근 트레이스를 Judge model로 분석해 문제를 찾는 스캔입니다. 화면 안내대로 GPT-5 이상 모델만 Judge로 고를 수 있습니다. <a href="#ignite-insights" data-lab-ref="lab:insights">실습 7</a></td></tr>
                   <tr><td>Judge model</td><td>평가와 Insights에서 응답을 채점·분석하는 모델입니다. 평가 대상 에이전트의 모델과 따로 고릅니다.</td></tr>
                   <tr><td>Rubric evaluator</td><td>평가 기준을 말로 적으면 점수 차원이 1·3·5점 설명과 함께 자동 생성되는 커스텀 평가자입니다. <a href="#ignite-evaluator" data-lab-ref="sec:ignite-evaluator">실습 8-1</a></td></tr>
-                  <tr><td>Synthetic generation</td><td>평가에 쓸 질문을 모델이 만들어 주는 데이터셋 방식입니다. 행 수는 15~100입니다. <a href="#ignite-evaluation" data-lab-ref="sec:ignite-evaluation">실습 8-2</a></td></tr>
+                  <tr><td>Synthetic generation</td><td>평가에 쓸 질문을 모델이 만들어 주는 데이터셋 방식입니다. 행 수는 최소 15이며 기본값도 15입니다. <a href="#ignite-evaluation" data-lab-ref="sec:ignite-evaluation">실습 8-2</a></td></tr>
                   <tr><td>Optimize · Promote candidate</td><td>데이터셋과 평가자로 후보를 만들고 점수로 비교합니다. 후보를 승격(Promote)하기 전까지 에이전트는 바뀌지 않습니다. <a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a></td></tr>
                   <tr><td>Continuous improvement (지속 개선)</td><td>Ignite 2026에서 Foundry가 내세운 반복 순서입니다. <strong>Establish</strong>(평가로 '좋음'의 기준을 정함) → <strong>Identify</strong>(트레이스·Insights로 문제 찾기) → <strong>Optimize</strong>(후보를 만들고 평가로 비교) → <strong>Validate and repeat</strong>(개선을 검증하고 새 기준선으로 삼음). 이 가이드의 하네스·Insights·평가·Optimize는 그 앞부분에 대응합니다(Foundry 블로그).</td></tr>
                   <tr><td>Annotation · Golden dataset (Preview)</td><td>트레이스에 사람이 남기는 평가(👍/👎와 설명)가 주석이고, 믿을 만한 평가 사례를 골라 둔 작은 집합이 golden dataset입니다. 새 버전을 비교하는 기준으로 씁니다. 이 실습에서는 만들지 않았습니다. <a href="#ignite-observe" data-lab-ref="sec:ignite-observe">실습 6-5</a></td></tr>
@@ -558,38 +617,39 @@
           </div>
         </details>
       </section>
-      <section class="panel observed-section" id="ignite-menu-changes" data-ignite-nav="메뉴" data-ignite-title="두 날짜의 메뉴 비교">
+      <section class="panel observed-section" id="ignite-menu-changes" data-ignite-nav="메뉴" data-ignite-title="New Foundry 메뉴 안내">
         <p class="section-label">REFERENCE · PORTAL MENUS</p>
-        <h2>구 포털 캡처와 달라진 메뉴</h2>
+        <h2>New Foundry의 메뉴 이름 한눈에 보기</h2>
         <div class="table-wrap">
-          <table aria-label="구 포털과 New Foundry 화면의 메뉴 비교">
-            <thead><tr><th>화면 요소</th><th>구 포털 캡처 (2026.11.05)</th><th>New Foundry 캡처 (2026.11.17)</th></tr></thead>
+          <table aria-label="New Foundry 화면의 메뉴 이름">
+            <thead><tr><th>화면 요소</th><th>이번 촬영(2026.11.18)에서 보인 이름</th><th>쓰는 실습</th></tr></thead>
             <tbody>
-              <tr><td>상단 메뉴</td><td>Home · Discover · Build · Operate · Manage · Docs</td><td>Build · Manage · Docs</td></tr>
-              <tr><td>Build 왼쪽 메뉴</td><td>Create(Agents · Models · Services · Tools · Knowledge · Memory · Guardrails · Data) · Optimize(Evaluations · Fine-tune)</td><td>Home · Catalog · Create(Agents · Models · Services · Tools · Knowledge · Memory · Guardrails) · Observe(Monitor · Traces) · Improve(Data · Evaluations · Fine-tune)</td></tr>
-              <tr><td>에이전트의 Insights 탭</td><td>Preview 배지</td><td>배지 없음 (Book of News: GA · Learn 문서 제목도 2026.11.18 확인에서 preview 표기가 없음)</td></tr>
-              <tr><td>에이전트의 Monitor 탭</td><td>Overview · Tools</td><td>Overview · Cost (Preview) · Tools</td></tr>
-              <tr><td>Traces 도구 막대</td><td>Create dataset</td><td>Annotate · Add to dataset (행 체크박스)</td></tr>
-              <tr><td>Manage 왼쪽 메뉴</td><td>Quota·Project details만 사용</td><td>Fleet (Preview) · Cost (Preview) · Operations (Preview) · Compliance · Quota · Gateways (Preview)</td></tr>
+              <tr><td>상단 메뉴</td><td>Build · Manage · Docs (오른쪽 위에 New Foundry 토글)</td><td>실습 3~10</td></tr>
+              <tr><td>Build 왼쪽 메뉴</td><td>Home · Catalog · Create(Agents · Models · Services · Tools · Knowledge · Memory · Guardrails) · Observe(Monitor · Traces) · Improve(Data · Evaluations · Training)</td><td>실습 3~9</td></tr>
+              <tr><td>Agents 목록 위 탭</td><td>Agents · Routines · Workflows (Preview)</td><td>실습 6</td></tr>
+              <tr><td>에이전트 위 탭</td><td>Playground · Details · Traces · Insights · Monitor · Evaluation · Optimize (Insights에는 Preview 배지가 없음)</td><td>실습 4~9</td></tr>
+              <tr><td>에이전트의 Monitor 탭</td><td>Overview · Cost (Preview) · Tools</td><td>실습 5·6</td></tr>
+              <tr><td>Traces 도구 막대</td><td>Annotate · Add to dataset (행 체크박스)</td><td>실습 5·6</td></tr>
+              <tr><td>Manage 왼쪽 메뉴</td><td>Fleet (Preview) · Cost (Preview) · Operations (Preview) · Compliance · Quota · Gateways (Preview), 그 아래 Resource details · Project details</td><td>실습 10</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="intro">표는 두 날짜의 캡처를 비교한 것이며 릴리스 노트가 아닙니다. 2026.11.17 확인 때는 공식 문서(Control Plane)의 일부 안내가 Operate 메뉴를 선택하라고 썼지만, 이 포털에는 Operate가 없고 <strong>Manage</strong> 아래에 Fleet·Cost·Operations가 있었습니다. 2026.11.18에 다시 보니 해당 문서(Microsoft Foundry governance)가 '포털의 Manage'로 안내하도록 바뀌어 있었습니다(포털 화면은 발표 뒤 다시 확인하지 못했습니다). 같은 날 참가자 권한 재현 프로젝트에서는 Improve의 'Fine-tune'이 'Training'으로 표시됐고 'Operate has now evolved into Manage'라는 안내가 보였습니다. 메뉴 이름은 계정·프로젝트에 따라 다를 수 있으니 보이는 이름을 따르세요.</p>
+        <p class="intro">표는 이번 촬영 화면의 이름을 정리한 것이며 릴리스 노트가 아닙니다. 2026.11.17 확인 때는 공식 문서(Control Plane)의 일부 안내가 Operate 메뉴를 선택하라고 썼지만, 이 포털에는 Operate가 없고 <strong>Manage</strong> 아래에 Fleet·Cost·Operations가 있었습니다. 2026.11.18에 다시 보니 해당 문서(Microsoft Foundry governance)가 '포털의 Manage'로 안내하도록 바뀌어 있었습니다. 메뉴 이름은 계정·프로젝트에 따라 다를 수 있으니 보이는 이름을 따르세요.</p>
       </section>
       <section class="panel observed-section" id="ignite-official-check" data-ignite-nav="공식" data-ignite-title="발표·공식 문서 대조">
         <p class="section-label">REFERENCE · PUBLIC SOURCES · 2026.11.18</p>
         <h2>Ignite 2026 발표·공식 문서와 맞춰 본 결과</h2>
-        <p class="intro">2026.11.18에 <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a>, <a href="https://commandline.microsoft.com/microsoft-copilot-sdk-2-0-github/" target="_blank" rel="noopener noreferrer">Microsoft Copilot SDK 2.0 소개 ↗</a>, <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>, <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/" target="_blank" rel="noopener noreferrer">Foundry 블로그 ↗</a>를 다시 대조했습니다. <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609" target="_blank" rel="noopener noreferrer">모델 블로그 ↗</a>와 Learn으로 세부 조건을 보완했습니다. <strong>발표 뒤 포털 화면은 다시 열어 보지 않았으므로</strong> '화면·검증 범위' 열은 키노트 전(2026.11.17) 기록이며 제품의 현재 상태와 별개입니다. 범위는 Microsoft IQ·Microsoft Foundry와 SDK 2.0 소개입니다.</p>
+        <p class="intro">2026.11.18에 <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a>, <a href="https://commandline.microsoft.com/microsoft-copilot-sdk-2-0-github/" target="_blank" rel="noopener noreferrer">Microsoft Copilot SDK 2.0 소개 ↗</a>, <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>, <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/" target="_blank" rel="noopener noreferrer">Foundry 블로그 ↗</a>를 다시 대조했습니다. <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609" target="_blank" rel="noopener noreferrer">모델 블로그 ↗</a>와 Learn으로 세부 조건을 보완했습니다. <strong>이 표의 '화면·검증 범위' 열은 2026.11.18 재촬영 화면 기준이며</strong> 발표된 모든 변경이 포털에 반영됐다는 뜻은 아닙니다. 범위는 Microsoft IQ·Microsoft Foundry와 SDK 2.0 소개입니다.</p>
         <div class="table-wrap">
           <table class="table-wide" aria-label="Foundry 기능의 포털 표시와 Ignite 발표·공식 자료 대조">
-            <thead><tr><th>기능</th><th>화면·검증 범위 (캡처 2026.11.17)</th><th>Ignite 발표·공식 자료 (2026.11.17~18 확인)</th><th>대조 결과 · 이 가이드의 범위</th></tr></thead>
+            <thead><tr><th>기능</th><th>화면·검증 범위 (캡처 2026.11.18)</th><th>Ignite 발표·공식 자료 (2026.11.17~18 확인)</th><th>대조 결과 · 이 가이드의 범위</th></tr></thead>
             <tbody>
-              <tr><td><strong>Microsoft IQ</strong> (<a href="#ignite-microsoft-iq">요약</a>)</td><td>이 가이드의 11/17 화면(키노트 전)에서는 확인하지 못함</td><td>Book of News: Microsoft IQ now generally available. 엔터프라이즈 컨텍스트 관리(Work IQ·Fabric IQ·Foundry IQ·Web IQ와 business plugins)와 Microsoft Foundry의 지속 개선을 묶은 플랫폼입니다. 새 SKU·구독 없이 이미 쓰는 제품 위에 구성하며 Microsoft Agent 365와 함께 거버넌스를 맡습니다. 컨텍스트 기능은 Microsoft Copilot·GitHub Copilot·Microsoft Foundry와 MCP를 지원하는 에이전트 하네스에서 GA.</td><td>이 실습은 <strong>Foundry의 지속 개선 부분</strong>을 직접 따라 함(<a href="#ignite-harness" data-lab-ref="lab:harness">실습 6</a>~<a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a>) · 네 IQ·business plugins는 소개 카드</td></tr>
+              <tr><td><strong>Microsoft IQ</strong> (<a href="#ignite-microsoft-iq">요약</a>)</td><td>이 가이드의 화면에는 Microsoft IQ 전용 화면이 없음(Build 왼쪽 메뉴의 Knowledge만 보임)</td><td>Book of News: Microsoft IQ now generally available. 엔터프라이즈 컨텍스트 관리(Work IQ·Fabric IQ·Foundry IQ·Web IQ와 business plugins)와 Microsoft Foundry의 지속 개선을 묶은 플랫폼입니다. 새 SKU·구독 없이 이미 쓰는 제품 위에 구성하며 Microsoft Agent 365와 함께 거버넌스를 맡습니다. 컨텍스트 기능은 Microsoft Copilot·GitHub Copilot·Microsoft Foundry와 MCP를 지원하는 에이전트 하네스에서 GA.</td><td>이 실습은 <strong>Foundry의 지속 개선 부분</strong>을 직접 따라 함(<a href="#ignite-harness" data-lab-ref="lab:harness">실습 6</a>~<a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a>) · 네 IQ·business plugins는 소개 카드</td></tr>
               <tr><td>Microsoft Copilot 하네스 (<a href="#ignite-harness" data-lab-ref="lab:harness">실습 6</a>)</td><td>Preview</td><td>Foundry 블로그(2026.11.17): 하네스를 관리형으로 맡기려는 팀을 위한 'Microsoft Copilot harness (now in preview)'. 2026.10.28 발표와 10월 What's new도 같고 Learn 문서도 preview 표기입니다. Book of News에는 이 항목이 따로 없습니다.</td><td>일치 (Preview)</td></tr>
               <tr><td><a href="#learn-copilot-sdk">Microsoft Copilot SDK 2.0</a></td><td>SDK 앱 구현·실행·배포 안 함</td><td>Book of News: GA, Rust 기반 Copilot 하네스와 6개 언어 지원. SDK 소개: 세션별 권한·상태 분리, 도구 허용 목록, 외부 저장소와 재개, 다양한 실행 구조. 공유 런타임의 앱 수준 분리는 OS·컨테이너 보안 경계와 다릅니다.</td><td>코드 기반 개발 경로 소개 · Foundry 관리형 하네스의 Preview와 구분</td></tr>
               <tr><td><a href="#learn-voice-agents">Voice agents</a> (<a href="#ignite-harness-create" data-lab-ref="sec:ignite-harness-create">실습 6-2</a>)</td><td>Interaction mode: Text · Voice(생성 뒤 변경 불가)</td><td>Foundry 블로그·Learn: Voice agents GA. Learn은 GPT-Live·인라인 Handoff·전화 캠페인·post-call 등 일부 기능과 별도 모델·모니터링·WebRTC 등의 상태를 구분합니다.</td><td>음성 처리 구조·비용은 소개 카드 · 선택지만 확인했고 실습은 Text 사용, Voice 실행 안 함</td></tr>
-              <tr><td>모델 라우터 · 자동 모델 선택 (<a href="#step-agent" data-lab-ref="sec:step-agent">실습 4-1</a>)</td><td>재현에서 새 Prompt Agent의 기본 모델이 <code>model-router</code>(배포하지 않은 모델)로 표시됨</td><td>Foundry 블로그: 지원되는 프로젝트에서는 자동 모델 선택이 기본으로 켜져 있어 model router를 먼저 배포하지 않고 시작할 수 있습니다. Book of News: model router의 모델 풀 확대와 AI Gateway 지원. Learn: AI Gateway의 자동 모델 선택은 preview.</td><td>재현에서 본 동작과 같은 설명 · 이 실습은 배정 모델을 직접 배포·선택함</td></tr>
-              <tr><td>Foundry IQ</td><td>11/17 Knowledge 메뉴만 확인 · 11/18 기존 OTP에서 재로그인 중단</td><td>Book of News: SharePoint 인덱스 지식 소스 GA · 지식 그래프·Microsoft-Retriever-1·프로젝트별 리소스 Preview. 블로그: Serverless는 2026년 12월 GA 예정. Learn: 에이전틱 검색 포털 경험은 Preview.</td><td><a href="#learn-foundry-iq">개념·연결·전제 조건 소개 카드</a> · 지식 구성·연결·출처 응답의 참가자 E2E 미검증</td></tr>
+              <tr><td>모델 라우터 · 자동 모델 선택 (<a href="#ignite-harness-tools" data-lab-ref="sec:ignite-harness-tools">실습 6-3</a>)</td><td>새 하네스 에이전트의 기본 모델이 <code>model-router</code>(배포하지 않은 모델)로 표시됨(<a href="#ignite-harness-tools" data-lab-ref="sec:ignite-harness-tools">실습 6-3</a>). Prompt Agent는 모델 Playground에서 배포한 모델로 저장해 해당 없음</td><td>Foundry 블로그: 지원되는 프로젝트에서는 자동 모델 선택이 기본으로 켜져 있어 model router를 먼저 배포하지 않고 시작할 수 있습니다. Book of News: model router의 모델 풀 확대와 AI Gateway 지원. Learn: AI Gateway의 자동 모델 선택은 preview.</td><td>재현에서 본 동작과 같은 설명 · 이 실습은 배정 모델을 직접 배포·선택함</td></tr>
+              <tr><td>Foundry IQ</td><td>왼쪽 Create 메뉴에 Knowledge가 보이는 것만 확인 · 지식 소스·지식 베이스는 실행하지 않음</td><td>Book of News: SharePoint 인덱스 지식 소스 GA · 지식 그래프·Microsoft-Retriever-1·프로젝트별 리소스 Preview. 블로그: Serverless는 2026년 12월 GA 예정. Learn: 에이전틱 검색 포털 경험은 Preview.</td><td><a href="#learn-foundry-iq">개념·연결·전제 조건 소개 카드</a> · 지식 구성·연결·출처 응답의 참가자 E2E 미검증</td></tr>
               <tr><td>Web IQ</td><td>해당 없음(이 포털 실습 범위 밖)</td><td>Book of News: 모든 Azure 고객에게 GA. Learn: 유료 Azure 구독·Web IQ 리소스 필요, Azure 크레딧 사용 불가.</td><td><a href="#learn-web-iq">소개 카드</a> · Foundry 웹 검색 도구와 동일하다고 단정하지 않음</td></tr>
               <tr><td>Work IQ</td><td>해당 없음(이 포털 실습 범위 밖)</td><td>Learn: MCP 경로 GA, 내장 <code>work_iq_preview</code> 도구 Preview. 전역 관리자의 1회 설정·동의, Copilot Credits, 사용자 위임 인증 필요.</td><td><a href="#learn-work-iq">소개 카드</a> · 세부 기능 상태를 분리함</td></tr>
               <tr><td>Fabric IQ · Fabric IQ MCP</td><td>해당 없음(이 포털 실습 범위 밖)</td><td>Learn: Power BI 읽기 전용 Fabric IQ MCP GA, Foundry의 Fabric IQ 도구 Preview. 온톨로지·데이터 에이전트 지원 범위와 일부 앱 통합 상태는 출처에 따라 다름.</td><td><a href="#learn-fabric-iq">소개 카드</a> · Fabric 라이선스·데이터 에이전트의 유료 용량 필요</td></tr>
@@ -598,22 +658,22 @@
               <tr><td>커스텀 루브릭 평가자 (<a href="#ignite-evaluator" data-lab-ref="sec:ignite-evaluator">실습 8-1</a>)</td><td>NEW 안내 · Prompt·Code·Endpoint 유형은 Preview</td><td>Book of News: 검증된 golden dataset에서 과제별 루브릭 평가자를 만들 수 있고 안전(safety) 지원은 Preview. Learn 'Rubric evaluators'·'Custom evaluators' 제목에는 2026.11.18에 preview 표기가 없습니다(Custom evaluators는 11/17에 '(preview)').</td><td>일치 · 이 실습은 자연어 기준에서 'Auto-generate rubric'으로 만드는 방법만 실행함. golden dataset 방식·안전 평가자는 하지 않음</td></tr>
               <tr><td>멀티턴 평가 (<a href="#ignite-evaluation" data-lab-ref="sec:ignite-evaluation">실습 8-2</a>)</td><td>평가 마법사 Scope: Individual turns · Full conversations</td><td>Book of News: multi-turn evaluation now generally available(대화 전체를 품질 기준으로 채점). Learn에 대화 단위(conversation-level) 평가 문서가 있습니다.</td><td>선택지는 화면에서 확인 · 실행은 Individual turns만(Full conversations는 하지 않음)</td></tr>
               <tr><td>합성 평가 데이터셋 (<a href="#ignite-evaluation" data-lab-ref="sec:ignite-evaluation">실습 8-2</a>)</td><td>Synthetic generation (표기 없음)</td><td>Book of News·Foundry 블로그에는 합성 데이터셋 생성이 따로 나오지 않습니다. Learn 문서 제목의 '(preview)'는 2026.11.18에 없습니다.</td><td>발표 자료로는 상태를 확인하지 못함</td></tr>
-              <tr><td>Agent optimizer (<a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a>)</td><td>Optimize 탭 · Choose a goal · Learn from past activity</td><td>Book of News: generally available. Foundry 블로그: Insights에서 optimizer로 보내기·스킬 최적화·비용 최적화는 Preview. Learn 문서(2026.11.18): 포털의 평가 기반 최적화는 <strong>Copilot 하네스를 쓰지 않는 Prompt Agent</strong>를 지원한다고 계속 안내합니다.</td><td>GA 발표와 일치 · Prompt Agent는 실행 성공, 하네스 에이전트는 마법사만 열고 제출하지 않음 (<a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a>) · 화면의 메뉴 이름과 블로그의 스킬·비용 최적화가 같은 기능인지는 확인하지 못함</td></tr>
-              <tr><td>Training (Improve 메뉴)</td><td>샌드박스 'Fine-tune' · 재현 'Training'</td><td>Book of News·Foundry 블로그: Managed Training('이전 이름 managed fine-tuning')과 Programmed Training(Preview)이 Foundry의 새 Training 기능입니다.</td><td>메뉴 이름 차이와의 관계는 미확인 · <a href="#learn-training">데이터·승인·비용 소개 카드</a></td></tr>
+              <tr><td>Agent optimizer (<a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a>)</td><td>Optimize 탭 · Choose a goal · Learn from past activity</td><td>Book of News: generally available. Foundry 블로그: Insights에서 optimizer로 보내기·스킬 최적화·비용 최적화는 Preview. Learn 문서(2026.11.18): 포털의 평가 기반 최적화는 <strong>Copilot 하네스를 쓰지 않는 Prompt Agent</strong>를 지원한다고 계속 안내합니다.</td><td>GA 발표와 일치 · Prompt Agent는 실행 성공(후보 점수가 baseline보다 낮아 No improvement), 하네스 에이전트는 이번에 시도하지 않음 (<a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a>) · 화면의 메뉴 이름과 블로그의 스킬·비용 최적화가 같은 기능인지는 확인하지 못함</td></tr>
+              <tr><td>Training (Improve 메뉴)</td><td>'Training'으로 표시됨(2026.11.17 샌드박스 화면은 'Fine-tune')</td><td>Book of News·Foundry 블로그: Managed Training('이전 이름 managed fine-tuning')과 Programmed Training(Preview)이 Foundry의 새 Training 기능입니다.</td><td>메뉴 이름 차이와의 관계는 미확인 · <a href="#learn-training">데이터·승인·비용 소개 카드</a></td></tr>
               <tr><td>Manage의 Fleet · Cost · Operations · Gateways (<a href="#ignite-fleet" data-lab-ref="lab:manage">실습 10</a>)</td><td>Preview</td><td>Foundry 블로그: 'Cost in Microsoft Foundry'는 Preview(에이전트·모델·도구 지출, 예측, 월말 보고). Learn 거버넌스 문서(2026.11.18)는 '포털의 Manage'로 안내하고 cost controls(Preview, 지출·토큰 예산과 경고·차단)도 설명합니다. AI Gateway의 자동 모델 선택(model router)은 Preview.</td><td>Cost·메뉴 이름은 일치로 정리됨 · Fleet·Operations는 발표 자료에 없어 확인하지 못함 · Gateways는 만들지 않음</td></tr>
               <tr><td>gpt-6.1-terra</td><td>배포 화면의 모델 이름</td><td>10월 What's new: 2026.10.26 GA, Global Standard·Data Zone Standard 배포 지원. Book of News에는 이 모델이 따로 나오지 않습니다.</td><td>참고 (GA)</td></tr>
               <tr><td><a href="#learn-hosted-agents">Hosted agents</a></td><td>직접 배포·동시성·시작 시간 측정 안 함</td><td>Foundry 블로그: 동시 세션 처리 GA, 빠른 시작 Preview, AKS 배포는 곧 Preview 예정.</td><td>자체 코드 실행 경로 소개 · 배포·성능 실습 제외</td></tr>
               <tr><td><a href="#learn-m365-accounts-for-agents">Microsoft 365 accounts for agents</a></td><td>계정 발급·권한 동의 안 함</td><td>Foundry 블로그: Preview. 관련 Learn은 계정·라이선스·관리자 승인 요건을 안내합니다.</td><td>자체 계정 연계 소개 · 채널 게시와 구분</td></tr>
-              <tr><td><a href="#learn-toolbox">Toolboxes·브라우저 자동화</a></td><td>2026.11.18 기존 OTP에서 로그인 중단 · 후보 점검·실행 안 함</td><td>Learn: VS Code prompt-agent Toolbox 통합 Preview·기본 비활성화, 브라우저 도구 자체 GA. 발표의 브라우저 업데이트 별도 상태는 미명시.</td><td>도구 묶음과 웹 자동화 소개 · 전체 Toolbox를 GA로 묶지 않음</td></tr>
+              <tr><td><a href="#learn-toolbox">Toolboxes·브라우저 자동화</a></td><td>새 에이전트를 만들면 자동으로 붙는 *-toolbox(Web search)를 화면에서 확인하고 이 실습에서는 제거함 · 후보 점검·실행은 안 함</td><td>Learn: VS Code prompt-agent Toolbox 통합 Preview·기본 비활성화, 브라우저 도구 자체 GA. 발표의 브라우저 업데이트 별도 상태는 미명시.</td><td>도구 묶음과 웹 자동화 소개 · 전체 Toolbox를 GA로 묶지 않음</td></tr>
               <tr><td><a href="#learn-foundry-mcp-server">Foundry MCP Server</a></td><td>공개 Learn만 확인 · 서버 인증·도구 호출 안 함</td><td>Learn: Public Preview, <code>https://mcp.ai.azure.com</code>. Entra 인증·Azure RBAC, 읽기·쓰기 도구 제공.</td><td>관리용 MCP 소개 · Ignite 신규 발표나 읽기 전용으로 단정하지 않음</td></tr>
               <tr><td>Cost in Microsoft Foundry</td><td>발표 뒤 화면 재확인·청구 대조 안 함</td><td>Foundry 블로그: Preview. <a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/manage-costs" target="_blank" rel="noopener noreferrer">Learn</a>: Azure Cost Management 기반, 당월 금액은 청구서 확정 전 추정치. 실시간 Cost Control 합계는 별도 추정.</td><td><a href="#ignite-fleet" data-lab-ref="lab:manage">실습 10</a>의 화면 읽기 · 청구 대조는 Azure Cost Management</td></tr>
-              <tr><td><a href="#learn-foundry-safety">Foundry Safety 런타임 제어</a></td><td>2026.11.18 기존 OTP에서 로그인 중단 · 후보 점검·정책 변경 안 함</td><td>Foundry 블로그: 실행 중 정책 대조, 전체 GA/Preview 미명시. Learn의 콘텐츠 안전 agent guardrails·도구 호출/응답 검사는 Preview.</td><td>하위 기능의 상태를 런타임 제어 전체에 일반화하지 않음</td></tr>
+              <tr><td><a href="#learn-foundry-safety">Foundry Safety 런타임 제어</a></td><td>가드레일 목록·에이전트의 Guardrail 섹션 화면만 확인 · 후보 점검·정책 변경 안 함</td><td>Foundry 블로그: 실행 중 정책 대조, 전체 GA/Preview 미명시. Learn의 콘텐츠 안전 agent guardrails·도구 호출/응답 검사는 Preview.</td><td>하위 기능의 상태를 런타임 제어 전체에 일반화하지 않음</td></tr>
               <tr><td><a href="#learn-new-models">새 모델(MAI·fal·Baseten)</a></td><td>신규 모델 배포·접근 승인 안 함</td><td>Book of News·모델 블로그: MAI-Code-2 / -Flash는 GitHub GA, Flash의 Foundry 제공은 비공개 Preview. MAI-Image-2.7 / -Flash는 Foundry Public Preview, Microsoft-Decision-1.1 GA, fal·Baseten Preview.</td><td>플랫폼별 가용성 분리 · Decision-1.1 judge는 재현에서 배포·실행하지 않음. 모델 블로그는 judge로도 사용 가능하다고 안내</td></tr>
               <tr><td><a href="#learn-azure-windows">Foundry→AKS</a></td><td>공개 발표만 확인 · 클러스터 생성·배포 안 함</td><td>Book of News: 보유 AKS로 모델·에이전트 확장 Preview. Foundry 블로그: hosted agents의 AKS 배포는 곧 Preview 예정.</td><td>Azure·Windows는 범위 밖 소개만 · 필수 실습 준비가 아님</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="intro">표의 GA·Preview는 발표 자료와 공식 문서의 표기이며 이 가이드의 직접 실행·화면 확인과는 별개입니다. 근거는 위 링크와 <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>(Foundry IQ)이고, Learn 문서 링크는 각 실습의 '발표' 안내에 있습니다. 관련 Ignite 세션: BRK249(From traces to better agents: The Foundry improvement loop), BRK251(Agents in production: From issue detection to continuous improvement), BRK242(Build your self-improving AI Platform with Microsoft Foundry), BRK252(Turn your data into AI advantage with Training in Microsoft Foundry). 세션 목록은 Foundry 블로그의 안내를 따랐습니다. 발표 뒤 포털 화면에서 이름과 상태가 달라졌는지는 확인하지 못했습니다.</p>
+        <p class="intro">표의 GA·Preview는 발표 자료와 공식 문서의 표기이며 이 가이드의 직접 실행·화면 확인과는 별개입니다. 근거는 위 링크와 <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a>(Foundry IQ)이고, Learn 문서 링크는 각 실습의 '발표' 안내에 있습니다. 관련 Ignite 세션: BRK249(From traces to better agents: The Foundry improvement loop), BRK251(Agents in production: From issue detection to continuous improvement), BRK242(Build your self-improving AI Platform with Microsoft Foundry), BRK252(Turn your data into AI advantage with Training in Microsoft Foundry). 세션 목록은 Foundry 블로그의 안내를 따랐습니다.</p>
         <p class="intro">사진을 누르면 확대되고, 주황색 번호는 확인할 위치입니다(사진 아래 범례). 계정·구독 이름은 <strong>Workshop User · Workshop-Subscription</strong>으로 가렸습니다. 화면 글자는 영문 UI 원문이고, 에이전트 지시문·질문·응답은 한국어입니다.</p>
       </section>
 
@@ -627,7 +687,7 @@
           <p class="intro-status"><strong>발표 상태:</strong> SharePoint 인덱스 지식 소스 GA, 지식 그래프·Microsoft-Retriever-1·프로젝트별 리소스 Preview(Book of News). 에이전틱 검색 포털 경험 Preview(Learn). Serverless는 2026년 12월 GA 예정(블로그).</p>
           <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
           <p><strong>Foundry 연결:</strong> 프로젝트의 <strong>Build → Knowledge</strong>에서 검색 서비스·지식 소스·지식 베이스를 구성하고 Agents에서 연결합니다. 코드에서는 지식 베이스의 MCP 도구와 프로젝트 연결을 사용합니다.</p>
-          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 2026.11.18 검증용 참가자 계정의 일반 포털 로그인이 기존 OTP 입력에서 중단되어 지식 구성·연결·출처 응답의 <strong>참가자 권한 E2E를 확인하지 못했습니다.</strong> 기능 불가나 권한 오류를 확인한 것은 아닙니다. 검색 서비스·관리 ID 역할·지원 리전은 운영자 준비이며 무료 계층에도 모델 토큰 비용은 별도입니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 이번 재촬영 범위(실습 1~10)에 넣지 않아 지식 구성·연결·출처 응답의 <strong>참가자 권한 E2E를 확인하지 못했습니다.</strong> 기능 불가나 권한 오류를 확인한 것은 아닙니다. 검색 서비스·관리 ID 역할·지원 리전은 운영자 준비이며 무료 계층에도 모델 토큰 비용은 별도입니다.</p>
           <div class="intro-try"><strong>해 보려면 · 공식 절차 요약</strong><ol>
             <li>허브 기반이 아닌 Foundry 프로젝트·모델과 에이전틱 검색 지원 서비스를 준비합니다. 검색 무료 계층은 구독당 1개이므로 기존 서비스·지원 리전·SKU를 확인합니다.</li>
             <li>운영자가 프로젝트 관리 ID → 검색 서비스의 Search Index Data Reader와, LLM을 쓰면 검색 서비스 관리 ID → Foundry 리소스의 Cognitive Services User를 준비합니다. 연결 생성의 Foundry Project Manager 등 공식 권한 요건도 확인합니다.</li>
@@ -755,7 +815,7 @@
           <p>도구 묶음을 관리형 MCP 엔드포인트로 재사용하고 API 없는 웹 작업은 브라우저 도구로 연결합니다.</p>
           <p class="intro-status"><strong>발표 상태:</strong> Learn의 VS Code prompt-agent Toolbox 통합은 Preview·기본 비활성화, 브라우저 도구 자체는 GA입니다. Foundry 발표는 브라우저 업데이트의 별도 상태를 명시하지 않습니다.</p>
           <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
-          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 도구별 권한·연결과 Playwright 작업 영역이 필요합니다. 검증용 참가자 계정의 포털 로그인이 기존 OTP에서 중단되어 10분 후보 점검·브라우저 실행은 하지 못했습니다. 기능 자체가 불가능하다고 판정한 것은 아닙니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 도구별 권한·연결과 Playwright 작업 영역이 필요합니다. 이번 재촬영 범위에 넣지 않아 10분 후보 점검·브라우저 실행은 하지 못했습니다. 기능 자체가 불가능하다고 판정한 것은 아닙니다.</p>
           <p class="intro-links"><strong>공식 문서:</strong> <a href="https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/toolbox-overview" target="_blank" rel="noopener noreferrer">Toolbox 개념 ↗</a> · <a href="https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/create-prompt-agent-visual-studio-code#use-a-toolbox-preview" target="_blank" rel="noopener noreferrer">prompt-agent Preview 조건 ↗</a> · <a href="https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/browser-automation" target="_blank" rel="noopener noreferrer">브라우저 자동화·제약 ↗</a></p>
         </article>
         <article class="intro-card" id="learn-foundry-mcp-server" data-tier="B">
@@ -771,7 +831,7 @@
           <p>에이전트가 실행되는 동안 행동을 조직의 guardrail 정책과 대조하는 감독 기능입니다. Entra Agent ID·최소 권한·민감 작업의 사람 승인과 함께 설계합니다. 발표는 Foundry에서 만든 에이전트를 대상으로 하며 외부 에이전트로의 확장은 향후 사항입니다.</p>
           <p class="intro-status"><strong>발표 상태:</strong> Foundry 블로그는 런타임 제어 전체의 GA/Preview를 명시하지 않습니다. Learn은 콘텐츠 안전 agent guardrails·도구 호출/응답 검사를 Preview로 구분합니다.</p>
           <p><span class="verification-badge">직접 실행하지 않음 · 공식 문서 기준</span></p>
-          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 정책 변경 권한과 대상·위험별 지원을 확인해야 합니다. 검증용 참가자 계정의 포털 로그인이 기존 OTP에서 중단되어 Safety 후보 점검·정책 변경은 하지 못했습니다. 포털에 기능이 없다고 확인한 것은 아닙니다.</p>
+          <p class="intro-limit"><strong>왜 실습하지 않나:</strong> 정책 변경 권한과 대상·위험별 지원을 확인해야 합니다. 이번 재촬영 범위에 넣지 않아 Safety 후보 점검·정책 변경은 하지 못했습니다. 포털에 기능이 없다고 확인한 것은 아닙니다.</p>
           <p class="intro-links"><strong>공식 문서:</strong> <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/" target="_blank" rel="noopener noreferrer">런타임 감독 발표 ↗</a> · <a href="https://learn.microsoft.com/en-us/azure/foundry/guardrails/guardrails-overview" target="_blank" rel="noopener noreferrer">Guardrails·적용 범위 ↗</a></p>
         </article>
         <article class="intro-card" id="learn-training" data-tier="B">
@@ -827,16 +887,16 @@
             <thead><tr><th>항목</th><th>이 실습에서 확인한 값</th><th>주의</th></tr></thead>
             <tbody>
               <tr><td>프로젝트 리전</td><td>North Central US</td><td>이 워크샵의 기본 리전입니다. 하네스는 공식 문서의 지원 리전 22곳에 있는 프로젝트에서만 쓸 수 있고 North Central US가 포함됩니다(2026.11.17 문서 기준). 다른 리전을 배정받았다면 공식 목록(<a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">하네스 지원 리전·한도 ↗</a>)을 확인하세요.</td></tr>
-              <tr><td>모델·TPM</td><td>gpt-6.1-terra · Global Standard · 100,000 TPM (참가자 권한 재현에서는 10,000 → 30,000 TPM)</td><td>하네스는 호출 한 번에 토큰을 많이 씁니다(화면에 표시된 토큰 수: 샌드박스 질문 1회 41,653, 참가자 환경 14,819·15,068). <strong>10,000 TPM 배포에서는 <code>What can you help me do?</code> 같은 단순 질문도 'Model deployment rate limit exceeded. Retry later.'로 실패</strong>했습니다. 30,000 TPM에서는 1분 넘게 쉬고 한 번에 하나씩 보내면 웹 읽기 질문까지 끝났지만 20초 뒤에 이어 보낸 질문은 실패했습니다. 100,000 TPM(샌드박스)에서도 평가 15행 중 3행이 실패했습니다. 모델은 reasoning과 tool calling을 지원해야 합니다(공식 문서).</td></tr>
-              <tr><td>에이전트 생성·호출</td><td>프로젝트의 Foundry User</td><td>공식 문서 기준입니다. 모델 배포·리소스 생성에는 본인 RG의 Contributor가 따로 필요합니다. 참가자 3개 역할(RG Contributor · Foundry User · 구독 Usages Reader)만으로 Prompt Agent와 하네스 에이전트의 생성·실행이 됐습니다.</td></tr>
-              <tr><td>Fleet · Cost 화면</td><td>프로젝트·구독 읽기 + 연결된 Application Insights의 Log Analytics Reader + 구독의 Cost Management Reader</td><td>공식 문서 기준 요건입니다. 참가자 3개 역할만으로도 Fleet·Operations·Cost·Quota·Gateways가 권한 오류 없이 열렸고 Fleet에는 본인 프로젝트의 에이전트 2개가 보였습니다. Cost는 새 리소스라 비용 데이터가 없어 0행이었습니다(최대 24시간 지연). Traces·Monitor 위쪽에는 '통화 표시는 Cost Management Reader 필요'라는 안내만 떴습니다. 비용이 비어 있으면 Cost Management Reader부터 확인합니다.</td></tr>
-              <tr><td>평가자의 트레이스 컨텍스트</td><td>프로젝트 관리 ID에 Application Insights의 Monitoring Reader</td><td>화면의 'Setup incomplete' 경고 문구 기준입니다. 참가자가 <strong>Resolve</strong>를 누르면 'You don't have permission to assign roles on this Application Insights resource … requires the Owner or User Access Administrator role.' 오류가 나므로 직접 처리하지 말고 운영자에게 요청하세요. 경고가 떠 있어도 루브릭 평가자 생성·저장은 됐습니다.</td></tr>
+              <tr><td>모델·TPM</td><td>gpt-6.1-terra · Global Standard · 100,000 TPM (실습 3의 10,000 TPM에서 운영자가 상향)</td><td>하네스는 호출 한 번에 토큰을 많이 씁니다(화면에 표시된 토큰 수: 질문 1회 35,913). <strong>2026.11.17 시험에서 10,000 TPM 배포는 <code>What can you help me do?</code> 같은 단순 질문도 'Model deployment rate limit exceeded. Retry later.'로 실패</strong>했습니다. 30,000 TPM에서는 1분 넘게 쉬고 한 번에 하나씩 보내면 웹 읽기 질문까지 끝났지만 20초 뒤에 이어 보낸 질문은 실패했습니다. 2026.11.18 재촬영은 100,000 TPM에서 질문 1회와 평가 15행(합성 데이터 생성 포함)이 모두 통과했지만 2026.11.17에는 같은 100,000 TPM에서도 평가 15행 중 3행이 실패했습니다. 모델은 reasoning과 tool calling을 지원해야 합니다(공식 문서).</td></tr>
+              <tr><td>에이전트 생성·호출</td><td>프로젝트의 Foundry User</td><td>공식 문서 기준입니다. 모델 배포·리소스 생성에는 본인 RG의 Contributor가 따로 필요합니다. 참가자 3개 역할(RG Contributor · Foundry User · 구독 Usages Reader)만으로 Prompt Agent와 하네스 에이전트의 생성·실행이 됐습니다(2026.11.18 재촬영).</td></tr>
+              <tr><td>Fleet · Cost 화면</td><td>프로젝트·구독 읽기 + 연결된 Application Insights의 Log Analytics Reader + 구독의 Cost Management Reader</td><td>공식 문서 기준 요건입니다. 참가자 3개 역할만으로도 Fleet·Operations·Cost·Compliance·Gateways가 권한 오류 없이 열렸고 Fleet에는 본인 프로젝트 1개와 에이전트 2개가 보였습니다. Cost는 새 리소스라 비용 데이터가 없어 0행이었습니다(최대 24시간 지연). Traces·Monitor 위쪽에는 '통화 표시는 Cost Management Reader 필요'라는 안내가, 에이전트의 Monitor → Cost 탭에는 Azure Monitor 지표 읽기 권한이 없다는 안내가 떴습니다. 비용이 비어 있으면 Cost Management Reader부터 확인합니다.</td></tr>
+              <tr><td>평가자의 트레이스 컨텍스트</td><td>프로젝트 관리 ID에 Application Insights의 Monitoring Reader</td><td>화면의 'Setup incomplete' 경고 문구 기준입니다. 이번 촬영에서는 경고(Setup incomplete: Assign the Foundry project's managed identity the Monitoring Reader role on Application Insights…)와 Resolve 버튼을 확인한 뒤 운영자가 역할을 부여했고, 몇 분 뒤 평가자를 만들 때는 경고가 보이지 않았습니다. 참가자가 <strong>Resolve</strong>를 누르면 'You don't have permission to assign roles on this Application Insights resource … requires the Owner or User Access Administrator role.' 오류가 났으므로(2026.11.17 확인) 직접 처리하지 말고 운영자에게 요청하세요. 경고가 떠 있어도 루브릭 평가자 생성·저장은 됐습니다(2026.11.17).</td></tr>
             </tbody>
           </table>
         </div>
         <ol class="task-list" aria-label="New Foundry를 켜고 안내를 확인하는 순서">
-          <li>포털 오른쪽 위의 <strong>New Foundry</strong> 토글이 <strong>켜져</strong> 있는지 확인합니다. 켜면 환영 안내가 나옵니다. 아래 화면은 New Foundry 기준입니다.</li>
-          <li>환영 안내 3장을 읽고 <strong>Next</strong>로 넘깁니다. 마지막 장의 <strong>Create agent</strong>는 에이전트 만들기를 바로 시작하는 버튼입니다. 이 가이드는 <a href="#ignite-harness-create" data-lab-ref="sec:ignite-harness-create">실습 6-2</a>에서 만들므로 안내를 닫아도 됩니다.</li>
+          <li>포털 오른쪽 위의 <strong>New Foundry</strong> 토글이 <strong>켜져</strong> 있는지 확인합니다. 아래 화면은 New Foundry 기준이며 이번 촬영에서는 처음부터 켜져 있었습니다. 토글을 새로 켜면 환영 안내가 나옵니다.</li>
+          <li>환영 안내가 나오면 3장을 읽고 <strong>Next</strong>로 넘깁니다(이번 촬영에서는 나오지 않아 화면이 없습니다). 마지막 장의 <strong>Create agent</strong>는 에이전트 만들기를 바로 시작하는 버튼입니다. 이 가이드는 <a href="#ignite-harness-create" data-lab-ref="sec:ignite-harness-create">실습 6-2</a>에서 만들므로 안내를 닫아도 됩니다.</li>
           <li>홈에서 <strong>Project endpoint</strong>와 <strong>Azure OpenAI endpoint</strong>가 표시되는지 확인합니다. 값은 프로젝트마다 다릅니다.</li>
         </ol>
         <div class="main-gallery" data-ignite-gallery="start" data-lab-gallery="ignite-start" data-ignite-label="새 Foundry 시작 화면"></div>
@@ -848,17 +908,17 @@
         <p class="intro">모델 배포에는 <strong>가드레일(Guardrails) 정책</strong>이 연결됩니다. 새 포털은 Create 아래 <strong>Guardrails</strong> 메뉴에서 정책 목록을 보여 주고, Models → Deployments 목록에는 <strong>Policy</strong> 열이 있습니다. 배포는 <a href="#ignite-harness" data-lab-ref="lab:harness">실습 6</a>의 하네스에도 씁니다. <strong>앞 단계에서 이미 배포했으면 새로 만들지 않고 해당 배포의 정책을 확인</strong>합니다. 아래 배포 화면은 New Foundry에서의 같은 작업을 보여 주는 대체 화면입니다.</p>
         <ol class="task-list" aria-label="가드레일 확인과 모델 배포 순서">
           <li><strong>Create → Guardrails</strong>를 열어 Guardrails · Blocklists · Integrations(Preview) 탭과 정책 3개(Microsoft.Default · Microsoft.DefaultV2 · Microsoft.MAIDefault)를 확인합니다. <strong>Applied to</strong> 열에서 정책이 적용된 모델 배포를 봅니다. 이 실습에서는 정책을 만들거나 바꾸지 않습니다.</li>
-          <li><strong>Models → Deployments</strong>의 <strong>Policy</strong> 열을 확인합니다. 이 프로젝트에서는 Guardrails 화면의 DefaultV2가 여러 배포에 적용돼 있는데도 Policy 열은 모두 'No policies added'였습니다. 두 값의 관계는 확인하지 못했으므로 가드레일 적용 여부는 Guardrails 화면과 배포 패널의 <strong>Guardrails</strong> 필드로 확인하세요.</li>
-          <li><strong>Catalog</strong>에서 <strong>gpt-6.1-terra</strong>를 찾아 <strong>Deploy → Custom settings</strong>를 고르고 아래 값을 입력한 뒤 <strong>Deploy</strong>를 누릅니다. 모델·버전·TPM은 운영자의 배정표가 기준입니다.</li>
+          <li><strong>Models → Deployments</strong>의 <strong>Policy</strong> 열을 확인합니다. 이 프로젝트에서는 Guardrails 화면의 DefaultV2가 gpt-6.1-terra 배포에 적용돼 있는데도 Policy 열은 'No policies added'였습니다. 두 값의 관계는 확인하지 못했으므로 가드레일 적용 여부는 Guardrails 화면과 배포 패널의 <strong>Guardrails</strong> 필드로 확인하세요.</li>
+          <li><strong>Catalog</strong>에서 <strong>gpt-6.1-terra</strong>를 찾아 <strong>Deploy → Custom settings</strong>를 고르고 아래 값을 확인하고 <strong>Deploy</strong>를 누릅니다. 이미 배포했다면 새로 배포하지 말고 대화상자만 확인한 뒤 <strong>Cancel</strong>로 닫습니다(이 화면이 그 경우입니다). 모델·버전·TPM은 운영자의 배정표가 기준입니다.</li>
         </ol>
         <div class="table-wrap">
           <table aria-label="gpt-6.1-terra 배포 입력값">
             <thead><tr><th>필드</th><th>입력·선택값</th><th>설명</th></tr></thead>
             <tbody>
-              <tr><td>Deployment name</td><td><code>gpt-6.1-terra</code></td><td>기본값 그대로입니다. 이 이름이 이후 모델 선택기에 표시됩니다.</td></tr>
-              <tr><td>Deployment type</td><td>Global Standard</td><td>글로벌 처리 방식이므로 데이터 거주 요건이 있는 실데이터는 입력하지 않습니다(구 포털 화면과 같습니다).</td></tr>
-              <tr><td>Tokens per Minute Rate Limit</td><td><code>100000</code></td><td>하네스·평가 실습 기준입니다. 배정값이 있으면 배정값을 입력합니다. 이 화면은 TPM 값을 직접 입력합니다.</td></tr>
-              <tr><td>Guardrails</td><td>DefaultV2 (기본 선택)</td><td>배포 패널에 이미 선택돼 있었습니다. 구 포털의 Custom settings 안내에도 있던 항목입니다.</td></tr>
+              <tr><td>Deployment name</td><td><code>gpt-6.1-terra</code></td><td>기본값 그대로입니다. 같은 이름의 배포가 이미 있으면 <code>gpt-6.1-terra-2</code>처럼 번호가 붙은 이름이 제안됩니다(이 화면). 이 이름이 이후 모델 선택기에 표시됩니다.</td></tr>
+              <tr><td>Deployment type</td><td>Global Standard</td><td>글로벌 처리 방식이므로 데이터 거주 요건이 있는 실데이터는 입력하지 않습니다.</td></tr>
+              <tr><td>Tokens per Minute Rate Limit</td><td><code>100000</code></td><td>하네스·평가 실습 기준입니다. 배정값이 있으면 배정값을 입력합니다. 이 화면은 TPM 값을 직접 입력하며 기본값은 250000이고 오른쪽에 이 구독에서 고를 수 있는 최대값이 표시됩니다.</td></tr>
+              <tr><td>Guardrails</td><td>DefaultV2 (기본 선택)</td><td>배포 패널에 이미 선택돼 있었고 드롭다운에는 DefaultV2 · Default · Microsoft.MAIDefault가 있습니다.</td></tr>
             </tbody>
           </table>
         </div>
@@ -878,7 +938,7 @@
           <li><strong>New agent → Build an agent</strong>를 선택합니다. 메뉴에는 Code an agent, With agent template, Link external agent도 있습니다.</li>
           <li><strong>Agent name</strong>에 본인 고유 이름(이 실습: <code>workshop-harness-agent</code>)을 입력합니다. <strong>Interaction mode</strong>는 <strong>Text</strong>입니다. 이 설정은 만든 뒤 바꿀 수 없습니다. Voice agents는 Ignite에서 GA로 발표됐지만(Foundry 블로그) 이 실습은 Text만 다룹니다.</li>
           <li><strong>Use the Microsoft Copilot harness</strong>(Preview)를 체크하고 <strong>Create agent and open playground</strong>를 누릅니다.</li>
-          <li>Playground의 모델 선택기에서 <a href="#step-model" data-lab-ref="sec:step-model">실습 3-2</a>에서 배포한 <strong>gpt-6.1-terra</strong>를 고르고 <strong>Instructions</strong>에 아래 지시문을 붙여 넣습니다. 모델을 바꿀 때의 주의는 <a href="#ignite-harness-tools" data-lab-ref="sec:ignite-harness-tools">실습 6-3</a>을 먼저 읽으세요.</li>
+          <li>Playground의 모델 선택기에서 <a href="#step-model" data-lab-ref="sec:step-model">실습 3-2</a>에서 배포한 <strong>gpt-6.1-terra</strong>를 고릅니다(새 하네스 에이전트의 기본 모델은 <code>model-router</code>로 표시됩니다). 이어서 <strong>Instructions</strong>에 아래 지시문을 붙여 넣습니다. 모델을 바꿀 때의 주의는 <a href="#ignite-harness-tools" data-lab-ref="sec:ignite-harness-tools">실습 6-3</a>을 먼저 읽으세요.</li>
         </ol>
         <pre id="ignite-harness-instructions" role="group" aria-label="Instructions · 하네스 실습 지시문">당신은 Microsoft Foundry 워크샵 도우미입니다.
 한국어로, 핵심만 최대 5문장으로 답하세요.
@@ -891,12 +951,12 @@
         <ol class="task-list" aria-label="Harness tools를 제한하는 순서">
           <li>왼쪽 <strong>Tools</strong> 영역의 <strong>Harness tools</strong>(Built-in tool)를 누릅니다. 기본값은 <strong>File system read · File system write · Web · Shell · Subagents</strong>가 모두 켜진 상태이며 "Turn off anything this agent shouldn't use." 안내가 보입니다.</li>
           <li>위 지시문은 읽기와 웹 조회만 허용하므로 <strong>File system write</strong>와 <strong>Shell</strong>을 끄고 <strong>Done</strong>을 누른 뒤 <strong>Save and start new chat</strong>으로 저장합니다.</li>
-          <li>모델을 바꾸면 <strong>Unsupported tools</strong> 대화상자가 나옵니다. <strong>Cancel</strong>은 모델을 바꾸지 않고, <strong>Confirm</strong>은 지원되지 않는 도구를 에이전트에서 제거합니다.</li>
+          <li>모델을 바꿀 때 <strong>Unsupported tools</strong> 대화상자가 나올 수 있습니다(2026.11.17과 11.18 오전에 확인, 이번 촬영에서는 나오지 않았습니다). <strong>Cancel</strong>은 모델을 바꾸지 않고, <strong>Confirm</strong>은 지원되지 않는 도구를 에이전트에서 제거합니다.</li>
           <li>저장한 뒤 <strong>YAML</strong> 탭에서 도구 설정이 기록됐는지 확인합니다.</li>
         </ol>
-        <div class="notice warning"><strong>모델을 바꾸면 도구 제한이 풀렸습니다.</strong> 이 실습에서 Unsupported tools를 Confirm하고 gpt-6.1-terra로 바꾸자 저장된 버전의 <code>tools</code>가 비었고, Harness tools를 다시 열면 다섯 개가 모두 켜져 있었습니다(화면 14). 모델을 먼저 고르고 도구를 제한한 뒤 저장하거나, 모델을 바꿀 때마다 Harness tools를 다시 열어 확인하세요. 아래 YAML은 도구를 다시 끄고 저장한 Version 4입니다. 직접 입력하지 않은 <code>reasoning.effort: low</code>도 함께 저장돼 있었습니다.</div>
+        <div class="notice warning"><strong>모델을 바꾸면 도구 제한이 풀린 적이 있습니다.</strong> 2026.11.17 시험에서 Unsupported tools를 Confirm하고 gpt-6.1-terra로 바꾸자 저장된 버전의 <code>tools</code>가 비었고, Harness tools를 다시 열면 다섯 개가 모두 켜져 있었습니다. 이번 촬영은 모델을 먼저 gpt-6.1-terra로 바꾼 뒤 도구를 제한하고 저장해(Version 2) 이 문제를 겪지 않았습니다. 그래서 <strong>모델을 먼저 고르고 도구를 제한한 뒤 저장</strong>하거나, 모델을 바꿀 때마다 Harness tools를 다시 열어 확인하세요. 아래 YAML은 저장된 Version 2입니다. 직접 입력하지 않은 <code>reasoning.effort: low</code>도 함께 저장돼 있었습니다.</div>
         <div class="notice">공식 문서: Shell은 가장 넓은 도구이며, Shell을 켜 둔 채 File system read·write나 Web을 끄는 것은 엄격한 보안 경계가 아닙니다. 이 실습은 Shell도 함께 껐습니다. 네트워크 송신 제어(Preview)는 Responsible AI 정책의 Network 규칙으로 설정하며 이 실습에서는 사용하지 않았습니다.</div>
-        <pre id="ignite-harness-yaml" role="group" aria-label="YAML 발췌 · 저장된 하네스 정의 (Version 4)">definition:
+        <pre id="ignite-harness-yaml" role="group" aria-label="YAML 발췌 · 저장된 하네스 정의 (Version 2)">definition:
   kind: prompt
   harness:
     type: microsoft_copilot_preview
@@ -918,13 +978,14 @@
         <h3 class="role-title" id="ignite-harness-run">실행하고 상세 화면 확인</h3>
         <ol class="task-list" aria-label="하네스 에이전트를 실행하는 순서">
           <li>모델이 <strong>gpt-6.1-terra</strong>인지 확인하고 채팅창에 아래 질문을 보냅니다. 에이전트가 웹 페이지를 읽는 <code>web_fetch</code> 도구를 호출합니다.</li>
-          <li>응답 아래의 칩(모델 · 시간 · 토큰 · message · web_fetch · function)과 <strong>Traces</strong> 링크를 확인합니다. 이 실습의 한 번 실행은 gpt-6.1-terra · 8s · 41,653토큰이었습니다.</li>
+          <li>응답 아래의 칩(모델 · 시간 · 토큰 · message · web_fetch · function)과 <strong>Traces</strong> 링크를 확인합니다. 이 실습의 한 번 실행은 gpt-6.1-terra · 9s · 35,913토큰이었습니다. 하네스는 첫 실행이 느릴 수 있어 이번 촬영에서도 4분 넘게 기다린 적이 있으며 이후 실행은 몇 초~십수 초였습니다.</li>
+          <li><strong>Agents</strong> 목록으로 돌아가 workshop-harness-agent 행의 <strong>Harness</strong> 열에 'Microsoft Copilot'(Preview)이 표시되는지 확인합니다.</li>
           <li><strong>Details</strong> 탭에서 Responses protocol 엔드포인트, A2A protocol, Channels(Teams &amp; Microsoft 365 Copilot · Preview web app), Routines, Entra agent identity를 확인합니다. <strong>Publish · Set up은 누르지 않습니다.</strong></li>
           <li>왼쪽 아래 <strong>Guardrail(Preview)</strong> 섹션에서 적용 중인 가드레일을 확인합니다. 에이전트에 따로 지정하지 않으면 모델 배포의 가드레일을 상속한다고 표시됩니다. <strong>Manage guardrail</strong> 메뉴는 열어 보기만 합니다.</li>
           <li>Agents 목록 위의 <strong>Routines</strong>와 <strong>Workflows</strong> 탭은 보기만 합니다. Workflows 탭에는 2026.12.01에 종료되며 Microsoft Agent Framework로 새로 만들라는 배너가 있습니다.</li>
         </ol>
         <pre id="ignite-harness-question" role="group" aria-label="첫 질문 · 웹 페이지를 읽게 하는 질문">https://learn.microsoft.com/azure/foundry/ 문서를 웹에서 읽고, Microsoft Foundry가 무엇인지 핵심 3가지로 요약해줘.</pre>
-        <div class="notice warning"><code>Model deployment rate limit exceeded. Retry later.</code>가 나오면 배포의 TPM 한도에 걸린 것입니다. 이 실습은 model-router로 두 번 실패한 뒤 100,000 TPM으로 만든 gpt-6.1-terra 배포로 바꿔 성공했습니다. 같은 질문을 반복 전송하지 말고 <a href="#ignite-start" data-lab-ref="sec:ignite-start">실습 6-1</a>의 TPM 안내와 운영자의 배정값을 확인하세요. 응답이 정확하다는 보장은 없으니 링크와 요약을 출처 페이지와 대조합니다.</div>
+        <div class="notice warning"><code>Model deployment rate limit exceeded. Retry later.</code>가 나오면 배포의 TPM 한도에 걸린 것입니다. 이번 재촬영은 100,000 TPM으로 올린 gpt-6.1-terra 배포에서 실행해 성공했습니다. 2026.11.17 시험에서는 model-router와 10,000 TPM 배포로 실행했을 때 이 오류가 반복됐습니다. 같은 질문을 반복 전송하지 말고 <a href="#ignite-start" data-lab-ref="sec:ignite-start">실습 6-1</a>의 TPM 안내와 운영자의 배정값을 확인하세요. 응답이 정확하다는 보장은 없으니 링크와 요약을 출처 페이지와 대조합니다.</div>
         <div class="main-gallery" data-ignite-gallery="harness-run" data-lab-gallery="ignite-harness-run" data-ignite-label="하네스 실행·상세 화면"></div>
       </section>
 
@@ -937,15 +998,15 @@
           <li><strong>Monitor → Overview</strong>에서 Operational metrics, Evaluations, Scheduled evaluations, Scheduled red teaming run issues(Preview) 카드와 Agent runs 차트를 확인합니다.</li>
           <li><strong>Monitor → Cost (Preview)</strong> 탭에서 추정 비용과 토큰 사용량을 확인합니다. 화면 상단에 "All costs on this page are estimated" 안내가 있습니다.</li>
         </ol>
-        <div class="notice warning"><strong>값이 화면마다 달랐습니다.</strong> 이 환경에서는 실행이 기록됐는데도 Traces의 Tokens(In/Out)이 0 · Estimated cost $0.00, Monitor의 Total token usage가 0, Cost 탭이 Not available이었습니다. Playground의 실행 칩(41,653토큰)과 달랐고 원인은 확인하지 못했습니다. 토큰·비용은 한 화면만 믿지 말고 서로 비교하세요. 다른 화면의 값이 같다고 가정하지 않습니다.</div>
-        <div class="notice"><strong>Ignite 발표와 이 화면.</strong> ① <strong>트레이스 주석(Preview)</strong>: 트레이스 상세의 <strong>Annotate</strong>에서 👍/👎와 설명을 남기고, 주석을 모아 평가 데이터셋과 golden dataset(Preview)을 만든다고 안내합니다(<a href="https://learn.microsoft.com/azure/foundry/observability/how-to/trace-annotations" target="_blank" rel="noopener noreferrer">Learn ↗</a>). 11/17 화면의 Traces에는 Annotate 버튼과 Annotation 열이 있었고 이 실습에서는 사용하지 않았습니다. ② Foundry 블로그는 에이전트의 Monitor 대시보드가 품질·안전·지연·토큰을 한 화면에 모아 보여 주고 점수가 떨어지면 알림을 준다고 설명합니다(<a href="https://learn.microsoft.com/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard" target="_blank" rel="noopener noreferrer">Learn ↗</a>). 알림은 이 실습에서 확인하지 못했습니다. ③ Foundry 밖에서 LangGraph·LangChain·CrewAI로 만든 에이전트에도 같은 관찰(가시성)을 쓸 수 있다는 발표(GA)는 이 실습 범위 밖입니다.</div>
+        <div class="notice warning"><strong>값이 화면마다 달랐습니다.</strong> 이 환경에서는 하네스 에이전트의 Monitor → Overview에서 Total token usage가 0 · Estimated cost '--'였고 Cost 탭은 Agent runs(18)를 빼고 모두 Not available이었으며, 같은 Cost 탭 위쪽에 Azure Monitor 지표를 읽을 권한이 없다는 안내가 떴습니다. Playground의 실행 칩(35,913토큰)과 달랐고 Traces 목록에도 Tokens(In/Out)이 0 · $0.00인 행과 수만 토큰인 행이 섞여 있었습니다. 원인은 확인하지 못했습니다. 토큰·비용은 한 화면만 믿지 말고 서로 비교하세요. 다른 화면의 값이 같다고 가정하지 않습니다. 참고로 Traces 화면은 평가·최적화 실습을 마친 뒤 다시 찍어서, 평가 실행이 만든 트레이스(Evaluation 열에 workshop-answer-quality 점수)가 함께 보입니다. 실습 6 직후에는 방금 보낸 질문의 트레이스만 보입니다.</div>
+        <div class="notice"><strong>Ignite 발표와 이 화면.</strong> ① <strong>트레이스 주석(Preview)</strong>: 트레이스 상세의 <strong>Annotate</strong>에서 👍/👎와 설명을 남기고, 주석을 모아 평가 데이터셋과 golden dataset(Preview)을 만든다고 안내합니다(<a href="https://learn.microsoft.com/azure/foundry/observability/how-to/trace-annotations" target="_blank" rel="noopener noreferrer">Learn ↗</a>). 이번 화면의 Traces에는 Annotate 버튼과 Annotation 열이 있었고 이 실습에서는 사용하지 않았습니다. ② Foundry 블로그는 에이전트의 Monitor 대시보드가 품질·안전·지연·토큰을 한 화면에 모아 보여 주고 점수가 떨어지면 알림을 준다고 설명합니다(<a href="https://learn.microsoft.com/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard" target="_blank" rel="noopener noreferrer">Learn ↗</a>). 알림은 이 실습에서 확인하지 못했습니다. ③ Foundry 밖에서 LangGraph·LangChain·CrewAI로 만든 에이전트에도 같은 관찰(가시성)을 쓸 수 있다는 발표(GA)는 이 실습 범위 밖입니다.</div>
         <div class="main-gallery" data-ignite-gallery="observe" data-lab-gallery="ignite-observe" data-ignite-label="Traces·Monitor 화면"></div>
       </section>
 
       <section class="panel observed-section" id="ignite-improve" data-ignite-nav="루프" data-ignite-title="평가·개선 루프">
         <p class="section-label">EVALUATE AND IMPROVE</p>
         <h2>Insights → 평가자 → 평가 → Optimize 순서로 개선합니다.</h2>
-        <p class="intro">트레이스에서 문제를 찾고(Insights) 기준을 만들고(평가자) 점수를 내고(평가) 후보를 비교합니다(Optimize). 이 흐름은 Ignite 2026에서 발표된 <strong>Microsoft IQ의 지속 개선(Continuous improvement in Foundry)</strong> 앞부분에 대한 <strong>이 가이드의 대응</strong>입니다(<a href="#ignite-microsoft-iq">Microsoft IQ 요약</a>). 앞의 세 과정은 실제 실행했고 Optimize는 샌드박스에서 화면만, 참가자 권한 재현 환경에서는 Prompt Agent로 실행했습니다(<a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a>). 왼쪽 메뉴에서는 <strong>Improve → Evaluations</strong>가 평가 화면입니다.</p>
+        <p class="intro">트레이스에서 문제를 찾고(Insights) 기준을 만들고(평가자) 점수를 내고(평가) 후보를 비교합니다(Optimize). 이 흐름은 Ignite 2026에서 발표된 <strong>Microsoft IQ의 지속 개선(Continuous improvement in Foundry)</strong> 앞부분에 대한 <strong>이 가이드의 대응</strong>입니다(<a href="#ignite-microsoft-iq">Microsoft IQ 요약</a>). 앞의 세 과정과 Optimize를 모두 직접 실행했습니다(Optimize는 하네스가 아닌 Prompt Agent로, <a href="#ignite-optimize" data-lab-ref="lab:optimize">실습 9</a>). 왼쪽 메뉴에서는 <strong>Improve → Evaluations</strong>가 평가 화면입니다.</p>
         <ol class="flow" aria-label="개선 루프">
           <li>Insights<small><a href="#ignite-insights" data-lab-ref="lab:insights">실습 7</a></small></li>
           <li>평가자 만들기<small><a href="#ignite-evaluator" data-lab-ref="sec:ignite-evaluator">실습 8-1</a></small></li>
@@ -960,11 +1021,11 @@
         <ol class="task-list" aria-label="Insights 스캔을 실행하는 순서">
           <li>에이전트의 <strong>Insights</strong> 탭을 엽니다. 오른쪽의 <strong>Preview example · Sample data</strong>는 예시 데이터이며 내 에이전트의 결과가 아닙니다.</li>
           <li><strong>Judge model</strong>을 고릅니다. 'Only GPT-5 or newer models can be used to analyze traces and generate insights.'라고 안내돼 GPT-5 이상 모델만 쓸 수 있습니다.</li>
-          <li><strong>Estimated cost for your first scan</strong>(최근 7일 트레이스 3개 기준)을 확인하고 <strong>Run scan now</strong>를 누릅니다. 모델에 가격 정보가 없으면 'Pricing unavailable for the selected model.'로 표시됩니다.</li>
-          <li><strong>Run in progress</strong> 화면은 2~5분 걸린다고 안내하며 Collecting traces → Analyzing traces → Generating insights 단계를 보여 줍니다. 끝나면 왼쪽 위에 인사이트 개수가 표시됩니다. 이 실습은 <strong>0 insights · No issues detected</strong>였습니다.</li>
+          <li><strong>Estimated cost for your first scan</strong>(이 캡처: 최근 7일 트레이스 14개 기준)을 확인하고 <strong>Run scan now</strong>를 누릅니다. 모델에 가격 정보가 없으면 'Pricing unavailable for the selected model.'로 표시됩니다.</li>
+          <li><strong>Run in progress</strong> 화면은 2~5분 걸린다고 안내하며 Collecting traces → Analyzing traces → Generating insights 단계를 보여 줍니다. 끝나면 위쪽에 'Scan complete' 알림이 뜨고 왼쪽에 인사이트 개수가 표시됩니다. 이 실습은 'Analyzed 3 traces and generated no new insights, using 101,123 tokens.'로 <strong>0 insights · No issues detected</strong>였습니다. 스캔 한 번에 judge 모델 토큰을 약 10만 개 썼습니다.</li>
         </ol>
         <div class="notice">0건은 문제가 없다는 보장이 아닙니다. 이 스캔은 트레이스 3개만 분석했습니다. 정기 스캔은 화면 안내대로 Settings → Insights에서 설정하며 이 실습에서는 설정하지 않았습니다.</div>
-        <div class="notice"><strong>Ignite 발표: Insights는 GA입니다.</strong> Book of News는 Foundry가 운영 중인 신호를 자동으로 분석해 반복되는 실패(환각·토큰 급증 등)를 묶고 가장 잦은 문제와 수정안을 순위로 보여 준다고 설명하며, Learn 문서(<a href="https://learn.microsoft.com/azure/foundry/observability/how-to/agent-insights" target="_blank" rel="noopener noreferrer">Insights ↗</a>)의 제목에서도 preview 표기가 사라졌습니다(2026.11.18 확인). 같은 문서의 'Fix insights with agent optimizer'(Insights의 문제를 Agent optimizer로 보내 수정 후보를 만드는 기능)는 Preview이며 이 실습의 11/17 화면에서는 확인하지 못했습니다.</div>
+        <div class="notice"><strong>Ignite 발표: Insights는 GA입니다.</strong> Book of News는 Foundry가 운영 중인 신호를 자동으로 분석해 반복되는 실패(환각·토큰 급증 등)를 묶고 가장 잦은 문제와 수정안을 순위로 보여 준다고 설명하며, Learn 문서(<a href="https://learn.microsoft.com/azure/foundry/observability/how-to/agent-insights" target="_blank" rel="noopener noreferrer">Insights ↗</a>)의 제목에서도 preview 표기가 사라졌습니다(2026.11.18 확인). 같은 문서의 'Fix insights with agent optimizer'(Insights의 문제를 Agent optimizer로 보내 수정 후보를 만드는 기능)는 Preview이며 이 실습의 화면에서는 확인하지 못했습니다.</div>
         <div class="main-gallery" data-ignite-gallery="insights" data-lab-gallery="ignite-insights" data-ignite-label="Insights 화면"></div>
 
       </section>
@@ -981,7 +1042,7 @@
               <tr><td>Description</td><td>하네스 에이전트의 답변이 정확하고 간결한지, 가져온 웹 페이지를 근거로 출처를 적었는지 평가합니다.</td><td>자유 입력입니다.</td></tr>
               <tr><td>Evaluator type</td><td>Rubric (기본값)</td><td>Prompt · Code · Endpoint는 Preview이며 이 실습에서는 쓰지 않았습니다.</td></tr>
               <tr><td>Category · Scoring method</td><td>Quality · Numeric (기본값)</td><td>Auto-generate rubric 토글도 켜진 기본값 그대로입니다.</td></tr>
-              <tr><td>Model</td><td>judge로 쓸 모델 배포 (이 실습: contoso-judge)</td><td>배정된 judge 모델을 고릅니다. 이 프로젝트의 목록에는 contoso-judge와 gpt-5 계열 이름이 보였고 gpt-6.1-terra는 보이지 않았습니다.</td></tr>
+              <tr><td>Model</td><td>judge로 쓸 모델 배포 (이 실습: gpt-5.4-mini)</td><td>운영자가 배정한 judge 모델을 고릅니다. 이 환경의 시험에서는 목록에 gpt-6.1-terra가 보이지 않았습니다. 보이는 배포 중에서 고르고 없으면 운영자에게 요청하세요.</td></tr>
               <tr><td>Target agent</td><td><code>workshop-harness-agent</code></td><td>고르면 그 에이전트의 지시문이 Agent instructions에 읽기 전용으로 채워집니다.</td></tr>
               <tr><td>Prompt</td><td>아래 기준 문장</td><td>평가자가 보는 기준을 적습니다.</td></tr>
             </tbody>
@@ -990,8 +1051,8 @@
         <pre id="ignite-evaluator-prompt" role="group" aria-label="Prompt · 평가자 기준 문장">에이전트가 사용자 질문에 정확하고 간결하게(최대 5문장) 한국어로 답하는지 평가합니다. 웹에서 가져온 페이지를 근거로 사용하고 출처 URL을 함께 적었는지 확인하고, 가져온 페이지를 무시하거나 근거 없는 주장을 덧붙이면 감점합니다.</pre>
         <ol class="task-list" aria-label="커스텀 루브릭 평가자를 만드는 순서">
           <li>Create evaluator 대화상자에서 위 표의 값을 입력합니다.</li>
-          <li><strong>Context(Optional)</strong>는 Target agent를 고르면 'Add context'와 'Use production traces from target agent'가 켜진 채 나타났습니다. 이 실습에서는 'Setup incomplete … Monitoring Reader …' 경고와 <strong>Resolve</strong> 버튼이 함께 보였습니다. 샌드박스에서는 Resolve를 누르지 않고 그대로 진행했으며 루브릭이 만들어졌습니다. 참가자 권한 재현 환경에서는 Resolve를 눌러 보았고 'You don't have permission to assign roles on this Application Insights resource. Assigning this role requires the Owner or User Access Administrator role.' 오류가 났습니다. 같은 환경에서 운영자가 프로젝트 관리 ID에 Monitoring Reader를 부여한 뒤 1분쯤 지나 루브릭을 생성할 때도 경고 문구는 그대로 보였지만 루브릭(8개 차원)은 생성·저장됐습니다. 그 루브릭이 트레이스 컨텍스트를 반영했는지는 확인하지 못했습니다.</li>
-          <li><strong>Generate rubric</strong>을 누르고 기다립니다. 오른쪽에 'Generated rubric (6 dimensions)'가 나타나고 'Rubric evaluator created' 알림이 뜹니다. 각 차원은 1·3·5점 기준을 가지며 Pass score threshold는 0.5, <strong>Use weights</strong>는 꺼져 있었습니다. 차원은 Edit(연필)로 고치고 Add dimension으로 추가하거나 Regenerate rubric으로 다시 만들 수 있습니다.</li>
+          <li><strong>Context(Optional)</strong>는 Target agent를 고르면 'Add context'와 'Use production traces from target agent'가 켜진 채 나타나고 Date range와 '8 traces found. A representative set will be auto-selected using intelligent sampling.' 안내가 보입니다. 프로젝트 관리 ID에 Monitoring Reader가 없으면 'Setup incomplete … Monitoring Reader …' 경고와 <strong>Resolve</strong> 버튼이 함께 보입니다(화면 '컨텍스트(트레이스) 설정과 권한 경고'). 참가자는 Resolve를 누르지 않고 운영자에게 요청합니다. 이번 촬영에서는 경고를 확인한 뒤 운영자가 프로젝트 관리 ID에 역할을 부여했고 몇 분 뒤 경고가 없는 상태에서 루브릭을 만들었습니다. 2026.11.17 시험에서는 경고가 그대로 있어도 루브릭이 만들어졌고, 참가자가 Resolve를 누르자 'You don't have permission to assign roles on this Application Insights resource. Assigning this role requires the Owner or User Access Administrator role.' 오류가 났습니다. 루브릭이 트레이스 컨텍스트를 반영했는지는 확인하지 못했습니다.</li>
+          <li><strong>Generate rubric</strong>을 누르고 기다립니다. 오른쪽에 'Generated rubric (8 dimensions)'가 나타나고 'Rubric evaluator created' 알림이 뜹니다. 차원 이름과 개수는 만들 때마다 달라질 수 있습니다(이전 시험은 6개). 각 차원은 1·3·5점 기준을 가지며 Pass score threshold는 0.5, <strong>Use weights</strong>는 꺼져 있었습니다. 차원은 Edit(연필)로 고치고 Add dimension으로 추가하거나 Regenerate rubric으로 다시 만들 수 있습니다.</li>
           <li>차원을 읽고 <strong>Save evaluator</strong>를 누르면 평가자 상세 화면으로 이동합니다. 오른쪽 위에 <strong>Create evaluation</strong>이 있습니다.</li>
         </ol>
         <div class="notice"><strong>Ignite 발표와 이 단계.</strong> Book of News는 검증된 golden dataset에서 과제별 루브릭 평가자를 만들 수 있고 루브릭 평가자가 품질뿐 아니라 안전(safety) 평가도 지원한다고 소개합니다(안전 지원은 Preview). Foundry 블로그는 트레이스 주석 → 평가 데이터셋 → golden dataset에서 사례마다 루브릭을 생성하는 흐름도 설명합니다(Preview, <a href="https://learn.microsoft.com/azure/foundry/observability/how-to/human-in-the-loop-golden-datasets" target="_blank" rel="noopener noreferrer">Learn ↗</a>). 이 실습은 <strong>자연어 기준에서 Auto-generate rubric으로 루브릭을 만드는 방법만</strong> 실행했고 golden dataset 방식과 안전 평가자는 하지 않았습니다. 블로그는 Microsoft-Decision-1.1을 평가의 judge로 쓸 수 있다고 하지만 이 프로젝트에는 배포하지 않아 확인하지 못했습니다. 루브릭 평가자 문서는 <a href="https://learn.microsoft.com/azure/foundry/concepts/evaluation-evaluators/rubric-evaluators" target="_blank" rel="noopener noreferrer">Learn ↗</a>입니다.</div>
@@ -1004,45 +1065,47 @@
         <ol class="task-list" aria-label="평가를 만들고 실행하는 순서">
           <li>평가자 상세의 <strong>Create evaluation</strong>을 누르면 <strong>Target → Scope → Data → Criteria → Review</strong> 5단계 마법사가 열립니다. Target은 <strong>Agent</strong>이며 목록에서 <code>workshop-harness-agent</code>를 고르고 Next를 누릅니다.</li>
           <li><strong>Scope</strong>는 Individual turns(질문-응답 한 쌍, 기본값)로 두고 Next를 누릅니다. Full conversations(여러 턴 대화 전체)도 고를 수 있습니다.</li>
-          <li><strong>Data</strong>의 Dataset source는 <strong>Synthetic generation</strong>입니다(Existing dataset · Benchmarks(Preview) · Existing traces · Live traffic도 선택할 수 있습니다). <strong>Prompt(optional)</strong>에 아래 문장을 붙여 넣고 Model은 gpt-6.1-terra, <strong>Number of rows</strong>는 <strong>15</strong>(허용 범위 15~100), 새 데이터셋 이름은 <code>workshop_harness_eval_set</code>으로 입력합니다. 공식 문서 제목에는 2026.11.18 확인에서 preview 표기가 없습니다. 5를 입력하면 'Enter a whole number from 15 to 100.' 오류로 Next가 비활성화됩니다.</li>
-          <li><strong>Criteria</strong>에서 Judge model(이 실습: contoso-judge)을 확인합니다. Evaluator catalog에는 처음에 Recommended 6개와 내가 만든 평가자가 선택돼 있습니다(Review selected (7)). 하네스 호출 비용을 줄이려고 <strong>Clear selection → Custom → All custom</strong>에서 <strong>Workshop answer quality</strong>만 체크하고 Next를 누릅니다.</li>
+          <li><strong>Data</strong>의 Dataset source는 <strong>Synthetic generation</strong>입니다(Existing dataset · Benchmarks(Preview) · Existing traces · Live traffic도 선택할 수 있습니다). <strong>Prompt(optional)</strong>에 아래 문장을 붙여 넣고 Model은 gpt-6.1-terra, <strong>Number of rows</strong>는 <strong>15</strong>(기본값이자 최소값), 새 데이터셋 이름은 <code>workshop_harness_eval_set</code>으로 입력합니다. 공식 문서 제목에는 2026.11.18 확인에서 preview 표기가 없습니다.</li>
+          <li><strong>Criteria</strong>에서 Judge model(이 실습: gpt-5.4-mini)을 확인합니다. Evaluator catalog에는 처음에 Recommended 6개와 내가 만든 평가자가 선택돼 있습니다(Review selected (7)). 하네스 호출 비용을 줄이려고 <strong>Clear selection → Custom → All custom</strong>에서 <strong>Workshop answer quality</strong>만 체크하고 Next를 누릅니다.</li>
           <li><strong>Review</strong>에서 Evaluation name에 <code>workshop-harness-eval-1</code>을 입력하고 Summary를 확인한 뒤 <strong>Submit</strong>을 누릅니다.</li>
-          <li>평가 상세의 <strong>Evaluation runs</strong>에서 Status를 확인합니다. 'In progress'로 시작해 이 실습은 총 <strong>15분 43초</strong> 걸렸습니다. 끝나면 실행 이름을 눌러 Run details를 열고 표의 <strong>View details</strong>로 행별 차원 점수와 이유를 봅니다.</li>
+          <li>평가 상세의 <strong>Evaluation runs</strong>에서 Status를 확인합니다. 'In progress'로 시작해 이 실습은 총 <strong>약 7분(Duration 7m 16.87s)</strong> 걸렸습니다. 끝나면 실행 이름을 눌러 Run details를 열고 표의 <strong>View details</strong>로 행별 차원 점수와 이유를 봅니다.</li>
         </ol>
         <pre id="ignite-evaluation-prompt" role="group" aria-label="Prompt · 합성 질문 생성 방향">Microsoft Foundry의 새 포털 화면(가드레일, 하네스 에이전트, 모니터링)과 실습 절차에 대해 초보자가 물어볼 만한 한국어 질문을 만든다.</pre>
-        <div class="notice warning"><strong>결과가 Partial이었습니다.</strong> 질문 15개 중 12개만 점수가 있었고(모두 Pass) 8 · 9 · 14번 행은 Error였습니다. Error 열에는 <code>ResponseError(code='rate_limit_exceeded', message='Model deployment rate limit exceeded. Retry later.')</code>가 적혀 있었습니다. 하네스 한 번 실행이 수만 토큰이고 이 배포가 100,000 TPM이라 한도를 넘긴 것으로 보입니다. 하네스 에이전트를 평가할 때는 TPM이 큰 배포를 쓰세요. 평가 상세에는 <strong>Add run</strong> 버튼도 있으나 사용해 보지는 않았습니다.</div>
-        <div class="notice"><strong>Ignite 발표와 이 단계.</strong> Book of News는 <strong>멀티턴 평가(multi-turn evaluation)가 GA</strong>라고 소개합니다. 질문-응답 한 쌍이 아니라 대화 전체를 품질 기준으로 채점하는 평가이며, 이 마법사의 Scope에서 <strong>Full conversations</strong>를 고르는 선택지가 여기에 해당하는 것으로 보입니다(공식 문서는 대화 단위(conversation-level) 평가라고 설명: <a href="https://learn.microsoft.com/azure/foundry/observability/how-to/cloud-evaluation-conversations" target="_blank" rel="noopener noreferrer">Learn ↗</a>). 이 실습은 <strong>Individual turns만 실행</strong>했고 Full conversations는 실행하지 않았습니다. Foundry 블로그는 새 버전과 현재 버전을 비교할 때 통계 검정으로 차이가 실제인지 보여 주고, 같은 검사를 GitHub Actions·Azure DevOps 배포 파이프라인에 넣을 수 있으며, 연속 평가(실제 트래픽 샘플 채점)·예약 평가·예약 레드팀 스캔을 쓸 수 있다고 소개합니다. <strong>연속 평가는 이미 제공되던 기능</strong>이며 이번 신규 발표와 구분합니다. 11/17 Monitor 화면에는 Scheduled evaluations·Scheduled red teaming 카드가 있었고 이 실습에서는 만들지 않았습니다.</div>
+        <div class="notice"><strong>이번 결과는 Completed였습니다.</strong> 질문 15개가 모두 점수를 받아 Overall score와 workshop-answer-quality가 100%(15 / 15), P50·P95 latency가 18.9s·25.1s였고 Error 행은 없었습니다. 100%는 Pass 비율이며 화면에 보이는 6개 행의 점수는 0.656~0.813으로 서로 다릅니다. Dataset 열에는 입력한 이름 대신 자동 생성된 'dgj_accb51'(Version 1.0)이 표시됩니다.</div>
+        <div class="notice warning"><strong>같은 평가가 Partial이 될 수 있습니다.</strong> 2026.11.17 시험은 100,000 TPM 배포에서 질문 15개 중 12개만 점수가 있었고 8 · 9 · 14번 행이 Error였습니다. Error 열에는 <code>ResponseError(code='rate_limit_exceeded', message='Model deployment rate limit exceeded. Retry later.')</code>가 적혀 있었습니다. 하네스 한 번 실행이 수만 토큰이라 한도를 넘긴 것으로 보입니다. Status가 Partial이면 Error 행을 확인하고, 하네스 에이전트를 평가할 때는 TPM이 큰 배포를 쓰세요. 평가 상세에는 <strong>Add run</strong> 버튼도 있으나 사용해 보지는 않았습니다.</div>
+        <div class="notice"><strong>Ignite 발표와 이 단계.</strong> Book of News는 <strong>멀티턴 평가(multi-turn evaluation)가 GA</strong>라고 소개합니다. 질문-응답 한 쌍이 아니라 대화 전체를 품질 기준으로 채점하는 평가이며, 이 마법사의 Scope에서 <strong>Full conversations</strong>를 고르는 선택지가 여기에 해당하는 것으로 보입니다(공식 문서는 대화 단위(conversation-level) 평가라고 설명: <a href="https://learn.microsoft.com/azure/foundry/observability/how-to/cloud-evaluation-conversations" target="_blank" rel="noopener noreferrer">Learn ↗</a>). 이 실습은 <strong>Individual turns만 실행</strong>했고 Full conversations는 실행하지 않았습니다. Foundry 블로그는 새 버전과 현재 버전을 비교할 때 통계 검정으로 차이가 실제인지 보여 주고, 같은 검사를 GitHub Actions·Azure DevOps 배포 파이프라인에 넣을 수 있으며, 연속 평가(실제 트래픽 샘플 채점)·예약 평가·예약 레드팀 스캔을 쓸 수 있다고 소개합니다. <strong>연속 평가는 이미 제공되던 기능</strong>이며 이번 신규 발표와 구분합니다. 이번 Monitor 화면에는 Scheduled evaluations·Scheduled red teaming 카드가 있었고 이 실습에서는 만들지 않았습니다.</div>
         <div class="main-gallery" data-ignite-gallery="evaluation" data-lab-gallery="ignite-evaluation" data-ignite-label="평가 만들기·결과 화면"></div>
 
       </section>
       <section class="panel observed-section" id="ignite-optimize" data-ignite-nav="최적화" data-ignite-title="Optimize로 개선안 만들기">
         <p class="section-label">OPTIMIZE</p>
         <h2>Optimize로 개선안 만들기</h2>
-        <p class="intro">에이전트의 <strong>Optimize</strong> 탭은 데이터셋과 평가자를 사용해 지시문·스킬·도구 설명·모델 선택을 바꾼 후보를 만들고 평가 기준으로 순위를 매깁니다. <strong>후보를 승격하기 전까지 에이전트는 바뀌지 않습니다.</strong> 화면의 'tax agent 75.0 → 92.5(+17.5)'는 제품 소개용 예시이며 내 에이전트의 결과가 아닙니다. Optimize 버튼 메뉴에는 <strong>Choose a goal</strong>(Improve quality · Reduce cost)과 <strong>Learn from past activity</strong>(최근 트레이스 기반)가 있습니다. 샌드박스 프로젝트에서는 메뉴만 열었고, 참가자 권한 재현 환경에서는 하네스를 쓰지 않는 Prompt Agent로 실제 실행했습니다(아래). 시도하려면 <a href="#ignite-evaluation" data-lab-ref="sec:ignite-evaluation">실습 8-2</a>의 평가를 먼저 마치고 <a href="https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent" target="_blank" rel="noopener noreferrer">공식 빠른 시작 ↗</a>의 조건과 비용을 확인하세요.</p>
-        <div class="notice"><strong>Ignite 발표: Agent optimizer는 GA입니다.</strong> Book of News는 Agent optimizer가 평가를 기준으로 후보 변경을 제안·테스트하고 개발자가 결과를 비교해 배포할 것을 고른다고 설명합니다. Foundry 블로그는 지시문·스킬·모델 선택을 개선하며 <strong>적용하기 전까지 운영(production)은 바뀌지 않는다</strong>고 하고, 새 기능으로 Insights에서 문제를 골라 optimizer로 보내기·스킬 최적화·비용 최적화(모두 Preview)를 소개합니다. 11/17 화면의 'Learn from past activity'와 'Choose a goal → Reduce cost'가 각각 스킬·비용 최적화에 해당하는지는 확인하지 못했습니다. Learn 문서(<a href="https://learn.microsoft.com/azure/foundry/agents/concepts/agent-optimizer-overview" target="_blank" rel="noopener noreferrer">Agent optimizer ↗</a>, 2026.11.18 확인)는 포털의 최적화 마법사가 지금은 <strong>Copilot 하네스를 쓰지 않는 Prompt Agent</strong>를 지원한다고 계속 안내하므로 아래 하네스 경고는 그대로 유지합니다.</div>
+        <p class="intro">에이전트의 <strong>Optimize</strong> 탭은 데이터셋과 평가자를 사용해 지시문·스킬·도구 설명·모델 선택을 바꾼 후보를 만들고 평가 기준으로 순위를 매깁니다. <strong>후보를 승격하기 전까지 에이전트는 바뀌지 않습니다.</strong> 화면의 'tax agent 75.0 → 92.5(+17.5)'는 제품 소개용 예시이며 내 에이전트의 결과가 아닙니다. Optimize 버튼 메뉴에는 <strong>Choose a goal</strong>(Improve quality · Reduce cost), <strong>Fix issues</strong>(선택한 인사이트 기준), <strong>Learn from past activity</strong>(최근 트레이스 기반)가 있습니다. 이번 촬영에서는 하네스를 쓰지 않는 Prompt Agent(workshop-assistant)로 실제 실행했습니다(아래). 시도하려면 <a href="#ignite-evaluation" data-lab-ref="sec:ignite-evaluation">실습 8-2</a>의 평가를 먼저 마치고 <a href="https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent" target="_blank" rel="noopener noreferrer">공식 빠른 시작 ↗</a>의 조건과 비용을 확인하세요.</p>
+        <div class="notice"><strong>Ignite 발표: Agent optimizer는 GA입니다.</strong> Book of News는 Agent optimizer가 평가를 기준으로 후보 변경을 제안·테스트하고 개발자가 결과를 비교해 배포할 것을 고른다고 설명합니다. Foundry 블로그는 지시문·스킬·모델 선택을 개선하며 <strong>적용하기 전까지 운영(production)은 바뀌지 않는다</strong>고 하고, 새 기능으로 Insights에서 문제를 골라 optimizer로 보내기·스킬 최적화·비용 최적화(모두 Preview)를 소개합니다. 이 화면의 'Learn from past activity'와 'Choose a goal → Reduce cost'가 각각 스킬·비용 최적화에 해당하는지는 확인하지 못했습니다. Learn 문서(<a href="https://learn.microsoft.com/azure/foundry/agents/concepts/agent-optimizer-overview" target="_blank" rel="noopener noreferrer">Agent optimizer ↗</a>, 2026.11.18 확인)는 포털의 최적화 마법사가 지금은 <strong>Copilot 하네스를 쓰지 않는 Prompt Agent</strong>를 지원한다고 계속 안내하므로 아래 하네스 경고는 그대로 유지합니다.</div>
         <p class="intro"><strong>새 최적화는 무엇이 다른가:</strong> 스킬 최적화는 과거 실행과 전문가 피드백에서 반복 실수·성공 방식을 찾아 재사용할 스킬로 만들고, 버전 관리·롤백·다른 에이전트의 재사용을 지원합니다. 비용 최적화는 더 작은 모델 같은 후보를 평가해 품질을 유지하면서 비용을 줄이는 경로입니다(둘 다 Preview). 자동으로 운영에 적용되는 기능이 아니며 이 실습에서는 실행하지 않았습니다.</p>
-        <div class="notice"><strong>실행해 본 결과 · 하네스를 쓰지 않는 Prompt Agent (참가자 권한 재현 환경)</strong><br>
-          Optimize → Choose a goal → Improve quality가 <strong>'Create an optimization run' 마법사</strong>(Target → Data → Criteria → Review)를 엽니다. 공식 문서의 'Create optimization run'과 같은 마법사입니다. 프로젝트에 최적화 모델(gpt-5.4)과 평가 모델(gpt-5.4-mini)을 따로 배포해 두었고, Data는 <a href="#ignite-evaluation" data-lab-ref="sec:ignite-evaluation">실습 8-2</a>의 합성 데이터셋(질문 15개), Criteria는 <a href="#ignite-evaluator" data-lab-ref="sec:ignite-evaluator">실습 8-1</a>의 커스텀 루브릭 평가자 1개를 골랐습니다. 트레이스로 데이터를 만드는 방법은 이 에이전트의 트레이스가 11건이라 'Insufficient traces (11 found, minimum 15 recommended)'로 표시됐습니다.<br>
-          Review의 <strong>예상 비용은 최소 $0.27 · 예상 $0.42 · 최대 $1.41</strong>이었습니다. 실행은 <strong>9분 45초 만에 Succeeded</strong>가 됐고 후보 2개, 총 361.8K 토큰을 썼습니다. 기준 점수 0.931에서 최고 후보가 0.954(+0.023), 다른 후보는 0.883(−0.048)이었습니다. 공식 문서는 0.03 미만의 개선을 잡음으로 해석합니다. 상세 화면에 <strong>Promote candidate</strong> 버튼이 있지만 누르지 않았습니다.</div>
-        <div class="notice warning"><strong>하네스 에이전트는 제출하지 않았습니다.</strong> Agent optimizer는 GA, 스킬 최적화는 Preview로 발표됐지만 포털의 평가 기반 최적화(공식 빠른 시작)는 <strong>Microsoft Copilot 하네스를 쓰지 않는 Prompt Agent</strong>를 지원한다고 안내합니다. 하네스 에이전트에서도 같은 메뉴로 Target과 Data 단계(트레이스 29건 감지)까지 열렸지만 실행하지 않았으므로 하네스 최적화의 성공은 확인하지 못했습니다. 'Learn from past activity'(스킬 최적화)는 문서에 'prompt or managed agent'가 대상으로 적혀 있으나 'managed agent'가 하네스를 뜻하는지 확인하지 못했고 실행도 하지 않았습니다.</div>
+        <div class="notice"><strong>실행해 본 결과 · 하네스를 쓰지 않는 Prompt Agent(workshop-assistant)</strong><br>
+          Optimize → Choose a goal → Improve quality가 <strong>'Create an optimization run' 마법사</strong>(Target → Data → Criteria → Review)를 엽니다. 공식 문서의 'Create optimization run'과 같은 마법사입니다. Target에서 최적화 모델은 gpt-5.4(운영자가 미리 배포), 평가 모델은 gpt-6.1-terra, Max candidates는 2였습니다. Data는 <a href="#ignite-evaluation" data-lab-ref="sec:ignite-evaluation">실습 8-2</a>의 합성 데이터셋(질문 15개)을 고르는 'Select dataset and criteria'를, Criteria는 <a href="#ignite-evaluator" data-lab-ref="sec:ignite-evaluator">실습 8-1</a>의 커스텀 루브릭 평가자 1개(Threshold 0.5)를 골랐습니다. 'Generate data'는 먼저 'Checking for traces...'로 트레이스를 확인하며, 트레이스가 부족하면 'Insufficient traces' 안내가 나옵니다(2026.11.17 관찰: 11건 발견, 최소 15건 권장).<br>
+          Review의 <strong>예상 비용은 최소 $0.00 · 예상 $0.14 · 최대 $0.45</strong>였습니다. 실행은 <strong>5분 52초 만에 Succeeded</strong>가 됐고 후보 2개, 총 272.3K 토큰을 썼습니다. <strong>결과는 'No improvement'</strong>였습니다. baseline 0.761이 최고 점수였고 candidate_1 0.725(−0.036), candidate_2 0.688(−0.073)로 두 후보 모두 낮았습니다. 이런 결과도 정상이며, 개선이 없으면 Promote candidate 버튼은 비활성이고 승격하지 않습니다. 후보를 바꾸는 항목은 System prompt였습니다.</div>
+        <div class="notice warning"><strong>하네스 에이전트는 이번에 제출하지 않았습니다.</strong> Agent optimizer는 GA, 스킬 최적화는 Preview로 발표됐지만 포털의 평가 기반 최적화(공식 빠른 시작)는 <strong>Microsoft Copilot 하네스를 쓰지 않는 Prompt Agent</strong>를 지원한다고 안내합니다. 2026.11.17 시험에서는 하네스 에이전트에서도 같은 메뉴로 Target과 Data 단계까지 열렸지만 제출하지 않았으므로 하네스 최적화의 성공은 확인하지 못했습니다. 'Learn from past activity'(스킬 최적화)는 문서에 'prompt or managed agent'가 대상으로 적혀 있으나 'managed agent'가 하네스를 뜻하는지 확인하지 못했고 실행도 하지 않았습니다.</div>
         <div class="main-gallery" data-ignite-gallery="optimize" data-lab-gallery="ignite-optimize" data-ignite-label="Optimize 화면"></div>
       </section>
 
       <section class="panel observed-section" id="ignite-fleet" data-ignite-nav="운영" data-ignite-title="Fleet·Cost·Compliance">
         <p class="section-label">MANAGE · FLEET, COST AND COMPLIANCE</p>
         <h2>Manage에서 프로젝트 전체의 에이전트·비용·정책을 봅니다.</h2>
-        <p class="intro">Build가 에이전트 하나를 만들고 고치는 화면이라면 <strong>Manage</strong>는 구독·리소스 그룹·프로젝트 범위의 에이전트와 모델, 비용, 정책을 한눈에 보는 화면입니다. 왼쪽 메뉴는 <strong>Fleet · Cost · Operations · Compliance · Quota · Gateways</strong>이며 Fleet · Cost · Operations · Gateways에 Preview 표시가 있습니다. 캡처한 샌드박스에서는 화면을 읽기만 했고 정책·게이트웨이를 만들지 않았습니다. 정책 할당은 별도의 참가자 권한 재현 환경에서 한 번만 확인했습니다(아래 안내 상자).</p>
+        <p class="intro">Build가 에이전트 하나를 만들고 고치는 화면이라면 <strong>Manage</strong>는 구독·리소스 그룹·프로젝트 범위의 에이전트와 모델, 비용, 정책을 한눈에 보는 화면입니다. 왼쪽 메뉴는 <strong>Fleet · Cost · Operations · Compliance · Quota · Gateways</strong>이며 Fleet · Cost · Operations · Gateways에 Preview 표시가 있습니다. 이번 촬영에서는 화면을 읽기만 했고 정책·게이트웨이를 만들지 않았습니다. 정책 할당은 2026.11.17에 별도 환경에서 한 번만 확인했습니다(아래 안내 상자).</p>
         <div class="notice">공식 문서 기준 필요 권한: 프로젝트·구독 읽기 + 연결된 Application Insights의 <strong>Log Analytics Reader</strong> + 구독의 <strong>Cost Management Reader</strong>. 비용 데이터가 보이지 않으면 Cost Management Reader부터 확인하세요. 이 기능은 New Foundry 포털에서만 제공됩니다(공식 문서).</div>
         <ol class="task-list" aria-label="Manage 화면을 읽는 순서">
           <li><strong>Manage → Fleet</strong>에서 구독 · 리소스 그룹 · 프로젝트 범위와 기간(Last Day · 7D · 1M · 3M)을 정하고 Activity(에이전트 실행 수) · Consumption(토큰) · Estimated cost · Assets with policy violations 카드를 봅니다. 아래 목록은 오류·지연·비용 증가·정책 위반 상위 항목이며 표는 Projects · Agents · Models 탭으로 나뉩니다.</li>
           <li><strong>Operations</strong>에서 Invocations · Tokens · Errors · Latency 탭과 Agent runs · Model requests · Tool calls를 봅니다.</li>
           <li><strong>Cost</strong>는 Azure Cost Management 기반이며 최대 24시간 늦을 수 있습니다. <strong>비용 값은 청구서 확정 전 추정치이고 청구 기준·정산 대조는 Azure Cost Management</strong>입니다(<a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/manage-costs" target="_blank" rel="noopener noreferrer">비용·FinOps 공식 문서 ↗</a>). Estimated cost · Month-end forecast · Spend breakdown · Highest spend assets · Cost by project(Group by Project · Agent · Model)를 봅니다.</li>
-          <li><strong>Compliance</strong>의 Policy · Asset · Security posture · Data security and governance 탭과 범위 필터를 봅니다. 정책 할당은 'Manage in Azure Policy'에서 하며 운영자의 몫입니다. 캡처한 샌드박스에서는 할당하지 않았습니다.</li>
+          <li><strong>Compliance</strong>의 Policy · Asset · Security posture · Data security and governance 탭과 범위 필터를 봅니다. 정책 할당은 'Manage in Azure Policy'에서 하며 운영자의 몫입니다. 이번 촬영에서는 할당하지 않았습니다.</li>
           <li><strong>Gateways</strong>의 AI Gateway 소개를 읽습니다. Azure API Management 기반이며 'Add AI Gateway'는 리소스와 비용이 생길 수 있어 누르지 않았습니다.</li>
         </ol>
-        <div class="notice warning"><strong>같은 지표도 화면마다 달랐습니다.</strong> 이 프로젝트에서 Fleet은 22 agent runs, Operations는 Agent runs 합계 3 · Model requests 25로 표시됐습니다. 집계 범위가 달라 보이므로 숫자를 서로 맞추려 하지 마세요. Cost는 'No estimated cost is available…'로 비어 있었으며 화면 안내대로 비어 있는 비용은 사용량 0이 아닙니다. Compliance의 'No policies assigned'는 정책이 할당되지 않았다는 뜻이며 준수를 뜻하지 않습니다. Cost 화면에서 지출 한도 설정은 찾지 못했습니다.</div>
-        <div class="notice"><strong>참가자 권한 재현 환경에서 확인한 것(2026.11.17).</strong> 참가자 역할 3개(RG Contributor · RG Foundry User · 구독 Cognitive Services Usages Reader)만 가진 계정에서 Fleet · Cost · Operations · Compliance · Quota · Gateways가 권한 차단 없이 열렸습니다. Fleet에는 본인 프로젝트 1개 · 에이전트 2개 · 실행 29 · 토큰 52.5K가 보였고 Cost는 새 리소스라 비어 있었습니다. Compliance는 운영자가 Foundry 전용 기본 제공 정책('Foundry model deployments should only use approved models', Audit)을 RG 범위에 할당하자 Policy 탭에 <em>Area: Models · Violating assets 0</em>으로 나타났고, 일반 Azure 정책(AI Services 네트워크 감사)은 나타나지 않았습니다. 정책 평가 기록은 35분이 지나도 생기지 않았고 Asset 탭에는 'You need at least the Foundry User role' 안내가 떠 원인을 확인하지 못했습니다. Security posture는 Defender for Cloud, Data security and governance는 Purview를 켜지 않아 안내만 나왔습니다. 확인 뒤 할당한 정책은 모두 해제했고 AI Gateway는 만들지 않았습니다.</div>
-        <div class="notice"><strong>Ignite 발표와 이 단계.</strong> Foundry 블로그는 <strong>Cost in Microsoft Foundry가 Preview</strong>라고 소개합니다(에이전트·모델·도구의 지출을 한 화면에서 보고 예측과 월말 보고를 제공). 11/17 화면의 Cost (Preview)와 같은 이름입니다. Learn 거버넌스 문서(<a href="https://learn.microsoft.com/azure/foundry/control-plane/overview" target="_blank" rel="noopener noreferrer">Microsoft Foundry governance ↗</a>)는 2026.11.18에 이 메뉴를 '포털의 Manage'로 안내하며 지출·토큰 예산과 경고·차단 동작을 정하는 cost controls(Preview)도 설명합니다. 이 가이드의 11/17 Cost 화면에서는 지출 한도 설정을 찾지 못했습니다. Fleet·Operations는 Book of News·블로그에 따로 나오지 않아 상태를 확인하지 못했습니다. AI Gateway는 발표에서 자동 모델 선택(model router)을 지원한다고 하고(Learn: preview) 이 실습에서는 Gateway를 만들지 않아 확인하지 못했습니다.</div>
+        <div class="notice warning"><strong>같은 지표도 화면마다 달랐습니다.</strong> 이 프로젝트에서 Fleet은 132 agent runs, Operations는 Agent runs 72 · Model requests 266으로 표시됐습니다. 집계 범위가 달라 보이므로 숫자를 서로 맞추려 하지 마세요. Cost는 'No estimated cost is available…'로 비어 있었으며 화면 안내대로 비어 있는 비용은 사용량 0이 아닙니다. Compliance의 'No policies assigned'는 정책이 할당되지 않았다는 뜻이며 준수를 뜻하지 않습니다. Cost 화면에는 Overview와 Cost Control 탭이 있고 'View cost controls' 링크도 있지만 열어 보지는 않았습니다.</div>
+        <div class="notice"><strong>참가자 권한 계정에서 확인한 것(2026.11.18).</strong> 참가자 역할 3개(RG Contributor · RG Foundry User · 구독 Cognitive Services Usages Reader)만 가진 계정에서 Fleet · Cost · Operations · Compliance · Gateways가 권한 차단 없이 열렸습니다. Fleet에는 본인 프로젝트 1개 · 에이전트 2개 · 모델 3개 · 에이전트 실행 132 · 토큰 1.2M가 보였고 Cost는 새 리소스라 비어 있었습니다. AI Gateway는 만들지 않았습니다.<br>
+          <strong>2026.11.17에 별도 환경에서 확인한 것(이번 재촬영에서는 다시 하지 않음):</strong> Compliance는 운영자가 Foundry 전용 기본 제공 정책('Foundry model deployments should only use approved models', Audit)을 RG 범위에 할당하자 Policy 탭에 <em>Area: Models · Violating assets 0</em>으로 나타났고, 일반 Azure 정책(AI Services 네트워크 감사)은 나타나지 않았습니다. 정책 평가 기록은 35분이 지나도 생기지 않았고 Asset 탭에는 'You need at least the Foundry User role' 안내가 떠 원인을 확인하지 못했습니다. Security posture는 Defender for Cloud, Data security and governance는 Purview를 켜지 않아 안내만 나왔습니다. 확인 뒤 할당한 정책은 모두 해제했습니다.</div>
+        <div class="notice"><strong>Ignite 발표와 이 단계.</strong> Foundry 블로그는 <strong>Cost in Microsoft Foundry가 Preview</strong>라고 소개합니다(에이전트·모델·도구의 지출을 한 화면에서 보고 예측과 월말 보고를 제공). 이번 화면의 Cost (Preview)와 같은 이름입니다. Learn 거버넌스 문서(<a href="https://learn.microsoft.com/azure/foundry/control-plane/overview" target="_blank" rel="noopener noreferrer">Microsoft Foundry governance ↗</a>)는 2026.11.18에 이 메뉴를 '포털의 Manage'로 안내하며 지출·토큰 예산과 경고·차단 동작을 정하는 cost controls(Preview)도 설명합니다. 이번 Cost 화면에는 Cost Control 탭이 있지만 열어 보지 않아 지출 한도 설정은 확인하지 못했습니다. Fleet·Operations는 Book of News·블로그에 따로 나오지 않아 상태를 확인하지 못했습니다. AI Gateway는 발표에서 자동 모델 선택(model router)을 지원한다고 하고(Learn: preview) 이 실습에서는 Gateway를 만들지 않아 확인하지 못했습니다.</div>
         <div class="main-gallery" data-ignite-gallery="fleet" data-lab-gallery="ignite-fleet" data-ignite-label="Fleet · Operations · Cost 화면"></div>
         <div class="main-gallery" data-ignite-gallery="manage-governance" data-lab-gallery="ignite-fleet" data-ignite-label="Compliance · Gateways 화면"></div>
       </section>
@@ -1056,21 +1119,21 @@
             <thead><tr><th>증상</th><th>참가자가 먼저 할 일</th><th>운영자에게 요청·전달</th></tr></thead>
             <tbody>
               <tr class="group-row"><th colspan="3" scope="colgroup">하네스·모델</th></tr>
-              <tr><td><code>Model deployment rate limit exceeded. Retry later.</code><br>평가 Error 열의 <code>rate_limit_exceeded</code></td><td>같은 질문을 반복 전송하지 않습니다. 사용 중인 배포의 TPM을 확인합니다. 하네스는 호출 한 번에 토큰을 많이 써서 <strong>10,000 TPM에서는 단순 질문도 실패</strong>했고 30,000 TPM에서는 1분 넘게 쉬고 하나씩 보내야 통과했습니다. 배포를 바꾸면 도구 제한이 풀릴 수 있으니 <a href="#ignite-harness-tools" data-lab-ref="sec:ignite-harness-tools">실습 6-3</a>을 따릅니다.</td><td>하네스·평가용 TPM 배정과 같은 쿼터 풀의 동시 사용. 시험한 값: 10,000(실패) · 30,000(단건 통과) · 100,000(단건 통과, 평가 15행 중 3행 실패).</td></tr>
-              <tr><td>모델 선택 시 <strong>Unsupported tools</strong></td><td>Cancel은 모델을 유지하고 Confirm은 지원되지 않는 도구를 제거합니다. Confirm한 뒤에는 Harness tools를 다시 열어 확인하고 저장합니다.</td><td>하네스에서 쓸 수 있는 모델 목록. 공식 문서는 reasoning과 tool calling 지원 모델을 요구합니다.</td></tr>
-              <tr><td>새 에이전트의 모델이 <code>model-router</code>(배포하지 않은 모델)로 보임</td><td>정상일 수 있습니다. Foundry 블로그는 지원되는 프로젝트에서는 자동 모델 선택이 기본이라고 설명합니다. 이 실습은 <a href="#step-model" data-lab-ref="sec:step-model">실습 3-2</a>에서 배포한 배정 모델(<code>gpt-6.1-terra</code>)을 고르고 저장합니다. 하네스는 model-router에서 rate limit 실패가 반복되기도 했습니다(<a href="#ignite-harness-run" data-lab-ref="sec:ignite-harness-run">실습 6-4</a>).</td><td>에이전트에서 쓸 모델·배포의 배정과 자동 모델 선택을 쓸지에 대한 운영 방침.</td></tr>
+              <tr><td><code>Model deployment rate limit exceeded. Retry later.</code><br>평가 Error 열의 <code>rate_limit_exceeded</code></td><td>같은 질문을 반복 전송하지 않습니다. 사용 중인 배포의 TPM을 확인합니다. 하네스는 호출 한 번에 토큰을 많이 써서 <strong>10,000 TPM에서는 단순 질문도 실패</strong>했고 30,000 TPM에서는 1분 넘게 쉬고 하나씩 보내야 통과했습니다(2026.11.17 시험). 배포를 바꾸면 도구 제한이 풀릴 수 있으니 <a href="#ignite-harness-tools" data-lab-ref="sec:ignite-harness-tools">실습 6-3</a>을 따릅니다.</td><td>하네스·평가용 TPM 배정과 같은 쿼터 풀의 동시 사용. 시험한 값: 10,000(실패) · 30,000(단건 통과) · 100,000(2026.11.17은 평가 15행 중 3행 실패, 2026.11.18은 평가 15행 모두 통과).</td></tr>
+              <tr><td>모델 선택 시 <strong>Unsupported tools</strong></td><td>Cancel은 모델을 유지하고 Confirm은 지원되지 않는 도구를 제거합니다. Confirm한 뒤에는 Harness tools를 다시 열어 확인하고 저장합니다. 이 대화상자는 2026.11.17과 11.18 오전에는 나왔지만 이번 촬영에서는 나오지 않았습니다.</td><td>하네스에서 쓸 수 있는 모델 목록. 공식 문서는 reasoning과 tool calling 지원 모델을 요구합니다.</td></tr>
+              <tr><td>새 에이전트의 모델이 <code>model-router</code>(배포하지 않은 모델)로 보임</td><td>정상일 수 있습니다. Foundry 블로그는 지원되는 프로젝트에서는 자동 모델 선택이 기본이라고 설명합니다. 이 실습은 <a href="#step-model" data-lab-ref="sec:step-model">실습 3-2</a>에서 배포한 배정 모델(<code>gpt-6.1-terra</code>)을 고르고 저장합니다. 하네스는 model-router에서 rate limit 실패가 반복되기도 했습니다(2026.11.17 시험, <a href="#ignite-harness-run" data-lab-ref="sec:ignite-harness-run">실습 6-4</a>).</td><td>에이전트에서 쓸 모델·배포의 배정과 자동 모델 선택을 쓸지에 대한 운영 방침.</td></tr>
               <tr><td>하네스 선택 칸이 보이지 않거나 만들 수 없음</td><td>프로젝트 리전이 하네스 지원 리전인지 확인합니다(이 워크샵의 North Central US는 공식 지원 리전 22곳에 포함됩니다. 다른 리전을 배정받았다면 공식 목록(<a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">하네스 지원 리전·한도 ↗</a>)을 확인하세요). 기존 에이전트는 하네스로 바꿀 수 없으니 새 에이전트로 만듭니다.</td><td>지원 리전의 프로젝트 배정, 프로젝트의 Foundry User 역할.</td></tr>
               <tr class="group-row"><th colspan="3" scope="colgroup">관찰·평가</th></tr>
               <tr><td>Traces·Monitor의 토큰·비용이 0 또는 Not available</td><td>Playground의 실행 칩, Operations와 비교합니다. 새 실행 뒤 수집을 기다린 뒤에도 같으면 화면과 값을 기록합니다. 이 실습에서는 원인을 확인하지 못했습니다.</td><td>연결된 Application Insights와 Log Analytics Reader, 가격 정보가 없는 모델인지.</td></tr>
               <tr><td>평가자의 <strong>Setup incomplete … Monitoring Reader</strong></td><td>참가자가 Resolve를 누르면 'You don't have permission to assign roles on this Application Insights resource … requires the Owner or User Access Administrator role.' 오류가 납니다. 직접 처리하지 말고 화면 문구를 운영자에게 전달합니다. 루브릭 평가자 생성은 이 경고가 있어도 됐습니다.</td><td>프로젝트 관리 ID에 Application Insights의 Monitoring Reader 할당(Owner 또는 User Access Administrator 권한 필요). 화면은 권한 전파에 몇 분 걸릴 수 있다고 안내합니다.</td></tr>
-              <tr><td>평가 마법사의 Next가 비활성화됨</td><td>Data 단계의 Number of rows가 15~100인지 확인합니다.</td><td>-</td></tr>
+              <tr><td>평가 마법사의 Next가 비활성화됨</td><td>Data 단계의 Number of rows가 최소값 15 이상인지 확인합니다.</td><td>-</td></tr>
               <tr><td>평가 Status가 <strong>Partial</strong></td><td>Run details 표에서 Error 행의 Error 열을 읽습니다. rate limit이면 TPM을 먼저 확인합니다.</td><td>TPM 상향 또는 평가 시간대 분산.</td></tr>
-              <tr><td>Insights가 0건이거나 'Pricing unavailable'</td><td>최근 7일 트레이스 수와 Judge model(GPT-5 이상)을 확인합니다. 0건은 문제가 없다는 보장이 아닙니다. 참가자 권한 재현 환경에서는 Judge가 gpt-6.1-terra일 때 'Pricing unavailable'이었고 gpt-5.4-mini로 바꾸자 첫 스캔의 예상 비용이 표시됐습니다.</td><td>모델 가격 정보와 Judge 모델 배정.</td></tr>
+              <tr><td>Insights가 0건이거나 'Pricing unavailable'</td><td>최근 7일 트레이스 수와 Judge model(GPT-5 이상)을 확인합니다. 0건은 문제가 없다는 보장이 아닙니다. 이번 촬영에서는 Judge가 기본값 gpt-6.1-terra일 때 'Pricing unavailable'이었고(2026.11.17에는 gpt-5.4-mini로 바꾸자 첫 스캔의 예상 비용이 표시됐습니다) 스캔은 그대로 실행됐습니다.</td><td>모델 가격 정보와 Judge 모델 배정.</td></tr>
               <tr class="group-row"><th colspan="3" scope="colgroup">Manage</th></tr>
               <tr><td>Fleet · Cost · Operations가 비어 있음</td><td>구독 · 리소스 그룹 · 프로젝트 범위와 기간을 확인합니다. Cost는 최대 24시간 늦을 수 있습니다. 비어 있는 비용은 사용량 0이 아닙니다.</td><td>프로젝트·구독 읽기, Log Analytics Reader, Cost Management Reader.</td></tr>
-              <tr><td>Compliance의 'No policies assigned'</td><td>준수가 아니라 할당된 정책이 없다는 뜻입니다. 참가자가 정책을 할당하지 않습니다. 일반 Azure 정책(예: AI Services 네트워크 감사)을 RG에 할당해도 Policy 탭에는 나타나지 않았고, Foundry 전용 기본 제공 정책을 할당하자 나타났습니다(Area: Models).</td><td>Azure Policy 할당 여부와 범위는 운영자가 결정합니다. 이 확인에서는 운영자(Owner)가 Audit 효과로 RG 범위에 할당했다가 해제했습니다.</td></tr>
-              <tr><td>Compliance의 Asset 탭에 'You don't have permission to view policy evaluations for some assets. You need at least the Foundry User role.'</td><td>참가자 권한 재현 환경(RG 범위 Foundry User 보유)에서 Foundry 전용 정책이 할당된 뒤 나타난 안내이며 원인은 확인하지 못했습니다. 화면과 시각을 기록해 운영자에게 전달합니다.</td><td>Foundry User 역할 범위와 정책 평가 데이터 접근. 위반 평가 기록은 정책 할당 뒤 35분이 지나도 생기지 않았습니다.</td></tr>
-              <tr><td>Compliance의 Security posture · Data security and governance 탭</td><td>구독에서 Microsoft Defender for Cloud와 Microsoft Purview를 켜지 않으면 사용 안내만 나옵니다. 재현에서 Security posture는 Defender for Cloud가 켜져 있지 않다는 안내를, Data security and governance는 Purview 정책을 가져오지 못했다는 안내를 보였습니다. 참가자가 켜지 않습니다.</td><td>Defender for Cloud·Purview 사용 여부는 운영자(보안 담당)가 결정합니다.</td></tr>
+              <tr><td>Compliance의 'No policies assigned'</td><td>준수가 아니라 할당된 정책이 없다는 뜻입니다. 참가자가 정책을 할당하지 않습니다. 일반 Azure 정책(예: AI Services 네트워크 감사)을 RG에 할당해도 Policy 탭에는 나타나지 않았고, Foundry 전용 기본 제공 정책을 할당하자 나타났습니다(Area: Models, 2026.11.17 확인).</td><td>Azure Policy 할당 여부와 범위는 운영자가 결정합니다. 2026.11.17 확인에서는 운영자(Owner)가 Audit 효과로 RG 범위에 할당했다가 해제했습니다.</td></tr>
+              <tr><td>Compliance의 Asset 탭에 'You don't have permission to view policy evaluations for some assets. You need at least the Foundry User role.'</td><td>참가자 권한 계정(RG 범위 Foundry User 보유)에서 Foundry 전용 정책이 할당된 뒤 나타난 안내이며(2026.11.17 확인) 원인은 확인하지 못했습니다. 화면과 시각을 기록해 운영자에게 전달합니다.</td><td>Foundry User 역할 범위와 정책 평가 데이터 접근. 위반 평가 기록은 정책 할당 뒤 35분이 지나도 생기지 않았습니다.</td></tr>
+              <tr><td>Compliance의 Security posture · Data security and governance 탭</td><td>구독에서 Microsoft Defender for Cloud와 Microsoft Purview를 켜지 않으면 사용 안내만 나옵니다. 2026.11.17 확인에서 Security posture는 Defender for Cloud가 켜져 있지 않다는 안내를, Data security and governance는 Purview 정책을 가져오지 못했다는 안내를 보였습니다. 참가자가 켜지 않습니다.</td><td>Defender for Cloud·Purview 사용 여부는 운영자(보안 담당)가 결정합니다.</td></tr>
               <tr><td>Gateways의 'Add AI Gateway'</td><td>누르지 않습니다. Azure API Management 리소스와 비용이 생길 수 있습니다.</td><td>필요하면 운영자의 승인과 비용 계획 뒤에 진행합니다.</td></tr>
             </tbody>
           </table>
@@ -1080,11 +1143,11 @@
       <section class="panel observed-section" id="ignite-finish" data-ignite-nav="선택완료" data-ignite-title="선택 실습 완료 기준">
         <p class="section-label">OPTIONAL LABS · DONE MEANS VERIFIED</p>
         <h2>선택 실습은 수행한 범위만 완료로 표시합니다.</h2>
-        <p class="intro">아래 수치는 2026.11.17에 한 번 실행한 결과이며 같은 값을 맞추라는 뜻이 아닙니다.</p>
+        <p class="intro">아래 수치는 2026.11.18에 한 번 실행한 결과이며 같은 값을 맞추라는 뜻이 아닙니다.</p>
         <div class="result-grid">
-          <div class="result-card"><strong>41,653</strong><span>하네스 1회 실행의 토큰(Playground 칩)</span></div>
-          <div class="result-card"><strong>6개</strong><span>자동 생성된 평가 차원</span></div>
-          <div class="result-card"><strong>12 / 15</strong><span>점수가 나온 평가 행 (3행 rate limit)</span></div>
+          <div class="result-card"><strong>35,913</strong><span>하네스 1회 실행의 토큰(Playground 칩)</span></div>
+          <div class="result-card"><strong>8개</strong><span>자동 생성된 평가 차원</span></div>
+          <div class="result-card"><strong>15 / 15</strong><span>점수가 나온 평가 행 (Error 없음)</span></div>
         </div>
         <div style="margin-top:20px">
           <p class="check-row">New Foundry를 켜고 환영 안내와 홈의 프로젝트 엔드포인트를 확인</p>
@@ -1093,11 +1156,11 @@
           <p class="check-row">gpt-6.1-terra로 실행해 web_fetch 호출과 출처 링크가 있는 응답 확인</p>
           <p class="check-row">Traces·Monitor의 토큰·비용을 Playground 칩과 비교하고 다르면 기록</p>
           <p class="check-row">Insights 스캔, 루브릭 평가자 생성, 평가 실행과 행별 점수·Error 확인</p>
-          <p class="check-row">Optimize를 수행했다면 하네스 없는 Prompt Agent의 후보·비용·점수를 비교하고 승격하지 않았는지 확인</p>
+          <p class="check-row">Optimize를 수행했다면 하네스 없는 Prompt Agent의 후보·비용·점수(이번 촬영: No improvement)를 비교하고 승격하지 않았는지 확인</p>
           <p class="check-row">Manage의 Fleet · Cost · Compliance · Gateways를 읽고 하지 않은 작업 목록과 대조</p>
         </div>
         <div class="notice warning"><strong>정리:</strong> 선택 실습을 따라 하면 하네스 에이전트, 모델 배포, 평가자, 평가 실행과 합성 데이터셋이 남습니다. 이 가이드는 자동으로 삭제하지 않습니다. 삭제·보존은 운영자의 종료·정리 정책을 따르고 승인 없이 RG나 공용 배포를 지우지 않습니다.</div>
-        <div class="notice">화면 기준일 2026.11.17, Ignite 발표 반영 2026.11.18. 포털 UI, Preview 기능, 모델 가용성, 권한 동작은 바뀔 수 있습니다. 화면이 다르면 아래 공식 문서를 우선하세요.</div>
+        <div class="notice">화면 기준일 2026.11.18, Ignite 발표 반영 2026.11.18. 포털 UI, Preview 기능, 모델 가용성, 권한 동작은 바뀔 수 있습니다. 화면이 다르면 아래 공식 문서를 우선하세요.</div>
         <p class="intro">공식 문서:
           <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a> ·
           <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer">Microsoft IQ 블로그 ↗</a> ·
@@ -1110,7 +1173,7 @@
       </section>
 
       <footer class="footnotes">
-        <p>문서 기준일 2026.11.18 · 구 포털 화면 2026.11.05 · 로그인 실측 2026.11.08 · New Foundry 화면 2026.11.17 · Ignite 2026 Book of News 반영 2026.11.18. 포털 UI·모델 가용성·권한 동작은 변경될 수 있습니다. 다른 실습은 공통 계정·권한·문제 대응을 참조하고 실습 본문·모델·자원 이름은 따로 지정하세요.</p>
+        <p>문서 기준일 2026.11.18 · 로그인·실습 화면·영상 촬영 2026.11.18(새 참가자 계정) · Ignite 2026 Book of News 반영 2026.11.18. 포털 UI·모델 가용성·권한 동작은 변경될 수 있습니다. 다른 실습은 공통 계정·권한·문제 대응을 참조하고 실습 본문·모델·자원 이름은 따로 지정하세요.</p>
         <p>환경 준비·권한 지원·승인된 종료 처리는 <a href="operator.html">Foundry 운영자 가이드</a>를 참조하세요. 암호·MFA 코드·인증 캐시·연결 문자열은 배포 자료에 포함하지 않습니다.</p>
         <p><a href="https://learn.microsoft.com/azure/ai-services/multi-service-resource" target="_blank" rel="noopener noreferrer">Foundry 리소스 생성 문서</a><a href="https://learn.microsoft.com/azure/foundry/observability/how-to/trace-agent-setup" target="_blank" rel="noopener noreferrer">서버 트레이싱 연결 문서</a></p>
       </footer>
@@ -1131,7 +1194,7 @@
     (() => {
       "use strict";
       const data = window.GUIDE_DATA;
-      if (!data || !Array.isArray(data.shots) || data.shots.length !== 63) {
+      if (!data || !Array.isArray(data.shots) || data.shots.length !== 54) {
         const error = document.getElementById("boot-error");
         error.hidden = false;
         error.textContent = "실습 데이터 로드에 실패했습니다. index.html과 assets 폴더를 함께 보관했는지 확인하세요.";
@@ -1159,16 +1222,21 @@
 
       document.getElementById("shot-count").textContent = data.shots.length;
       document.getElementById("duration-label").textContent = formatTime(Math.round(data.recording.nativeDurationSeconds));
+      document.getElementById("full-video-link").textContent = `전체 영상 ${formatTime(Math.round(data.recording.nativeDurationSeconds))} ↗`;
       document.getElementById("hero-runs").textContent = data.monitorMetrics.agentRuns;
       document.getElementById("hero-tokens").textContent = data.monitorMetrics.totalTokens.toLocaleString("ko-KR");
+      document.getElementById("finish-runs").textContent = `${data.monitorMetrics.agentRuns}회`;
+      document.getElementById("finish-runs-text").textContent = data.monitorMetrics.agentRuns;
+      document.getElementById("finish-tokens").textContent = data.monitorMetrics.totalTokens.toLocaleString("ko-KR");
+      document.getElementById("finish-tokens-text").textContent = data.monitorMetrics.totalTokens.toLocaleString("ko-KR");
 
       const labRows = [
         ["구독", data.lab.subscriptionId], ["Entra 테넌트", data.lab.tenantId],
-        ["배정 RG", data.lab.resourceGroup], ["리전", "East US 2 (eastus2)"],
+        ["배정 RG", data.lab.resourceGroup], ["리전", "North Central US (northcentralus)"],
         ["Foundry 리소스", data.lab.foundryResource], ["기본 프로젝트", data.lab.project],
-        ["모델 배포", `${data.lab.deployment} / gpt-5-mini · 2025-08-07 · Global Standard · 10,000 TPM`],
-        ["에이전트", `${data.lab.agent} / 최종 실행 Version 2`],
-        ["Log Analytics (녹화: Azure Portal에서 먼저 생성)", data.lab.workspace], ["Application Insights (녹화: Azure Portal에서 먼저 생성)", data.lab.applicationInsights]
+        ["모델 배포", `${data.lab.deployment} / ${data.lab.model} · ${data.lab.modelVersion} · Global Standard · 10,000 TPM`],
+        ["에이전트", `${data.lab.agent} / 최종 실행 Version ${data.lab.agentVersion}`],
+        ["Log Analytics (Foundry 생성 화면이 함께 만듦)", data.lab.workspace], ["Application Insights (Foundry 생성 화면이 함께 만듦)", data.lab.applicationInsights]
       ];
       document.getElementById("lab-values").innerHTML = labRows.map(([name, value]) => `<tr><td>${escape(name)}</td><td><code>${escape(value)}</code></td></tr>`).join("");
 
@@ -1178,7 +1246,7 @@
       const summaryStatus = document.getElementById("summary-status");
       summaryVideo.addEventListener("playing", () => {
         summaryStatus.classList.remove("error");
-        summaryStatus.textContent = "3분 요약 재생 중 · 2배속 편집 · 무음 · 한국어 화면 안내";
+        summaryStatus.textContent = "요약 재생 중 · 2배속 편집 · 무음 · 한국어 화면 안내";
       });
       summaryVideo.addEventListener("error", () => {
         summaryStatus.classList.add("error");
@@ -1262,7 +1330,7 @@
       const zoomCanvas = document.getElementById("zoom-canvas");
       const zoomSize = document.getElementById("zoom-size");
       const openZoom = shot => {
-        document.getElementById("zoom-title").textContent = `구 포털 · 화면 ${shot.id.slice(0, 2)} · ${shot.title}`;
+        document.getElementById("zoom-title").textContent = `화면 ${shot.id.slice(0, 2)} · ${shot.title}`;
         zoomCanvas.innerHTML = imageMarkup(shot);
         zoomCanvas.classList.remove("native");
         zoomSize.textContent = "100%로 보기";
@@ -1334,15 +1402,15 @@
       };
 
       const stages = [
-        {id:"account",title:"계정·테넌트·배정 RG 확인",lead:"Azure Portal에서 내 Guest 계정, 본인 RG, 운영자가 할당한 세 역할을 확인합니다.",note:"본인 UPN·초기 암호 로그인과 본인 MFA 등록·재로그인을 완료한 뒤 진행합니다. 새 RG나 역할은 참가자가 만들지 않습니다."},
-        {id:"resource",title:"Foundry 리소스 + 기본 프로젝트 생성",lead:"Azure Portal → Foundry → Create a Foundry resource에서 본인 RG와 운영자가 배정한 지역을 선택합니다.",note:"이 화면은 Foundry 리소스와 Default project를 함께 만듭니다. 본인의 고유 리소스·프로젝트 이름으로 Review + create → Create를 진행합니다. 녹화 예시는 East US 2·프로젝트 guest-portal-lab입니다. Region은 North Central US를 선택합니다(화면은 녹화 당시 East US 2). Ignite 2026 Book of News는 새 Foundry 프로젝트마다 Foundry IQ 리소스(Preview, 사용량 기반 서버리스)가 생겨 첫날부터 grounding을 제공한다고 발표했습니다. 2026.11.17 재현 화면에서는 이 리소스를 확인하지 못했습니다. Foundry IQ의 개념·연결·전제 조건은 더 알아보기의 소개 카드를 보세요. 프로젝트를 만든 뒤 RG에 처음 보는 리소스가 보이면 지우지 말고 운영자에게 알리세요."},
-        {id:"project",title:"Foundry Portal에서 프로젝트 열기",lead:"생성 완료 후 Go to Foundry portal로 이동해 Guest 환영 문구와 프로젝트 이름을 확인합니다.",note:"기본 프로젝트는 이미 생성됐으므로 별도 프로젝트를 중복 생성하지 않습니다. 포털 홈의 키 필드는 화면·영상에서 가렸습니다."},
-        {id:"model",title:"배정 모델 배포와 테스트",lead:"Models → Deploy a base model → gpt-6.1-terra 검색 → Deploy → Custom settings를 선택합니다. 모델 고정 단계는 지정 모델을 사용합니다.",note:"모델·버전·배포 유형·개인별 TPM은 배정표를 따릅니다. 녹화는 gpt-5-mini-workshop · 2025-08-07 · Global Standard · 10,000 TPM 예시입니다. 배정값이 10,000 TPM이면 TPM 단위 필드에는 10000을 입력합니다. capacity 단위와 혼동하지 않습니다. Playground의 기본 Web search를 추론 전에 제거합니다."},
-        {id:"agent",title:"지시문을 넣고 Prompt Agent 생성",lead:"모델 Playground에 Instructions를 작성하고 Save as agent → Create and open playground를 선택합니다.",note:"본인의 고유 이름으로 일반 Prompt Agent를 저장합니다(녹화: guest-workshop-assistant). Tools는 비우고 Copilot harness·Hosted Agent·Publish는 사용하지 않습니다. 아직 에이전트 대화는 실행하지 않습니다. 2026.11.17 재현에서는 새 Prompt Agent의 기본 모델이 model-router로 표시됐고(배포하지 않은 모델), 배정 모델로 바꿔 저장한 뒤(Version 2) 실행했습니다. Foundry 블로그(2026.11.17)는 지원되는 프로젝트에서 자동 모델 선택(model router)이 기본으로 켜져 있어 먼저 배포하지 않고 시작할 수 있다고 설명합니다. 이 실습은 모델 배포 실습에서 만든 배정 모델을 직접 선택합니다."},
-        {id:"connect",title:"Traces에서 App Insights 만들고 연결",lead:"Agent → Traces → Connect에서 Create new resource로 내 RG에 만들고, 같은 화면에서 프로젝트에 연결합니다.",note:"Azure Portal에서 따로 만들지 않습니다. 아래 화면은 녹화 당시 미리 만든 Application Insights(appi-guest-guide-abc123)를 선택한 장면입니다. 연결 방식은 기본 Auth Type=API Key이며 참가자의 Guest Entra 로그인과는 별개입니다. 연결 후 새 실행부터 기록됩니다. 2026.11.17 North Central US 재현에서는 Create a Foundry resource 화면에 Application insights 항목이 있었고 Log Analytics와 Application Insights가 자동으로 만들어져 프로젝트에 이미 연결돼 있었습니다. Connect 단계 없이 Traces에 실행 기록이 보였고 반영에는 몇 분이 걸렸습니다. 이 경우 새로 만들지 않고 연결된 리소스를 사용합니다. 위 화면은 11/05 녹화 그대로이니 지금 보이는 화면이 다르면 지금 화면을 우선합니다."},
-        {id:"run",title:"설정 저장 후 에이전트 실행",lead:"Playground → Parameters에서 배정 모델에 지원되는 실행 한도를 설정하고 Save한 뒤 실제 질문을 보냅니다.",note:"녹화의 GPT-5 mini는 Max output tokens=1024·Reasoning Effort=minimal, Save 후 Version 2입니다. gpt-6.1-terra와 고정 단계의 모델은 각각 운영자가 검증한 Reasoning Effort·출력 한도를 사용하며 minimal을 복사하지 않습니다. 아래는 같은 대화의 세 실행 기록이며 응답 내용·토큰·지연은 달라질 수 있습니다."},
-        {id:"monitor",title:"Monitor에서 실행·토큰·오류 확인",lead:"Monitor → Overview → Last Day에서 Operational metrics와 차트를 확인합니다.",note:"이 녹화는 Agent runs=3, 총 1,060토큰(요약 표시 1.1K), Error rate=0입니다. 자동 평가·Red teaming·Insights는 활성화하지 않습니다."},
-        {id:"traces",title:"Traces에서 실제 입력·출력 확인",lead:"Trace view에서 Trace ID를 열고 invoke_agent → chat, Input + Output, Metadata를 확인합니다.",note:"본인 실행의 Response ID·Trace ID·Conversation ID와 본인 user.id를 대조합니다. 모델 span의 입력·출력 토큰·모델 버전을 확인하고 Conversation view로 대화를 확인합니다. 녹화 예시는 세 실행의 상관관계를 검증했습니다."}
+        {id:"account",title:"계정·테넌트·배정 RG 확인",lead:"Azure Portal에서 내 Guest 계정, 본인 RG, 운영자가 할당한 세 역할을 확인합니다.",note:"본인 UPN·초기 암호 로그인과 본인 MFA 등록·재로그인을 완료한 뒤 진행합니다. 새 RG나 역할은 참가자가 만들지 않습니다. 아래 화면은 참가자 역할 세 개만 가진 새 Guest 계정으로 2026.11.18에 다시 촬영했고 이메일·이름·구독 ID는 가렸습니다."},
+        {id:"resource",title:"Foundry 리소스 + 기본 프로젝트 생성",lead:"Azure Portal → Foundry → Create a Foundry resource에서 본인 RG와 North Central US를 고르고 Application insights를 함께 만듭니다.",note:"이 화면은 Foundry 리소스와 기본 프로젝트(Default project)를 함께 만듭니다. ① Region의 기본값은 East US이므로 운영자가 배정한 North Central US로 바꿉니다(RG 목록에는 본인 RG만 보입니다). ② Application insights 목록에서 (New)로 시작하는 항목을 고르면 Log Analytics 작업 영역과 Application Insights가 함께 만들어져 프로젝트에 연결됩니다. ③ 본인의 고유 리소스·프로젝트 이름을 입력하고 Review + create → Create를 누르면 배포가 약 1~2분 걸립니다. 생성 뒤 RG에는 Foundry 리소스와 프로젝트, Application Insights, Log Analytics 작업 영역, ‘Failure Anomalies’ 알림 규칙이 보였습니다. 그보다 많거나 처음 보는 리소스가 있으면 지우지 말고 운영자에게 알리세요. Ignite 2026 Book of News는 새 프로젝트마다 Foundry IQ 리소스(Preview)가 생긴다고 발표했지만 이번 재촬영에서는 만들어지지 않았습니다. 개념·전제 조건은 더 알아보기의 소개 카드를 보세요."},
+        {id:"project",title:"Foundry Portal에서 프로젝트 열기",lead:"생성 완료 후 Go to Foundry portal로 이동해 프로젝트 이름과 New Foundry 토글을 확인합니다.",note:"기본 프로젝트는 이미 생성됐으므로 별도 프로젝트를 중복 생성하지 않습니다. 프로젝트 홈의 API key 칸에는 ‘API key authentication is disabled for this project.’가 표시되며 키는 필요 없습니다. 배포가 끝난 직후에는 ‘Project not found’가 몇 분 동안 나올 수 있으니 아래 ‘막히면 확인하세요’를 보세요."},
+        {id:"model",title:"gpt-6.1-terra 배포와 테스트",lead:"Models → Deploy a base model → gpt-6.1-terra 검색 → Deploy → Custom settings를 선택합니다.",note:"Deployment name은 기본값 gpt-6.1-terra를 유지하고(같은 이름이 이미 있으면 gpt-6.1-terra-2로 바뀌니 확인), Deployment type=Global Standard, Tokens per Minute Rate Limit=10000, Guardrails=DefaultV2를 확인한 뒤 Deploy합니다. TPM 입력칸의 단위는 토큰/분이므로 10이 아니라 10000을 입력합니다. Playground가 열리면 기본으로 붙은 Web search 도구를 Actions for Web search → Remove로 제거하고(웹 검색·Bing 추가 비용 방지), Parameters에서 Max Completion Tokens를 1024로 낮춥니다(기본값 16384). 응답 한도는 분당 토큰 한도 계산에 포함될 수 있어 10K TPM 배포에서는 작게 둡니다. Reasoning Effort는 기본값 low를 유지합니다(gpt-6.1-terra에는 minimal이 없고 low·medium·high·xhigh). 모델·버전·TPM은 배정표를 따릅니다."},
+        {id:"agent",title:"지시문을 넣고 Prompt Agent 생성",lead:"모델 Playground에 Instructions를 작성하고 Save as agent → Create and open playground를 선택합니다.",note:"본인의 고유 이름으로 일반 Prompt Agent를 저장합니다(녹화: workshop-assistant). Use the Microsoft Copilot harness는 켜지 않습니다. 에이전트가 만들어지는 데 20~30초 걸립니다. 모델 Playground에서 저장하면 배포한 gpt-6.1-terra가 그대로 선택되고, Agents → New agent로 새로 만들면 기본 모델이 model-router(배포하지 않은 모델)로 표시되므로 gpt-6.1-terra로 바꿔 저장합니다. 새 에이전트에는 workshop-assistant-toolbox(Web search)가 자동으로 붙으므로 Tools 영역의 ⋮ → Remove로 지운 뒤 Save하면 Version 2가 됩니다(저장하지 않고 탭을 떠나면 ‘Do you want to save your agent?’가 나옵니다). 에이전트를 처음 만들면 text-embedding-ada-002 배포(Standard, 120K TPM)가 프로젝트에 자동으로 생기는데 지우지 마세요. 아직 에이전트 대화는 실행하지 않습니다."},
+        {id:"connect",title:"Traces에서 App Insights 연결 확인",lead:"Agent → Traces에서 Application Insights가 연결되어 있는지 확인합니다. 연결 안내가 보이면 아래 대체 경로로 직접 연결합니다.",note:"실습 2-1의 Application insights(New)로 만든 프로젝트는 이미 연결되어 있습니다. Traces 탭에 ‘Data generated when Application Insights is enabled.’ 문구와 빈 목록, Chat with agent 버튼이 보이면 연결된 상태이고, Connect 단계 없이 첫 대화부터 기록됩니다. 연결 전에 실행한 대화는 소급되지 않습니다. 반대로 ‘Create or connect an App Insights resource to enable tracing.’ 안내와 Connect 버튼이 보이면 연결되지 않은 프로젝트이므로 새 대화를 실행하기 전에 아래 대체 경로를 따릅니다."},
+        {id:"run",title:"설정 확인 후 에이전트 실행",lead:"Playground → Parameters에서 응답 한도를 확인하고 실제 질문을 보냅니다.",note:"Parameters에는 Text format, Reasoning Effort(low), Reasoning Summary, Background mode, Max output tokens가 있습니다. 녹화는 Max output tokens=1024·Reasoning Effort=low입니다. Max output tokens는 이 Playground 대화에만 적용되고 에이전트 정의에는 저장되지 않으므로 Save가 켜지지 않고 Version은 2 그대로입니다. 아래는 같은 대화의 세 실행 기록이며 응답 내용·토큰·지연은 달라질 수 있습니다(녹화: 196·290·391토큰)."},
+        {id:"monitor",title:"Monitor에서 실행·토큰·오류 확인",lead:"Agent → Monitor → Overview에서 Operational metrics와 Agent runs·Token usage 차트를 확인합니다.",note:`이 녹화는 Agent runs=${data.monitorMetrics.agentRuns}, Total token usage=${data.monitorMetrics.totalTokens.toLocaleString("ko-KR")}, Gen AI errors 없음입니다. 실행 직후에는 일부 실행만 집계될 수 있어 몇 분 기다린 뒤 새로 고침합니다(녹화에서도 처음에는 2건·122토큰만 보였습니다). Monitor settings에는 ‘Setup incomplete … Monitoring Reader’ 경고가 보이지만 이 실습의 Monitor·Traces에는 영향이 없습니다. 자동 평가·Red teaming·Insights는 활성화하지 않습니다.`},
+        {id:"traces",title:"Traces에서 실제 입력·출력 확인",lead:"Trace view에서 Trace ID를 열고 invoke_agent → chat, Input + Output, Metadata를 확인합니다.",note:"Trace view 목록의 Tokens (In)·(Out) 합계가 Monitor의 토큰과 일치하는지 봅니다. 본인 실행의 Response ID·Trace ID·Conversation ID와 user.id를 대조하고, 모델 span의 입력·출력 토큰(gen_ai.usage.*)과 모델 버전을 확인한 뒤 Conversation view로 한 대화의 세 실행이 묶이는지 확인합니다. 화면의 ID와 이메일은 가렸습니다."}
       ];
       const toc = document.getElementById("toc");
       const steps = document.getElementById("steps");
@@ -1369,45 +1437,47 @@
           accountNotice.innerHTML = '<strong>이 화면은 인증을 마친 상태입니다.</strong> 처음 로그인한다면 <a href="#first-sign-in">본인 UPN·초기 암호 로그인 → 본인 MFA 등록·인증 → 재로그인</a>을 먼저 완료하세요.';
           section.insertBefore(accountNotice, section.querySelector(".main-gallery"));
         }
+        if (stage.id === "resource") {
+          const autoSetup = document.createElement("div");
+          autoSetup.className = "notice warning";
+          autoSetup.innerHTML = '<strong>Foundry 포털(ai.azure.com)을 먼저 열지 마세요.</strong> 처음 여는 계정에는 아래 “Setting up your project” 화면이 나오며, 접근할 수 있는 RG에 <code>&lt;별칭&gt;-NNNN-resource</code>와 프로젝트가 자동으로 만들어집니다. 이 가이드의 이름 규칙과 다른 리소스가 생기므로, 반드시 이 단계처럼 Azure Portal에서 시작하세요.<figure class="screen-figure"><a href="assets/onboarding/foundry-auto-setup.png" target="_blank" rel="noopener noreferrer" aria-label="Setting up your project 화면 크게 보기"><img src="assets/onboarding/foundry-auto-setup.png" width="810" height="606" loading="lazy" alt="Foundry 포털을 처음 열면 나오는 Setting up your project 화면. 아래에 Checking your permissions… 진행 표시"></a><figcaption><strong>직접 촬영.</strong> Foundry 포털을 처음 연 계정에서 프로젝트를 자동으로 준비하는 화면입니다.</figcaption></figure>';
+          section.insertBefore(autoSetup, section.querySelector(".main-gallery"));
+        }
         if (stage.id === "model") {
           const modelNotice = document.createElement("div");
           modelNotice.className = "notice";
-          modelNotice.innerHTML = '<strong>이 단계의 화면은 GPT-5 mini 검증 예시입니다.</strong> 일반 실습은 <a href="#lightweight-models">gpt-6.1-terra와 개인별 TPM 배정</a>을 따르고 검색 모델·버전·배포 이름을 바꿉니다. Optimizer 등 모델 고정 설정만 지정 모델을 유지하며, 승인 없이 추가 배포를 만들지 않습니다.';
+          modelNotice.innerHTML = '<strong>이 단계의 화면은 이 실습의 기준 모델 gpt-6.1-terra·Global Standard·10,000 TPM으로 촬영했습니다.</strong> 실제 모델·버전·TPM은 <a href="#lightweight-models">gpt-6.1-terra와 개인별 TPM 배정</a>의 배정표를 따릅니다. Optimizer 등 모델 고정 설정만 지정 모델을 유지하며, 승인 없이 추가 배포를 만들지 않습니다.';
           section.insertBefore(modelNotice, section.querySelector(".main-gallery"));
         }
         if (stage.id === "connect") {
-          const connectSteps = document.createElement("ol");
-          connectSteps.className = "task-list";
-          connectSteps.setAttribute("aria-label", "Traces에서 Application Insights를 만들고 연결하는 순서");
-          connectSteps.innerHTML = [
-            "만든 에이전트의 <strong>Traces</strong> 탭에서 <strong>Create or connect an App Insights resource</strong> 안내 줄의 <strong>Connect</strong>를 선택합니다.",
-            "<strong>Monitor settings</strong>의 <strong>Application insights resource name</strong> 목록을 열고 맨 위 <strong>Create new resource</strong>를 선택합니다.",
-            "마법사에서 본인 고유 이름 규칙으로 이름을 정하고 <strong>리소스 그룹이 내 배정 RG</strong>인지 확인한 뒤 <strong>Create</strong>합니다. 다른 RG·구독이거나 <code>DefaultResourceGroup-*</code> 같은 새 RG를 만들려 하면 멈추고 운영자에게 알립니다. 나머지는 기본값을 유지합니다.",
-            "연결 단계가 나오면 <strong>Auth Type은 기본 API Key</strong>를 유지하고 <strong>Connect</strong>를 누릅니다. 키·연결 문자열을 직접 입력하거나 복사하지 않습니다.",
-            "연결 성공 메시지와 <strong>Chat with agent</strong> 버튼이 보이면 끝입니다. <strong>연결 후 새 대화부터</strong> 기록되므로 다음 단계에서 실행하세요."
-          ].map(item => `<li>${item}</li>`).join("");
           const connectGuard = document.createElement("div");
-          connectGuard.className = "notice warning";
-          connectGuard.innerHTML = '<strong>Create new resource 뒤의 이름 입력 화면은 녹화에 없습니다.</strong> 공식 문서는 “Create new를 선택하고 마법사를 완료”하라고 안내합니다. 화면 안내를 따르되 위의 RG 확인을 지키세요. 프로젝트에는 Application Insights를 <strong>1개만</strong> 연결할 수 있으므로 이미 연결되어 있으면 새로 만들지 않습니다. 막히면 <a href="#troubleshooting">문제 대응표</a>나 아래 <a href="#connect-alternate">대체 경로</a>를 사용하세요.';
-          section.insertBefore(connectSteps, section.querySelector(".main-gallery"));
+          connectGuard.className = "notice";
+          connectGuard.innerHTML = '<strong>Foundry 생성 화면에서 Application insights(New)를 골랐다면 이 단계의 할 일은 연결 확인뿐입니다.</strong> 프로젝트에는 Application Insights를 <strong>1개만</strong> 연결할 수 있으므로 이미 연결되어 있으면 새로 만들지 않습니다. 연결 안내(Connect)가 보이는 프로젝트만 아래 <a href="#connect-alternate">대체 경로</a>를 따르세요. 막히면 <a href="#troubleshooting">문제 대응표</a>를 확인합니다.';
           section.insertBefore(connectGuard, section.querySelector(".main-gallery"));
         }
         if (stage.id === "agent") {
           const prompt = document.createElement("div");
-          prompt.innerHTML = '<pre id="agent-instructions" role="group" aria-label="Instructions · 그대로 사용 가능한 실습 지시문"></pre><p class="prompt-foot">복사 버튼으로 복사해 Instructions에 붙여 넣으세요. 녹화 예시의 “GPT-5 mini”는 본인이 배포한 모델 이름(일반 실습: gpt-6.1-terra)으로 바꿔 입력하세요.</p>';
+          prompt.innerHTML = '<pre id="agent-instructions" role="group" aria-label="Instructions · 그대로 사용 가능한 실습 지시문"></pre><p class="prompt-foot">복사 버튼으로 복사해 Instructions에 붙여 넣으세요. 지시문의 모델 이름 gpt-6.1-terra는 본인이 배포한 모델 이름과 다르면 바꿔 입력하세요.</p>';
           prompt.querySelector("pre").textContent = data.instructions;
           section.insertBefore(prompt, section.querySelector(".main-gallery"));
         }
-        gallery(section.querySelector(".main-gallery"), data.shots.filter(shot => shot.section === stage.id && !shot.extra), `실습 ${number} 실제 화면 · 구 포털 2026-11-05`);
+        gallery(section.querySelector(".main-gallery"), data.shots.filter(shot => shot.section === stage.id && !shot.extra), `실습 ${number} 실제 화면 · ${data.capturedDate}`);
         if (stage.id === "connect") {
           const monitoringChapter = data.chapters.find(item => item.id === "monitoring-setup");
           if (!monitoringChapter) throw new Error("Missing video chapter monitoring-setup");
           const alternate = document.createElement("details");
           alternate.id = "connect-alternate";
-          alternate.innerHTML = `<summary>대체 경로 · Create new resource가 막히면 Azure Portal에서 먼저 만들기 (녹화 영상의 방식)</summary><div class="details-body"><p>권한·정책 오류로 Create new resource가 실패하고 운영자가 안내한 경우에만 사용합니다. <strong>Log Analytics Workspace → Application Insights</strong> 순서로 <strong>같은 배정 RG</strong>에 만들고, App Insights를 만들 때 방금 만든 Workspace를 선택합니다. 자동 생성되는 DefaultWorkspace·<code>DefaultResourceGroup-*</code>는 쓰지 않습니다. 그다음 위 연결 화면의 목록에서 내 App Insights를 선택해 Connect합니다. <button class="button small" type="button">영상 ${formatTime(monitoringChapter.videoSeconds)} ↗</button></p><div class="alternate-gallery"></div></div>`;
+          alternate.innerHTML = `<summary>대체 경로 · 연결 안내(Connect)가 보일 때 Traces에서 Application Insights를 만들고 연결하기</summary><div class="details-body"><p>Create a Foundry resource 화면에서 Application insights를 만들지 않아 프로젝트에 연결된 리소스가 없을 때 사용합니다. 녹화에서는 Application Insights 없이 만든 두 번째 프로젝트로 같은 화면을 재현했습니다. <button class="button small" type="button">영상 ${formatTime(monitoringChapter.videoSeconds)} ↗</button></p><ol class="task-list" aria-label="Traces에서 Application Insights를 만들고 연결하는 순서"></ol><div class="alternate-gallery"></div></div>`;
+          alternate.querySelector("ol").innerHTML = [
+            "<strong>Traces</strong>(왼쪽 Observe → Traces 또는 에이전트의 Traces 탭)에서 <strong>Create or connect an App Insights resource to enable tracing.</strong> 줄의 <strong>Connect</strong>를 선택합니다.",
+            "<strong>App. Insights resource</strong> 대화상자에서 <strong>Application insights resource name</strong> 목록을 엽니다. 맨 위의 <strong>Create new resource</strong> 아래에 같은 RG의 기존 Application Insights가 보이면 그것을 골라 연결해도 됩니다. 프로젝트에는 1개만 연결할 수 있습니다.",
+            "<strong>Create new resource</strong>를 선택하면 <strong>Name</strong>(자동 이름)·<strong>Log Analytics Workspace</strong>(<code>[new] DefaultWorkspace-…</code>)·<strong>Auth Type</strong>(기본 API Key)이 채워집니다. 나머지는 기본값을 유지하고 <strong>Create</strong>합니다. 키·연결 문자열을 직접 입력하거나 복사하지 않습니다. 새 리소스는 프로젝트가 있는 <strong>내 배정 RG</strong>에 만들어졌습니다.",
+            "몇 초 안에 대화상자가 닫히고 연결 안내 줄이 사라지며 트레이스 표가 나타납니다. <strong>연결 후 새 대화부터</strong> 기록되므로 그다음에 에이전트를 실행하세요.",
+            "다른 RG·구독에 만들려 하거나 권한·정책 오류가 나면 멈추고 오류 문구를 운영자에게 전달합니다(<code>Multiple connection … AppInsights</code>는 이미 연결이 있다는 뜻입니다)."
+          ].map(item => `<li>${item}</li>`).join("");
           alternate.querySelector("button").addEventListener("click", () => { void seekVideo(monitoringChapter.videoSeconds); });
           section.append(alternate);
-          gallery(alternate.querySelector(".alternate-gallery"), data.shots.filter(shot => shot.section === "monitoring-setup"), "Azure Portal에서 Log Analytics + App Insights 만들기");
+          gallery(alternate.querySelector(".alternate-gallery"), data.shots.filter(shot => shot.section === "monitoring-setup"), "Traces에서 Application Insights 만들고 연결하기");
         }
         if (stage.id === "resource") {
           const details = document.createElement("details");
@@ -1423,7 +1493,7 @@
           gallery(details.querySelector(".details-body"), extras, "추가 실제 화면");
         }
       });
-      gallery(document.getElementById("error-gallery"), data.shots.filter(shot => shot.section === "troubleshooting"), "실제 RP 사전 검증 오류");
+      gallery(document.getElementById("error-gallery"), data.shots.filter(shot => shot.section === "troubleshooting"), "실제로 겪은 오류 화면");
       [["troubleshooting","오류","막힐 때 확인"],["finish","완료","완료 기준"]].forEach(([id, number, title]) => {
         const link = document.createElement("a");
         link.href = `#${id}`;

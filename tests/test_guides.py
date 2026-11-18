@@ -250,7 +250,7 @@ class IntroCardTests(unittest.TestCase):
         self.assertFalse(any(shot["group"].startswith("foundry-iq") for shot in IgnitePart2Tests.load()["shots"]))
         self.assertFalse((ROOT / "assets" / "foundry-iq-sample").exists())
         card = re.search(r'<article[^>]*id="learn-foundry-iq"[^>]*>(.*?)</article>', text, re.S).group(1)
-        self.assertIn("기존 OTP", card)
+        self.assertIn("재촬영 범위", card)
         self.assertIn("참가자 권한 E2E를 확인하지 못했습니다", card)
 
 
