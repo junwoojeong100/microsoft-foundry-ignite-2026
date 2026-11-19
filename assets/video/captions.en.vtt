@@ -1,0 +1,213 @@
+WEBVTT
+
+1
+00:00:10.193 --> 00:00:16.356
+01 · Sign-in with the issued Internal Guest account
+
+2
+00:00:16.406 --> 00:00:21.915
+02 · Operator-assigned resource group selection
+
+3
+00:00:21.965 --> 00:00:29.965
+03 · Assigned resource group and subscription
+
+4
+00:00:35.872 --> 00:00:43.872
+04 · The three required roles
+
+5
+00:00:54.344 --> 00:01:02.344
+05 · Start of Foundry creation in the Azure Portal
+
+6
+00:01:07.735 --> 00:01:11.192
+06 · Resource and default project names
+
+7
+00:01:11.242 --> 00:01:14.811
+07 · Default managed storage, left as is
+
+8
+00:01:14.861 --> 00:01:18.963
+08 · Default network for the workshop
+
+9
+00:01:19.013 --> 00:01:22.508
+09 · Default settings with no separate VNet connection
+
+10
+00:01:22.558 --> 00:01:25.913
+10 · Default system-assigned managed identity
+
+11
+00:01:25.963 --> 00:01:29.318
+11 · Default encryption with Microsoft-managed keys
+
+12
+00:01:29.368 --> 00:01:37.368
+12 · No extra tags before the review screen
+
+13
+00:03:03.592 --> 00:03:11.592
+13 · Resource and default project creation after review
+
+14
+00:03:20.074 --> 00:03:28.074
+14 · Foundry resource and default project deployment complete
+
+15
+00:03:39.605 --> 00:03:47.605
+15 · Foundry portal access from the created resource
+
+16
+00:03:59.878 --> 00:04:07.878
+16 · Default project home
+
+17
+00:04:20.494 --> 00:04:28.494
+18 · Start of a model deployment
+
+18
+00:04:35.724 --> 00:04:43.516
+19 · Catalog search for gpt-6.1-terra
+
+19
+00:04:43.566 --> 00:04:45.521
+20 · Model version check, then Deploy
+
+20
+00:04:45.571 --> 00:04:53.571
+21 · Custom deployment with the workshop quota
+
+21
+00:04:59.427 --> 00:05:07.427
+22 · Deployment with Global Standard · 10K TPM
+
+22
+00:05:17.393 --> 00:05:22.311
+23 · Removal of the default Web search tool
+
+23
+00:05:22.361 --> 00:05:27.827
+24 · Generation parameters for short lab responses
+
+24
+00:05:27.877 --> 00:05:34.311
+25 · First question to the deployed model
+
+25
+00:05:34.361 --> 00:05:42.361
+26 · The model's actual response
+
+26
+00:05:58.925 --> 00:06:06.245
+27 · Agent role and response rules
+
+27
+00:06:06.295 --> 00:06:13.837
+28 · Prompt Agent naming and creation
+
+28
+00:06:13.887 --> 00:06:15.805
+29 · Saved agent, model and instructions
+
+29
+00:06:15.855 --> 00:06:23.855
+30 · Removal of the default toolbox (Web search)
+
+30
+00:06:24.244 --> 00:06:32.244
+31 · Saved with empty Tools · Version 2
+
+31
+00:06:39.167 --> 00:06:45.456
+32 · Tracing connection check before the run
+
+32
+00:06:45.506 --> 00:06:47.895
+37 · Agent run response limit setting
+
+33
+00:06:47.945 --> 00:06:52.163
+38 · Saved version check · Save not needed
+
+34
+00:06:52.213 --> 00:07:00.213
+39 · First agent question after the connection
+
+35
+00:07:02.343 --> 00:07:10.343
+40 · First run response
+
+36
+00:07:13.265 --> 00:07:21.265
+41 · Follow-up question in the same conversation
+
+37
+00:07:26.834 --> 00:07:34.834
+42 · Follow-up question that states the lab scope
+
+38
+00:07:54.283 --> 00:07:58.307
+33 · Notice shown when App Insights is not connected
+
+39
+00:07:58.357 --> 00:08:01.766
+34 · Application insights resource name list
+
+40
+00:08:01.816 --> 00:08:09.816
+35 · Create new resource form check
+
+41
+00:08:13.960 --> 00:08:21.960
+36 · Connection complete · trace table shown
+
+42
+00:08:38.202 --> 00:08:41.587
+43 · Monitor overview and token usage
+
+43
+00:08:41.637 --> 00:08:44.510
+44 · Run count and token charts
+
+44
+00:08:44.560 --> 00:08:47.541
+45 · Error check
+
+45
+00:08:47.591 --> 00:08:55.591
+46 · Recheck of the connected observability resource
+
+46
+00:09:00.778 --> 00:09:06.539
+47 · Match between the three runs and the trace list
+
+47
+00:09:06.589 --> 00:09:08.972
+48 · Trace ID and the agent and model spans
+
+48
+00:09:09.022 --> 00:09:12.459
+49 · Recorded question vs. actual response
+
+49
+00:09:12.509 --> 00:09:17.723
+50 · Response ID and the user who actually ran it
+
+50
+00:09:17.773 --> 00:09:25.223
+51 · Input and output tokens of the model span
+
+51
+00:09:25.273 --> 00:09:31.220
+52 · The three runs of one conversation, grouped
+
+52
+00:09:31.270 --> 00:09:34.690
+53 · Agent and model call structure in a conversation
+
+53
+00:09:34.740 --> 00:09:38.190
+54 · Conversation flow in User view
