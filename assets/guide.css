@@ -26,6 +26,10 @@ p+p{margin-top:12px}
 .guide-switch a{padding:5px 11px;border-radius:7px;color:var(--ink);font-weight:650;text-decoration:none;white-space:nowrap}
 .guide-switch a:hover{background:#e3ecf5}
 .guide-switch a[aria-current="page"]{background:var(--navy);color:#fff}
+.lang-switch{display:flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:12px}
+.lang-switch a{padding:4px 9px;border-radius:7px;color:var(--ink);font-weight:650;text-decoration:none;white-space:nowrap}
+.lang-switch a:hover{background:#e3ecf5}
+.lang-switch a[aria-current="true"]{background:var(--navy);color:#fff}
 .hero{background:linear-gradient(120deg,#10263d,#173c54);color:white}
 .hero-inner{max-width:1536px;margin:auto;padding:62px 52px 44px}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(270px,1fr);gap:64px;align-items:center}
@@ -220,6 +224,9 @@ dialog::backdrop{background:#0a1d32bd;backdrop-filter:blur(5px)}
   :root[data-theme="dark"] .guide-switch{background:#101d2d}
   :root[data-theme="dark"] .guide-switch a:hover{background:#1b2c42}
   :root[data-theme="dark"] .guide-switch a[aria-current="page"]{background:#214265;color:#cce4ff}
+  :root[data-theme="dark"] .lang-switch{background:#101d2d}
+  :root[data-theme="dark"] .lang-switch a:hover{background:#1b2c42}
+  :root[data-theme="dark"] .lang-switch a[aria-current="true"]{background:#214265;color:#cce4ff}
   :root[data-theme="dark"] .brand-mark{background:#25455f}
   :root[data-theme="dark"] .skip{background:var(--paper)}
   :root[data-theme="dark"] .button:not(.primary):not(.dark){background:#1b2c42;color:var(--ink)}
@@ -293,6 +300,19 @@ dialog::backdrop{background:#0a1d32bd;backdrop-filter:blur(5px)}
   :root[data-theme="dark"] .zoom-scroll{background:#101d2d}
 }
 @media(min-width:1650px){.hero-inner{padding-left:52px;padding-right:52px}}
+/* English edition: the Korean rules above tighten letters and keep words together; Latin text needs normal spacing and wrapping. */
+html[lang="en"] h1{letter-spacing:-.02em;line-height:1.2}
+html[lang="en"] h2{letter-spacing:-.01em}
+html[lang="en"] .gallery-caption h3{letter-spacing:0}
+html[lang="en"] .stat strong{letter-spacing:-.02em}
+html[lang="en"] .hero-lead{line-height:1.7}
+html[lang="en"] :is(h2,.hero-lead,.intro,.notice,.table-wide td,.table-wide th,.stage-lead,.stage-note,.gallery-caption .action,.expected){word-break:normal;overflow-wrap:break-word}
+html[lang="en"] td:first-child{white-space:normal}
+/* English words cannot break inside the narrow side-by-side flow boxes the way Hangul can, so stack them on phones like .iq-flow. */
+@media(max-width:780px){
+  html[lang="en"] .flow{flex-direction:column;gap:20px}
+  html[lang="en"] .flow li+li:before{content:"↓";left:50%;top:-19px;transform:translateX(-50%)}
+}
 @media(max-width:1180px){.topbar-tools>.top-meta{display:none}}
 @media(max-width:1100px){
   .workspace{grid-template-columns:180px minmax(0,1fr);gap:20px;padding:24px 20px}

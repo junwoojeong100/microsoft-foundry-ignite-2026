@@ -1,6 +1,8 @@
 (() => {
   "use strict";
   if (!document.body.hasAttribute("data-labs")) return;
+  const {t} = window.I18N;
+  const labPrefix = t("labPrefix");
   const fail = message => {
     const box = document.getElementById("boot-error");
     box.hidden = false;
@@ -8,7 +10,7 @@
     throw new Error(message);
   };
   const data = window.LABS_DATA;
-  if (!data || !Array.isArray(data.labs)) fail("실습 구성 데이터를 불러오지 못했습니다.");
+  if (!data || !Array.isArray(data.labs)) fail(t("labs.dataMissing"));
   const main = document.getElementById("main");
   const toc = document.getElementById("toc");
   const labs = data.labs.filter(lab => lab.enabled);
@@ -17,8 +19,9 @@
   const escape = value => String(value).replace(/[&<>"']/g, ch => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   })[ch]);
-  const element = id => document.getElementById(id) || fail(`실습 섹션을 찾지 못했습니다: ${id}`);
-  const title = node => node.querySelector("h2, h3").textContent.replace(/^(?:실습 )?\d+-\d+\s+/, "");
+  const element = id => document.getElementById(id) || fail(t("labs.sectionMissing", {id}));
+  const stepPrefix = new RegExp(`^(?:${labPrefix})?\\d+-\\d+\\s+`);
+  const title = node => node.querySelector("h2, h3").textContent.replace(stepPrefix, "");
   const link = (id, badge, text) => {
     const node = document.createElement("a");
     node.href = `#${id}`;
@@ -28,22 +31,22 @@
   const assigned = new Set();
   [...data.before, ...data.after].forEach(item => element(item.id));
   labs.forEach((lab, i) => {
-    if (labNumbers.get(lab.key) !== i + 1) fail(`실습 키가 중복됐습니다: ${lab.key}`);
+    if (labNumbers.get(lab.key) !== i + 1) fail(t("labs.keyDuplicate", {key: lab.key}));
     lab.sections.forEach(id => {
       element(id);
-      if (assigned.has(id)) fail(`실습 섹션이 중복 배정됐습니다: ${id}`);
+      if (assigned.has(id)) fail(t("labs.sectionDuplicate", {id}));
       assigned.add(id);
     });
     lab.steps.forEach((ids, step) => ids.forEach(id => {
       element(id);
-      if (sectionNumbers.has(id)) fail(`실습 단계가 중복됐습니다: ${id}`);
+      if (sectionNumbers.has(id)) fail(t("labs.stepDuplicate", {id}));
       sectionNumbers.set(id, `${i + 1}-${step + 1}`);
     }));
     lab.prerequisites.forEach(key => {
-      if (!labNumbers.has(key) || labNumbers.get(key) >= i + 1) fail(`잘못된 선행 실습입니다: ${key}`);
+      if (!labNumbers.has(key) || labNumbers.get(key) >= i + 1) fail(t("labs.badPrerequisite", {key}));
     });
     lab.more.forEach(key => {
-      if (!data.cards[key]) fail(`소개 카드 이름을 찾지 못했습니다: ${key}`);
+      if (!data.cards[key]) fail(t("labs.cardMissing", {key}));
       element(`learn-${key}`);
     });
   });
@@ -59,11 +62,11 @@
     band.id = `lab-${number}`;
     band.className = "lab-band observed-section";
     band.dataset.lab = lab.key;
-    const prereqs = lab.prerequisites.map(key => `<a href="#lab-${labNumbers.get(key)}">실습 ${labNumbers.get(key)}</a>`).join(" · ") || "없음 · 운영자 배정값 준비";
-    band.innerHTML = `<p class="section-label">실습 ${number} · ${lab.required ? "필수" : "선택"}</p><h2>${escape(lab.title)}</h2>
+    const prereqs = lab.prerequisites.map(key => `<a href="#lab-${labNumbers.get(key)}">${t("lab", {n: labNumbers.get(key)})}</a>`).join(" · ") || t("labs.none");
+    band.innerHTML = `<p class="section-label">${t("labs.bandLabel", {n: number, kind: lab.required ? t("required") : t("optional")})}</p><h2>${escape(lab.title)}</h2>
       <p class="intro">${escape(lab.lead)}</p>
-      <div class="lab-screens">${lab.screens.map(screen => `<span class="scope-badge">화면 근거: ${escape(screen)}</span>`).join("")}</div>
-      <p class="lab-prerequisites"><strong>선행:</strong> ${prereqs}</p>`;
+      <div class="lab-screens">${lab.screens.map(screen => `<span class="scope-badge">${escape(t("labs.screens", {screen}))}</span>`).join("")}</div>
+      <p class="lab-prerequisites"><strong>${t("labs.prerequisites")}</strong> ${prereqs}</p>`;
     main.append(band);
     const parentLink = link(band.id, String(number), lab.title);
     parentLink.dataset.labLink = lab.key;
@@ -85,7 +88,7 @@
           const badge = node.querySelector(":scope > .stage-header > .stage-number");
           if (badge) badge.textContent = step;
         } else if (node.matches("h3")) {
-          node.textContent = `${step} ${node.textContent.replace(/^(?:실습 )?\d+-\d+\s+/, "")}`;
+          node.textContent = `${step} ${node.textContent.replace(stepPrefix, "")}`;
           node.classList.add("observed-section");
         }
       });
@@ -98,7 +101,7 @@
     });
     const more = document.createElement("p");
     more.className = "lab-more";
-    more.innerHTML = `<strong>더 알아보기:</strong> ${lab.more.map(key => `<a href="#learn-${key}">${escape(data.cards[key])}</a>`).join(" · ")}`;
+    more.innerHTML = `<strong>${t("labs.learnMore")}</strong> ${lab.more.map(key => `<a href="#learn-${key}">${escape(data.cards[key])}</a>`).join(" · ")}`;
     main.append(more);
   });
   data.after.forEach(common);
@@ -106,18 +109,18 @@
   if (footer) main.append(footer);
   document.querySelectorAll("[data-lab-gallery]").forEach(host => {
     const number = sectionNumbers.get(host.dataset.labGallery);
-    if (!number) fail(`갤러리의 실습 번호를 찾지 못했습니다: ${host.dataset.labGallery}`);
-    const label = `실습 ${number} · ${host.dataset.igniteLabel}`;
+    if (!number) fail(t("labs.galleryNumberMissing", {id: host.dataset.labGallery}));
+    const label = `${t("lab", {n: number})} · ${host.dataset.igniteLabel}`;
     const gallery = host.querySelector(".gallery");
     gallery.setAttribute("aria-label", label);
-    gallery.querySelector(".gallery-heading > span").textContent = `${label} · 사진을 누르면 확대`;
-    gallery.querySelector(".thumbnails").setAttribute("aria-label", `${label} 화면 선택`);
+    gallery.querySelector(".gallery-heading > span").textContent = t("gallery.heading", {label});
+    gallery.querySelector(".thumbnails").setAttribute("aria-label", t("gallery.select", {label}));
   });
   document.querySelectorAll("[data-lab-ref]").forEach(node => {
     const [kind, key] = node.dataset.labRef.split(":");
     const number = kind === "lab" ? labNumbers.get(key) : kind === "sec" ? sectionNumbers.get(key) : null;
-    if (!number) fail(`실습 참조를 찾지 못했습니다: ${node.dataset.labRef}`);
-    node.textContent = `실습 ${number}`;
+    if (!number) fail(t("labs.refMissing", {ref: node.dataset.labRef}));
+    node.textContent = t("lab", {n: number});
   });
   window.__labsReady = true;
 })();

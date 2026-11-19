@@ -1,12 +1,13 @@
 (() => {
   "use strict";
+  const {t} = window.I18N;
   const svg = path => `<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
   const icons = {
     idle: svg('<rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5V3A1.5 1.5 0 0 0 9 1.5H3A1.5 1.5 0 0 0 1.5 3v6A1.5 1.5 0 0 0 3 10.5h.5"/>'),
     copied: svg('<path d="M3 8.5l3.2 3L13 4.5"/>'),
     failed: svg('<path d="M4 4l8 8M12 4l-8 8"/>')
   };
-  const labels = {idle: "복사", copied: "복사됨", failed: "복사 실패"};
+  const labels = {idle: t("copy.idle"), copied: t("copy.copied"), failed: t("copy.failed")};
   const resetDelay = 2000;
 
   const live = document.createElement("span");
@@ -65,12 +66,12 @@
     try {
       await writeText(text);
       setState(button, "copied");
-      announce(`${label} 내용을 클립보드에 복사했습니다.`);
+      announce(t("copy.announceOk", {label}));
     } catch (error) {
-      console.warn("클립보드 복사에 실패했습니다.", error);
+      console.warn(t("copy.warn"), error);
       setState(button, "failed");
       if (source) selectContents(source);
-      announce(`${label} 복사에 실패했습니다. 선택된 내용을 직접 복사하세요.`);
+      announce(t("copy.announceFail", {label}));
     }
   };
 
@@ -79,13 +80,13 @@
     button.type = "button";
     button.className = className;
     button.innerHTML = `<span class="copy-icon">${icons.idle}</span>${withText ? `<span class="copy-text">${labels.idle}</span>` : ""}`;
-    button.setAttribute("aria-label", `${label} 복사`);
+    button.setAttribute("aria-label", t("copy.ariaLabel", {label}));
     return button;
   };
 
   document.querySelectorAll("pre").forEach(pre => {
     if (pre.closest(".code-block")) return;
-    const label = pre.getAttribute("aria-label") || pre.dataset.label || "코드";
+    const label = pre.getAttribute("aria-label") || pre.dataset.label || t("copy.defaultLabel");
     const block = document.createElement("div");
     block.className = "code-block";
     const bar = document.createElement("div");
@@ -103,7 +104,7 @@
   document.querySelectorAll("code[data-copy]").forEach(code => {
     const value = code.dataset.copy || code.textContent.trim();
     const button = buildButton("copy-inline", value, false);
-    button.title = "복사";
+    button.title = t("copy.inlineTitle");
     button.addEventListener("click", () => { void copy(button, value, value, null); });
     code.after(button);
   });
