@@ -1,0 +1,182 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-11-18T06:27:44.897911+00:00",
+  "recordingDate": "2026-11-18",
+  "auditMode": "GET-only; operator identity; no participant secrets; subscription·tenant·object IDs replaced",
+  "identity": {
+    "userType": "Guest",
+    "accountEnabled": true,
+    "objectIdSha256": "78f8c465555feef733ddc2f6d4a263181c8bfcf9661086ddb19556b1becb68b2"
+  },
+  "authentication": {
+    "initialPasswordUsed": true,
+    "passwordChangeRequired": false,
+    "mfaMethod": "Software OATH (TOTP)"
+  },
+  "roles": [
+    {
+      "role": "Cognitive Services Usages Reader",
+      "scope": "subscription"
+    },
+    {
+      "role": "Contributor",
+      "scope": "resourceGroup"
+    },
+    {
+      "role": "Foundry User",
+      "scope": "resourceGroup"
+    }
+  ],
+  "region": "northcentralus",
+  "resources": [
+    {
+      "name": "foundry-se02-lab",
+      "type": "Microsoft.CognitiveServices/accounts"
+    },
+    {
+      "name": "se02-fb-lab-resource",
+      "type": "Microsoft.CognitiveServices/accounts"
+    },
+    {
+      "name": "foundry-se02-lab/se02-lab",
+      "type": "Microsoft.CognitiveServices/accounts/projects"
+    },
+    {
+      "name": "se02-fb-lab-resource/se02-fb-lab",
+      "type": "Microsoft.CognitiveServices/accounts/projects"
+    },
+    {
+      "name": "appi-foundry-se02-lab-5959",
+      "type": "Microsoft.Insights/components"
+    },
+    {
+      "name": "se02-fb-lab-appinsights-9508",
+      "type": "Microsoft.Insights/components"
+    },
+    {
+      "name": "DefaultWorkspace-00000000-0000-0000-0000-000000000000",
+      "type": "Microsoft.OperationalInsights/workspaces"
+    },
+    {
+      "name": "log-foundry-se02-lab-w7lsnurj7vk3i",
+      "type": "Microsoft.OperationalInsights/workspaces"
+    },
+    {
+      "name": "Failure Anomalies - appi-foundry-se02-lab-5959",
+      "type": "microsoft.alertsmanagement/smartDetectorAlertRules"
+    },
+    {
+      "name": "Failure Anomalies - se02-fb-lab-appinsights-9508",
+      "type": "microsoft.alertsmanagement/smartDetectorAlertRules"
+    }
+  ],
+  "deployments": [
+    {
+      "name": "gpt-6.1-terra",
+      "model": "gpt-6.1-terra",
+      "version": "2026-10-26",
+      "sku": "GlobalStandard",
+      "capacity": 100,
+      "createdAt": "2026-11-18T04:52:34.417823+00:00"
+    },
+    {
+      "name": "text-embedding-ada-002",
+      "model": "text-embedding-ada-002",
+      "version": "2",
+      "sku": "Standard",
+      "capacity": 110,
+      "createdAt": "2026-11-18T04:54:52.720513+00:00"
+    },
+    {
+      "name": "gpt-5.4-mini",
+      "model": "gpt-5.4-mini",
+      "version": "2026-03-17",
+      "sku": "GlobalStandard",
+      "capacity": 100,
+      "createdAt": "2026-11-18T05:01:00.184235+00:00"
+    },
+    {
+      "name": "gpt-5.4",
+      "model": "gpt-5.4",
+      "version": "2026-03-05",
+      "sku": "GlobalStandard",
+      "capacity": 100,
+      "createdAt": "2026-11-18T05:01:02.426321+00:00"
+    }
+  ],
+  "model": {
+    "name": "gpt-6.1-terra",
+    "version": "2026-10-26",
+    "sku": "GlobalStandard",
+    "capacityDuringLabs3To5": 10,
+    "tokensPerMinuteDuringLabs3To5": 10000,
+    "note": "Labs 3-5 were captured with a 10,000 TPM deployment (capacity 10); the operator raised it to 100,000 TPM for the optional labs."
+  },
+  "agent": {
+    "name": "workshop-assistant",
+    "version": "2",
+    "kind": "prompt",
+    "model": "gpt-6.1-terra",
+    "tools": [],
+    "parameters": {
+      "reasoning": {
+        "effort": "low"
+      }
+    },
+    "observedIn": "Foundry portal (agent data-plane read needs Foundry User)"
+  },
+  "tracingConnection": [
+    {
+      "name": "appinsights-rugmantka2gzs",
+      "category": "AppInsights",
+      "authType": "ApiKey",
+      "target": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-se01/providers/Microsoft.Insights/components/appi-foundry-se02-lab-5959"
+    }
+  ],
+  "monitorMetrics": {
+    "agentRuns": 3,
+    "totalTokens": 891,
+    "errorRate": 0,
+    "dateRange": "Last Day",
+    "verifiedAt": "2026-11-18T03:48:14.735Z"
+  },
+  "traceRows": [
+    {
+      "traceId": "42751ca62d1c4914bca475d96e4deeac",
+      "status": "Completed",
+      "createdAt": "11/18/26, 1:55:55 PM",
+      "durationSeconds": 1.405,
+      "inputTokens": 347,
+      "outputTokens": 52
+    },
+    {
+      "traceId": "489a37cc9f1649b7bf1b0d78961094d3",
+      "status": "Completed",
+      "createdAt": "11/18/26, 1:55:42 PM",
+      "durationSeconds": 0.985,
+      "inputTokens": 235,
+      "outputTokens": 53
+    },
+    {
+      "traceId": "33f3a3790aa6408b8cec1d68d147cff4",
+      "status": "Completed",
+      "createdAt": "11/18/26, 1:55:32 PM",
+      "durationSeconds": 1.007,
+      "inputTokens": 137,
+      "outputTokens": 67
+    }
+  ],
+  "autoCreated": [
+    {
+      "resource": "text-embedding-ada-002",
+      "type": "deployment",
+      "when": "Recorded as created by the participant account when the first agent was created",
+      "note": "Standard SKU deployment. Do not delete it."
+    }
+  ],
+  "credentialsIncluded": false,
+  "limitations": [
+    "Sequential run with 1 account and 1 project. Concurrent access and load from many accounts were not verified.",
+    "Agent definitions were checked on portal screens and not read through the data-plane API."
+  ]
+}

@@ -1,0 +1,19 @@
+Login and MFA guide screenshots
+As of: 2026-11-18
+
+Every PNG in this folder was captured for this repository. No pictures from external documents are used.
+
+How they were captured
+- A new test account that has only the three participant roles (RG Contributor, RG Foundry User, and Cognitive Services Usages Reader on the subscription)
+  signed in to the Azure Portal for the first time. The screens were captured in a Chromium browser at 1600x900.
+- Only the sign-in card area was cropped. No resizing or other editing was done.
+
+Masking
+- The sign-in email was replaced with user@contoso.com before capture. The real UPN is not in any picture.
+- The email, password and verification code input fields were blurred during capture.
+- The QR picture and the manual registration key (Secret key) were covered with gray boxes. You cannot register an app from these pictures.
+- The pictures contain no real password, QR code, Secret key or verification code.
+
+Files
+- signin-1-upn.png to signin-12-return-code.png (number 7 does not exist): the sign-in and MFA registration sequence (the first sign-in lab of the guide)
+- foundry-auto-setup.png: the "Setting up your project" screen shown when the Foundry portal (ai.azure.com) is opened for the first time

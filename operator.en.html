@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3Crect%20width='40'%20height='40'%20rx='10'%20fill='%2310263d'/%3E%3Ctext%20x='20'%20y='26'%20text-anchor='middle'%20fill='white'%20font-family='sans-serif'%20font-size='16'%20font-weight='700'%3EFD%3C/text%3E%3C/svg%3E">
+  <meta name="description" content="Guide to preparing and running a Microsoft Foundry workshop, for operators (SE teams). Covers permissions to create Internal Guests, participant RBAC, preparation by script or in the portal, and the required pre-handoff check of first sign-in and MFA registration on the actual training network.">
+  <title>Microsoft Foundry · Operator guide</title>
+  <link rel="alternate" hreflang="ko" href="https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/operator.html">
+  <link rel="alternate" hreflang="en" href="https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/operator.en.html">
+  <link rel="alternate" hreflang="x-default" href="https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/operator.html">
+  <script src="assets/i18n.js"></script>
+  <script src="assets/theme.js"></script>
+  <link rel="stylesheet" href="assets/guide.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the operator guide content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">FD</span> Microsoft Foundry <span class="top-meta">/ Operator guide</span></a>
+      <nav class="guide-switch" aria-label="Guide selection">
+        <span class="group-label">Participant</span><a href="index.en.html">Foundry</a>
+        <span class="sep" aria-hidden="true"></span>
+        <span class="group-label">Operator</span><a href="operator.en.html" aria-current="page">Foundry</a>
+      </nav>
+      <div class="topbar-tools">
+        <nav class="lang-switch" aria-label="Language"><a href="operator.html" lang="ko" hreflang="ko">Korean</a><a href="operator.en.html" lang="en" hreflang="en" aria-current="true">English</a></nav>
+        <button class="button small theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
+        <span class="top-meta">As of 2026-11-18</span>
+      </div>
+      <span class="sr-only" id="theme-status" role="status"></span>
+    </div>
+  </header>
+
+  <div class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">OPERATOR RUNBOOK · PREPARE BEFORE PARTICIPANTS ARRIVE</div>
+          <h1>Prepare accounts, resource groups (RGs), and permissions,<br>then hand off to participants.</h1>
+          <p class="hero-lead">First confirm the roles to grant, then choose preparation method A or B.<br><strong>With either method, you must verify the new Guest's first sign-in and MFA registration on the actual training network before handoff.</strong><br>Participants create the Foundry resource, project, and model themselves inside their own RG.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#participant-roles">Roles to give participants <span aria-hidden="true">→</span></a>
+            <a class="button dark" href="#automation">A. Script preparation</a>
+            <a class="button dark" href="#portal">B. Manual portal preparation</a>
+            <a class="button dark" href="index.en.html">Foundry Participant guide ↗</a>
+          </div>
+        </div>
+        <div class="proof">
+          <p class="proof-label"><strong>How the environment is provided</strong> · 70 customers + 5 SE test accounts · example plan for about 5 hours</p>
+          <div class="stats">
+            <div class="stat"><strong>3+2</strong><span>participant Azure roles (+2 for Foundry IQ)</span></div>
+            <div class="stat"><strong>Individual RG</strong><span>scope for creating resources</span></div>
+            <div class="stat"><strong>6</strong><span>required pre-handoff checks</span></div>
+          </div>
+          <p class="proof-note">Success with an operator account is not proof that preparation is complete.<br>Verify participant sign-in, execution, log viewing, and access isolation.</p>
+          <p class="proof-note">The current real-environment evidence is a basic Prompt Agent E2E with 1 Internal Guest. It does not mean that creating 75 accounts and RGs, or running under concurrent load, has been verified.</p>
+        </div>
+      </div>
+      <div class="hero-meta"><span>Account and Azure responsibilities can be separated</span><span>Differences between the official permission baseline and actual verification are stated</span><span>This document does not create or delete Azure resources</span></div>
+    </div>
+  </div>
+
+  <div class="workspace">
+    <aside aria-label="Operator guide contents">
+      <p class="nav-title">WORKSHOP OPERATIONS</p>
+      <nav class="toc" id="toc" aria-label="Page contents">
+        <a href="#plan"><span class="nav-number">01</span>Preparation flow at a glance</a>
+        <a href="#participant-roles"><span class="nav-number">02</span>Roles to grant participants</a>
+        <a href="#operator-roles"><span class="nav-number">03</span>Permissions the operator needs</a>
+        <a href="#automation"><span class="nav-number">04</span>A · Bulk preparation with scripts</a>
+        <a href="#portal"><span class="nav-number">05</span>B · Manual preparation in the portal</a>
+        <a href="#preflight"><span class="nav-number">06</span>Common · Required pre-handoff checks</a>
+        <a href="#iq-prep"><span class="nav-number">07</span>Required · Foundry IQ and Web IQ preparation</a>
+        <a href="#capacity"><span class="nav-number">08</span>Notes · Models, TPM, and cost</a>
+        <a href="#handoff"><span class="nav-number">09</span>Participant handoff template</a>
+        <a href="#day-ops"><span class="nav-number">10</span>Day-of incident response</a>
+        <a href="#close"><span class="nav-number">11</span>Wrap-up and cleanup</a>
+        <a href="#reuse"><span class="nav-number">12</span>Reuse for other labs</a>
+        <a href="#part2-prep"><span class="nav-number">Optional</span>Harness, Hosted, evaluation, and cost lab preparation</a>
+      </nav>
+      <p class="sidebar-note">Do not put real customer lists, passwords, verification codes, or connection strings in public documents. Keep the operations ledger in a separately approved repository.</p>
+    </aside>
+
+    <main id="main">
+      <section class="panel observed-section" id="plan">
+        <p class="section-label">START HERE · ONE HANDOFF STANDARD</p>
+        <h2>There are two preparation methods, but only one scope provided to participants.</h2>
+        <div class="table-wrap">
+          <table aria-label="Creation boundary between operators and participants">
+            <thead><tr><th>Provided by the operator</th><th>Created by participants themselves</th></tr></thead>
+            <tbody><tr><td><strong>Accounts + an RG per participant + user RBAC</strong><br>Upfront checks of subscription resource providers (RPs), quota, and policy, plus handoff and support paths.</td><td><strong>Foundry resource, project, model, agent, and observability inside the assigned RG</strong><br>Creating new RGs, assigning roles, and changing subscription settings are not participant tasks.</td></tr></tbody>
+          </table>
+        </div>
+        <ol class="flow" aria-label="Operator preparation sequence">
+          <li>Confirm roles<small>Recipient · Scope</small></li><li>A or B<small>Choose only one</small></li><li>Common checks<small>Training network · first MFA · isolation</small></li><li>Participant handoff<small>Hand over only their own values</small></li>
+        </ol>
+        <div class="runbook-grid" role="group" aria-label="Environment preparation method selection">
+          <article class="runbook-card recommended">
+            <p class="section-label">METHOD A · BULK PREPARATION OF ALL 75 ACCOUNTS</p>
+            <h3>Bulk preparation with scripts</h3>
+            <p>Prepares accounts, RGs, roles, and RPs in one pass. Re-running with the same config fills in anything missing, and the dedicated verification script re-queries the result.</p>
+            <a class="button" href="#automation">Go to procedure A →</a>
+          </article>
+          <article class="runbook-card">
+            <p class="section-label">METHOD B · SMALL-SCALE, MANUAL PREPARATION</p>
+            <h3>Prepare one by one in the portal</h3>
+            <p>Create accounts, RGs, and roles in the Entra/Azure Portal, then cross-check them against the operations ledger and Check access. What gets created is the same as A.</p>
+            <a class="button" href="#portal">Go to procedure B →</a>
+          </article>
+        </div>
+        <div class="notice warning"><strong>Do not create the same participant environment twice, once with A and once with B.</strong> After preparation, run the <a href="#preflight">6 required checks</a> regardless of method. Do not hand off to participants based only on a successful operator sign-in or a "creation complete" message.</div>
+        <div class="notice"><strong>Are you running required Labs 6 and 7 (Foundry IQ and Web IQ) and the optional labs together?</strong> Preparation and checks for required Labs 1–5 stay the same, but <strong>for required Lab 6 (Foundry IQ), 2 roles on the participant's own RG + a search service + a project MI role</strong> are additionally needed (<a href="#iq-prep">preparation for required Labs 6 and 7</a>). For the optional labs on harness, Hosted agent, evaluation, Optimize, Manage, and cost, the regions, TPM, extra roles, and cost are checked separately in the <a href="#part2-prep">optional lab preparation</a> section.</div>
+      </section>
+
+      <section class="panel observed-section" id="participant-roles">
+        <p class="section-label">GRANT TO THE PARTICIPANT · NOT TO THE PROJECT MI</p>
+        <h2>Grant the 3 Azure roles below to each participant's user account.</h2>
+        <p class="intro"><strong>Account baseline:</strong> an active <strong>Internal Guest</strong> in the target workforce tenant, with <strong>no</strong> Entra admin role. The principal that receives the roles below is that participant's <strong>user Object ID</strong>. Do not select a display name or the project MI instead.</p>
+        <div class="table-wrap">
+          <table class="grant-table" aria-label="Required roles for the operator to grant to participants" data-actor="participant">
+            <thead><tr><th>Role</th><th>Exact scope</th><th>Allowed actions</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Contributor</strong></td><td><span class="scope-badge">Participant's own RG</span></td><td>Create and manage the Foundry resource, project, model, and observability resources in the assigned RG. No permission to assign roles.</td></tr>
+              <tr><td><strong>Foundry User</strong></td><td><span class="scope-badge">Participant's own RG</span></td><td>Use the model and agent data plane of the Foundry resource and project under that RG. This role alone does not allow deploying resources.</td></tr>
+              <tr><td><strong>Cognitive Services Usages Reader</strong></td><td><span class="scope-badge">Lab subscription</span></td><td>Read the usage and quota data needed to validate a model deployment. RG scope alone cannot read the subscription Usages API.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="role-title" id="iq-roles">If you run required Lab 6 (Foundry IQ), grant 2 more roles on the participant's own RG.</h3>
+        <div class="table-wrap">
+          <table class="grant-table" aria-label="Additional roles for the Foundry IQ lab" data-actor="participant">
+            <thead><tr><th>Role</th><th>Exact scope</th><th>Allowed actions</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Search Service Contributor</strong></td><td><span class="scope-badge">Participant's own RG</span></td><td>Needed for the portal to connect and manage Azure AI Search in the participant's own RG. This role does not include access to search data.</td></tr>
+              <tr><td><strong>Search Index Data Contributor</strong></td><td><span class="scope-badge">Participant's own RG</span></td><td>Read and write the indexes and documents that a knowledge source creates. If either of the two roles is missing, the Knowledge screen is blocked with 'Access needed'.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="intro">When <code>foundryIq</code> in the config file is <code>true</code> (the default example value), the script also assigns and verifies these two roles; when it is <code>false</code>, it handles only the 3 roles above. Follow <a href="#iq-prep">preparation for required Labs 6 and 7</a> for the search service and managed identity roles.</p>
+        <div class="notice warning"><strong>Permissions not granted:</strong> Do not bulk-grant participants subscription Contributor or Reader, Owner, RBAC Administrator, or Entra admin roles. Do not assign all individual RG roles to a single group that bundles everyone. <strong>RG permissions are not a per-person cost or TPM hard cap.</strong></div>
+        <details>
+          <summary>Role GUIDs, example scopes, and account type notes</summary>
+          <div class="details-body">
+            <div class="table-wrap"><table aria-label="Required role GUIDs"><thead><tr><th>Role</th><th>GUID</th></tr></thead><tbody>
+              <tr><td>Contributor</td><td><code data-copy>b24988ac-6180-42a0-ab88-20f7382dd24c</code></td></tr>
+              <tr><td>Foundry User</td><td><code data-copy>53ca6127-db72-4b80-b1b0-d745d6d5456d</code></td></tr>
+              <tr><td>Cognitive Services Usages Reader</td><td><code data-copy>bba48692-92b0-4667-a9ad-c31c7b334ac2</code></td></tr>
+              <tr><td>Search Service Contributor (Foundry IQ)</td><td><code data-copy>7ca78c08-252a-4471-8644-bb5ff32d4ba0</code></td></tr>
+              <tr><td>Search Index Data Contributor (Foundry IQ)</td><td><code data-copy>8ebe5a00-799e-43f5-93ac-243d3dce84a7</code></td></tr>
+            </tbody></table></div>
+            <p>Scope of the first two roles: <code>/subscriptions/&lt;subscription-id&gt;/resourceGroups/&lt;my-rg&gt;</code><br>Usages Reader scope: <code>/subscriptions/&lt;subscription-id&gt;</code></p>
+            <p>Foundry User was previously named Azure AI User; the GUID is the same. Converting to Internal Member is not a requirement for this lab. External Guest requires separate verification of the external invitation and sign-in policies, and is not a target of the bulk-creation script.</p>
+            <p><a href="index.en.html#account-types">Account types explained for participants</a> · <a href="https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry" target="_blank" rel="noopener noreferrer">Official Foundry RBAC and execution identity reference</a></p>
+          </div>
+        </details>
+      </section>
+
+      <section class="panel observed-section" id="operator-roles">
+        <p class="section-label">OPERATOR PERMISSIONS · DO NOT COPY TO PARTICIPANTS</p>
+        <h2>These are the permissions the operator needs for themselves.</h2>
+        <p class="intro">Keep these separate from the three roles above that go to participants. Responsibilities can be split, but whoever applies the script must be able to use account creation and Azure create/assign permissions together. Do not grant permissions again if existing ones already cover the task.</p>
+        <div class="notice warning"><strong>Creating a new Internal Guest requires an active User Administrator role in the target tenant.</strong> The list below is the least-privilege baseline. An existing <strong>Global Administrator</strong> can also create Internal Guests, so there is no need to grant User Administrator on top of it. When you request new permissions, follow least privilege. <strong>Guest Inviter is for inviting External Guests and does not stand in for the permission to create new Internal Guests.</strong></div>
+        <div class="table-wrap">
+          <table class="grant-table" aria-label="Operator roles and tasks" data-actor="operator">
+            <thead><tr><th>Operator role · Scope</th><th>Tasks needed</th><th>Applies to</th></tr></thead>
+            <tbody>
+              <tr><td><strong>User Administrator</strong> · least privilege<br>Entra · target tenant</td><td>Create Internal Guest accounts, manage initial passwords, and perform approved blocking and deletion.</td><td>Both A and B</td></tr>
+              <tr><td><strong>Contributor</strong><br>Azure · lab subscription</td><td>Create per-participant RGs, register RPs, and list resources. This role alone cannot assign user roles.</td><td>Both A and B</td></tr>
+              <tr><td><strong>Role Based Access Control Administrator</strong><br>Azure · lab subscription</td><td>Assign and revoke the three participant roles and any needed MI roles. If assignment conditions are set, confirm that the target, roles, and scope are allowed.</td><td>Both A and B</td></tr>
+              <tr><td><strong>Directory Readers or other approved read permission</strong><br>Entra · target tenant</td><td>Read users, transitive groups, and active Entra roles. For the Graph verification in A, also check delegated permissions and admin consent. Do not ignore a 403 and let the check pass.</td><td>Permission verification</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice"><strong>An existing subscription Owner</strong> is an alternative to Azure Contributor + RBAC Administrator. Contributor + User Access Administrator is also an alternative. <strong>Azure Owner does not replace Entra User Administrator.</strong> The script does not grant operator roles or Graph app consent.</div>
+        <details><summary>MFA and Conditional Access support, and official permission references</summary><div class="details-body">
+          <p>If you keep the existing authentication policies, there is no reason to grant additional policy-management roles. Policy changes (Conditional Access Administrator) and resetting authentication methods of non-admin participants (Authentication Administrator, etc.) are supported by the responsible owners through approved procedures. Also ask the existing permission owners to make the initial grant of an Entra admin role.</p>
+          <p><a href="https://learn.microsoft.com/entra/fundamentals/how-to-create-delete-users" target="_blank" rel="noopener noreferrer">Account creation permissions</a> · <a href="https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles" target="_blank" rel="noopener noreferrer">Distinguishing Entra and Azure roles</a> · <a href="https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged" target="_blank" rel="noopener noreferrer">Azure administrator role definitions</a></p>
+        </div></details>
+      </section>
+
+      <section class="panel observed-section" id="automation">
+        <p class="section-label">METHOD A · SCRIPT · 70 CUSTOMER ACCOUNTS + 5 SE TEST ACCOUNTS</p>
+        <h2>A. Prepare accounts, RGs, and RBAC in bulk with scripts.</h2>
+        <p class="intro"><strong>If you choose A, do not do the manual creation in B.</strong> The default is a read-only plan, and nothing is created unless you explicitly pass <code>--apply</code>. After creation, run the dedicated verification and move on to the <a href="#preflight">common required checks</a> section.</p>
+        <div class="table-wrap">
+          <table aria-label="Bulk preparation tools and default behavior">
+            <thead><tr><th>Tool</th><th>Behavior</th></tr></thead>
+            <tbody>
+              <tr><td><a href="scripts/provision_workshop.py" download><code>provision_workshop.py</code></a></td><td>By default it makes a <strong>read-only plan</strong>. Only with <code>--apply</code> does it create Internal Guests, RGs, and RBAC and register the needed RPs. It checks all targets for conflicts first, and on a re-run it fills in only what is missing.</td></tr>
+              <tr><td><a href="scripts/verify_workshop.py" download><code>verify_workshop.py</code></a></td><td>It does not trust the creation script's success messages and <strong>re-queries the actual Graph/ARM state</strong>. It exits with code 1 on missing items, errors, extra permissions, or query failures, and with 0 on a pass. It makes no Azure/Entra writes.</td></tr>
+              <tr><td><a href="scripts/workshop_common.py" download><code>workshop_common.py</code></a> · <a href="config/workshop.example.json" download>Example JSON</a></td><td>The common API and safe private output, plus the 5 required settings, the optional SE test count, and the name format. Cloning the repository instead of downloading individual files gets you every file you need. No additional Python packages are required.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="role-title">1. As the operator, prepare the execution environment and settings.</h3>
+        <p class="intro">Use <strong>Azure Cloud Shell Bash (persistent storage), Linux/macOS or WSL · Python 3.11+ · Azure CLI</strong>. Native Windows PowerShell is not supported. Whoever runs the script needs <a href="#operator-roles">permissions to create users, query Entra permissions, create Azure RGs, and assign RBAC</a>, and the script does not grant the operator an admin role or Graph app consent.</p>
+        <pre role="group" aria-label="Script installation and settings">git clone https://github.com/junwoojeong100/microsoft-foundry-ignite-2026.git
+cd microsoft-foundry-ignite-2026
+cp config/workshop.example.json config/workshop.local.json
+# Edit local.json, replace the value below with your real tenantId, then sign in with the operator account
+az login --tenant "REPLACE_WITH_TENANT_ID"</pre>
+        <p class="intro">The JSON below is an example and is not run automatically. <code>tenantId</code> and <code>subscriptionId</code> are placeholders filled with 0s, so replace them with the real values of the target tenant and subscription, and change the remaining values to fit your event.</p>
+        <pre role="group" aria-label="Workshop JSON config example">{
+  "tenantId": "00000000-0000-0000-0000-000000000000",
+  "subscriptionId": "00000000-0000-0000-0000-000000000000",
+  "workshopId": "foundry-ws-202612",
+  "location": "northcentralus",
+  "participantCount": 75,
+  "seTestAccountCount": 5,
+  "nameFormat": "user-se",
+  "foundryIq": true
+}</pre>
+        <div class="table-wrap">
+          <table aria-label="Meaning of the settings">
+            <thead><tr><th>Key</th><th>Example</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>workshopId</code></td><td><code>foundry-ws-202612</code></td><td>Unique ID per event. Used for ownership marking and the private run folder; it is not part of account or RG names.</td></tr>
+              <tr><td><code>participantCount</code></td><td><code>75</code></td><td><strong>Total number of accounts, including SE tests</strong> (1 to 999).</td></tr>
+              <tr><td><code>seTestAccountCount</code></td><td><code>5</code></td><td>How many of those are SE test accounts (0 to the total number of accounts). If omitted, it is 0.</td></tr>
+              <tr><td><code>nameFormat</code></td><td><code>user-se</code></td><td>Name format: customers as <code>user01</code>, SE tests as <code>se01</code>. New events use this value.</td></tr>
+              <tr><td><code>foundryIq</code></td><td><code>true</code></td><td>Additionally assigns and verifies Search Service Contributor and Search Index Data Contributor on the participant's own RG for required Lab 6 (Foundry IQ). If omitted, it is <code>false</code> (3 roles), and in that case Lab 6 cannot proceed. Turning it on after you have applied the config only adds what is missing to the existing environment.</td></tr>
+              <tr><td><code>location</code></td><td><code>northcentralus</code></td><td>The allowed region for creating RGs, which participants are also told to use for their Foundry projects. It must be a <a href="index.en.html#ignite-start">region supported by the Microsoft Copilot harness</a> (North Central US is included).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="intro"><strong>70 customer accounts + 5 SE test accounts = 75 accounts + 75 RGs + 375 role assignments</strong> (225 if you turn <code>foundryIq</code> off). Numbers have two digits, and <strong>RG names get the <code>rg-</code> prefix</strong>. The part after the @ is the verified initial <code>*.onmicrosoft.com</code> domain, used as is. Every account is directly assigned Contributor and Foundry User on its own RG and Cognitive Services Usages Reader on the subscription, and when <code>foundryIq</code> is on, also Search Service Contributor and Search Index Data Contributor on its own RG.</p>
+        <div class="table-wrap">
+          <table aria-label="Examples of short UPNs and resource group names">
+            <thead><tr><th>Purpose</th><th>UPN example</th><th>RG name</th></tr></thead>
+            <tbody>
+              <tr><td>70 customer accounts</td><td><code>user01@&lt;tenant initial domain&gt;</code> ~ <code>user70@&lt;tenant initial domain&gt;</code></td><td><code>rg-user01</code> ~ <code>rg-user70</code></td></tr>
+              <tr><td>5 SE test accounts</td><td><code>se01@&lt;tenant initial domain&gt;</code> ~ <code>se05@&lt;tenant initial domain&gt;</code></td><td><code>rg-se01</code> ~ <code>rg-se05</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>SE test accounts are not operator accounts with admin permissions.</strong> They test sign-in, MFA, and the labs with the same Internal Guest type and three roles as customers, and no admin role is granted. They are distinguished by the <code>accountPurpose=se-test</code> tag on the RG and the <code>accountPurpose</code> column in the private CSV, and are not assigned to customers. Also reserve, from among these 5, the unregistered test accounts needed for the pre-handoff MFA rehearsal.</div>
+        <div class="notice warning"><strong>Names are fixed, so a new <code>workshopId</code> alone cannot avoid a collision when <code>user01</code> and <code>se01</code> already exist.</strong>
+          <ul class="task-list">
+            <li>UPNs must be unique within the tenant, and RGs within the subscription. Even if you only use a different subscription in the same tenant, UPN collisions remain.</li>
+            <li>If accounts or RGs from a previous event remain, finish the approved wrap-up and cleanup procedure or prepare a separate tenant environment.</li>
+            <li>After you apply, do not change the name format, the number of accounts, or the SE count. Existing names and passwords are not changed automatically either.</li>
+          </ul>
+        </div>
+        <details>
+          <summary>Compatibility with earlier config files</summary>
+          <div class="details-body">
+            <p>Earlier configs that omit <code>nameFormat</code> (5 to 6 keys) keep the long name format, and earlier configs that use <code>namePrefix</code> (7 keys) keep the <code>w1</code> and <code>ws1</code> formats and their recovery records as they are. With the new <code>nameFormat="user-se"</code>, do not add <code>namePrefix</code> as well. If <code>seTestAccountCount</code> is omitted, there are 0 SE test accounts. For an environment you have already applied, prepare a separate environment that does not conflict with the new config.</p>
+          </div>
+        </details>
+        <h3 class="role-title">2. Review the read-only plan, then apply it explicitly.</h3>
+        <pre role="group" aria-label="Bulk plan, apply, and verify commands"># Nothing is created in Azure, and no passwords or run records are generated: check the targets, the missing counts, and the RP registration plan
+python3 scripts/provision_workshop.py --config config/workshop.local.json
+
+# Actually create with the reviewed config: writes happen only when --apply is given explicitly
+python3 scripts/provision_workshop.py --config config/workshop.local.json --apply
+
+# Separate verification: re-queries the actual state; exits with code 1 if anything is abnormal
+python3 scripts/verify_workshop.py --config config/workshop.local.json</pre>
+        <div class="notice"><strong>Automation covers only the upfront accounts, RGs, user RBAC, and RPs.</strong> It does not include Foundry resources, projects, models, Log Analytics, App Insights, model group/TPM settings, MFA/Conditional Access changes, granting operator roles, follow-up permissions for the project MI, or automatic wrap-up and deletion. Participants create the needed resources inside their own RG. Entering a head count does not guarantee the number of Foundry resources, the quota, or the capacity to handle the load.</div>
+        <div class="notice"><strong>Password policy for new accounts:</strong> A creates accounts with <code>forceChangePasswordNextSignIn=false</code>. Keeping the initial password is separate from MFA. Re-runs do not automatically correct the password or password-change requirement of existing accounts, and the actual sign-in policy is confirmed with the rehearsal below.</div>
+        <h3 class="role-title">3. Check the verification results and move on to the common checks.</h3>
+        <p class="intro">Check <code>verification.private.json</code> for <strong><code>passed=true</code> · <code>status=complete</code> · a current timestamp</strong>. An exit code of 1, an incomplete status, or a query error is not a pass. This verification is only for environments that carry the script's names, markers, and tags, and it does not automatically adopt anything created manually in the portal.</p>
+        <a class="button" href="#preflight">After creating and verifying with A → Common required checks</a>
+        <details>
+          <summary>Operating notes for A · Private results, re-runs, and failure recovery</summary>
+          <div class="details-body">
+        <div class="table-wrap">
+          <table aria-label="Private run files and their purposes">
+            <thead><tr><th><code>.workshop-runs/&lt;workshopId&gt;/</code></th><th>Contents and handling</th></tr></thead>
+            <tbody>
+              <tr><td><code>credentials.private.csv</code></td><td>Account number, UPN, Object ID, RG, <strong>initial password</strong>, and creation status. In a config with SE test accounts, it distinguishes the 70 customer rows with <code>accountPurpose=participant</code> from the 5 SE rows with <code>se-test</code>. Do not share the whole file or the SE test account information with customers; hand over only each participant's own account and RG, and send the password through a separate channel.</td></tr>
+              <tr><td><code>state.private.json</code></td><td><strong>Recovery record that includes the initial passwords</strong>. It is saved before the creation request so that, even after a lost response, the script can reconcile to the same account and password. It does not look up or reset a password that a participant has optionally changed.</td></tr>
+              <tr><td><code>provision.private.json</code> · <code>verification.private.json</code></td><td>Per-participant issues and the final PASS result of the apply plan and the independent verification. Also check that the verification has <code>passed=true</code>, <code>status=complete</code>, and a current timestamp. An incomplete status or a query error is not a PASS.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>Do not upload passwords or recovery records to GitHub, Pages, or shared logs.</strong> The script uses 0700 for the folder and 0600 for files, and checks the owner, symlinks, and the concurrent-run lock. Git and Pages exclude the run folder and local settings. Back up to an approved private repository and also confirm that Cloud Shell storage persists. Passwords are not printed to stdout or passed as command-line arguments.</div>
+        <h3 class="role-title">Re-run and failure-recovery criteria</h3>
+        <ol class="task-list">
+          <li><strong>Retrying the same job:</strong> Using the same config, working folder, and private records, plan again → <code>--apply</code> → verify. It does not create existing accounts or roles twice or reset initial passwords. If the response to a remote user-creation POST is lost, the POST is not resent automatically.</li>
+          <li><strong>Conflicts and extra permissions:</strong> If the user ownership marker, RG tag, name, or region differs, or if unnecessary permissions exist, it stops. It does not arbitrarily adopt or modify existing resources or automatically revoke permissions. The operator reviews the cause and carries out a separate approved action.</li>
+          <li><strong>Lost records:</strong> If it finds an existing account but no password recovery record exists, it does not reset the password automatically. Restore an approved backup or follow a separate account recovery procedure. Do not retry by changing settings such as head count or region after creation, or by deleting the records.</li>
+          <li><strong>New event:</strong> Prepare with a new unique <code>workshopId</code>, but check whether the fixed UPNs and RGs are already in use. Resolve name collisions through an approved cleanup or a separate environment, and do not change the name format after applying. Run the same workshop sequentially, by one operator from one run folder, and do not apply it concurrently from other machines.</li>
+          <li><strong>Propagation and query errors:</strong> Permissions can take time to take effect. For 401/403, check the sign-in, Graph consent, operator roles, and scope, then wait for propagation and run the verification again. Do not hide errors or give participants a higher role.</li>
+        </ol>
+          </div>
+        </details>
+        <details>
+          <summary>Script self-tests that do not change Azure · official API references</summary>
+          <div class="details-body">
+            <pre role="group" aria-label="Offline automation test command">python3 -m unittest discover -s tests -v</pre>
+            <p>It checks the following against a fake API: the example's two-digit user/se UPNs, 75 RGs with the <code>rg-</code> prefix, and 225 roles; the distinction and access isolation of the 5 SE test accounts; compatibility with earlier configs (scale of 50, 5/6/7 keys) and recovery records; the default plan making no changes; re-runs and recovery from mid-run failures; collisions with names and existing accounts/RGs; permissions on other RGs, at parent scopes, and through groups; verification failures; and no exposure of private output or tokens/passwords. This does not mean that creating 75 real environments or running under concurrent load has succeeded. GitHub Actions also deploys Pages only after these offline tests pass.</p>
+            <p><a href="https://learn.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">Graph user creation</a> · <a href="https://learn.microsoft.com/graph/extensibility-overview#extension-attributes" target="_blank" rel="noopener noreferrer">Ownership attributes for cloud users</a> · <a href="https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">Transitive group membership</a> · <a href="https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">Listing active Entra roles</a> · <a href="https://learn.microsoft.com/rest/api/authorization/role-assignments/list-for-scope?view=rest-authorization-2022-04-01" target="_blank" rel="noopener noreferrer">Listing Azure roles at parent and child scopes</a></p>
+          </div>
+        </details>
+      </section>
+
+      <section class="panel observed-section" id="portal">
+        <p class="section-label">METHOD B · PORTAL · MANUAL PREPARATION</p>
+        <h2>B. Create the accounts and RGs and set up RBAC in the Entra/Azure Portal.</h2>
+        <p class="intro"><strong>B alone can prepare the same handoff scope.</strong> Repeat the steps below for each participant, and record the account, Object ID, RG, and scope of the three roles in the operations ledger. For repeated runs with 70 customer + 5 SE test accounts, <a href="#automation">A's bulk preparation</a> is recommended.</p>
+        <h3 class="role-title" id="identity">1. Create the Internal Guest account in the Entra Portal.</h3>
+        <ol class="task-list">
+          <li>In the <a href="https://entra.microsoft.com/" target="_blank" rel="noopener noreferrer">Entra admin center</a>, confirm the target tenant, then go to Entra ID → Users → New user → <strong>Create new user</strong>.</li>
+          <li>Prepare a unique UPN, display name, and initial password for each participant, and create the account with <strong>User type=Guest</strong>, enabled, and no Entra admin role. Example names: customer <code>user01@&lt;tenant initial domain&gt;</code>, SE test <code>se01@&lt;tenant initial domain&gt;</code>. For this lab of a few hours, the standard is <strong>no requirement to change the password at first sign-in</strong>.</li>
+          <li><strong>Turn off the change requirement:</strong> If the portal has that option, turn it off. If there is no UI to turn it off, set <code>passwordProfile.forceChangePasswordNextSignIn=false</code> by creating a new account with A or through an approved Graph procedure from the permission owner. For an existing account, change only the requirement flag and do not set the password value again. Do not create the same account or RG twice, once with A and once with B.</li>
+          <li>Record the <strong>user Object ID</strong> from the target tenant in the operations ledger. Do not assign an Azure role by mistake using a look-alike display name or the home-tenant Object ID of an external account.</li>
+          <li>Deliver the initial password through an approved individual channel. Participants sign in with the initial password as is and complete <strong>their own MFA registration and verification</strong>. Changing the password is optional. Do not collect changed passwords, verification codes, or registration QR codes.</li>
+          <li><strong>The operator verifies <a href="#network-mfa-rehearsal">the first sign-in and MFA registration of a new test Guest on the actual training network</a> before handoff.</strong> A "5-hour lab" does not make authentication policy exceptions or session expiry go away.</li>
+        </ol>
+        <p class="intro">This is <strong>Create new user</strong>, not an external invitation. Do not change the account type or relax the authentication policy to fix an error. For other account types, follow the <a href="index.en.html#account-types">notes on account types</a> and a separate rehearsal.</p>
+        <h3 class="role-title" id="provision">2. Prepare the RPs, per-participant RGs, and user roles in the Azure Portal.</h3>
+        <ol class="task-list">
+          <li><strong>Subscription RPs:</strong> In Azure Portal → Subscriptions → the target subscription → Resource providers, Register the required providers and confirm that they show Registered. Do this once per subscription, and do not give participants subscription permissions.</li>
+          <li><strong>RG:</strong> Resource groups → Create → specify the target subscription, an allowed region, and a unique name for each participant. For example, prefix the part of the UPN before the @ with <code>rg-</code>: customer <code>rg-user01</code>, SE test <code>rg-se01</code>. Record non-sensitive tags such as Workshop ID, participant number, and account purpose, along with the account-to-RG mapping, in the ledger.</li>
+          <li><strong>2 roles on the participant's own RG:</strong> On that RG, go to Access control (IAM) → Add role assignment and add <strong>Contributor</strong> and <strong>Foundry User</strong> separately. In Members, find the participant by UPN, cross-check the <strong>Object ID</strong>, and select Review + assign.</li>
+          <li><strong>1 subscription read role:</strong> In Subscriptions → the target subscription → IAM, add only <strong>Cognitive Services Usages Reader</strong> for the same user. <a href="#participant-roles">The table of the three roles and scopes</a> is the reference for cross-checking.</li>
+          <li><strong>Hand off an empty RG:</strong> Do not pre-create the Foundry resource, project, models, or observability in the participant RG. <a href="#managed-identity">After the participant creates the project</a>, provide follow-up support for model/MI permissions.</li>
+        </ol>
+        <details>
+          <summary>RPs and the actual creation error confirmed in this portal verification</summary>
+          <div class="details-body">
+            <p>On 2026-11-05, in the verification subscription, we confirmed that the RPs below were in the Registered state. This does not mean the list is the minimum or sufficient list for every Foundry feature. Check the providers you need for your lab content and creation path.</p>
+            <div class="provider-list"><code data-copy>Microsoft.CognitiveServices</code><code data-copy>Microsoft.OperationalInsights</code><code data-copy>Microsoft.Insights</code><code data-copy>Microsoft.Storage</code><code data-copy>Microsoft.Search</code><code data-copy>Microsoft.ManagedIdentity</code><code data-copy>Microsoft.KeyVault</code><code data-copy>Microsoft.DocumentDB</code></div>
+            <p>In particular, the default Foundry portal creation screen raised a pre-validation error because <strong>Microsoft.KeyVault → Microsoft.DocumentDB</strong> were not registered. After the operator registered only the RPs, creation by the Guest succeeded. We did not create additional Key Vault or Cosmos DB resources or widen the Guest's permissions.</p>
+            <p><a href="index.en.html#troubleshooting">Actual error screen for participants</a> · <a href="https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types" target="_blank" rel="noopener noreferrer">RP registration permissions and procedure</a></p>
+          </div>
+        </details>
+        <h3 class="role-title">3. Cross-check the operations ledger against the actual permissions in the portal.</h3>
+        <ol class="task-list">
+          <li><strong>Account:</strong> In Entra Users, confirm the UPN, Object ID, enabled state, and User type=Guest; in Assigned roles, confirm that there is no active Entra admin role. The responsible owner also checks roles that come through groups and whether PIM is in use.</li>
+          <li><strong>Azure:</strong> In IAM → Check access on the subscription and on the participant's own RG, select that user and cross-check the role names, GUIDs, scopes, and whether each assignment is direct, inherited, or through a group. Also check for additional access on other RGs, resources, and parent management groups. Do not look only at the three direct role rows.</li>
+          <li><strong>Ledger:</strong> The participant count and the account-to-RG mapping must match, and each participant's three roles and scopes, RP Registered status, check time, and owner must all be recorded. Sign-in and actual access isolation are verified in the common rehearsal below.</li>
+        </ol>
+        <div class="notice warning"><strong>Verify B with the portal and the operations ledger.</strong> <code>verify_workshop.py</code> checks the ownership markers, names, and tags that A creates, so it cannot be applied as is to a purely manual environment. Do not adopt existing manual accounts into A or bypass the marker check.</div>
+        <a class="button" href="#preflight">After B creation and portal checks → common required checks</a>
+      </section>
+
+      <section class="panel observed-section" id="preflight">
+        <p class="section-label">COMMON TO A AND B · GO / NO-GO</p>
+        <h2>Before handoff, confirm all 6 items below.</h2>
+        <p class="intro"><strong>How you verify the created result differs between A and B, but the pre-event rehearsal is common to both.</strong> Before handing off to participants, the operator must verify <strong>on the training-venue network that real participants will use, with the same device and browser conditions</strong>. Leave the RGs meant for participants empty, and use <strong>2 new test-only Internal Guests that have not yet registered MFA</strong> and a test RG.</p>
+        <div class="table-wrap">
+          <table aria-label="Result verification by creation method">
+            <thead><tr><th>Method chosen</th><th>Result to secure before the common checks</th></tr></thead>
+            <tbody>
+              <tr><td><strong>A · Script</strong></td><td>With the same settings, <code>verify_workshop.py</code> exits with code 0. The latest report shows <code>passed=true</code> and <code>status=complete</code>, and the target tenant, subscription, event, and participant count match.</td></tr>
+              <tr><td><strong>B · Manual in the portal</strong></td><td>Operations ledger ↔ Entra users/roles ↔ Azure IAM Check access all match. Each participant's Object ID, RG, scope of the three roles, and any additional permissions are checked and recorded by the owner.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>Account creation ≠ successful first sign-in and MFA registration.</strong> Success with an operator account, the Owner role, or a shared key, or a PASS from <code>verify_workshop.py</code>, does not replace <a href="#network-mfa-rehearsal">the new-Guest authentication rehearsal on the actual training network</a>. Do not conclude that first-time registration is verified just because an account that had already registered MFA signed in again.</div>
+        <div class="runbook-grid" role="group" aria-label="Six required checks before handoff">
+          <article class="runbook-card"><h3>01 · Account, first sign-in, MFA</h3><p><strong>The operator, on the actual training network and with a new test Guest,</strong> confirms the initial-password sign-in (no forced change), the user's own MFA registration, and signing in again. The operator also cross-checks access to the tenant, the subscription, and the account's own RG. <a href="#network-mfa-rehearsal">Required authentication rehearsal →</a></p></article>
+          <article class="runbook-card"><h3>02 · Roles and isolation between participants</h3><p>Cross-check each individual's Object ID and the scopes of the three roles (five roles if you run Foundry IQ). Also check access through parent scopes, other RGs, and groups, and confirm the <strong>mutual denial of RG and project access</strong> between the two test participants.</p></article>
+          <article class="runbook-card"><h3>03 · RPs, policy, region</h3><p>Check that the required RPs are Registered, and check the allowed regions, SKUs, and network. You also need approval on whether the subscription offer permits use for training external customers, on organization policies, and on data-handling requirements.</p></article>
+          <article class="runbook-card"><h3>04 · Model, TPM, target load</h3><p>For general labs, <strong>allocate gpt-6.1-terra TPM per participant</strong>; for settings that pin a model, such as Optimizer, keep the specified model. Check each pool's remaining quota, scope, RPM, regional supply, and resource-count limits, and make sure <strong>the load at the target number of concurrent participants</strong> is verified. <a href="#capacity">Capacity calculation notes →</a></p></article>
+          <article class="runbook-card"><h3>05 · Participant E2E, MI, Traces</h3><p>The test participant creates resources directly inside the assigned RG. For each model, version, and SKU you will assign, confirm the Playground → Agent response. Then use <strong>Agent → Traces → Connect → Create new resource</strong> to confirm that App Insights is <strong>created and connected inside the participant's own RG</strong> (that no <code>DefaultResourceGroup-*</code> is created), and then view a new run → Monitor and Traces. Also check MI and tool identities separately. <strong>For required Labs 6 and 7, after the <a href="#iq-prep">additional preparation</a>, also confirm a knowledge base question and a web search question with the same account.</strong> If this fails, guide participants to the <a href="index.en.html#step-connect">alternate path of pre-creating in the Azure Portal</a> instead.</p></article>
+          <article class="runbook-card"><h3>06 · Cost, handoff, wrap-up</h3><p>Decide on budget alerts and usage checks, the shutdown/retention policy, the support owner, and a backup owner. Keep each participant's assigned values separate from the password delivery channel. <strong>The 5-hour schedule, TPM, and budget alerts are not an automatic cost cap or shutdown mechanism.</strong></p></article>
+        </div>
+        <div class="notice warning"><strong>If any item is unverified, close the gap before approving handoff or the event.</strong> The current public evidence is the basic E2E of 1 Internal Guest. It does not prove that a 75-account/RG environment can be created, that concurrent load succeeds, or that every model and tool is supported.</div>
+
+        <h3 class="role-title" id="network-mfa-rehearsal">Required · The operator verifies the first sign-in and MFA registration on the actual training network.</h3>
+        <p class="intro"><strong>You can prepare accounts, RGs, and RBAC in advance from an operator laptop, but this does not automatically prepare the participant's first successful authentication.</strong> Do not judge whether first-time registration is possible on the customer training network from the success of an account that had already registered MFA in the existing E2E, or from success on an employee network.</p>
+        <ol class="task-list">
+          <li><strong>Prepare new test accounts:</strong> Prepare 2 separate test-only Internal Guests that will not be assigned to customers, plus a test RG and the three roles. Start with accounts that have not registered MFA, and do not pre-register operator authentication methods on real customer accounts.</li>
+          <li><strong>First authentication on site:</strong> On the actual customer training network, device, browser, and phone, sign in with the test UPN and initial password and complete the account's own MFA registration and verification. <strong>The standard here is a password-change requirement of <code>false</code></strong>; do not relax MFA or Conditional Access. Do not substitute success on an employee network, an instructor-only VPN/GSA, or the operator's environment.</li>
+          <li><strong>Sign in again and check access:</strong> Sign in again in a new browser session and confirm access to the target tenant, the subscription, and the account's own RG. For the two accounts' mutual RG and project access denial and for Playground → Agent → Traces, continue with the isolation and E2E checks above.</li>
+          <li><strong>Record the policy and the result:</strong> If security info registration has an IP condition, the permission owner cross-checks the allowed Named locations against <strong>the public IPv4/IPv6 that Entra evaluated on the MFA registration request</strong>, not the location where the account was created. The name of the office Wi-Fi alone does not guarantee that access is allowed. Record the training network, test time, target, success/failure, and owner in the approved private operations ledger, and <strong>if registration is blocked or unverified, hold the handoff</strong> and secure an approved registration path and policy support.</li>
+        </ol>
+        <div class="notice warning"><strong>Do not assign a test account that was registered with the operator's phone or authentication method to a real participant.</strong> Real participants register their own authentication methods directly on their own accounts. Do not collect or share a participant's changed password, MFA codes, or registration QR codes. Deliver the initial password only through an approved individual channel, as in the existing standard, and do not resolve a test failure by turning off MFA for everyone or by widening participants' admin permissions.</div>
+        <div class="notice"><strong>Additional hands-on test on November 8:</strong> On 1 new non-customer Internal Guest, we confirmed: initial password retained, new-browser sign-in, registration of the Software OATH (TOTP) method that the policy provided, MFA verification, and acceptance of ARM and Graph tokens. <a href="assets/guest-auth-verification.json">Verification JSON</a>. Because the account was for sign-in only, we did not add an RG or roles. This does not replace event approval for Microsoft Authenticator push, the actual customer training network, or additional features.</div>
+        <p class="intro"><a href="https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-security-info-registration" target="_blank" rel="noopener noreferrer">Official security info registration policy</a> · <a href="https://learn.microsoft.com/entra/identity/conditional-access/concept-assignment-network" target="_blank" rel="noopener noreferrer">Official network and public IP evaluation criteria</a></p>
+
+        <h3 class="role-title" id="rg-visibility">Participants should see and access only their own RG.</h3>
+        <p class="intro">If the target subscription has no access beyond the three roles described, the participant's own RG is the access scope. The subscription Usages Reader allows only <code>Microsoft.CognitiveServices/locations/usages/read</code> and is not a role for listing other RGs or reading resources. Subscription quota is shared, so it can be viewed.</p>
+        <div class="notice warning"><strong>Not shown in a list ≠ access denied.</strong> Confirm the actual denial through a direct link to another test RG or project that the operator owns, or through an allowed lookup path, and also check for exposure between participants in shared logs. A's verification also does not check other subscriptions or tenants, PIM eligible assignments or future group changes, or sign-in, MFA, policy/deny effects, portal access, Foundry/MI, or load.</div>
+
+        <h3 class="role-title" id="managed-identity">The operator supports MI permissions separately, after the project is created.</h3>
+        <p class="intro">User roles are not automatically copied to the project's Managed Identity. After the participant creates the project, check the MI Object ID and scope that are needed. To provide this support, do not give participants Owner or RBAC Administrator, and do not create the Foundry resource on their behalf before handoff.</p>
+        <details>
+          <summary>Check permissions for the project MI, tool execution identities, and log access</summary>
+          <div class="details-body">
+            <div class="table-wrap">
+              <table aria-label="Permission checks by user and execution identity">
+                <thead><tr><th>Principal receiving permissions</th><th>What the operator checks and assigns</th><th>Timing and cautions</th></tr></thead>
+                <tbody>
+                  <tr><td>Participant user</td><td>Contributor and Foundry User on the participant's own RG, and Usages Reader on the subscription.</td><td>Prepare these before the workshop. Giving the user a role does not create the same role on the project MI.</td></tr>
+                  <tr><td>Project MI</td><td>Check the <strong>Foundry User · parent Foundry resource</strong> assignment from the official starting baseline. The operator supports any needed permissions that are not yet assigned. Required Lab 6 (Foundry IQ) additionally needs <strong>Search Index Data Reader</strong> on the participant's own RG (<a href="#iq-prep">preparation item 4</a>), and the evaluator trace context additionally needs Monitoring Reader on Application Insights.</td><td>Check the MI Object ID <strong>after the participant creates the project</strong>. Do not assume that the UI auto-assigns roles when the creator lacks permission to assign roles.</td></tr>
+                  <tr><td>Tool and connection execution identity</td><td>Data permissions on the target service, such as Search or Storage, for the principal that actually authenticates.</td><td>The identity differs by authentication method: the user, the project MI, or the Foundry resource MI, among others. For read-only use, start by reviewing the Reader data role you need.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The existing basic agent E2E ran with <code>tools=[]</code> and confirmed the 3 user roles. The public verification JSON is <strong>not a complete permissions audit of the MI.</strong> Verify again when you expand to tools, the SDK, Hosted agent, or publishing. <a href="https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry" target="_blank" rel="noopener noreferrer">Official user, MI, and scope guidance</a></p>
+            <p><strong>Log access is a separate resource permission.</strong> If log queries are denied, check Log Analytics Reader on the connected Application Insights, and check the workspace-context permissions and access mode. Protected tables may require separate permissions depending on policy, such as Privileged Monitoring Data Reader (a built-in role from the protected tables preview documentation). Do not bulk-add permissions that are not needed.</p>
+            <p><a href="https://learn.microsoft.com/azure/foundry/observability/how-to/trace-agent-setup" target="_blank" rel="noopener noreferrer">Official tracing connection and query permissions</a>. A successful earlier run does not guarantee every workspace access mode, protected table, or participant log isolation.</p>
+            <p><strong>Example assignment for the evaluator trace context.</strong> When you select Target agent while creating an evaluator, a "Setup incomplete … Monitoring Reader" warning appears. Its Resolve action fails with a permissions error on a participant account, so an operator with Owner or User Access Administrator permissions assigns the project MI the Monitoring Reader role on the connected Application Insights. The commands below are the form we ran and confirmed in the 2026-11-17 reproduction environment; even after the assignment, the warning text in the evaluator dialog stayed the same.</p>
+            <pre role="group" aria-label="Example: assign Application Insights Monitoring Reader to the project MI"># System-assigned MI Object ID of the project resource
+# Resource ID format: /subscriptions/&lt;subscription ID&gt;/resourceGroups/&lt;RG&gt;/providers/Microsoft.CognitiveServices/accounts/&lt;Foundry resource&gt;/projects/&lt;project&gt;
+az resource show --ids &lt;project resource ID&gt; --query identity.principalId -o tsv
+
+# Assign Monitoring Reader at the scope of the connected Application Insights
+az role assignment create --assignee-object-id &lt;Object ID from above&gt; --assignee-principal-type ServicePrincipal --role "Monitoring Reader" --scope &lt;Application Insights resource ID&gt;</pre>
+          </div>
+        </details>
+      </section>
+
+      <section class="panel observed-section" id="iq-prep">
+        <p class="section-label">REQUIRED LABS 6–7 · FOUNDRY IQ AND WEB IQ · 2026-11-18</p>
+        <h2>Required Labs 6 and 7 (Foundry IQ and Web IQ) need additional preparation before handoff.</h2>
+        <p class="intro"><a href="index.en.html#ignite-foundry-iq">Lab 6 (Foundry IQ)</a> can be completed only when the participant's own RG has <strong>1 Azure AI Search (serverless) service</strong> and 4 managed identity roles. <a href="index.en.html#ignite-web-iq">Lab 7 (Web IQ)</a> needs no additional resources or roles but does need guidance on cost and the data boundary. Without this preparation, participants cannot complete required Lab 6. These values are the results of running and confirming everything end to end directly on 2026-11-18 in North Central US with <strong>1 account that had the 3 participant roles plus the preparation below</strong>, and <strong>we could not verify 70-participant scale or concurrent use.</strong></p>
+        <div class="table-wrap">
+          <table class="table-wide" aria-label="Lab 6 Foundry IQ operator preparation items">
+            <thead><tr><th>#</th><th>Preparation item</th><th>When</th><th>What we verified · Symptom if it is missing</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>Search service</strong> · For each participant RG, 1 Azure AI Search <strong>serverless</strong> (Preview) service. Use a system-assigned managed identity, with key authentication turned off</td><td>Before participant sign-in (after the RG is created)</td><td>A single REST call (PUT) reached Succeeded in about 20 seconds. <code>az search service create</code> does not accept the serverless SKU, so use REST. A participant can also create the service with "Create new resource" in the portal, but then it has no managed identity, and participants cannot grant the roles in items 2 and 3 below themselves, so they get blocked.</td></tr>
+              <tr><td>2</td><td><strong>2 participant roles</strong> · On the participant's own RG: <strong>Search Service Contributor</strong> + <strong>Search Index Data Contributor</strong></td><td>Before handoff</td><td>When <code>foundryIq: true</code>, the script assigns and verifies both (<a href="#automation">procedure A</a>). Without them, the Knowledge screen is blocked with "Access needed".</td></tr>
+              <tr><td>3</td><td><strong>Search service managed identity → Cognitive Services User</strong> · scope: the participant's own RG</td><td>Right after item 1 (possible even before the Foundry resource exists, since the scope is the RG)</td><td>Without it, the embedding model selection in the create-knowledge-source pane shows a warning that asks you to contact your administrator. If you assign it at the RG scope, it is inherited even after the participant creates the Foundry resource in Lab 2.</td></tr>
+              <tr><td>4</td><td><strong>Project managed identity → Search Index Data Reader</strong> · scope: the participant's own RG</td><td><strong>After the participant creates the project in Lab 2</strong>, before Lab 6 starts</td><td>The project MI exists only once the project is created. Without this role, the agent fails with <code>A user error occurred while executing a tool call</code> when it calls the knowledge base, and after we assigned the role it took a few minutes to propagate. The same error also occurred <strong>when the connection's Auth Type was left at the default, API Key</strong> (this search service has key authentication turned off), so tell participants to select <strong>Project Managed Identity</strong>. The <a href="#managed-identity">project MI follow-up check</a> is done in the same pass.</td></tr>
+              <tr><td>5</td><td><strong>Embedding model deployment</strong> · <code>text-embedding-ada-002</code>, etc.</td><td>During the participant lab</td><td>Creating a knowledge source <strong>requires an Embedding model</strong> (if you leave it empty, you are blocked with "No embedding model selected"). In this environment, the record shows that the participant account deployed gpt-6.1-terra and, 2 minutes later, a <code>text-embedding-ada-002</code> (Standard 110K TPM) deployment was created (we could not verify which step created it); it was pre-filled in the create-source pane. <strong>The Standard ada-002 quota for this subscription and region is 350K TPM, so it was already full</strong> (usage 350 / limit 350). If this automatic deployment reserves 110K per participant, that covers only 3 participants, so before the event decide on and rehearse an alternative: raise the quota, or use a Global Standard embedding such as <code>text-embedding-3-small</code> (limit 2,000K in the same region). The alternatives have not been run for this guide.</td></tr>
+              <tr><td>6</td><td><strong>Service count, quota, region</strong></td><td>Before the event</td><td>Serverless Search is in Preview and was created in North Central US. The per-subscription service-count limit appears to differ across the official docs (for example, 10,000/100 and 30/5), so <strong>we could not verify it.</strong> Test with a small batch before creating 75. The search service is usage-based, and storage for the knowledge-source index is billed even when idle.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="role-title" id="iq-prep-commands">Preparation commands for items 1–4 (for one participant)</h3>
+        <p class="intro">These use the <code>az</code> CLI, in <strong>the form we ran and confirmed in this environment</strong> (specify the target subscription with <code>--subscription</code>). Change values such as names to suit your event; the operator writes the part that reads the participant list and repeats the commands. When <code>foundryIq: true</code>, <code>provision_workshop.py --apply</code> already assigns the item 2 roles, so do not assign them a second time with the CLI.</p>
+        <pre role="group" aria-label="Example: preparing the search service and roles for the Foundry IQ lab">SUB=&lt;subscription ID&gt;
+RG=&lt;participant RG&gt;
+SEARCH=&lt;search service name: globally unique, 2-60 characters, lowercase letters, digits, hyphens&gt;
+RGSCOPE=/subscriptions/$SUB/resourceGroups/$RG
+API=2026-03-01-preview
+
+# 1) Serverless search service + system-assigned managed identity (key authentication off). provisioningState becomes Succeeded after about 20 seconds.
+az rest --method put --subscription $SUB \
+  --url "https://management.azure.com$RGSCOPE/providers/Microsoft.Search/searchServices/$SEARCH?api-version=$API" \
+  --body '{"location":"northcentralus","sku":{"name":"serverless"},"identity":{"type":"SystemAssigned"},"properties":{"disableLocalAuth":true}}'
+
+# 3) Cognitive Services User for the search service managed identity (RG scope)
+SEARCH_MI=$(az rest --method get --subscription $SUB \
+  --url "https://management.azure.com$RGSCOPE/providers/Microsoft.Search/searchServices/$SEARCH?api-version=$API" \
+  --query identity.principalId -o tsv)
+az role assignment create --subscription $SUB --assignee-object-id $SEARCH_MI \
+  --assignee-principal-type ServicePrincipal --role "Cognitive Services User" --scope $RGSCOPE
+
+# 4) After the participant creates the project: Search Index Data Reader for the project managed identity (RG scope)
+PROJECT_MI=$(az resource show --subscription $SUB --ids &lt;project resource ID&gt; --query identity.principalId -o tsv)
+az role assignment create --subscription $SUB --assignee-object-id $PROJECT_MI \
+  --assignee-principal-type ServicePrincipal --role "Search Index Data Reader" --scope $RGSCOPE</pre>
+        <p class="prompt-foot">Project resource ID format: <code>/subscriptions/&lt;subscription ID&gt;/resourceGroups/&lt;RG&gt;/providers/Microsoft.CognitiveServices/accounts/&lt;Foundry resource&gt;/projects/&lt;project&gt;</code>. Assigning roles requires Owner or User Access Administrator. Do not give participants this permission.</p>
+        <h3 class="role-title" id="iq-prep-web">What the operator decides for Lab 7 (Web IQ)</h3>
+        <div class="table-wrap">
+          <table aria-label="Lab 7 Web IQ operator decision items">
+            <thead><tr><th>Item</th><th>What the operator decides and communicates</th><th>Verification status</th></tr></thead>
+            <tbody>
+              <tr><td>Additional resources and roles</td><td>On the agent, <strong>Tools → Add → Web search</strong> attached immediately, with no dialog, separate resource, or additional role. The 3 participant roles were enough.</td><td><strong>Run directly</strong> · 3 participant roles</td></tr>
+              <tr><td>Data boundary</td><td>Foundry states that when you connect a non-Foundry tool, customer data <strong>may leave the Azure compliance boundary</strong>. Tell participants to ask only about publicly announced latest news (the guide's question does this), and make sure they do not enter real customer data or internal information. Settle any data-handling requirements that need approval before the event.</td><td>On-screen text · official docs (Web search)</td></tr>
+              <tr><td>Cost</td><td>The official docs state that the web search tool may incur costs. <strong>Web search inside a toolbox is Grounding with Bing</strong>, so it is billed separately (the <code>*-toolbox</code> that is automatically attached to a new agent is this path), while a web search you add directly uses Web IQ. In a single call during this capture, the directly added path used 15,452 tokens and the toolbox path used 1,297 tokens. Check call pricing on the <a href="https://learn.microsoft.com/web-iq/resources/pricing" target="_blank" rel="noopener noreferrer">official pricing page ↗</a> ($1 to $9 per 1,000 calls for an Azure Web IQ resource).</td><td>Tokens: <strong>Run directly</strong> · amount not verified</td></tr>
+              <tr><td>Microsoft.Bing registration</td><td>The toolbox path uses Grounding with Bing, so check the registration status of the <code>Microsoft.Bing</code> provider on the subscription. It was registered on this subscription.</td><td>Only the registration status was checked</td></tr>
+              <tr><td>Separate Azure Web IQ resource</td><td>This guide does not create one. It requires a paid Azure subscription, and Azure credits, free trials, and student subscriptions cannot be used. The <code>Microsoft.WebIQ</code> provider is NotRegistered, so using it requires separate approval and registration.</td><td>Not done · <a href="index.en.html#learn-web-iq">concept card</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>Cleanup and cost.</strong> The serverless search service, knowledge sources, and knowledge base remain in the RG. Include them in the <a href="#close">approved cleanup procedure</a> at wrap-up. <strong>Deleting a knowledge base in Foundry does not delete its knowledge sources and indexes</strong> (confirmed in this environment). The only knowledge source left in a knowledge base cannot be deleted on its own ("At least one knowledge source is required …"), and the cleanup order was: ① in Foundry, More options → Delete knowledge base; ② in the Azure Portal, search service → Agentic retrieval → Knowledge sources → row menu → Delete (the index, indexer, and skillset are deleted together); ③ in Foundry Manage → project Connections, delete the search connection. A toolbox that is automatically attached to a new agent (<code>*-toolbox</code>) stays in the project even if you remove it from the agent. Deleting the search service also deletes the indexes inside it. In this environment, a knowledge source (3 documents, 2.01 KB) took anywhere from a few seconds to about 3 minutes to become Active, and we could not test creating knowledge sources for 70 participants at the same time (embedding calls and Search limits).</div>
+      </section>
+
+      <section class="panel observed-section" id="capacity">
+        <p class="section-label">CAPACITY IS SHARED · BUDGET IS NOT A STOP SWITCH</p>
+        <h2>Calculate model quota and cost before you create the 75 RGs.</h2>
+        <p class="intro">The general labs use <strong>gpt-6.1-terra as the default model</strong>, the model with the most TPM currently secured. For that model, version, region and deployment type, check the current quota allocation, remaining quota, resource-count limit and actual supply, then distribute TPM per participant. Include the deployments that the 5 SE test accounts keep. For model-pinned settings such as Optimizer, check the specified model's quota separately; do not conclude that the event can be held from the example values in the documentation alone.</p>
+        <div class="notice warning"><strong>An empty quota screen or a 403 is not evidence of a quota of 0.</strong> The Owner permissions of the operator's primary account and the Guest's own permissions are separate. Check whether the Guest's Object ID has <strong>Cognitive Services Usages Reader · subscription</strong> assigned. <strong>A successful model deployment does not prove permission to create an agent, either.</strong> Besides RG Contributor, <strong>Foundry User · the participant's own RG</strong> is required; set up even a single test account with the same three roles. After the roles propagate, sign in again and refresh the Foundry <strong>Manage → Quota</strong> page.</div>
+        <p class="intro"><strong>An Owner performs the actual quota check and increase.</strong> Compare the limit for the same subscription, model, deployment type, Quota Scope and region with the amount already allocated to deployments. If the general Azure Quotas list is empty, check with the Cognitive Services-specific Usages query and do not conclude that quota is 0. If the actual remaining amount is not enough, request an increase in Foundry <strong>Manage → Quota → Request quota</strong> with the model, region, requested amount and reason, or adjust the assigned amounts and the approved deployment configuration. Approval and supply are not guaranteed; do not give Guests subscription Owner or Reader, and do not switch to paid PTU automatically. Check the unit and the localized description of the API values, and do not convert a value to TPM just because it is labeled Count.</p>
+        <div class="table-wrap">
+          <table aria-label="Workshop capacity planning checks">
+            <thead><tr><th>Check item</th><th>Operating guideline</th></tr></thead>
+            <tbody>
+              <tr><td>TPM allocation</td><td>For example, if 70 customers and 5 SE test accounts all keep their deployments in the same quota pool, you need a deployment allocation of <strong>75 × 10,000 TPM per participant deployment = 750,000 TPM</strong>. Check the remaining amount separately from existing deployment allocations. This is a rate-limit allocation, not expected token usage or cost.</td></tr>
+              <tr><td>Quota-sharing Scope</td><td>Check the <strong>Scope</strong> column in Foundry Quota. If it shows Global or Data Zone, deployments share the pool of the whole subscription or of the data zone; if it shows a region name, they share that region's pool. Do not assume that adding the same model in another RG, region or version creates independent quota.</td></tr>
+              <tr><td>RPM and concurrent use</td><td>Even with enough TPM, you can get a 429 because of RPM, short-interval bursts or concurrent requests. Check each model's TPM/RPM ratio, the portal input unit and the API capacity unit, and do not mechanically apply the same values to other models.</td></tr>
+              <tr><td>Resource count and regional availability</td><td>Check the Foundry/AI Services resource type, regional limits by model and deployment type, the number of projects and deployments, and Azure Policy and subscription offer restrictions. Having quota does not guarantee that the model is supplied in that region.</td></tr>
+              <tr><td>Cost</td><td>Costs include model input, output and reasoning tokens, paid tools, and the cost of log ingestion and retention. In the recording, gpt-6.1-terra ran with an output limit of 1024 tokens and Reasoning Effort low (the default). Do not copy the same settings to other models. Budget alerts, TPM and the 5-hour schedule are not an automatic cost cap or an automatic shut-off mechanism.</td></tr>
+              <tr><td>Preparation deadline</td><td>A quota increase does not guarantee approval or supply, so request it well in advance. Prepare an approved alternative region, model or distributed deployment, or a split of lab time, and recheck the data-processing policy for each region.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="role-title" id="model-groups">Distribute the shared gpt-6.1-terra TPM among participants.</h3>
+        <p class="intro"><strong>Standardize on gpt-6.1-terra for every setting where a model can be selected.</strong> "The model with the most TPM secured" is only an operating guideline and does not guarantee the official limit or remaining amount for every subscription. Before the event, check the approved limit, existing deployment allocations, remaining amount, Scope and regional supply on the Quota screen of the actual subscription. In the official regional availability table, gpt-6.1-terra version <code>2026-10-26</code> is listed (checked 2026-11-10).</p>
+        <div class="table-wrap">
+          <table aria-label="Operating guideline for the default model and model-pinned exceptions">
+            <thead><tr><th>Setting / step</th><th>Model assignment</th><th>Operator check</th></tr></thead>
+            <tbody>
+              <tr><td>Lab settings where a model can be selected</td><td><strong><code>gpt-6.1-terra</code></strong></td><td>Actual supported versions, regions, deployment types and remaining TPM; capacity/TPM/RPM units and run parameters. General labs use 1 deployment per participant.</td></tr>
+              <tr><td>Settings that require a specific model, such as Optimizer</td><td><strong>Keep the specified model and version of that feature or lab</strong></td><td>Supported-model constraints, plus the separate remaining amount, required number of deployments and TPM of each model pool. Only the selectable settings of the same lab use terra; do not bulk-replace the pinned settings.</td></tr>
+              <tr><td>Shortage of supply, access or quota for the default model</td><td>Only approved alternatives that the operator has rehearsed</td><td>First adjust per-participant TPM, the number of concurrent deployments and the split of lab time. For an alternative model, region or SKU, re-verify cost, data processing and lab support, and update the assignment sheet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="task-list" aria-label="Procedure for distributing terra TPM per participant">
+          <li><strong>Check the distributable amount:</strong> Excluding existing deployment allocations, calculate <strong>current remaining TPM − extra operating margin = total assignable TPM</strong>. Include the deployment allocations of the 70 customers and 5 SE test accounts in the overall total, and base the calculation on the pool that shares the same subscription, model, Quota Scope and deployment type.</li>
+          <li><strong>Assign per participant:</strong> Divide the assignable TPM by <strong>the number of per-participant gpt-6.1-terra deployments to keep at the same time</strong> and fit the result to the supported minimum and increment. Round down so that the total TPM of all per-participant deployments does not exceed the assignable amount. If even the minimum deployment amount is not available, split the labs into time slots; quota returns only after you remove the earlier slot's deployments under the approved cleanup policy.</li>
+          <li><strong>Calculate pinned models separately:</strong> Secure the <strong>number of concurrent deployments × per-participant TPM</strong> for that step, plus an operating margin, separately in each specified model's pool. Use terra in the general steps, and keep the specified model only for the settings that need it in the pinned steps. Leftover terra quota cannot be transferred to another model.</li>
+        </ol>
+        <div class="table-wrap">
+          <table aria-label="Example calculation of terra TPM distribution for 70 customers and 5 SE test accounts">
+            <thead><tr><th>Lab step</th><th>People deploying concurrently</th><th>Assigned model</th><th>Per-participant deployment</th><th>Remaining amount needed in that model's pool</th></tr></thead>
+            <tbody>
+              <tr><td>General labs + SE tests</td><td>70 customers + 5 SE test accounts</td><td><code>gpt-6.1-terra</code></td><td>1 deployment · 10,000 TPM (example)</td><td><strong>750,000 TPM + extra operating margin</strong></td></tr>
+              <tr><td>Model-pinned steps such as Optimizer</td><td>People deploying concurrently in that step</td><td>The specified model of the feature or lab</td><td>Separately approved count and TPM</td><td>Calculated separately for each specified model + operating margin</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="intro">This is a calculation example that distributes <strong>(70 + 5) × 10,000 = 750,000 TPM</strong> from the same terra pool in the region and deployment type that the operator approved. It assumes every SE test account also keeps a model deployment; recalculate with the number of deployments you will actually keep. It does not mean that the actual remaining terra amount, version, SKU or per-participant assigned values are settled. Model-pinned steps may need separate deployments, so hand them over separately from the general labs' "1 person, 1 deployment" rule.</p>
+        <div class="notice warning"><strong>If you change the region or deployment type, recalculate.</strong> First check the actual Quota Scope and remaining amount for Global Standard, Data Zone Standard and so on, along with data-processing and residency requirements. Using other RGs or simply staggering lab start times does not reduce the quota allocated to deployments that are kept at the same time.</div>
+        <div class="notice"><strong>The largest TPM does not mean the lowest cost or a high RPM.</strong> Check gpt-6.1-terra's capacity/TPM/RPM relationship, price and response limits. Batch enqueued tokens are different from real-time TPM.</div>
+        <div class="notice warning"><strong>gpt-6.1-terra does not support Reasoning Effort minimal (the recording used the default, low).</strong> The operator verifies the Reasoning Effort values and output limits that the version supports before assigning them. Pinned models also follow each model's supported settings. For labs with tools, also check API and tool support. The public E2E video is a record of deploying and running gpt-6.1-terra (10,000 TPM) with 1 participant-permission account; it is not evidence of the production subscription's quota or of success under concurrent load from multiple participants.</div>
+        <div class="notice warning"><strong>The 10,000 TPM example above is not enough for the optional harness lab.</strong> In the reproduction account, a 10,000 TPM deployment passed 3 basic Prompt Agent questions, but every harness question failed because of a rate limit; at 30,000 TPM, questions passed only when sent one at a time, slowly. See <a href="#part2-prep">Optional lab preparation</a> for the evidence and verification status.</div>
+        <p class="intro"><a href="index.en.html#lightweight-models">Model assignment guidance for participants</a> · <a href="https://learn.microsoft.com/azure/foundry/foundry-models/quotas-limits#check-quota-management-scope" target="_blank" rel="noopener noreferrer">Check the actual Quota Scope</a> · <a href="https://learn.microsoft.com/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability" target="_blank" rel="noopener noreferrer">Model availability by region and deployment type</a> · <a href="https://learn.microsoft.com/azure/foundry/openai/how-to/reasoning#reasoning-effort" target="_blank" rel="noopener noreferrer">Reasoning Effort support</a></p>
+        <h3 class="role-title">The operator sets the TPM standard; participants enter it when they deploy a model.</h3>
+        <div class="table-wrap">
+          <table aria-label="TPM settings and who checks them">
+            <thead><tr><th>When · owner</th><th>Task</th></tr></thead>
+            <tbody>
+              <tr><td>Before handoff · operator</td><td>Based on the actual remaining terra amount, set the per-participant TPM and the 1-deployment standard for the general labs, and state them on the handoff sheet together with the model, version, region, deployment type and run limits. Also give separate instructions for the specified model, additional deployments and TPM of the model-pinned steps. The per-participant deployment TPM has not been set yet.</td></tr>
+              <tr><td>Model deployment · participant</td><td>Participants create the Foundry resource and project in their own RG, then enter the TPM they were given in Custom settings. If the assignment is 10,000 TPM and the field takes TPM units, they enter 10000. They check the capacity/TPM units of terra and of the pinned models separately.</td></tr>
+              <tr><td>After deployment · operator</td><td>On the Foundry Quota and model deployment screens, cross-check each participant's number of deployments, allocated TPM and remaining quota. Ask the participant to correct any wrong allocation and, if needed, take only approved actions.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>RG RBAC is not a hard cap on per-participant TPM.</strong> A Contributor can change deployment settings, so the 10,000 TPM stated in the documentation is not technically enforced on its own. If you need a strict limit, verify the applicable Azure Policy aliases, deployment properties and model units, then design and rehearse a separate control. This guide does not deploy that control, and the operator does not shift the boundary by creating the model in advance.</div>
+        <ol class="task-list">
+          <li>On the Foundry Quota/usage screen, match the <strong>subscription, Scope, region, model, version and deployment type</strong> when you check the current allocation and remaining amount, and if necessary request an increase through the official path. The move to Global/Data Zone is in progress model by model, so do not assume that moving to another region alone increases quota.</li>
+          <li>In the rehearsal, raise the load in steps, from a small number of participants up to the target number of concurrent participants. Record the request rate, TPM/RPM, response latency, errors and cost, and adjust the limits.</li>
+          <li>For 429 errors, first apply waiting, retry intervals and staggered lab starts. Do not switch to paid PTU or a larger deployment without approval.</li>
+        </ol>
+        <p class="intro"><a href="https://learn.microsoft.com/azure/foundry/openai/how-to/quota" target="_blank" rel="noopener noreferrer">Quota management</a> · <a href="https://learn.microsoft.com/azure/foundry/openai/quotas-limits" target="_blank" rel="noopener noreferrer">Azure OpenAI limits</a> · <a href="https://learn.microsoft.com/azure/foundry/foundry-models/quotas-limits" target="_blank" rel="noopener noreferrer">Foundry Models limits</a> · <a href="https://azure.microsoft.com/pricing/calculator/" target="_blank" rel="noopener noreferrer">Cost calculator</a></p>
+      </section>
+
+      <section class="panel observed-section" id="handoff">
+        <p class="section-label">HANDOFF WITHOUT SHARING SECRETS</p>
+        <h2>Give participants only the environment values and the tasks they need to do, stated clearly.</h2>
+        <p class="intro">When you build other labs too, keep the framework in which <strong>participants create the resources themselves inside the assigned RG</strong>, and change the model, data and lab content URL. Keep the initial password separate from this handoff sheet, and do not post the participant roster or the full Object ID ledger on the public site.</p>
+        <pre role="group" aria-label="Participant environment handoff template">Lab name: &lt;workshop-name&gt;
+Sign-in account: &lt;participant-upn&gt;
+Initial password: sent only to you, through a separate approved channel
+Password policy: keep the initial password; a first password change is not forced (changing it is optional)
+First sign-in: complete your own MFA registration and verification, then sign in again
+First sign-in lab instructions: https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/index.en.html#first-sign-in
+Account type: &lt;Internal Guest / Internal Member / External Guest, etc.&gt;
+Target Tenant ID / Subscription ID: &lt;tenant-id&gt; / &lt;subscription-id&gt;
+Assigned resource group (RG) / region: &lt;resource-group&gt; / &lt;approved-region&gt;
+Lab scope: create the resources you need yourself inside the assigned RG
+Resources to create and rule for unique names: &lt;lab-resources-and-naming&gt;
+Foundry project URL: check it after you create the project
+Default model for the general labs: gpt-6.1-terra
+Assigned model, version, region and deployment type: &lt;model-version-region-sku&gt;
+Model-pinned step / specified model, separate deployment count and TPM: &lt;fixed-model-step-and-allocation / not applicable&gt;
+Unique model deployment name / run limits: &lt;deployment-name&gt; / &lt;limits&gt;
+Number of model deployments per participant / TPM: &lt;approved-deployment-count&gt; / &lt;approved-tpm&gt;
+Lab content to use: &lt;customer-specific-lab-url&gt;
+Common reference for accounts and permissions: https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/index.en.html#responsibilities
+Common reference for troubleshooting: https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/index.en.html#troubleshooting
+End time and cleanup policy / support channel: &lt;time-policy&gt; / &lt;approved-support-channel&gt;
+Initial password and verification codes: not recorded in this sheet</pre>
+        <ol class="task-list">
+          <li>Participants follow the <a href="index.en.html#first-sign-in">first sign-in lab</a> to sign in with the initial password and <strong>complete their own MFA registration and verification, then sign in again</strong>. Changing the password is optional. They then check their own tenant, subscription, RG and three roles, and do not create resources or assign roles outside their own RG.</li>
+          <li>Hand over the resource creation order and completion criteria that fit each participant's lab content. Do not reuse the recorded example's names or existing resources as is.</li>
+          <li>If follow-up permission checks are needed, such as for the new project's MI, designate in advance the channel participants use to report that creation is complete, and the operations contact.</li>
+        </ol>
+      </section>
+
+      <section class="panel observed-section" id="day-ops">
+        <p class="section-label">DIAGNOSE BEFORE WIDENING ACCESS</p>
+        <h2>Classify issues in this order: authentication → Scope → service permissions → capacity and network.</h2>
+        <p class="intro">Collect the time, target account, action, resource, error code and Correlation/Request ID through the approved support channel. Do not collect passwords, MFA codes, access tokens, API keys or connection strings. Use the <a href="index.en.html#troubleshooting">Participant guide's troubleshooting table</a> for participants' first checks.</p>
+        <div class="table-wrap">
+          <table aria-label="Operator incident response guideline">
+            <thead><tr><th>Category · symptom</th><th>Operator check · action</th><th>Fixes to avoid</th></tr></thead>
+            <tbody>
+              <tr><td>Sign-in · MFA · CA</td><td>The person responsible for each area checks the account, tenant and invitation acceptance for 50020, the MFA state for 50076/50079, and the Conditional Access that applied for 53003. For external accounts, also check the home tenant's policy.</td><td>Entering a verification code on the participant's behalf, collecting customer company passwords, disabling MFA or CA without approval.</td></tr>
+              <tr><td>403 · permission propagation</td><td>Check the Object ID, role, Scope, inheritance and groups in the resource tenant, and sign in again. Ordinary role changes can take up to 10 minutes and the MI group cache can take longer, so apply them in advance.</td><td>Switching to Owner, subscription Contributor or Member without confirming the cause.</td></tr>
+              <tr><td>RP · Azure Policy</td><td>The operator registers the provider named in the error's <code>*/register/action</code> in the subscription. Resolve RequestDisallowedByPolicy with the policy owner (allowed regions, SKUs and so on).</td><td>Giving participants subscription registration permissions, bypassing the policy, retrying blindly.</td></tr>
+              <tr><td>MI · tool 403</td><td>Distinguish the user's call from the execution identity, and check the project MI's permissions on the parent Foundry and the actual authentication and data permissions of the connection target.</td><td>Only adding user roles, switching every connection to a shared API key.</td></tr>
+              <tr><td>Empty quota screen · 429</td><td>Distinguish an empty screen or a 403 from an actual limit of 0. Check the Guest's own subscription Usages Reader, and with an Owner account cross-check the deployment allocation and remaining amount for the same subscription, model, version, SKU and Quota Scope. Apply Retry-After, staggered starts and approved alternatives.</td><td>Assuming Owner permissions carry over to the Guest, reading an empty general Quotas list as model quota 0, increasing capacity without checking units, changing the model or billing method without approval.</td></tr>
+              <tr><td>Traces connection or creation failure, or no Traces · 403</td><td><strong>If Create new resource fails</strong>, check the permission, RP and resource group in the error (whether it tried to create <code>DefaultResourceGroup-*</code>), and guide participants to first create Log Analytics → Application Insights in their own RG in the Azure Portal and then select it (the <a href="index.en.html#step-connect">alternate path</a>). If a connection already exists, you get a <code>Multiple connection ... AppInsights</code> error, so edit the existing connection. After connecting, also distinguish between a new run, filters, ingestion delay and App Insights/Log Analytics query permissions.</td><td>Fixing a role problem by exposing the connection string, sharing all other participants' logs.</td></tr>
+              <tr><td>Network · timeout</td><td>Check the selected IP, Private Endpoint, VPN, Private DNS and customer network. Re-verify private-network labs over an approved connection path.</td><td>Participants opening public access on their own or bypassing safety warnings.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="intro"><a href="https://learn.microsoft.com/azure/role-based-access-control/troubleshooting" target="_blank" rel="noopener noreferrer">RBAC propagation and diagnostics</a> · <a href="https://learn.microsoft.com/entra/identity-platform/reference-error-codes" target="_blank" rel="noopener noreferrer">Entra error codes</a> · <a href="https://learn.microsoft.com/azure/foundry/how-to/configure-private-link#choose-a-secure-connection-method-to-foundry" target="_blank" rel="noopener noreferrer">Private network connection path</a></p>
+      </section>
+
+      <section class="panel observed-section" id="close">
+        <p class="section-label">APPROVED CLEANUP · KEEP THE EVIDENCE YOU NEED</p>
+        <h2>Decide on log retention, then clean up permissions, accounts and resources.</h2>
+        <ol class="task-list">
+          <li><strong>Completion check:</strong> Record each participant's completion status, failed items, support issues, final resources and usage in the operations ledger.</li>
+          <li><strong>Retention approval:</strong> Confirm how customer data in logs, prompts and outputs is handled, the retention period and any exports you need. Do not copy full logs into the public guide or videos.</li>
+          <li><strong>Access revocation:</strong> Check access granted directly through Azure roles and through groups, and revoke it in the approved order. The person responsible for Entra blocks accounts and revokes sessions as needed; allow for tokens already issued and permission propagation delay, and check again.</li>
+          <li><strong>Resource cleanup:</strong> Use the operations ledger and tags to identify the exact RGs and resources of that workshop, and clean up only approved targets. Deleting an RG can remove Foundry, models, projects and logs together; also check soft-delete, recovery and retention policies. What the optional and required labs leave behind: the Foundry IQ search service (including the index), knowledge source, knowledge base and embedding deployment; harness, Prompt and Hosted agents and their versions; evaluations, synthetic datasets and Optimize records; the Cost Control from the cost lab; and the temporary Foundry User role granted to the operator.</li>
+          <li><strong>Wrap-up verification:</strong> Recheck roles, account status, remaining deployments, logs and cost. Do not assume that deleting a user alone removes all Azure RBAC assignments.</li>
+        </ol>
+        <div class="notice warning">This guide has no automatic deletion feature. Do not delete the entire subscription, do not bulk-delete based only on a name pattern, and do not delete an RG before the log retention decision is made. Prepare the next workshop based on new unique names, the latest model availability and new rehearsal results.</div>
+      </section>
+
+      <section class="panel observed-section" id="reuse">
+        <p class="section-label">REUSABLE BASELINE · LAB-SPECIFIC CONTENT</p>
+        <h2>Keep the common access baseline and change only the customer-specific lab content.</h2>
+        <div class="table-wrap">
+          <table aria-label="Reuse guidelines for other workshops">
+            <thead><tr><th>Baseline to keep referencing</th><th>What to update for each new lab</th></tr></thead>
+            <tbody>
+              <tr><td><a href="index.en.html#account-types">Account types</a> · <a href="index.en.html#role-profiles">Required RBAC and additional requirements</a></td><td>Accounts that fit the customer organization's policy, the resources to create inside each participant's own RG, and the actual authentication identity. Verify B2B, tools, SDK, publishing and Hosted agent separately.</td></tr>
+              <tr><td><a href="#preflight">Operator preflight checks</a> · <a href="index.en.html#troubleshooting">Participant troubleshooting</a></td><td>Region, model, version, TPM/RPM, resource limits, network, log access and the target concurrent load.</td></tr>
+              <tr><td><a href="#handoff">Handoff and wrap-up framework</a></td><td>Assigned values, the participant-facing lab content URL, completion criteria, end time, support contact and the customer data retention policy.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice">In the Foundry Participant guide, the 54 screenshots for Labs 1–5, the 2 min 38 s summary video and the 9 min 38 s full video are <strong>a basic agent example in which, on 2026-11-18, a new participant-permission account created the resources directly inside the assigned RG</strong> (the Labs 6–14 screens come without video and were captured in sequence with the same account: 98 screenshots, including 41 for Foundry IQ, Web IQ, Hosted agent and cost). The explanations of other account types and of the extra permissions for each feature are based on the official docs; this does not mean they were verified in the same real environment. The video contains both the automatic connection of the Application insights that was created together with the Foundry resource and the alternate path (Create new resource) for when Traces shows a connection prompt.</div>
+        <p class="intro"><a href="index.en.html">Foundry Participant guide</a> · <a href="assets/verification.en.json">Existing read-only E2E evidence</a> · <a href="https://github.com/junwoojeong100/microsoft-foundry-ignite-2026">Guide repository</a></p>
+      </section>
+
+      <section class="panel observed-section" id="part2-prep">
+        <p class="section-label">OPTIONAL LABS · MICROSOFT IQ AND FOUNDRY · 2026-11-18</p>
+        <h2>Preparation for the harness, Hosted agent, evaluation, Optimize, Manage and cost (Microsoft IQ and Foundry)</h2>
+        <p class="intro">The <a href="index.en.html#ignite-overview">roadmap in the Participant guide</a> continues after required Labs 1–7 with hands-on steps in New Foundry for the harness, Hosted agent, Insights, evaluation, Optimize, Manage and cost. These are the <strong>optional labs</strong>. The handoff criteria and checks for required Labs 1–7 follow the earlier sections; what follows is the preparation to add only when you run the optional labs. The values are <strong>results we ran and checked directly in 2 North Central US projects on 2026-11-17, plus official docs</strong>, and we verified only the scope listed under "Verification status". The two projects are ① a user sandbox (owner permissions) and ② a reproduction project in a separate demo subscription, where this repository's <code>provision_workshop.py</code> created 1 account and granted <strong>only the 3 participant roles</strong>. We did not verify a production subscription or concurrent use. The results of checking public docs and release notes against the <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a> (Microsoft IQ and Foundry) are in the <a href="index.en.html#ignite-official-check">announcement and official-source check</a> section.</p>
+        <div class="notice"><strong>Reflecting the Ignite 2026 Book of News (2026-11-18, Microsoft IQ and Foundry).</strong> ① <strong>Microsoft IQ was announced as GA</strong>. It is built on products you already use, with no new SKU or subscription, but not every sub-feature is free or GA. <strong>Foundry IQ and Web IQ are run directly as required Labs 6 and 7</strong> (<a href="#iq-prep">prep</a>), while <strong>Work IQ and Fabric IQ</strong> need a separate subscription, admin consent and licenses, so this guide covers them only as <a href="index.en.html#ignite-learn-more">intro cards</a>. Continuous improvement in Foundry is something participants follow hands-on (<a href="index.en.html#ignite-microsoft-iq">Microsoft IQ summary</a>). ② <strong>Insights, Agent optimizer and multi-turn evaluation are GA</strong>, and the preparation for model-call cost, roles and TPM is unchanged. The portal's Optimize targets Prompt Agents without a harness. ③ In supported projects, automatic model selection (<code>model-router</code>) is the default, and participants choose their assigned model themselves. ④ In these labs, Foundry IQ used a serverless Azure AI Search (Preview) that the operator created and connected; we did not use the per-project Foundry IQ resource (announced as Preview). ⑤ <strong>Cost in Foundry and cost controls are Preview.</strong> With the 3 participant roles, we verified creating and deleting a project-scoped, tracking-only token budget; we did not verify alerts, blocking or dollar budgets (<a href="index.en.html#ignite-cost">cost lab</a>). ⑥ <strong>Harness billing starts 2026-12-01</strong> (sandbox vCPU and memory), and Hosted agent compute is billed for every active session. The table of the 3 required participant roles is unchanged, and the 2 roles for Foundry IQ are <a href="#iq-roles">additional roles</a>. Sources: <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Book of News ↗</a> · <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/" target="_blank" rel="noopener noreferrer">Foundry blog ↗</a> · <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/from-model-choice-to-your-durable-advantage-build-ai-that-keeps-improving/4573609" target="_blank" rel="noopener noreferrer">Model blog ↗</a>.</div>
+        <div class="table-wrap">
+          <table aria-label="Operator preparation items for the harness, evaluation, Optimize and Manage">
+            <thead><tr><th>Item</th><th>What the operator decides and prepares</th><th>Verification status</th></tr></thead>
+            <tbody>
+              <tr><td>Region</td><td>Assign participants to create their projects in <strong>North Central US</strong> (<code>northcentralus</code>), and set <code>config/workshop.example.json</code> so that its <code>location</code> matches. The harness can be used only in projects in the 22 officially supported regions, so check any other region in the <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">official list</a> first. To add a lab that uses a Function tool you define yourself, also check first that the tool is supported in this region.</td><td><strong>Based on official docs:</strong> the list of regions that support the harness includes North Central US, and in the tool support table Function and Computer Use are No (checked 2026-11-17).<br><strong>Run directly:</strong> created and ran a harness in the sandbox. In the reproduction subscription, <code>provision_workshop.py</code> (location=northcentralus, 1 account) created the account, RG and roles, and <code>verify_workshop.py</code> returned PASS 1/1. The Region list for creating resources, as seen with the participant account (39 regions), included North Central US, and the RG list showed only the participant's own RG. With the same account we reproduced the required labs from the start (create the resource and project → deploy <code>gpt-6.1-terra</code> → Prompt Agent → Traces), and the deployment TPM showed a default of 250,000 and a maximum of 2,000,000.<br><strong>Not verified:</strong> North Central US quota and capacity in the production subscription (the reproduction values do not stand in for the production subscription).</td></tr>
+              <tr><td>TPM for the harness and evaluation</td><td>The harness uses a lot of tokens per call. The per-participant 10,000 TPM in the <a href="#capacity">capacity calculation</a> was enough for a basic Prompt Agent but <strong>not enough for the harness</strong>. To let participants practice the harness on per-participant deployments, assign a larger TPM, limit it to an instructor demo or some participants, or stagger the run times. Raising the TPM of per-participant deployments also raises the quota total (for example, 30,000 TPM × 75 deployments = 2,250,000 TPM, and 100,000 TPM × 75 deployments = 7,500,000 TPM). Evaluators, Insights and Optimize pick the judge and optimization models separately. The evaluator's Model list did not include <code>gpt-6.1-terra</code> (only the gpt-5.x and 4.x families were listed), so in the reproduction we additionally deployed <code>gpt-5.4-mini</code> (judging and evaluation) and <code>gpt-5.4</code> (optimization) at 100,000 TPM each. The number of synthetic-question rows is 15 to 100.</td><td><strong>Run directly (sandbox, 100,000 TPM):</strong> 1 harness run used 41,653 tokens (chip), and an evaluation with 15 synthetic rows took 15 min 43 s (12 rows scored, 3 rows <code>rate_limit_exceeded</code>).<br><strong>Run directly (reproduction, participant permissions):</strong> at 10,000 TPM, 3 Prompt Agent questions passed in 1–2 s (419, 498 and 597 tokens), while the harness failed on both a web question and a simple question with "Model deployment rate limit exceeded. Retry later." At 30,000 TPM, a follow-up question 20 s later failed, and a single question after a pause of about 100 s passed (chip: 14,819 and 15,068 tokens; why this differs from the sandbox was not confirmed). The Prompt Agent evaluation (15 synthetic rows, target at 30,000 TPM, judge <code>gpt-5.4-mini</code>): all rows passed, and it took 7 min 12.85 s.<br><strong>Not verified:</strong> other values between 10,000 and 100,000, harness evaluation at 30,000 TPM or higher, concurrent runs.</td></tr>
+              <tr><td>Role · creating and calling agents</td><td>Creating and calling a harness requires <strong>Foundry User</strong> on the project. It is already among the <a href="#participant-roles">3 participant roles</a>, so you add nothing. Model deployment and resource creation need Contributor on the participant's own RG. For the harness to call a Toolbox and return generated files, the agent instance ID also needs Foundry User on the project. That is the operator's responsibility, and this guide has no lab for that feature.</td><td><strong>Based on official docs</strong> (Copilot harness usage doc, checked 2026-11-17).<br><strong>Run directly:</strong> created (tools restricted, Version 2) and ran a harness with only the 3 participant roles.<br><strong>Not verified:</strong> Toolbox calls and returning generated files.</td></tr>
+              <tr><td>Role · Fleet and Cost screens</td><td>To see Fleet and Cost under Manage, you need <strong>read access to the project and subscription + Log Analytics Reader on the connected Application Insights + Cost Management Reader on the subscription</strong>. If costs are empty, check Cost Management Reader first. The last two roles are not among the 3 participant roles. In the reproduction the screens opened with only those 3 roles (see Verification status on the right), so this guide did not change the <a href="#participant-roles">participant role table</a>. The operator decides whether participants need these screens and, if so, at which scope to grant the roles. Cost Management Reader at subscription scope also lets people see the other costs in that subscription, so review it together with the existing principle of not granting subscription Reader or Owner in bulk.</td><td><strong>Based on official docs</strong> (Fleet monitoring doc, checked 2026-11-17; the Foundry blog introduces Cost as Preview).<br><strong>Run directly:</strong> with an account that had only the 3 participant roles (no subscription Reader), Fleet, Cost, Operations, Compliance, Quota, Gateways, Project details, Guardrails, Traces, Monitor and Insights opened without permission blocks, and Fleet showed 1 project (its own), 2 agents, 29 runs and 52.5K tokens. Only a notice saying that viewing costs in your billing currency requires Cost Management Reader access appeared at the top of Traces and Monitor. That account's Log Analytics and Application Insights were created automatically in the participant's own RG (within Contributor scope).<br><strong>Not verified:</strong> whether Cost Management Reader is needed to see cost values (Cost showed 0 rows because it is a new resource; up to 24 hours of delay), and whether Log Analytics Reader is needed separately when you connect an Application Insights resource from another RG.</td></tr>
+              <tr><td>Role · evaluator trace context</td><td>In a custom evaluator, when you select a Target agent, the screen says the <strong>project managed identity (MI) needs Monitoring Reader on Application Insights</strong>. This role goes to the project MI, not to a user, so the operator handles it after participants create their projects (the <a href="#managed-identity">project MI follow-up check</a> has an assignment example). On the screen, <strong>Resolve fails with a permissions error when a participant account selects it.</strong> The screen says permissions can take a few minutes to propagate.</td><td><strong>Run directly:</strong> when we selected a Target agent with a participant account, a "Setup incomplete … Monitoring Reader" warning appeared, and selecting Resolve failed with "You don't have permission to assign roles on this Application Insights resource … requires the Owner or User Access Administrator role". After the operator assigned Monitoring Reader on Application Insights to the project MI with <code>az</code>, the warning text in the dialog stayed the same, and saving the rubric evaluator and running the evaluation (all 15 rows passed) still worked with the warning showing.<br><strong>Not verified:</strong> whether the trace context is reflected in the evaluation results after the role is granted, and when the warning disappears.</td></tr>
+              <tr><td>Azure Policy · Compliance screen</td><td>To make policies appear in Manage → Compliance, the operator assigns a Foundry-specific built-in policy (for example, "Foundry model deployments should only use approved models") at RG or subscription scope. A general Azure policy (for example, auditing network access to AI Services) did not appear in Foundry's Policy tab even when Azure Policy evaluated it as NonCompliant. Security posture shows content only when Defender for Cloud is on, and Data security and governance only when Purview is on. A Deny effect can block participants' deployments and operations, so do not use it without a rehearsal.</td><td><strong>Run directly (reproduction subscription, RG scope; assigned 2 Audit-effect policies and then removed them):</strong> the general policy showed NonCompliant in Azure Policy but "No policies assigned" in Foundry Compliance. The Foundry-specific policy appeared in the Policy tab (Area: Models · Violating assets 0), but no evaluation record appeared even after 35 minutes, and the Asset tab showed a "You need at least the Foundry User role" notice (the participant held Foundry User at RG scope; we did not confirm the cause). Security posture showed a notice that Defender for Cloud is not in use, and Data security showed a notice that it could not retrieve Purview policies.<br><strong>Not verified:</strong> the conditions under which violation evaluations appear in Compliance, assignment at subscription scope, and the impact of a Deny effect.</td></tr>
+              <tr><td>Optimize (prompt optimization)</td><td>In the Optimize wizard you pick the target agent, data, optimization model and evaluation model; the Review screen shows the estimated cost (minimum, expected, maximum) and then the run starts. It calls models many times, so check those values before you run it. Promoting a candidate (Promote candidate) creates a new version of the agent, so do not select it without operator approval. Agent optimizer was announced as GA in the Ignite 2026 Book of News, but per the official docs (2026-11-18) the portal's Optimize targets Prompt Agents that do not use a harness, and creating data from traces required at least 15 traces ("Insufficient traces (11 found, minimum 15 recommended)").</td><td><strong>Run directly (reproduction subscription):</strong> 1 Prompt Agent Optimize run (dataset: the evaluation's 15 synthetic rows; evaluator: custom rubric; optimization model <code>gpt-5.4</code>; evaluation model <code>gpt-5.4-mini</code>). The Review estimated cost was minimum $0.27 · expected $0.42 · maximum $1.41, and the run reached Succeeded in 9 min 45 s with 2 candidates (baseline 0.931 → best 0.954, the other candidate 0.883) and 361.8K tokens. We did not promote a candidate. For a harness agent, we opened the wizard only as far as Target → Data (29 traces found) and did not submit it.<br><strong>Not verified:</strong> submitting Optimize for a harness agent and its results, whether <code>gpt-6.1-terra</code> is in the optimization and evaluation model lists, and the actual billed cost.</td></tr>
+              <tr><td>Cost and cleanup</td><td>We did not create an <strong>AI Gateway</strong> (Manage → Gateways) because it is based on Azure API Management and may create resources and costs. The screen says the first 100,000 requests are free; confirm the actual terms in the official pricing information. Evaluation and Insights incur model token costs (the first scan shows an estimated cost), and Cost can lag by up to 24 hours. In the <a href="#close">approved cleanup procedure</a>, include evaluation runs, synthetic datasets, evaluators, agent versions, Optimize records and the TPM of added or increased model deployments, and check them per RG. In the reproduction, a <code>text-embedding-ada-002</code> deployment (Standard, 110–120K TPM) was created automatically, and this region's Standard quota is 350K TPM (<a href="#iq-prep">required Lab 6 prep, item 5</a>). Also include Foundry IQ's search service and knowledge sources, and the Hosted agent (<a href="#hosted-prep">pre-deployment</a>), in the <a href="#close">cleanup list</a>. For the <strong>cost lab (<a href="index.en.html#ignite-cost">Lab 14</a>)</strong>, with only the 3 participant roles the Cost and Cost Control tabs in Monitor opened, and we could create and delete a project-scoped, tracking-only token budget. The full Manage → Cost view and the display of billing currency need Cost Management Reader at subscription scope. Alert (Event Grid) and block (Block usage) behaviors can block requests, so use them only after an operational agreement; we did not verify them this time. An Azure subscription budget (Budget) only sends notifications and does not stop spending.</td><td><strong>Screens only:</strong> cost notices in Gateways, Cost and Insights.<br><strong>Run directly:</strong> an Insights scan (51 traces), 2 evaluation runs and 1 Optimize run (actual billed cost not verified).<br><strong>Not done:</strong> creating an AI Gateway, Publish and channel connection, promoting an Optimize candidate.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="role-title" id="hosted-prep">Hosted agent pre-deployment (optional Lab 12)</h3>
+        <p class="intro">Participants do not deploy anything. The <strong>code agent that the operator deployed in advance</strong> is what they call and observe (<a href="index.en.html#ignite-hosted-agent">Lab 12</a>). You cannot create a Hosted agent in the portal (Code an agent in the New agent menu opens only an informational dialog); deployment goes through a code path such as REST, VS Code or <code>azd</code>. This repository's example <strong>uploads a source ZIP through REST</strong>; with no ACR, no <code>azd provision</code> and no new infrastructure, we verified deploying, invoking and deleting it in North Central US on 2026-11-18 (confirmed by re-running <code>deploy_hosted_agent.sh</code> end to end with a temporary agent name).</p>
+        <div class="table-wrap">
+          <table class="table-wide" aria-label="Operator items for Hosted agent pre-deployment">
+            <thead><tr><th>Item</th><th>What the operator decides and prepares</th><th>Verification status</th></tr></thead>
+            <tbody>
+              <tr><td>Timing and unit</td><td>After participants finish the Foundry resource, project and model deployment (<code>gpt-6.1-terra</code>) in Labs 2 and 3, deploy <strong>1 agent per participant project</strong>. A deployment takes 35–75 s per project (<code>creating</code> → <code>active</code>). <strong>Do not share one agent among several participants.</strong> This is because Foundry User alone is enough to edit (new version), deactivate or delete an agent.</td><td><strong>Run directly</strong> · confirmed with a participant account that editing, deactivating and deleting succeed</td></tr>
+              <tr><td>Operator permissions</td><td><strong>Subscription Owner alone gets a 403 on the Agents data plane</strong> (it lacks the <code>Microsoft.CognitiveServices/accounts/AIServices/agents/read</code> permission). Grant the operator account <strong>Foundry User</strong> at project (or RG or subscription) scope. A new role took about 4 minutes to take effect. The official docs require Foundry Project Manager for deployment, but in this environment Foundry User was enough to create and delete.</td><td><strong>Run directly</strong> · Project Manager was not tested</td></tr>
+              <tr><td>Deployment command</td><td>Use <a href="scripts/deploy_hosted_agent.sh" download><code>scripts/deploy_hosted_agent.sh</code></a> and the sample source <code>assets/hosted-agent-sample/</code> (<code>main.py</code>, <code>requirements.txt</code> and <code>metadata.json</code>). In the folder where you cloned the repository, run <code>SUB=&lt;subscription&gt; ACCOUNT=&lt;Foundry resource&gt; PROJECT=&lt;project&gt; ./scripts/deploy_hosted_agent.sh deploy</code> and verify with <code>status</code> and <code>invoke "Hello!"</code>. If the model deployment name differs, set it with <code>MODEL</code>. The participant's account and resource names are names the participant created, so run <code>az cognitiveservices account list -g &lt;RG&gt;</code> to find them.</td><td><strong>Run directly</strong> · re-verified this time with a temporary agent name: deploy → status → invoke → delete</td></tr>
+              <tr><td>Participant permission check</td><td>With only the 3 participant roles, the agent list (Type: Hosted), Playground, Log stream, Details, Traces and Monitor opened. For Traces and Monitor, the path was RG Contributor reading Application Insights, and Microsoft Learn says that with Foundry User alone you may see only metrics and not traces.</td><td><strong>Run directly</strong> · traces with an account that holds only Foundry User were not verified</td></tr>
+              <tr><td>Cost</td><td>vCPU and memory are billed for every active session (retail price: $0.0994 per vCPU-hour, $0.0118 per GiB-hour). The sample agent (0.5 vCPU · 1 GiB) costs about $0.06 for 1 active hour, and a session ends after the idle timeout (default 15 minutes). In this measurement, 1 session of 15 minutes cost about $0.016 and 8 sessions about $0.056 (estimated from list prices). If 30 participants use 1–2 sessions each, the cost is about $0.5–1. Each new conversation (New chat) starts a new session.</td><td>Estimate based on usage · not reconciled against an invoice</td></tr>
+              <tr><td>Cleanup</td><td>At wrap-up, delete the agent with <code>delete</code> (with <code>force=true</code> the sessions are deleted too; a plain delete returns HTTP 409 if sessions remain). An Entra agent identity and a blueprint are created automatically for each agent. Redeploying under the same name after deleting the agent worked, but we did not verify the identity cleanup itself.</td><td>Delete and redeploy: <strong>Run directly</strong> · identity cleanup not verified</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>What this verification left behind.</strong> To verify the Hosted agent, we granted <strong>Foundry User</strong> at project scope to the operator account (target project <code>se02-lab</code>). Before the next event, decide whether you still need it, and remove it if you do not: <code>az role assignment delete --assignee-object-id &lt;operator Object ID&gt; --role "Foundry User" --scope &lt;project resource ID&gt;</code></div>
+        <h3 class="role-title">IQs without a lab, and separate resources</h3>
+        <p class="intro">Foundry IQ and Web IQ (the web search tool) are run directly as required Labs 6 and 7, so prepare for them by following <a href="#iq-prep">required Labs 6 and 7 prep</a>. Below are the IQs that are not run directly, and the <strong>separate Azure resource</strong> path for Web IQ.</p>
+        <div class="table-wrap">
+          <table class="table-wide" aria-label="Operator prerequisites for IQs without a lab">
+            <thead><tr><th>IQ</th><th>Why it is outside this workshop · to try it</th><th>Reference</th></tr></thead>
+            <tbody>
+              <tr><td>Web IQ separate resource</td><td>Lab 7 uses only the agent's Web search tool. A separate <code>Microsoft.WebIQ</code> resource needs a paid Azure subscription, an AppID and authentication, and you cannot use Azure credits. A separate billing approval is required.</td><td><a href="index.en.html#learn-web-iq">Concept, billing and official docs</a></td></tr>
+              <tr><td>Work IQ</td><td>Needs a one-time setup and consent by an Entra global administrator, Copilot Credits and user-delegated authentication. Microsoft 365 source permissions and per-connector licenses are separate as well.</td><td><a href="index.en.html#learn-work-iq">Connection, consent and official docs</a></td></tr>
+              <tr><td>Fabric IQ</td><td>Needs a Fabric license. The data agent path has requirements: a published agent, a paid capacity of F2 or higher or Power BI Premium capacity of P1 or higher, and region conditions. Also distinguish the scope of the read-only MCP from that of the Foundry tool.</td><td><a href="index.en.html#learn-fabric-iq">Capacity, status and official docs</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice warning"><strong>The optional labs do not replace the checks for the required labs.</strong> In the 2026-11-17 reproduction (1 account), all screens opened with the 3 participant roles, but three <strong>operator decisions to make in advance</strong> remain. ① The evaluator's Resolve (Monitoring Reader for the project MI) gives a permissions error when a participant selects it. ② Harness questions failed at 10,000 TPM per participant. ③ The cause of the Foundry User permission notice on the Compliance Asset tab is unconfirmed. Before the event, repeat the harness, Insights, evaluation, Optimize and Manage steps with SE test accounts in the production subscription at the actual assigned TPM, and record the blocked screens and additional roles in the handoff sheet.</div>
+        <p class="intro"><a href="index.en.html#ignite-overview">Microsoft IQ · Lab roadmap</a> · <a href="index.en.html#ignite-start">Checks before starting the harness</a> · <a href="index.en.html#ignite-troubleshooting">Harness and evaluation troubleshooting</a> · <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/use-tools-skills-copilot-harness" target="_blank" rel="noopener noreferrer">Harness usage doc</a> · <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview" target="_blank" rel="noopener noreferrer">Harness supported regions and limits</a> · <a href="https://learn.microsoft.com/azure/foundry/control-plane/monitoring-across-fleet" target="_blank" rel="noopener noreferrer">Fleet monitoring permissions</a></p>
+      </section>
+      <footer class="footnotes">
+        <p>Docs as of 2026-11-18 · Basic agent verification 2026-11-18 · Foundry IQ, Web IQ, Hosted agent and cost lab prep 2026-11-18 · Harness, evaluation and operations prep 2026-11-17 · Ignite 2026 announcements reflected 2026-11-18. Role names, UI, availability and limits can change, so before the next event, check them against the official docs and with participant permissions.</p>
+        <p><a href="https://learn.microsoft.com/entra/fundamentals/how-to-create-delete-users" target="_blank" rel="noopener noreferrer">Entra account types</a><a href="https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry" target="_blank" rel="noopener noreferrer">Foundry RBAC</a><a href="https://learn.microsoft.com/azure/foundry/openai/how-to/quota" target="_blank" rel="noopener noreferrer">Quota</a><a href="https://learn.microsoft.com/azure/foundry/observability/how-to/trace-agent-setup" target="_blank" rel="noopener noreferrer">Tracing</a></p>
+      </footer>
+    </main>
+  </div>
+  <script src="assets/navigation.js"></script>
+  <script src="assets/copy.js"></script>
+</body>
+</html>

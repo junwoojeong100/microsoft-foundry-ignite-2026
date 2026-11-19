@@ -31,10 +31,14 @@ jobs:
         run: |
           test -s index.html
           test -s operator.html
+          test -s index.en.html
+          test -s operator.en.html
           test -s assets/video/summary-walkthrough.mp4
           test -s assets/video/full-walkthrough.mp4
+          test -s assets/video/summary-walkthrough.en.mp4
+          test -s assets/video/full-walkthrough.en.mp4
           mkdir -p _site
-          cp index.html operator.html _site/
+          cp index.html operator.html index.en.html operator.en.html _site/
           cp -R assets _site/assets
           mkdir -p _site/scripts _site/config
           cp scripts/provision_workshop.py scripts/verify_workshop.py scripts/workshop_common.py scripts/deploy_hosted_agent.sh _site/scripts/
