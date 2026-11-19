@@ -6,7 +6,7 @@ Participant and operator guides for **Microsoft IQ and Microsoft Foundry** from 
 
 > The operator prepares **accounts, resource groups (RG) and permissions**, and each participant **creates Foundry, the project, the model and observability inside their own RG.** **All screens and videos in the participant guide were captured on 2026-11-18 in North Central US with a participant-permission account.** The **English edition** (`index.en.html` · `operator.en.html`) is a translation with the same structure. **The screens and video segments that showed Korean were re-captured with English inputs on 2026-11-19 (KST; the evening of 2026-11-18 in UTC).** The PPT is on hold.
 
-The Foundry guide was imported from [junwoojeong100/internal-guest-hands-on-guide](https://github.com/junwoojeong100/internal-guest-hands-on-guide) `main` at `1524c3e` (2026-11-14) and extended for Ignite 2026. The changes made after the import are in the Git history (first commit `6e83c5f`).
+The Foundry guide was imported from [junwoojeong100/internal-guest-hands-on-guide](https://github.com/junwoojeong100/internal-guest-hands-on-guide) `main` at `1524c3e` (2026-11-14) and extended for Ignite 2026. The changes made after the import are in the Git history (first commit `8ebc58b`).
 
 ## Lab structure
 

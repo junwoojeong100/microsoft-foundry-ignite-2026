@@ -6,7 +6,7 @@ Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한
 
 > 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** **실습자 가이드의 모든 화면·영상은 2026.11.18에 North Central US에서 참가자 권한 계정으로 새로 촬영했습니다.** **영문판**(`index.en.html`·`operator.en.html`)은 같은 구조의 번역본이며 **화면에 한글이 있던 화면·영상 구간은 영어 입력으로 2026.11.19(KST, UTC로는 11.18 저녁)에 다시 촬영**했습니다. PPT는 보류입니다.
 
-Foundry 가이드는 [junwoojeong100/internal-guest-hands-on-guide](https://github.com/junwoojeong100/internal-guest-hands-on-guide) `main`의 `1524c3e`(2026.11.14)에서 가져와 Ignite 2026용으로 확장했습니다. 가져온 뒤의 변경은 Git 이력(첫 커밋 `6e83c5f`)에서 볼 수 있습니다.
+Foundry 가이드는 [junwoojeong100/internal-guest-hands-on-guide](https://github.com/junwoojeong100/internal-guest-hands-on-guide) `main`의 `1524c3e`(2026.11.14)에서 가져와 Ignite 2026용으로 확장했습니다. 가져온 뒤의 변경은 Git 이력(첫 커밋 `8ebc58b`)에서 볼 수 있습니다.
 
 ## 실습 구성
 

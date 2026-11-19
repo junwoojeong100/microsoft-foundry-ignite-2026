@@ -18,6 +18,7 @@
 
 ## 남은 현장 검증 · 가이드 완성과 별도
 
+- [ ] **Git 이력 정리 뒤 남은 일(2026-11-19)**: 한국어 영상의 계정·구독 정보 가림을 보강해 다시 빌드하고 Git 이력을 다시 썼습니다(옛 커밋 해시는 쓸 수 없고 첫 커밋은 `8ebc58b`입니다). GitHub 서버에 남은 옛 객체와 옛 커밋 주소의 캐시는 저장소 소유자가 GitHub Support에 정리를 요청해야 지워집니다(요청문 초안은 Git 제외 `internal/github-support-request.md`). 이미 받아 간 사본은 지울 수 없고, 다른 컴퓨터의 clone은 새로 받아야 합니다.
 - [ ] **Foundry IQ·Hosted agent 규모 검증**: 참가자 1명(se02)으로만 끝까지 확인했습니다. 70명 규모의 serverless Search 서비스 수 한도(공식 문서의 값이 서로 다름), 지식 소스 동시 생성, 임베딩 쿼터(이 구독·지역의 Standard `text-embedding-ada-002`는 350K TPM이 가득 참), 프로젝트 MI 역할을 프로젝트 생성 뒤 일괄 부여하는 절차, Hosted agent의 프로젝트별 일괄 배포와 Foundry Project Manager 요구(이번엔 Foundry User로 됨), Foundry User만 가진 계정의 Hosted 트레이스는 개최 전 리허설로 확인
 - [ ] **Cost Control**: 프로젝트 범위의 추적 전용 토큰 예산만 확인했습니다. Send alert(Event Grid)·Block usage·Budget per Agent·달러 예산·필터, Cost 탭의 Project budget 카드 반영, 월말 보고서는 미확인
 - [ ] Foundry 포털의 Toolboxes·Safety 후보 재확인(메뉴·배지·Insights·Optimize·Cost·Gateways·Knowledge 메뉴는 2026-11-18 재촬영 화면으로 확인함)
