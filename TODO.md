@@ -11,11 +11,9 @@
 
 ## 보류
 
-범위 조정(2026-11-18): 일단 한글 가이드만 다룹니다. 영문 가이드·영문 화면·동영상·PPT는 보류이며 계획은 `internal/deferred-plan.md`(Git 제외)에 있습니다.
+범위 조정(2026-11-19): 한글 가이드에 더해 **영문 가이드·영문 화면·영상은 만들었습니다**(`index.en.html`·`operator.en.html`, 한글이 있던 화면·영상 구간은 영어 입력으로 다시 촬영). PPT는 보류이며 계획은 `internal/deferred-plan.md`(Git 제외)에 있습니다.
 
 - [ ] 실습 6~14의 동영상 녹화와 가이드의 영상 버튼 연결(영상은 지금 실습 1~5만 있음)
-- [ ] 가이드 영문화(지시문·질문·평가 기준 문장도 영어로). 사용자가 이 확장 작업이 끝난 뒤 요청하기로 함
-- [ ] 영문 Portal·영문 데이터 기준으로 Portal 화면 캡처 및 동영상 녹화
 - [ ] 국문/영문 각 단계별 데모 PPT 슬라이드 작성. 신규 동영상·PPT를 만들면 완성 후 해당 링크를 가이드에 추가합니다.
 
 ## 남은 현장 검증 · 가이드 완성과 별도
@@ -26,3 +24,5 @@
 - [ ] AI Gateway 생성, Publish·채널 연결, Optimize 후보 승격·하네스 Optimize 제출·Azure Policy 할당은 이번 재촬영에서 미실행(Policy는 2026-11-17 별도 확인만). 운영 구독 쿼터, 비용 데이터가 쌓인 Cost와 Cost Management Reader 필요 여부, 실제 교육망·다중 참가자 부하는 개최 전 별도 검증
 - [ ] 재촬영 환경(`rg-se01`의 `foundry-se02-lab`·`se02-fb-lab-resource` 등, 계정 `se02`, judge 모델 배포)과 soft-delete된 Foundry 계정, `config/workshop.local.json`·`.workshop-runs/`는 보존 중입니다. 삭제 승인 전 정리하지 않으며 기존 리소스의 비용은 계속될 수 있습니다(Speech 계정은 삭제하지 않음).
 - [ ] 이번 확장 검증이 `rg-se01`에 남긴 것: serverless 검색 서비스 `se02-lab-srch-rbvs`(지식 소스 `ks-file-515`·인덱스 포함), 지식 베이스 `workshop-kb`, 프로젝트 연결 2개(검색 연결 `se02labsrchrbvsu7ij2k`·지식 베이스 MCP 연결 `kb-workshop-kb-7ij2k`), 에이전트 `workshop-iq-agent`·`workshop-web-agent`·`workshop-hosted-agent`(+자동 생성 툴박스 `workshop-iq-agent-toolbox`·`workshop-web-agent-toolbox`), Cost Control `workshop-cost-control`, 임베딩 배포 `text-embedding-ada-002`, 역할 할당(se02에 RG 범위 Search Service Contributor·Search Index Data Contributor, 검색 서비스 MI에 Cognitive Services User, 프로젝트 MI에 Search Index Data Reader, 운영자 계정에 프로젝트 범위 Foundry User). 승인 전 정리하지 않습니다. 지식 베이스를 Foundry에서 지워도 지식 소스·인덱스는 남으므로 Azure Portal의 검색 서비스에서 따로 지웁니다.
+- [ ] **영문판 재촬영(2026-11-19)이 `rg-se01`에 남긴 것**(삭제 없이 `-en` 이름으로 새로 만듦, 승인 전 정리하지 않음): 에이전트 `workshop-assistant-en`(버전 2)·`workshop-harness-agent-en`·`workshop-iq-agent-en`·`workshop-web-agent-en`(+자동 생성 툴박스), 지식 베이스 `workshop-kb-en`(지식 소스 `ks-file-847`·인덱스 `ks-file-847-index`, 프로젝트 MCP 연결 `kb-workshop-kb-en-7ij2k`), 평가자 `workshop-answer-quality-en`(표시 이름 `Workshop answer quality (EN)`), 평가 `workshop-harness-eval-en-1`과 데이터셋 `workshop_harness_eval_set_en`(자동 생성 이름 `dgj_9139da`), Optimize 실행 1개(`opt_bd1abcfdcd0e4297b1be01f538e00995`). Hosted agent와 Cost Control은 기존 것을 그대로 썼습니다. 새 계정 생성·역할 변경은 없었습니다.
+- [ ] **영문판 자리표시 화면 1장**: 실습 10 평가자 만들기의 Setup incomplete / Resolve 경고 화면(`assets/ignite/screenshots/en/28-evaluator-context-warning.png`)은 Monitoring Reader가 이미 부여돼 재현하지 못해 "English screenshot in preparation" 자리표시 PNG를 씁니다(`ignite-data.en.js`의 `placeholder: true`). 운영자가 승인한 환경에서 Monitoring Reader가 없는 참가자 계정으로 경고를 영어 화면으로 다시 찍으면 PNG를 바꾸고 `placeholder` 표시와 확인 위치를 정리합니다(역할 변경은 별도 승인).
