@@ -2852,7 +2852,7 @@ window.IGNITE_DATA = {
   {
    "id": "80-web-direct-answer",
    "group": "web-iq-direct",
-   "title": "Web search 직접 추가(Web IQ)로 질문",
+   "title": "직접 추가한 Web search 도구로 질문",
    "action": "Version 2(Web search 직접 추가)에서 New chat을 누르고 같은 질문을 보냅니다. 이 실습의 질문: Microsoft Ignite 2026에서 발표된 Microsoft IQ가 무엇인지 최신 공식 소식을 바탕으로 알려 주세요.",
    "expected": "웹에서 확인한 내용을 한국어로 답하고 출처 링크가 붙습니다. 응답 아래에 gpt-6.1-terra 6s 15512t 칩과 호출한 도구가 보입니다.",
    "image": "assets/ignite/screenshots/ko/80-web-direct-answer.png",

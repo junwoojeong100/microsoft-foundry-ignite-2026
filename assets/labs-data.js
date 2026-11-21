@@ -13,7 +13,8 @@ window.LABS_DATA = {
     {"id": "ignite-menu-changes", "badge": "참고", "title": "두 날짜의 메뉴 비교"},
     {"id": "ignite-official-check", "badge": "공식", "title": "발표·공식 문서 대조"},
     {"id": "ignite-glossary", "badge": "용어", "title": "처음 보는 용어 풀이"},
-    {"id": "ignite-learn-more", "badge": "소개", "title": "더 알아보기 · 소개 카드"}
+    {"id": "ignite-learn-more", "badge": "소개", "title": "더 알아보기 · 소개 카드"},
+    {"id": "ignite-reference-guides", "badge": "참조", "title": "참조 가이드 · 연결 방법·GitHub Copilot"}
   ],
   "cards": {
     "foundry-iq": "Foundry IQ",
@@ -109,8 +110,8 @@ window.LABS_DATA = {
     {
       "key": "web-iq",
       "enabled": true,
-      "title": "Web IQ로 최신 웹 정보 연결하기",
-      "lead": "에이전트에 웹 검색 도구를 직접 붙여 최신 소식을 출처 URL과 함께 답하게 하고 툴박스 경로와 비교합니다.",
+      "title": "Foundry의 Web search 도구로 최신 웹 정보 연결하기",
+      "lead": "직접 추가한 일반 웹 검색(Web IQ 기반)과 툴박스 안의 Web search(Grounding with Bing Search 기반)를 같은 질문으로 비교합니다. 별도 Azure Web IQ 리소스는 만들지 않습니다.",
       "required": true,
       "screens": ["2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정"],
       "prerequisites": ["agent", "observe"],
@@ -201,6 +202,18 @@ window.LABS_DATA = {
       "sections": ["ignite-cost"],
       "steps": [["ignite-cost-read"], ["ignite-cost-control-create"], ["ignite-cost-control-check"]],
       "more": ["cost-management"]
+    },
+    {
+      "key": "web-iq-api",
+      "enabled": true,
+      "title": "Web IQ를 직접 호출해 보기(별도 리소스)",
+      "lead": "별도 Azure Web IQ 리소스를 만들고 AppID·API 키로 Playground·REST·MCP를 호출해 Web IQ 서비스 자체를 이해합니다. 이 가이드에서 직접 실행하지 않았습니다(공식 문서 기준).",
+      "required": false,
+      "screens": ["화면 없음 · 2026-11-21 공식 문서 기준 · 직접 실행하지 않음 · 유료 구독과 운영자 승인 필요"],
+      "prerequisites": ["web-iq"],
+      "sections": ["ignite-web-iq-api"],
+      "steps": [["ignite-web-iq-api-resource"], ["ignite-web-iq-api-appid"], ["ignite-web-iq-api-playground"], ["ignite-web-iq-api-rest"], ["ignite-web-iq-api-mcp"], ["ignite-web-iq-api-compare"]],
+      "more": ["web-iq", "cost-management"]
     }
   ]
 };

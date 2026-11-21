@@ -13,7 +13,8 @@ window.LABS_DATA = {
     {"id": "ignite-menu-changes", "badge": "Notes", "title": "Menu comparison across two dates"},
     {"id": "ignite-official-check", "badge": "Official", "title": "Announcements vs. official docs"},
     {"id": "ignite-glossary", "badge": "Terms", "title": "Glossary of unfamiliar terms"},
-    {"id": "ignite-learn-more", "badge": "Cards", "title": "Learn more · intro cards"}
+    {"id": "ignite-learn-more", "badge": "Cards", "title": "Learn more · intro cards"},
+    {"id": "ignite-reference-guides", "badge": "Reference", "title": "Reference guides · connection methods and GitHub Copilot"}
   ],
   "cards": {
     "foundry-iq": "Foundry IQ",
@@ -109,8 +110,8 @@ window.LABS_DATA = {
     {
       "key": "web-iq",
       "enabled": true,
-      "title": "Connect current web information with Web IQ",
-      "lead": "Add the web search tool directly to the agent so it answers with the latest news and source URLs, then compare with the toolbox path.",
+      "title": "Connect current web information with the Foundry Web search tool",
+      "lead": "Compare general web search added directly (powered by Web IQ) with Web search in a toolbox (powered by Grounding with Bing Search). Ask the same question without creating a separate Azure Web IQ resource.",
       "required": true,
       "screens": ["2026-11-18 New Foundry · North Central US · participant account (3 roles)"],
       "prerequisites": ["agent", "observe"],
@@ -201,6 +202,18 @@ window.LABS_DATA = {
       "sections": ["ignite-cost"],
       "steps": [["ignite-cost-read"], ["ignite-cost-control-create"], ["ignite-cost-control-check"]],
       "more": ["cost-management"]
+    },
+    {
+      "key": "web-iq-api",
+      "enabled": true,
+      "title": "Call Web IQ directly (separate resource)",
+      "lead": "Create a separate Azure Web IQ resource and call it through the Playground, REST, and MCP with an AppID and an API key to understand the Web IQ service itself. We did not run this lab in this guide (based on official docs).",
+      "required": false,
+      "screens": ["No screens · based on official docs of 2026-11-21 · not run directly · paid subscription and operator approval required"],
+      "prerequisites": ["web-iq"],
+      "sections": ["ignite-web-iq-api"],
+      "steps": [["ignite-web-iq-api-resource"], ["ignite-web-iq-api-appid"], ["ignite-web-iq-api-playground"], ["ignite-web-iq-api-rest"], ["ignite-web-iq-api-mcp"], ["ignite-web-iq-api-compare"]],
+      "more": ["web-iq", "cost-management"]
     }
   ]
 };

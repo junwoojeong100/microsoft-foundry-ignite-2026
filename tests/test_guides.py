@@ -20,12 +20,12 @@ HANGUL = re.compile(r"[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7A3]")
 # Text that the intro cards, overview table and static lab references must contain, per language.
 PHRASES = {
     "ko": {"official": "공식 문서", "run": "직접 실행", "no_run": "직접 실행하지 않음", "why": "왜 실습하지 않나",
-           "connect": "Foundry 연결", "try": "해 보려면", "iq_table": "Microsoft IQ 구성과 이 가이드의 범위",
-           "improvement": "Foundry의 지속 개선", "lab": "실습 {n}",
+           "connect": "Foundry 연결", "try": "해 보려면", "iq_table": "Microsoft IQ의 컨텍스트 기능과 이 가이드의 범위",
+           "lab": "실습 {n}",
            "json_label": "워크샵 JSON 설정 예시", "settings_label": "설정 값의 의미"},
     "en": {"official": "Official docs", "run": "Run directly", "no_run": "Not run directly", "why": "Why there is no lab",
-           "connect": "Connecting to Foundry", "try": "To try it", "iq_table": "Microsoft IQ components and the scope of this guide",
-           "improvement": "Continuous improvement in Foundry", "lab": "Lab {n}",
+           "connect": "Connecting to Foundry", "try": "To try it", "iq_table": "Microsoft IQ context capabilities and the scope of this guide",
+           "lab": "Lab {n}",
            "json_label": "Workshop JSON config example", "settings_label": "Meaning of the settings"},
 }
 GUIDES = {"ko": ("index.html", "operator.html"), "en": ("index.en.html", "operator.en.html")}
@@ -223,6 +223,16 @@ class GuidePageTests(unittest.TestCase):
             self.assertEqual(SITE_URL + english, alternates["en"], name)
             self.assertEqual(alternates["ko"], alternates["x-default"], name)
 
+    def test_triage_tables_let_the_symptom_column_wrap(self):
+        # td:first-child is nowrap by default, so a long symptom sentence stretched these tables far past their container.
+        css = (ROOT / "assets" / "guide.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"\.table-triage td:first-child\{[^}]*white-space:normal")
+        for lang in ("ko", "en"):
+            text = parse(GUIDES[lang][0])[1]
+            for section in ("troubleshooting", "ignite-troubleshooting"):
+                block = re.search(rf'<section[^>]*id="{section}"[^>]*>(.*?)</section>', text, re.S).group(1)
+                self.assertIn('class="table-wide table-triage"', block, f"{lang}: the {section} table must use table-triage")
+
     def test_english_guide_has_the_structure_of_the_korean_guide(self):
         # The English pages are translations: same elements in the same order, same ids, classes, data-* values and links.
         # A poster may point at the English run's screenshot of the same step (screenshots/en/<same file name>).
@@ -392,10 +402,11 @@ class IntroCardTests(unittest.TestCase):
                         self.assertRegex(card, r'href="https://learn\.microsoft\.com/')
                         self.assertGreaterEqual(len(re.findall(r"<li>", card)), 3)
 
-    def test_iq_overview_has_separate_linked_rows(self):
+    def test_overview_separates_iq_context_from_foundry_improvement(self):
         for lang in ("ko", "en"):
             phrases = PHRASES[lang]
-            table = re.search(rf'<table[^>]*aria-label="{re.escape(phrases["iq_table"])}"[^>]*>(.*?)</table>', parse(GUIDES[lang][0])[1], re.S).group(1)
+            text = parse(GUIDES[lang][0])[1]
+            table = re.search(rf'<table[^>]*aria-label="{re.escape(phrases["iq_table"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
             rows = re.findall(r"<tr>(.*?)</tr>", table, re.S)
             for name, key in (("Foundry IQ", "foundry-iq"), ("Web IQ", "web-iq"), ("Work IQ", "work-iq"), ("Fabric IQ", "fabric-iq")):
                 matches = [row for row in rows if re.search(rf"<td><strong>{name}</strong></td>", row)]
@@ -404,8 +415,12 @@ class IntroCardTests(unittest.TestCase):
             for key in ("foundry-iq", "web-iq"):
                 row = next(row for row in rows if f'href="#learn-{key}"' in row)
                 self.assertIn(f'data-lab-ref="lab:{key}"', row, "the IQ with a lab links to it from the overview")
-            self.assertIn(phrases["improvement"], table)
             self.assertIn("Business plugins", table)
+            improvement = text.split('id="ignite-foundry-improvement"', 1)[1].split('id="ignite-at-a-glance"', 1)[0]
+            for section in ("ignite-insights", "ignite-evaluation", "ignite-optimize"):
+                link = f'href="#{section}"'
+                self.assertNotIn(link, table, f"{lang}: Foundry improvement is not an IQ context capability")
+                self.assertIn(link, improvement, f"{lang}: the separate Foundry overview links to {section}")
 
     def test_foundry_iq_and_web_iq_are_required_labs_with_sample_and_galleries(self):
         data = LabMapTests.load()
@@ -487,7 +502,7 @@ class LabMapTests(unittest.TestCase):
             "ignite-foundry-iq", "ignite-web-iq",
             "ignite-start", "ignite-harness", "ignite-observe", "ignite-improve",
             "ignite-insights", "ignite-evaluator", "ignite-evaluation", "ignite-optimize",
-            "ignite-hosted-agent", "ignite-fleet", "ignite-cost",
+            "ignite-hosted-agent", "ignite-fleet", "ignite-cost", "ignite-web-iq-api",
         } | {f"step-{chapter['id']}" for chapter in GuideDataTests.load(lang)["chapters"] if chapter["id"] != "monitoring-setup"}
         self.assertEqual(original, set(assigned))
         existing = known_ids(GUIDES[lang][0])
@@ -522,6 +537,45 @@ class LabMapTests(unittest.TestCase):
             table = text[text.index('id="ignite-official-check"'):]
             first_row = re.search(r"<tbody>\s*<tr>(.*?)</tr>", table, re.S).group(1)
             self.assertIn("<strong>Microsoft IQ</strong>", first_row)
+
+    def test_renamed_products_state_their_lineage(self):
+        expected = {
+            "ko": ("Azure AI Search", "GitHub Copilot SDK", "GitHub Copilot 하네스", "microsoft_copilot_preview", "github_copilot_preview"),
+            "en": ("Azure AI Search", "GitHub Copilot SDK", "GitHub Copilot harness", "microsoft_copilot_preview", "github_copilot_preview"),
+        }
+        for lang in ("ko", "en"):
+            text = parse(GUIDES[lang][0])[1]
+            block = text.split('id="ignite-renamed"', 1)[1].split('id="ignite-at-a-glance"', 1)[0]
+            for phrase in expected[lang]:
+                self.assertIn(phrase, block, f"{lang}: the rename table must mention {phrase}")
+            card = re.search(r'<article[^>]*id="learn-foundry-iq"[^>]*>(.*?)</article>', text, re.S).group(1)
+            self.assertIn('href="#ignite-renamed"', card, f"{lang}: the Foundry IQ card points at the rename table")
+            lab = text.split('id="ignite-foundry-iq"', 1)[1].split('id="ignite-foundry-iq-prep"', 1)[0]
+            self.assertIn('href="#ignite-renamed"', lab, f"{lang}: the Lab 6 intro points at the rename table")
+
+    def test_reference_guides_hold_connection_methods_and_github_updates(self):
+        for lang in ("ko", "en"):
+            text = parse(GUIDES[lang][0])[1]
+            self.assertEqual("ignite-reference-guides", self.load(lang)["after"][-1]["id"])
+            section = re.search(r'<section[^>]*id="ignite-reference-guides"[^>]*>(.*?)</section>', text, re.S).group(1)
+            for ref in ("ref-work-iq", "ref-fabric-iq", "ref-copilot-sdk", "ref-github-copilot"):
+                self.assertIn(f'id="{ref}"', section, f"{lang}: {ref}")
+            for card, ref in (("work-iq", "ref-work-iq"), ("fabric-iq", "ref-fabric-iq")):
+                body = re.search(rf'<article[^>]*id="learn-{card}"[^>]*>(.*?)</article>', text, re.S).group(1)
+                self.assertIn(f'href="#{ref}"', body, f"{lang}: the {card} card links to its reference guide")
+            self.assertNotIn("verification-badge", section, "reference guides are not verified labs")
+
+    def test_web_iq_api_lab_is_optional_last_and_labeled_as_not_run(self):
+        not_run = {"ko": "직접 실행하지 않았습니다", "en": "We did not run this lab"}
+        for lang in ("ko", "en"):
+            labs = [lab for lab in self.load(lang)["labs"] if lab["enabled"]]
+            lab = labs[-1]
+            self.assertEqual("web-iq-api", lab["key"])
+            self.assertFalse(lab["required"])
+            self.assertEqual(["web-iq"], lab["prerequisites"])
+            section = re.search(r'<section[^>]*id="ignite-web-iq-api"[^>]*>(.*?)</section>', parse(GUIDES[lang][0])[1], re.S).group(1)
+            self.assertIn(not_run[lang], section)
+            self.assertNotIn("data-lab-gallery", section, "a lab without captured screens has no gallery")
 
     def test_all_observed_sections_belong_to_the_lab_or_common_flow(self):
         for lang in ("ko", "en"):

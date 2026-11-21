@@ -136,6 +136,15 @@ td:first-child{color:#567087;white-space:nowrap;width:158px}
 td code{user-select:all}
 .table-wide{min-width:860px}
 .table-wide td,.table-wide th{word-break:keep-all}
+/* Triage tables put long symptom sentences in the first column, so let it wrap and share the width instead of stretching the table. */
+.table-triage{table-layout:fixed}
+.table-triage th:nth-child(1){width:26%}
+.table-triage th:nth-child(2){width:46%}
+.table-triage th:nth-child(3){width:28%}
+.table-triage td:first-child{width:auto;white-space:normal}
+.table-triage td,.table-triage th{overflow-wrap:anywhere}
+/* Label-first tables whose first column carries long names: let it wrap so the text-heavy columns keep their room. */
+.table-flow td:first-child{width:auto;white-space:normal}
 details{border:1px solid var(--line);border-radius:10px;margin-top:20px;background:#fff;overflow:hidden}
 summary{padding:14px 17px;font-size:13px;font-weight:700;cursor:pointer;background:#f8fafc}
 details[open]>summary{border-bottom:1px solid var(--line)}

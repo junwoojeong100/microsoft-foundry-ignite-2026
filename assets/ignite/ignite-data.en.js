@@ -2832,7 +2832,7 @@ window.IGNITE_DATA = {
   {
    "id": "80-web-direct-answer",
    "group": "web-iq-direct",
-   "title": "Question with Web search added directly (Web IQ)",
+   "title": "Question with the Web search tool added directly",
    "action": "In Version 2 (Web search added directly), select New chat and send the same question. The question for this lab: Based on the latest official news, tell me what Microsoft IQ, announced at Microsoft Ignite 2026, is.",
    "expected": "The agent answers in English based on what it confirmed on the web, with source links. Below the response you see a gpt-6.1-terra 8s 15452t chip and the tool that was called.",
    "image": "assets/ignite/screenshots/en/80-web-direct-answer.png",
