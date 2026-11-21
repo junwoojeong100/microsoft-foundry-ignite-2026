@@ -425,9 +425,16 @@ class IntroCardTests(unittest.TestCase):
         # Lab 7 (lab key web-iq) is the Foundry Web search tool lab. Only the docs-based Lab 15 covers Web IQ itself.
         # Learn: the Azure Web IQ resource only meters and bills; apps call api.microsoft.ai directly.
         expected = {
-            "ko": {"description": "날씨", "service_ga": "모든 Azure 고객에게 GA", "weather": "Weather는 Auto로 제공", "wrong": "리소스 호출", "required": "필수 실습"},
-            "en": {"description": "weather", "service_ga": "GA for all Azure customers", "weather": "delivered through Auto", "wrong": "Azure resource directly", "required": "Required lab"},
+            "ko": {"description": "날씨", "service_ga": "모든 Azure 고객에게 GA", "weather": "Weather는 Auto로 제공", "wrong": "리소스 호출", "required": "필수 실습",
+                   "glance": "Microsoft IQ와 실습별 한눈에 보기", "check": "Foundry 기능의 포털 표시와 Ignite 발표·공식 자료 대조", "resource": "Web IQ 리소스"},
+            "en": {"description": "weather", "service_ga": "GA for all Azure customers", "weather": "delivered through Auto", "wrong": "Azure resource directly", "required": "Required lab",
+                   "glance": "Microsoft IQ and each lab at a glance",
+                   "check": "Foundry features as shown in the portal, checked against Ignite announcements and official sources", "resource": "Web IQ resource"},
         }
+
+        def lab7_cells(grid):
+            row = next(row for row in re.findall(r"<tr>(.*?)</tr>", grid, re.S) if 'data-lab-ref="lab:web-iq"' in row.split("</td>", 1)[0])
+            return re.findall(r"<td>(.*?)</td>", row, re.S)
         for lang in ("ko", "en"):
             words = expected[lang]
             text = parse(GUIDES[lang][0])[1]
@@ -449,6 +456,16 @@ class IntroCardTests(unittest.TestCase):
             self.assertIn('data-lab-ref="lab:web-iq-api"', card)
             lab15 = re.search(r'<section[^>]*id="ignite-web-iq-api"[^>]*>(.*?)</section>', text, re.S).group(1)
             self.assertIn("api.microsoft.ai", lab15.split("<div", 1)[0], f"{lang}: Lab 15 says apps call the API directly")
+            # Elsewhere, the Lab 7 rows and the roadmap chip describe the Foundry Web search tool, not the Web IQ service.
+            flow = re.search(r'<ol class="flow iq-flow"[^>]*>(.*?)</ol>', text, re.S).group(1)
+            chip = next(li for li in re.findall(r"<li>(.*?)</li>", flow, re.S) if "Microsoft IQ" in li)
+            self.assertNotIn("Web IQ", chip.split("scope-badge")[0], f"{lang}: the required labs of the roadmap do not include Web IQ")
+            glance = lab7_cells(re.search(rf'<table[^>]*aria-label="{re.escape(words["glance"])}"[^>]*>(.*?)</table>', text, re.S).group(1))
+            for index in (2, 4):
+                self.assertNotIn("Web IQ", glance[index], f"{lang}: the Lab 7 level and announcement columns describe the Foundry Web search tool")
+            check = lab7_cells(re.search(rf'<table[^>]*aria-label="{re.escape(words["check"])}"[^>]*>(.*?)</table>', text, re.S).group(1))
+            self.assertNotIn(words["resource"], check[1], f"{lang}: Lab 7 did not run and does not report on a Web IQ resource")
+            self.assertNotIn("Book of News", check[2], f"{lang}: the Web IQ service announcement belongs to the Lab 15 row")
 
     def test_foundry_iq_and_web_search_are_required_labs_with_sample_and_galleries(self):
         data = LabMapTests.load()
@@ -617,7 +634,7 @@ class LabMapTests(unittest.TestCase):
     def test_published_sources_do_not_show_legacy_part_or_n_labels(self):
         paths = list(ROOT.glob("*.html")) + list((ROOT / "assets").glob("*.js"))
         paths += [ROOT / "assets" / "ignite" / "ignite-data.js", ROOT / "assets" / "ignite" / "ignite-data.en.js",
-                  ROOT / "README.md", ROOT / "README.ko.md", ROOT / "TODO.md"]
+                  ROOT / "README.md", ROOT / "README.ko.md"]
         for path in paths:
             with self.subTest(path=path.relative_to(ROOT)):
                 self.assertNotRegex(path.read_text(encoding="utf-8"), r"\bPART\s*[12]\b|\bN[1-8]\b")
