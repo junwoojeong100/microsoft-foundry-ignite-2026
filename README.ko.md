@@ -30,7 +30,7 @@ Foundry 가이드는 [junwoojeong100/internal-guest-hands-on-guide](https://gith
 
 ## 소개 카드
 
-직접 실행하지 않은 기능은 [`#ignite-learn-more`](index.html#ignite-learn-more)의 소개 카드로 안내합니다. Work IQ·Fabric IQ와 [Microsoft Copilot SDK 2.0](index.html#learn-copilot-sdk)·[Voice agents](index.html#learn-voice-agents)·[비용 관리](index.html#learn-cost-management) 등을 개념·구성별 상태·실습하지 않는 이유·공식 문서 링크·확인 수준 배지로 정리했으며, 문서만 확인한 내용을 검증된 실습으로 쓰지 않습니다. **Foundry IQ·Web IQ·Hosted agents는 실습과 연결된 개념 카드**이고, Microsoft Copilot 하네스·GitHub Copilot SDK·Microsoft Copilot SDK의 이름과 관계는 [이름 정리](index.html#ignite-harness-names)에 설명합니다. Toolboxes·Safety는 후보 점검을 하지 못했으며 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다. Work IQ·Fabric IQ의 연결 방법, Microsoft Copilot 하네스·SDK 2.0 시작, GitHub Copilot의 Ignite 2026 업데이트는 [참조 가이드](index.html#ignite-reference-guides)에 정리했습니다.
+직접 실행하지 않은 기능은 [`#ignite-learn-more`](index.html#ignite-learn-more)의 소개 카드로 안내합니다. Work IQ·Fabric IQ와 [Microsoft Copilot SDK 2.0](index.html#learn-copilot-sdk)·[Voice agents](index.html#learn-voice-agents)·[비용 관리](index.html#learn-cost-management) 등을 개념·구성별 상태·실습하지 않는 이유·공식 문서 링크·확인 수준 배지로 정리했으며, 문서만 확인한 내용을 검증된 실습으로 쓰지 않습니다. **Foundry IQ·Hosted agents는 실습과 연결된 개념 카드**이고, Web IQ는 직접 실행한 실습이 없습니다(실습 7은 Foundry Web search 도구 실습이며 Web IQ 카드는 문서 기준 선택 실습 15로 연결됩니다). Microsoft Copilot 하네스·GitHub Copilot SDK·Microsoft Copilot SDK의 이름과 관계는 [이름 정리](index.html#ignite-harness-names)에 설명합니다. Toolboxes·Safety는 후보 점검을 하지 못했으며 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다. Work IQ·Fabric IQ의 연결 방법, Microsoft Copilot 하네스·SDK 2.0 시작, GitHub Copilot의 Ignite 2026 업데이트는 [참조 가이드](index.html#ignite-reference-guides)에 정리했습니다.
 
 ## 가이드
 

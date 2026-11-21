@@ -207,7 +207,7 @@ window.LABS_DATA = {
       "key": "web-iq-api",
       "enabled": true,
       "title": "Call Web IQ directly (separate resource)",
-      "lead": "Create a separate Azure Web IQ resource and call it through the Playground, REST, and MCP with an AppID and an API key to understand the Web IQ service itself. We did not run this lab in this guide (based on official docs).",
+      "lead": "Create a separate Azure Web IQ resource and call the Web IQ API through the Playground, REST, and MCP with an AppID and an API key to understand the Web IQ service itself. We did not run this lab in this guide (based on official docs).",
       "required": false,
       "screens": ["No screens · based on official docs of 2026-11-21 · not run directly · paid subscription and operator approval required"],
       "prerequisites": ["web-iq"],

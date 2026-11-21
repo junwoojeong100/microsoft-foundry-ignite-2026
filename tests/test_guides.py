@@ -367,10 +367,10 @@ class IntroCardTests(unittest.TestCase):
         section = re.search(r'<section[^>]*id="ignite-learn-more"[^>]*>(.*?)</section>', text, re.S)
         self.assertIsNotNone(section)
         tiers = {
-            "A": ("work-iq", "fabric-iq"),
+            "A": ("work-iq", "fabric-iq", "web-iq"),
             "B": ("copilot-sdk", "voice-agents", "business-plugins", "m365-accounts-for-agents", "toolbox",
                   "foundry-mcp-server", "foundry-safety", "training", "new-models", "azure-windows", "cost-management"),
-            "C": ("foundry-iq", "web-iq", "hosted-agents"),
+            "C": ("foundry-iq", "hosted-agents"),
         }
         official_hosts = {"learn.microsoft.com", "azure.microsoft.com", "news.microsoft.com", "techcommunity.microsoft.com", "commandline.microsoft.com", "aka.ms"}
         self.assertEqual(sum(map(len, tiers.values())), len(re.findall(r'<article\b', section.group(1))))
@@ -412,9 +412,8 @@ class IntroCardTests(unittest.TestCase):
                 matches = [row for row in rows if re.search(rf"<td><strong>{name}</strong></td>", row)]
                 self.assertEqual(1, len(matches), f"{lang} {name}")
                 self.assertIn(f'href="#learn-{key}"', matches[0])
-            for key in ("foundry-iq", "web-iq"):
-                row = next(row for row in rows if f'href="#learn-{key}"' in row)
-                self.assertIn(f'data-lab-ref="lab:{key}"', row, "the IQ with a lab links to it from the overview")
+            row = next(row for row in rows if 'href="#learn-foundry-iq"' in row)
+            self.assertIn('data-lab-ref="lab:foundry-iq"', row, "Foundry IQ links to its lab from the overview")
             self.assertIn("Business plugins", table)
             improvement = text.split('id="ignite-foundry-improvement"', 1)[1].split('id="ignite-at-a-glance"', 1)[0]
             for section in ("ignite-insights", "ignite-evaluation", "ignite-optimize"):
@@ -422,7 +421,36 @@ class IntroCardTests(unittest.TestCase):
                 self.assertNotIn(link, table, f"{lang}: Foundry improvement is not an IQ context capability")
                 self.assertIn(link, improvement, f"{lang}: the separate Foundry overview links to {section}")
 
-    def test_foundry_iq_and_web_iq_are_required_labs_with_sample_and_galleries(self):
+    def test_web_iq_is_a_service_and_lab_7_is_the_foundry_web_search_tool_lab(self):
+        # Lab 7 (lab key web-iq) is the Foundry Web search tool lab. Only the docs-based Lab 15 covers Web IQ itself.
+        # Learn: the Azure Web IQ resource only meters and bills; apps call api.microsoft.ai directly.
+        expected = {
+            "ko": {"description": "날씨", "service_ga": "모든 Azure 고객에게 GA", "weather": "Weather는 Auto로 제공", "wrong": "리소스 호출", "required": "필수 실습"},
+            "en": {"description": "weather", "service_ga": "GA for all Azure customers", "weather": "delivered through Auto", "wrong": "Azure resource directly", "required": "Required lab"},
+        }
+        for lang in ("ko", "en"):
+            words = expected[lang]
+            text = parse(GUIDES[lang][0])[1]
+            table = re.search(rf'<table[^>]*aria-label="{re.escape(PHRASES[lang]["iq_table"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
+            row = next(row for row in re.findall(r"<tr>(.*?)</tr>", table, re.S) if "<strong>Web IQ</strong>" in row)
+            cells = re.findall(r"<td>(.*?)</td>", row, re.S)
+            self.assertIn(words["description"], cells[1], f"{lang}: the description covers the weather source the status lists")
+            self.assertIn(words["service_ga"], cells[2], f"{lang}: the service-level status comes first")
+            self.assertIn(words["weather"], cells[2], f"{lang}: Weather has no dedicated API")
+            self.assertNotIn(words["wrong"], row)
+            lab = cells[3]
+            self.assertNotIn(words["required"], lab, f"{lang}: Lab 7 is not a required Web IQ lab")
+            self.assertLess(lab.index('data-lab-ref="lab:web-iq-api"'), lab.index('data-lab-ref="lab:web-iq"'),
+                            f"{lang}: Lab 15 is the Web IQ lab; Lab 7 is only listed as related after it")
+            card = re.search(r'<article[^>]*id="learn-web-iq"[^>]*>(.*?)</article>', text, re.S).group(1)
+            badge = re.search(r'<span class="verification-badge">(.*?)</span>', card).group(1)
+            self.assertIn(PHRASES[lang]["no_run"], badge, f"{lang}: the Web IQ service was not run")
+            self.assertNotRegex(badge, r"Lab 7|실습 7")
+            self.assertIn('data-lab-ref="lab:web-iq-api"', card)
+            lab15 = re.search(r'<section[^>]*id="ignite-web-iq-api"[^>]*>(.*?)</section>', text, re.S).group(1)
+            self.assertIn("api.microsoft.ai", lab15.split("<div", 1)[0], f"{lang}: Lab 15 says apps call the API directly")
+
+    def test_foundry_iq_and_web_search_are_required_labs_with_sample_and_galleries(self):
         data = LabMapTests.load()
         labs = [lab for lab in data["labs"] if lab["enabled"]]
         keys = [lab["key"] for lab in labs]
@@ -445,9 +473,8 @@ class IntroCardTests(unittest.TestCase):
             self.assertGreaterEqual(len(sample), 3)
             for name in sample:
                 self.assertIn(f"{folder}/{name}", text, f"the {lang} lab must link the sample document {name}")
-            for key in ("foundry-iq", "web-iq"):
-                card = re.search(rf'<article[^>]*id="learn-{key}"[^>]*>(.*?)</article>', text, re.S).group(1)
-                self.assertNotIn(PHRASES[lang]["no_run"], card)
+            card = re.search(r'<article[^>]*id="learn-foundry-iq"[^>]*>(.*?)</article>', text, re.S).group(1)
+            self.assertNotIn(PHRASES[lang]["no_run"], card)
         self.assertEqual(sorted(path.name for path in (ROOT / "assets" / "foundry-iq-sample").glob("*.md")),
                          sorted(path.name for path in (ROOT / "assets" / "foundry-iq-sample" / "en").glob("*.md")), "English sample documents mirror the Korean ones")
 

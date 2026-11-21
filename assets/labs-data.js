@@ -207,7 +207,7 @@ window.LABS_DATA = {
       "key": "web-iq-api",
       "enabled": true,
       "title": "Web IQ를 직접 호출해 보기(별도 리소스)",
-      "lead": "별도 Azure Web IQ 리소스를 만들고 AppID·API 키로 Playground·REST·MCP를 호출해 Web IQ 서비스 자체를 이해합니다. 이 가이드에서 직접 실행하지 않았습니다(공식 문서 기준).",
+      "lead": "별도 Azure Web IQ 리소스를 만들고 AppID·API 키로 Playground·REST·MCP에서 Web IQ API를 호출해 Web IQ 서비스 자체를 이해합니다. 이 가이드에서 직접 실행하지 않았습니다(공식 문서 기준).",
       "required": false,
       "screens": ["화면 없음 · 2026-11-21 공식 문서 기준 · 직접 실행하지 않음 · 유료 구독과 운영자 승인 필요"],
       "prerequisites": ["web-iq"],
