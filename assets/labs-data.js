@@ -120,6 +120,30 @@ window.LABS_DATA = {
       "more": ["web-iq", "toolbox", "cost-management"]
     },
     {
+      "key": "work-iq",
+      "enabled": true,
+      "title": "Work IQ로 에이전트에 Microsoft 365 업무 맥락 연결하기",
+      "lead": "운영자가 프로젝트에 만든 Work IQ MCP 연결을 새 에이전트에 붙여 내 일정·메일·파일에 대해 묻고, 답이 로그인한 사용자의 권한 안에서만 나오는지 확인합니다. 이 가이드에서 직접 실행하지 않았고 모든 절차는 공식 문서 기준입니다.",
+      "required": false,
+      "screens": ["화면 없음 · 2026-11-22 공식 문서 기준 · 직접 실행하지 않음 · 전역 관리자의 1회 설정·동의, Copilot Credits(또는 커넥터 라이선스), Microsoft 365 데이터가 있는 사용자 계정 필요"],
+      "prerequisites": ["agent", "observe"],
+      "sections": ["ignite-work-iq"],
+      "steps": [["ignite-work-iq-connect"], ["ignite-work-iq-add"], ["ignite-work-iq-test"]],
+      "more": ["work-iq", "toolbox", "cost-management"]
+    },
+    {
+      "key": "fabric-iq",
+      "enabled": true,
+      "title": "Fabric IQ로 에이전트에 Fabric 데이터 연결하기",
+      "lead": "운영자가 Fabric 포털에서 준비하고 게시한 Fabric 항목(이 실습은 데이터 에이전트)을 Foundry 포털의 Fabric IQ 연결로 프로젝트에 붙이고, 새 에이전트에 도구로 연결해 업무 용어로 묻습니다. 답이 로그인한 사용자의 Fabric 권한 안에서만 나오는지도 확인합니다. 이 가이드에서 직접 실행하지 않았고 모든 절차는 공식 문서 기준입니다.",
+      "required": false,
+      "screens": ["화면 없음 · 2026-11-22 공식 문서 기준 · 직접 실행하지 않음 · Fabric 라이선스와 유료 F2 이상 용량, Fabric 관리자의 테넌트 설정, 운영자의 항목 게시·연결 생성, 접근 권한이 있는 계정과 없는 계정 필요"],
+      "prerequisites": ["agent", "observe"],
+      "sections": ["ignite-fabric-iq"],
+      "steps": [["ignite-fabric-iq-connect"], ["ignite-fabric-iq-add"], ["ignite-fabric-iq-test"]],
+      "more": ["fabric-iq", "toolbox", "cost-management"]
+    },
+    {
       "key": "harness",
       "enabled": true,
       "title": "하네스 에이전트 만들고 실행·관찰하기",

@@ -120,6 +120,30 @@ window.LABS_DATA = {
       "more": ["web-iq", "toolbox", "cost-management"]
     },
     {
+      "key": "work-iq",
+      "enabled": true,
+      "title": "Connect Microsoft 365 work context to your agent with Work IQ",
+      "lead": "Attach the Work IQ MCP connection that the operator created in the project to a new agent, ask about your own schedule, mail and files, and check that answers stay within the signed-in user's permissions. We did not run this lab; every step is based on official docs.",
+      "required": false,
+      "screens": ["No screens · 2026-11-22 based on official docs · not run directly · needs the administrator's one-time setup and consent, Copilot Credits (or connector licensing) and a user account with Microsoft 365 data"],
+      "prerequisites": ["agent", "observe"],
+      "sections": ["ignite-work-iq"],
+      "steps": [["ignite-work-iq-connect"], ["ignite-work-iq-add"], ["ignite-work-iq-test"]],
+      "more": ["work-iq", "toolbox", "cost-management"]
+    },
+    {
+      "key": "fabric-iq",
+      "enabled": true,
+      "title": "Connect Fabric data to your agent with Fabric IQ",
+      "lead": "Attach a Fabric item that the operator prepared and published in the Fabric portal (this lab uses a data agent) to the project with a Fabric IQ connection in the Foundry portal, connect it to a new agent as a tool and ask in business terms. Also check that answers stay within the signed-in user's Fabric permissions. We did not run this lab; every step is based on official docs.",
+      "required": false,
+      "screens": ["No screens · 2026-11-22 based on official docs · not run directly · needs a Fabric license and paid F2+ capacity, the Fabric admin's tenant settings, the operator's item publishing and connection creation, and one account with access and one without"],
+      "prerequisites": ["agent", "observe"],
+      "sections": ["ignite-fabric-iq"],
+      "steps": [["ignite-fabric-iq-connect"], ["ignite-fabric-iq-add"], ["ignite-fabric-iq-test"]],
+      "more": ["fabric-iq", "toolbox", "cost-management"]
+    },
+    {
       "key": "harness",
       "enabled": true,
       "title": "Create, run and observe a harness agent",

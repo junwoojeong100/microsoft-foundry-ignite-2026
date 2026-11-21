@@ -486,7 +486,8 @@ class IntroCardTests(unittest.TestCase):
             chip = next(li for li in re.findall(r"<li>(.*?)</li>", flow, re.S) if "Microsoft IQ" in li)
             parts = chip.split("scope-badge")
             self.assertIn("Web IQ", parts[0], f"{lang}: the required labs of the roadmap include Web IQ")
-            self.assertIn("Work IQ", parts[1], f"{lang}: Work IQ and Fabric IQ stay intro cards")
+            self.assertIn("Work IQ", parts[1], f"{lang}: Work IQ follows as the optional docs-based Lab 8")
+            self.assertIn("Fabric IQ", parts[2], f"{lang}: Fabric IQ follows as the optional docs-based Lab 9")
             glance = lab7_cells(re.search(rf'<table[^>]*aria-label="{re.escape(words["glance"])}"[^>]*>(.*?)</table>', text, re.S).group(1))
             self.assertNotIn(PHRASES[lang]["no_run"].lower(), glance[2].lower(), f"{lang}: no Web IQ step is left unrun")
             self.assertIn(PHRASES[lang]["run"].lower(), glance[2].lower(), f"{lang}: the Web IQ steps and the built-in comparison are run")
@@ -541,6 +542,115 @@ class IntroCardTests(unittest.TestCase):
         self.assertTrue((ROOT / "scripts" / "deploy_hosted_agent.sh").is_file())
         self.assertIn("deploy_hosted_agent.sh", (ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8"))
 
+    def test_fabric_iq_is_an_optional_docs_based_lab_right_after_work_iq(self):
+        # Lab 9 (lab key fabric-iq) only summarizes official docs: it needs a Fabric license, a paid capacity, tenant settings and a published Fabric item.
+        # So it is optional, has no screens and says on every page that it was not run.
+        words = {
+            "ko": {"not_run": "직접 실행하지 않았습니다", "docs": "공식 문서 기준", "badge": "선택 실습 9", "tool": "fabric_iq_preview",
+                   "glance": "Microsoft IQ와 실습별 한눈에 보기", "group": "Fabric IQ (실습 9"},
+            "en": {"not_run": "We did not run this lab", "docs": "based on official docs", "badge": "optional Lab 9", "tool": "fabric_iq_preview",
+                   "glance": "Microsoft IQ and each lab at a glance", "group": "Fabric IQ (Lab 9"},
+        }
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                word = words[lang]
+                lab_map = LabMapTests.load(lang)
+                labs = [lab for lab in lab_map["labs"] if lab["enabled"]]
+                keys = [lab["key"] for lab in labs]
+                self.assertEqual("fabric-iq", keys[keys.index("work-iq") + 1], "the Fabric IQ lab comes right after the Work IQ lab")
+                lab = labs[keys.index("fabric-iq")]
+                self.assertFalse(lab["required"], "the Fabric license, capacity and tenant settings put the Fabric IQ lab outside the required labs")
+                self.assertEqual(["agent", "observe"], lab["prerequisites"])
+                self.assertEqual([["ignite-fabric-iq-connect"], ["ignite-fabric-iq-add"], ["ignite-fabric-iq-test"]], lab["steps"])
+                self.assertIn("fabric-iq", lab["more"])
+                self.assertEqual(1, len(lab["screens"]))
+                self.assertIn(PHRASES[lang]["no_run"].lower(), lab["screens"][0].lower(), "the evidence badge says the lab was not run")
+                text = parse(GUIDES[lang][0])[1]
+                section = re.search(r'<section[^>]*id="ignite-fabric-iq"[^>]*>(.*?)</section>', text, re.S).group(1)
+                self.assertIn(word["not_run"], section)
+                self.assertIn(word["docs"], section)
+                self.assertNotIn("data-lab-gallery", section, "a lab without captured screens has no gallery")
+                self.assertFalse(any(shot["group"].startswith("fabric-iq") for shot in IgnitePart2Tests.load(lang)["shots"]), "no Fabric IQ screens were captured")
+                self.assertEqual([step for steps in lab["steps"] for step in steps], re.findall(r'<h3[^>]*id="([^"]+)"', section), "the steps follow the lab map in order")
+                self.assertEqual(["ignite-fabric-iq-instructions", "ignite-fabric-iq-q1", "ignite-fabric-iq-q2", "ignite-fabric-iq-q3"], re.findall(r'<pre id="([^"]+)"', section))
+                for needle in ("fabric_iq_preview", "Fabric IQ (OneLake Catalog)", "CONSENT_REQUIRED", "Foundry Project Manager"):
+                    self.assertIn(needle, section)
+                self.assertNotRegex(section, r"\b(curl|az\s+\w+|azd\s+\w+)\b", "the participant steps use no CLI")
+                # The card, the overview rows and the troubleshooting table label the lab as not run and point to it.
+                card = re.search(r'<article[^>]*id="learn-fabric-iq"[^>]*data-tier="A"[^>]*>(.*?)</article>', text, re.S).group(1)
+                badge = re.search(r'<span class="verification-badge">(.*?)</span>', card).group(1)
+                self.assertIn(PHRASES[lang]["no_run"], badge)
+                self.assertIn(word["badge"], badge)
+                self.assertIn('data-lab-ref="lab:fabric-iq"', card)
+                iq_table = re.search(rf'<table[^>]*aria-label="{re.escape(PHRASES[lang]["iq_table"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
+                row = next(row for row in re.findall(r"<tr>(.*?)</tr>", iq_table, re.S) if "<strong>Fabric IQ</strong>" in row)
+                self.assertIn('data-lab-ref="lab:fabric-iq"', row)
+                glance = re.search(rf'<table[^>]*aria-label="{re.escape(word["glance"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
+                row = next(row for row in re.findall(r"<tr>(.*?)</tr>", glance, re.S) if 'data-lab-ref="lab:fabric-iq"' in row.split("</td>", 1)[0])
+                self.assertIn(PHRASES[lang]["no_run"].lower(), re.findall(r"<td>(.*?)</td>", row, re.S)[2].lower())
+                troubleshooting = re.search(r'<section[^>]*id="ignite-troubleshooting"[^>]*>(.*?)</section>', text, re.S).group(1)
+                self.assertIn(f'scope="colgroup">{word["group"]}', troubleshooting)
+                # The operator guide holds the Fabric-side preparation, which the participant lab only points to.
+                operator = parse(GUIDES[lang][1])[1]
+                block = operator.split('id="fabric-iq-prep"', 1)[1].split('id="hosted-prep"', 1)[0]
+                for needle in ("Item.Execute.All", "DataAgent.Execute.All", "UserEntraToken", "Foundry Project Manager", "F2"):
+                    self.assertIn(needle, block, f"the operator preparation names {needle}")
+
+    def test_work_iq_is_an_optional_docs_based_lab_right_after_web_iq(self):
+        # Lab 8 (lab key work-iq) only summarizes official docs: it needs a global administrator, Copilot Credits and Microsoft 365 data.
+        # So it is optional, has no screens and says on every page that it was not run.
+        words = {
+            "ko": {"not_run": "직접 실행하지 않았습니다", "docs": "공식 문서 기준", "badge": "선택 실습 8", "only_ask": "<code>ask</code> 하나만",
+                   "glance": "Microsoft IQ와 실습별 한눈에 보기", "group": "Work IQ (실습 8"},
+            "en": {"not_run": "We did not run this lab", "docs": "based on official docs", "badge": "optional Lab 8", "only_ask": "only <code>ask</code> as the allowed tool",
+                   "glance": "Microsoft IQ and each lab at a glance", "group": "Work IQ (Lab 8"},
+        }
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                word = words[lang]
+                lab_map = LabMapTests.load(lang)
+                labs = [lab for lab in lab_map["labs"] if lab["enabled"]]
+                keys = [lab["key"] for lab in labs]
+                self.assertEqual("work-iq", keys[keys.index("web-iq") + 1], "the Work IQ lab comes right after the Web IQ lab")
+                lab = labs[keys.index("work-iq")]
+                self.assertFalse(lab["required"], "tenant-level setup puts the Work IQ lab outside the required labs")
+                self.assertEqual(["agent", "observe"], lab["prerequisites"])
+                self.assertEqual([["ignite-work-iq-connect"], ["ignite-work-iq-add"], ["ignite-work-iq-test"]], lab["steps"])
+                self.assertIn("work-iq", lab["more"])
+                self.assertEqual(1, len(lab["screens"]))
+                self.assertIn(PHRASES[lang]["no_run"].lower(), lab["screens"][0].lower(), "the evidence badge says the lab was not run")
+                text = parse(GUIDES[lang][0])[1]
+                section = re.search(r'<section[^>]*id="ignite-work-iq"[^>]*>(.*?)</section>', text, re.S).group(1)
+                self.assertIn(word["not_run"], section)
+                self.assertIn(word["docs"], section)
+                self.assertNotIn("data-lab-gallery", section, "a lab without captured screens has no gallery")
+                self.assertFalse(any(shot["group"].startswith("work-iq") for shot in IgnitePart2Tests.load(lang)["shots"]), "no Work IQ screens were captured")
+                self.assertEqual([step for steps in lab["steps"] for step in steps], re.findall(r'<h3[^>]*id="([^"]+)"', section), "the steps follow the lab map in order")
+                self.assertEqual(["ignite-work-iq-instructions", "ignite-work-iq-q1", "ignite-work-iq-q2", "ignite-work-iq-q3"], re.findall(r'<pre id="([^"]+)"', section))
+                for needle in ("https://workiq.svc.cloud.microsoft/mcp", "WorkIQAgent.Ask", "oauth_consent_request", "Foundry Project Manager"):
+                    self.assertIn(needle, section)
+                self.assertIn(word["only_ask"], section, "the lab allows only the ask tool, not the write tools")
+                self.assertNotRegex(section, r"\b(curl|az\s+\w+|azd\s+\w+)\b", "the participant steps use no CLI")
+                # The card, the overview rows and the troubleshooting table label the lab as not run and point to it.
+                card = re.search(r'<article[^>]*id="learn-work-iq"[^>]*data-tier="A"[^>]*>(.*?)</article>', text, re.S).group(1)
+                badge = re.search(r'<span class="verification-badge">(.*?)</span>', card).group(1)
+                self.assertIn(PHRASES[lang]["no_run"], badge)
+                self.assertIn(word["badge"], badge)
+                self.assertIn('data-lab-ref="lab:work-iq"', card)
+                iq_table = re.search(rf'<table[^>]*aria-label="{re.escape(PHRASES[lang]["iq_table"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
+                row = next(row for row in re.findall(r"<tr>(.*?)</tr>", iq_table, re.S) if "<strong>Work IQ</strong>" in row)
+                self.assertIn('data-lab-ref="lab:work-iq"', row)
+                glance = re.search(rf'<table[^>]*aria-label="{re.escape(word["glance"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
+                row = next(row for row in re.findall(r"<tr>(.*?)</tr>", glance, re.S) if 'data-lab-ref="lab:work-iq"' in row.split("</td>", 1)[0])
+                self.assertIn(PHRASES[lang]["no_run"].lower(), re.findall(r"<td>(.*?)</td>", row, re.S)[2].lower())
+                troubleshooting = re.search(r'<section[^>]*id="ignite-troubleshooting"[^>]*>(.*?)</section>', text, re.S).group(1)
+                self.assertIn(f'scope="colgroup">{word["group"]}', troubleshooting)
+                # The operator guide holds the tenant-side preparation, which the participant lab only points to.
+                operator = parse(GUIDES[lang][1])[1]
+                block = operator.split('id="work-iq-prep"', 1)[1].split('id="fabric-iq-prep"', 1)[0]
+                for needle in ("fdcc1f02-fc51-4226-8753-f668596af7f7", "WorkIQAgent.Ask", "Copilot Credits", "Foundry Project Manager"):
+                    self.assertIn(needle, block, f"the operator preparation names {needle}")
+
 
 class LabMapTests(unittest.TestCase):
     @staticmethod
@@ -572,7 +682,7 @@ class LabMapTests(unittest.TestCase):
         self.assertEqual(len(assigned), len(set(assigned)), "each section belongs to one lab")
         original = {
             "first-sign-in", "responsibilities", "model-quota", "ignite-guardrails",
-            "ignite-foundry-iq", "ignite-web-iq",
+            "ignite-foundry-iq", "ignite-web-iq", "ignite-work-iq", "ignite-fabric-iq",
             "ignite-start", "ignite-harness", "ignite-observe", "ignite-improve",
             "ignite-insights", "ignite-evaluator", "ignite-evaluation", "ignite-optimize",
             "ignite-hosted-agent", "ignite-fleet", "ignite-cost",
