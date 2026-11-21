@@ -367,10 +367,10 @@ class IntroCardTests(unittest.TestCase):
         section = re.search(r'<section[^>]*id="ignite-learn-more"[^>]*>(.*?)</section>', text, re.S)
         self.assertIsNotNone(section)
         tiers = {
-            "A": ("work-iq", "fabric-iq", "web-iq"),
+            "A": ("work-iq", "fabric-iq"),
             "B": ("copilot-sdk", "voice-agents", "business-plugins", "m365-accounts-for-agents", "toolbox",
                   "foundry-mcp-server", "foundry-safety", "training", "new-models", "azure-windows", "cost-management"),
-            "C": ("foundry-iq", "hosted-agents"),
+            "C": ("foundry-iq", "web-iq", "hosted-agents"),
         }
         official_hosts = {"learn.microsoft.com", "azure.microsoft.com", "news.microsoft.com", "techcommunity.microsoft.com", "commandline.microsoft.com", "aka.ms"}
         self.assertEqual(sum(map(len, tiers.values())), len(re.findall(r'<article\b', section.group(1))))
@@ -421,15 +421,18 @@ class IntroCardTests(unittest.TestCase):
                 self.assertNotIn(link, table, f"{lang}: Foundry improvement is not an IQ context capability")
                 self.assertIn(link, improvement, f"{lang}: the separate Foundry overview links to {section}")
 
-    def test_web_iq_is_a_service_and_lab_7_is_the_foundry_web_search_tool_lab(self):
-        # Lab 7 (lab key web-iq) is the Foundry Web search tool lab. Only the docs-based Lab 15 covers Web IQ itself.
+    def test_lab_7_is_the_portal_first_web_iq_lab_run_directly_with_screens_for_every_portal_step(self):
+        # Lab 7 (lab key web-iq) is the Web IQ lab: Azure portal -> Web IQ portal -> Foundry portal, with no CLI.
+        # Its Web IQ steps (7-1 to 7-4) and the built-in Web search comparison (7-5) were all run directly and have screens.
         # Learn: the Azure Web IQ resource only meters and bills; apps call api.microsoft.ai directly.
         expected = {
             "ko": {"description": "날씨", "service_ga": "모든 Azure 고객에게 GA", "weather": "Weather는 Auto로 제공", "wrong": "리소스 호출", "required": "필수 실습",
-                   "glance": "Microsoft IQ와 실습별 한눈에 보기", "check": "Foundry 기능의 포털 표시와 Ignite 발표·공식 자료 대조", "resource": "Web IQ 리소스"},
+                   "glance": "Microsoft IQ와 실습별 한눈에 보기", "check": "Foundry 기능의 포털 표시와 Ignite 발표·공식 자료 대조",
+                   "ran": "직접 실행해 확인했습니다", "no_cli": "CLI·터미널·코드는 쓰지 않습니다", "docs": "공식 문서 기준"},
             "en": {"description": "weather", "service_ga": "GA for all Azure customers", "weather": "delivered through Auto", "wrong": "Azure resource directly", "required": "Required lab",
                    "glance": "Microsoft IQ and each lab at a glance",
-                   "check": "Foundry features as shown in the portal, checked against Ignite announcements and official sources", "resource": "Web IQ resource"},
+                   "check": "Foundry features as shown in the portal, checked against Ignite announcements and official sources",
+                   "ran": "were run directly", "no_cli": "You use no CLI, terminal or code", "docs": "Based on official docs"},
         }
 
         def lab7_cells(grid):
@@ -438,6 +441,7 @@ class IntroCardTests(unittest.TestCase):
         for lang in ("ko", "en"):
             words = expected[lang]
             text = parse(GUIDES[lang][0])[1]
+            self.assertNotIn("web-iq-api", text, f"{lang}: the separate direct-call lab was merged into Lab 7")
             table = re.search(rf'<table[^>]*aria-label="{re.escape(PHRASES[lang]["iq_table"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
             row = next(row for row in re.findall(r"<tr>(.*?)</tr>", table, re.S) if "<strong>Web IQ</strong>" in row)
             cells = re.findall(r"<td>(.*?)</td>", row, re.S)
@@ -445,29 +449,54 @@ class IntroCardTests(unittest.TestCase):
             self.assertIn(words["service_ga"], cells[2], f"{lang}: the service-level status comes first")
             self.assertIn(words["weather"], cells[2], f"{lang}: Weather has no dedicated API")
             self.assertNotIn(words["wrong"], row)
-            lab = cells[3]
-            self.assertNotIn(words["required"], lab, f"{lang}: Lab 7 is not a required Web IQ lab")
-            self.assertLess(lab.index('data-lab-ref="lab:web-iq-api"'), lab.index('data-lab-ref="lab:web-iq"'),
-                            f"{lang}: Lab 15 is the Web IQ lab; Lab 7 is only listed as related after it")
-            card = re.search(r'<article[^>]*id="learn-web-iq"[^>]*>(.*?)</article>', text, re.S).group(1)
+            self.assertIn(words["required"], cells[3], f"{lang}: Lab 7 is the required Web IQ lab")
+            self.assertIn('data-lab-ref="lab:web-iq"', cells[3])
+            card = re.search(r'<article[^>]*id="learn-web-iq"[^>]*data-tier="C"[^>]*>(.*?)</article>', text, re.S)
+            self.assertIsNotNone(card, f"{lang}: the Web IQ card is a concept card tied to Lab 7")
+            card = card.group(1)
             badge = re.search(r'<span class="verification-badge">(.*?)</span>', card).group(1)
-            self.assertIn(PHRASES[lang]["no_run"], badge, f"{lang}: the Web IQ service was not run")
-            self.assertNotRegex(badge, r"Lab 7|실습 7")
-            self.assertIn('data-lab-ref="lab:web-iq-api"', card)
-            lab15 = re.search(r'<section[^>]*id="ignite-web-iq-api"[^>]*>(.*?)</section>', text, re.S).group(1)
-            self.assertIn("api.microsoft.ai", lab15.split("<div", 1)[0], f"{lang}: Lab 15 says apps call the API directly")
-            # Elsewhere, the Lab 7 rows and the roadmap chip describe the Foundry Web search tool, not the Web IQ service.
+            self.assertIn(PHRASES[lang]["run"], badge, f"{lang}: the Web IQ card says Lab 7 was run directly")
+            self.assertNotIn(words["docs"], badge, f"{lang}: the Web IQ steps no longer rest on official docs alone")
+            self.assertNotIn(PHRASES[lang]["no_run"], badge)
+            self.assertIn('data-lab-ref="lab:web-iq"', card)
+            # The lab itself: portal screens only, with what was observed spelled out.
+            lab = re.search(r'<section[^>]*id="ignite-web-iq"[^>]*>(.*?)</section>', text, re.S).group(1)
+            opening = lab.split("<h3", 1)[0]
+            self.assertIn("api.microsoft.ai", opening.split("<ol", 1)[0], f"{lang}: Lab 7 says apps call the API directly")
+            self.assertIn(words["no_cli"], opening)
+            self.assertIn(words["ran"], opening)
+            self.assertNotIn(words["docs"], opening, f"{lang}: the opening no longer says the steps rest on official docs")
+            self.assertIn('data-lab-ref="sec:ignite-web-iq-compare"', opening, f"{lang}: the fallback without a Web IQ resource is named up front")
+            for portal in ("https://portal.azure.com", "https://webiq.microsoft.ai"):
+                self.assertIn(f'href="{portal}"', lab, f"{lang}: Lab 7 walks through {portal}")
+            for observed in ("AuthInvalidApiKey", "Delete failed", "execute_tool mcp_WebIQ.web", "Go to resource", "Add Azure Resource"):
+                self.assertIn(observed, lab, f"{lang}: Lab 7 records what the Azure run showed ({observed})")
+            self.assertEqual(["ignite-web-iq-instructions", "ignite-web-iq-question"], re.findall(r'<pre id="([^"]+)"', lab),
+                             f"{lang}: Lab 7 has no code or command blocks besides the two prompts")
+            self.assertNotRegex(lab, r"\b(curl|az\s+\w+|export\s+\w+=)", f"{lang}: Lab 7 uses no CLI commands")
+            steps = [section for step in next(item for item in LabMapTests.load(lang)["labs"] if item["key"] == "web-iq")["steps"] for section in step]
+            self.assertEqual(steps, re.findall(r'<h3[^>]*id="([^"]+)"', lab), f"{lang}: the steps follow the lab map in order")
+            self.assertEqual(["ignite-web-iq-resource", "ignite-web-iq-portal", "ignite-web-iq-add", "ignite-web-iq-test", "ignite-web-iq-compare", "ignite-web-iq-compare"],
+                             re.findall(r'data-lab-gallery="([^"]+)"', lab), f"{lang}: every portal step has its screens, and 7-5 keeps two galleries")
+            shots = IgnitePart2Tests.load(lang)["shots"]
+            counts = {group: sum(shot["group"] == group for shot in shots) for group in ("web-iq-resource", "web-iq-portal", "web-iq-add", "web-iq-test")}
+            self.assertEqual({"web-iq-resource": 7, "web-iq-portal": 4, "web-iq-add": 6, "web-iq-test": 4}, counts, f"{lang}: screens per Web IQ step")
+            # Elsewhere, Web IQ is one of the required labs and each table row states which part was run.
             flow = re.search(r'<ol class="flow iq-flow"[^>]*>(.*?)</ol>', text, re.S).group(1)
             chip = next(li for li in re.findall(r"<li>(.*?)</li>", flow, re.S) if "Microsoft IQ" in li)
-            self.assertNotIn("Web IQ", chip.split("scope-badge")[0], f"{lang}: the required labs of the roadmap do not include Web IQ")
+            parts = chip.split("scope-badge")
+            self.assertIn("Web IQ", parts[0], f"{lang}: the required labs of the roadmap include Web IQ")
+            self.assertIn("Work IQ", parts[1], f"{lang}: Work IQ and Fabric IQ stay intro cards")
             glance = lab7_cells(re.search(rf'<table[^>]*aria-label="{re.escape(words["glance"])}"[^>]*>(.*?)</table>', text, re.S).group(1))
-            for index in (2, 4):
-                self.assertNotIn("Web IQ", glance[index], f"{lang}: the Lab 7 level and announcement columns describe the Foundry Web search tool")
+            self.assertNotIn(PHRASES[lang]["no_run"].lower(), glance[2].lower(), f"{lang}: no Web IQ step is left unrun")
+            self.assertIn(PHRASES[lang]["run"].lower(), glance[2].lower(), f"{lang}: the Web IQ steps and the built-in comparison are run")
+            self.assertIn("Web IQ", glance[4], f"{lang}: the announcement column carries the Web IQ service status")
             check = lab7_cells(re.search(rf'<table[^>]*aria-label="{re.escape(words["check"])}"[^>]*>(.*?)</table>', text, re.S).group(1))
-            self.assertNotIn(words["resource"], check[1], f"{lang}: Lab 7 did not run and does not report on a Web IQ resource")
-            self.assertNotIn("Book of News", check[2], f"{lang}: the Web IQ service announcement belongs to the Lab 15 row")
+            self.assertIn("Book of News", check[2], f"{lang}: the Web IQ service announcement is in the Lab 7 row")
+            self.assertNotIn(PHRASES[lang]["no_run"].lower(), check[1].lower(), f"{lang}: the Web IQ resource, portal and tool were run")
+            self.assertIn(PHRASES[lang]["run"].lower(), check[1].lower())
 
-    def test_foundry_iq_and_web_search_are_required_labs_with_sample_and_galleries(self):
+    def test_foundry_iq_and_web_iq_are_required_labs_with_sample_and_galleries(self):
         data = LabMapTests.load()
         labs = [lab for lab in data["labs"] if lab["enabled"]]
         keys = [lab["key"] for lab in labs]
@@ -546,7 +575,7 @@ class LabMapTests(unittest.TestCase):
             "ignite-foundry-iq", "ignite-web-iq",
             "ignite-start", "ignite-harness", "ignite-observe", "ignite-improve",
             "ignite-insights", "ignite-evaluator", "ignite-evaluation", "ignite-optimize",
-            "ignite-hosted-agent", "ignite-fleet", "ignite-cost", "ignite-web-iq-api",
+            "ignite-hosted-agent", "ignite-fleet", "ignite-cost",
         } | {f"step-{chapter['id']}" for chapter in GuideDataTests.load(lang)["chapters"] if chapter["id"] != "monitoring-setup"}
         self.assertEqual(original, set(assigned))
         existing = known_ids(GUIDES[lang][0])
@@ -609,17 +638,23 @@ class LabMapTests(unittest.TestCase):
                 self.assertIn(f'href="#{ref}"', body, f"{lang}: the {card} card links to its reference guide")
             self.assertNotIn("verification-badge", section, "reference guides are not verified labs")
 
-    def test_web_iq_api_lab_is_optional_last_and_labeled_as_not_run(self):
-        not_run = {"ko": "직접 실행하지 않았습니다", "en": "We did not run this lab"}
+    def test_web_iq_is_one_required_portal_lab_and_the_operator_prepares_it_in_the_portal(self):
+        # The optional "call Web IQ directly" lab (REST and curl) was merged into Lab 7, so the lab list ends with the cost lab.
         for lang in ("ko", "en"):
             labs = [lab for lab in self.load(lang)["labs"] if lab["enabled"]]
-            lab = labs[-1]
-            self.assertEqual("web-iq-api", lab["key"])
-            self.assertFalse(lab["required"])
-            self.assertEqual(["web-iq"], lab["prerequisites"])
-            section = re.search(r'<section[^>]*id="ignite-web-iq-api"[^>]*>(.*?)</section>', parse(GUIDES[lang][0])[1], re.S).group(1)
-            self.assertIn(not_run[lang], section)
-            self.assertNotIn("data-lab-gallery", section, "a lab without captured screens has no gallery")
+            self.assertEqual("cost", labs[-1]["key"])
+            self.assertNotIn("web-iq-api", [lab["key"] for lab in labs])
+            lab = next(lab for lab in labs if lab["key"] == "web-iq")
+            self.assertTrue(lab["required"])
+            self.assertEqual(["agent", "observe"], lab["prerequisites"])
+            self.assertEqual(len(lab["screens"]), 2, "one badge for the captured Web IQ steps and one for the captured comparison")
+        for name in GUIDES["ko"][1:] + GUIDES["en"][1:]:
+            text = parse(name)[1]
+            self.assertNotIn("iq-prep-web-api", text)
+            block = text.split('id="iq-prep-web"', 1)[1].split('<div class="notice warning">', 1)[0]
+            for needle in ("Microsoft.WebIQ", "Resource providers", "Cost analysis"):
+                self.assertIn(needle, block, f"{name}: the Web IQ preparation names {needle}")
+            self.assertNotRegex(block, r"\baz\s+\w+", f"{name}: the Web IQ preparation is done in the portal, not with the CLI")
 
     def test_all_observed_sections_belong_to_the_lab_or_common_flow(self):
         for lang in ("ko", "en"):
@@ -655,7 +690,8 @@ class IgnitePart2Tests(unittest.TestCase):
         for lang in ("ko", "en"):
             shots = self.load(lang)["shots"]
             self.assertEqual([], [shot["image"] for shot in shots if not (ROOT / shot["image"]).is_file()], lang)
-            self.assertEqual([f"{number:02d}" for number in range(1, len(shots) + 1)], [shot["id"][:2] for shot in shots])
+            # Numbers are consecutive from 1 and written with at least two digits (99, 100, ... once the list passes 99 screens).
+            self.assertEqual([f"{number:02d}" for number in range(1, len(shots) + 1)], [shot["id"].split("-", 1)[0] for shot in shots])
             self.assertTrue(all(self.SHOT_KEYS <= shot.keys() for shot in shots))
             used[lang] = {shot["image"] for shot in shots}
         # The Korean edition owns the ko/ folder; the English edition reuses its screens unless the screen showed Korean input (those live in en/).

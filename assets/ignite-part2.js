@@ -19,7 +19,7 @@
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   })[character]);
   const position = (box, shot) => `left:${box.x / shot.width * 100}%;top:${box.y / shot.height * 100}%;width:${box.width / shot.width * 100}%;height:${box.height / shot.height * 100}%`;
-  const number = shot => shot.id.slice(0, 2);
+  const number = shot => shot.id.split("-", 1)[0];
   const imageMarkup = shot => `<span class="image-surface">
     <img src="${escape(shot.image)}" width="${shot.width}" height="${shot.height}" alt="${escape(t("ignite.imageAlt", {title: shot.title}))}" loading="lazy" decoding="async">
     ${shot.hotspots.map((box, index) => `<span class="hotspot" style="${position(box, shot)}" title="${escape(box.label)}"><b>${index + 1}</b></span>`).join("")}

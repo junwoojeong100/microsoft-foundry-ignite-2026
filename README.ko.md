@@ -2,7 +2,7 @@
 
 [English](README.md) · **한국어**
 
-Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한글 실습자·운영자 가이드**입니다. Microsoft IQ를 개요의 첫 항목으로 두고, 직접 실행한 범위는 **필수 실습 1~7(로그인 → 에이전트 → Foundry IQ·Web search 도구)·선택 실습 8~14(하네스·개선 루프·Hosted agent·Manage·비용)**, 미검증 기능은 **소개 카드와 공식 문서**로 안내합니다. 선택 실습 15(Web IQ 직접 호출)와 **참조 가이드**(Work IQ·Fabric IQ 연결 방법, Microsoft Copilot 하네스·SDK 2.0 시작, GitHub Copilot 업데이트)는 공식 문서를 정리한 것이며 직접 실행하지 않았습니다. Foundry IQ(이전 Azure AI Search)·Microsoft Copilot SDK(이전 GitHub Copilot SDK)·Microsoft Copilot 하네스(GitHub Copilot 하네스에서 발전)처럼 이름이 바뀐 것은 [이름 변경 한눈에 보기](index.html#ignite-renamed)에 정리했습니다. Work IQ·Fabric IQ와 **Microsoft Copilot SDK 2.0·Voice agents·비용 관리의 여러 층**을 설명하며, 발표 상태와 실제 검증 수준을 구분합니다.
+Microsoft Ignite 2026의 **Microsoft IQ와 Microsoft Foundry를 설명하는 한글 실습자·운영자 가이드**입니다. Microsoft IQ를 개요의 첫 항목으로 두고, 직접 실행한 범위는 **필수 실습 1~7(로그인 → 에이전트 → Foundry IQ·Web IQ)·선택 실습 8~14(하네스·개선 루프·Hosted agent·Manage·비용)**, 미검증 기능은 **소개 카드와 공식 문서**로 안내합니다. 실습 7(Web IQ, 포털 중심·CLI 없음)은 Azure Portal·Web IQ 포털·Foundry 포털에서 참가자 권한 계정으로 직접 실행했고, **참조 가이드**(Work IQ·Fabric IQ 연결 방법, Microsoft Copilot 하네스·SDK 2.0 시작, GitHub Copilot 업데이트)는 공식 문서를 정리한 것이며 직접 실행하지 않았습니다. Foundry IQ(이전 Azure AI Search)·Microsoft Copilot SDK(이전 GitHub Copilot SDK)·Microsoft Copilot 하네스(GitHub Copilot 하네스에서 발전)처럼 이름이 바뀐 것은 [이름 변경 한눈에 보기](index.html#ignite-renamed)에 정리했습니다. Work IQ·Fabric IQ와 **Microsoft Copilot SDK 2.0·Voice agents·비용 관리의 여러 층**을 설명하며, 발표 상태와 실제 검증 수준을 구분합니다.
 
 > 운영자가 **계정·리소스 그룹(RG)·권한**을 준비하고, 참가자는 **본인 RG 안에서 Foundry·프로젝트·모델·관측성을 직접 만듭니다.** **실습자 가이드의 모든 화면·영상은 2026.11.18에 North Central US에서 참가자 권한 계정으로 새로 촬영했습니다.** **영문판**(`index.en.html`·`operator.en.html`)은 같은 구조의 번역본이며 **화면에 한글이 있던 화면·영상 구간은 영어 입력으로 2026.11.19(KST, UTC로는 11.18 저녁)에 다시 촬영**했습니다. PPT는 보류입니다.
 
@@ -18,7 +18,7 @@ Foundry 가이드는 [junwoojeong100/internal-guest-hands-on-guide](https://gith
 | 4 | Prompt Agent 만들고 실행하기 | 필수 |
 | 5 | Monitor·Traces로 확인하기 | 필수 |
 | 6 | Foundry IQ로 에이전트에 지식 연결하기(운영자 사전 준비 필요) | 필수 |
-| 7 | Foundry의 Web search 도구로 최신 웹 정보 연결하기 | 필수 |
+| 7 | Web IQ로 에이전트에 최신 웹 정보 연결하기(포털만 사용·CLI 없음 · 직접 실행, 운영자 사전 준비 필요) | 필수 |
 | 8 | 하네스 에이전트 만들고 실행·관찰하기 | 선택 |
 | 9 | Insights로 개선할 문제 찾기 | 선택 |
 | 10 | 평가자를 만들고 평가 실행하기 | 선택 |
@@ -26,11 +26,10 @@ Foundry 가이드는 [junwoojeong100/internal-guest-hands-on-guide](https://gith
 | 12 | Hosted agent 호출하고 관찰하기(운영자가 사전 배포) | 선택 |
 | 13 | Manage로 운영·비용·정책 보기 | 선택 |
 | 14 | 비용 보기와 토큰 예산(Cost Control) 만들기 | 선택 |
-| 15 | Web IQ를 직접 호출해 보기(별도 리소스 · 문서 기준, 직접 실행하지 않음) | 선택 |
 
 ## 소개 카드
 
-직접 실행하지 않은 기능은 [`#ignite-learn-more`](index.html#ignite-learn-more)의 소개 카드로 안내합니다. Work IQ·Fabric IQ와 [Microsoft Copilot SDK 2.0](index.html#learn-copilot-sdk)·[Voice agents](index.html#learn-voice-agents)·[비용 관리](index.html#learn-cost-management) 등을 개념·구성별 상태·실습하지 않는 이유·공식 문서 링크·확인 수준 배지로 정리했으며, 문서만 확인한 내용을 검증된 실습으로 쓰지 않습니다. **Foundry IQ·Hosted agents는 실습과 연결된 개념 카드**이고, Web IQ는 직접 실행한 실습이 없습니다(실습 7은 Foundry Web search 도구 실습이며 Web IQ 카드는 문서 기준 선택 실습 15로 연결됩니다). Microsoft Copilot 하네스·GitHub Copilot SDK·Microsoft Copilot SDK의 이름과 관계는 [이름 정리](index.html#ignite-harness-names)에 설명합니다. Toolboxes·Safety는 후보 점검을 하지 못했으며 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다. Work IQ·Fabric IQ의 연결 방법, Microsoft Copilot 하네스·SDK 2.0 시작, GitHub Copilot의 Ignite 2026 업데이트는 [참조 가이드](index.html#ignite-reference-guides)에 정리했습니다.
+직접 실행하지 않은 기능은 [`#ignite-learn-more`](index.html#ignite-learn-more)의 소개 카드로 안내합니다. Work IQ·Fabric IQ와 [Microsoft Copilot SDK 2.0](index.html#learn-copilot-sdk)·[Voice agents](index.html#learn-voice-agents)·[비용 관리](index.html#learn-cost-management) 등을 개념·구성별 상태·실습하지 않는 이유·공식 문서 링크·확인 수준 배지로 정리했으며, 문서만 확인한 내용을 검증된 실습으로 쓰지 않습니다. **Foundry IQ·Web IQ·Hosted agents는 실습과 연결된 개념 카드**이고, 실습 7(Web IQ)은 리소스·포털·도구 연결 단계와 Foundry 내장 Web search 도구 비교를 모두 직접 실행했다고 카드 배지에 적었습니다. Microsoft Copilot 하네스·GitHub Copilot SDK·Microsoft Copilot SDK의 이름과 관계는 [이름 정리](index.html#ignite-harness-names)에 설명합니다. Toolboxes·Safety는 후보 점검을 하지 못했으며 기능이 없거나 참가자 권한에서 실패했다고 단정하지 않습니다. Work IQ·Fabric IQ의 연결 방법, Microsoft Copilot 하네스·SDK 2.0 시작, GitHub Copilot의 Ignite 2026 업데이트는 [참조 가이드](index.html#ignite-reference-guides)에 정리했습니다.
 
 ## 가이드
 
@@ -44,7 +43,7 @@ flowchart LR
   O["Foundry 운영자 가이드<br/>계정·RG·권한·모델 쿼터"] -->|"계정·RG·역할·배정값"| P["Foundry 실습자 가이드<br/>로그인·MFA → 생성 → 실행·추적"]
 ```
 
-두 가이드는 라이트/다크 테마와 **복사 버튼**을 지원합니다. 실습자 가이드는 화면 54장(실습 1~5)·98장(가드레일과 실습 6~14)과 2분 37초 요약 영상·9분 27초 전체 영상(실습 1~5만)을 해당 실습에서 봅니다(영문판 영상은 2분 38초·9분 38초). CDN·빌드 없이 정적 파일로 열리며, 로컬에서는 다음처럼 확인합니다.
+두 가이드는 라이트/다크 테마와 **복사 버튼**을 지원합니다. 실습자 가이드는 화면 54장(실습 1~5)·119장(가드레일과 실습 6~14, Web IQ 21장 포함)과 2분 37초 요약 영상·9분 27초 전체 영상(실습 1~5만)을 해당 실습에서 봅니다(영문판 영상은 2분 38초·9분 38초). CDN·빌드 없이 정적 파일로 열리며, 로컬에서는 다음처럼 확인합니다.
 
 ```bash
 python3 -m http.server 8000   # http://localhost:8000/index.html · /operator.html (영문: /index.en.html · /operator.en.html)
@@ -106,14 +105,14 @@ python3 scripts/verify_workshop.py --config config/workshop.local.json
 | 모델·TPM | 일반 실습은 **`gpt-6.1-terra`를 개인별 TPM으로 배분**합니다((70 + 5) × 10,000 = 750,000 TPM은 계산 예시). Optimizer 등 모델 고정 설정은 지정 모델을 유지합니다. |
 | 리전 | 참가자 리전은 **North Central US**(`northcentralus`)로 통일합니다(공식 하네스 지원 리전, 2026.11.17 문서 기준). 포털의 Region 기본값은 East US이므로 목록에서 직접 고릅니다. 예제 설정·운영자 JSON·실습자 안내가 어긋나면 테스트가 실패합니다. |
 | 관측성 | 본인 RG의 Application Insights를 사용합니다. Foundry 리소스를 만들 때 Application insights를 함께 만들면 프로젝트에 자동 연결되고, Traces에 연결 안내가 보이면 Agent → Traces → **Connect → Create new resource**(대체 경로, 새 Application Insights와 `DefaultWorkspace-*`가 같은 RG에 생성)를 따릅니다. |
-| 필수 실습 6·7 준비 | **Foundry IQ(실습 6)**는 RG마다 serverless Azure AI Search 1개, 검색 서비스 관리 ID의 Cognitive Services User, 프로젝트 관리 ID의 Search Index Data Reader(프로젝트 생성 뒤)가 필요하고 임베딩 모델 쿼터(Standard ada-002는 이번 구독·지역에서 350K TPM)를 확인합니다. **Foundry Web search 도구(실습 7)**는 별도 Azure Web IQ 리소스 없이 실행하며 비용·데이터 경계 안내가 필요합니다. 상세는 [운영자 가이드 `#iq-prep`](operator.html#iq-prep)를 따릅니다. |
+| 필수 실습 6·7 준비 | **Foundry IQ(실습 6)**는 RG마다 serverless Azure AI Search 1개, 검색 서비스 관리 ID의 Cognitive Services User, 프로젝트 관리 ID의 Search Index Data Reader(프로젝트 생성 뒤)가 필요하고 임베딩 모델 쿼터(Standard ada-002는 이번 구독·지역에서 350K TPM)를 확인합니다. **Web IQ(실습 7)**는 유료 Azure 구독·구독에 `Microsoft.WebIQ` 공급자 등록·약관과 과금 승인이 필요합니다. 단계(리소스·Web IQ 포털·Foundry 도구 연결)는 구독 1곳에서 참가자 계정으로 직접 실행해 확인했으니 사용할 구독에서 리허설하세요. 참가자는 포털에서 리소스를 삭제할 수 없어 운영자가 지우며, 리소스를 만들 수 없는 참가자는 실습 7-5의 내장 Web search로 대신합니다. 상세는 [운영자 가이드 `#iq-prep`](operator.html#iq-prep)를 따릅니다. |
 | 선택 실습 준비 | 하네스·평가·Optimize·Manage(실습 8~13)는 개인 10,000 TPM으로 부족하고, 평가자 만들기의 Resolve(프로젝트 관리 ID의 Monitoring Reader)는 참가자가 누르면 권한 오류가 나므로 운영자가 할당합니다. Hosted agent(실습 12)는 운영자가 프로젝트마다 소스 ZIP을 배포합니다. 상세는 [운영자 가이드 `#part2-prep`](operator.html#part2-prep)를 따릅니다. |
 | 비공개 파일 | `.workshop-runs/<workshopId>/`(초기 암호 포함)는 Git·Pages에서 제외하고 승인된 비공개 저장소에 백업합니다. 참가자 암호는 별도 경로로 개별 전달합니다. |
 
 ## 검증 현황
 
-- **확인한 것:** 2026.11.18 North Central US에서 참가자 역할 3개만 가진 새 Internal Guest 계정 1개로 초기 암호 로그인·TOTP MFA 등록·재로그인과 실습 1~14를 처음부터 끝까지 실행하고 화면을 새로 촬영했습니다(영상은 실습 1~5만). 실습 6(Foundry IQ)은 운영자가 검색 서비스·역할을, 실습 12(Hosted agent)는 운영자가 에이전트를 미리 준비한 상태였습니다. 환경은 기존 RG의 리소스를 모두 지운 뒤 새로 만들었습니다(`gpt-6.1-terra` 10,000 TPM으로 필수 실습 1~5, 이후 실습은 운영자가 100,000 TPM으로 상향). Manage의 Cost·Compliance·Gateways는 생성·할당 없이 화면만 확인했습니다. 화면·영상은 계정·구독·테넌트 값을 가렸고 OCR로 개인 정보 문자열이 없는지 점검했습니다. [읽기 전용 검증 JSON](assets/verification.json)(ID는 0으로 대체)과 2026.11.08 로그인 검증 [JSON](assets/guest-auth-verification.json)을 제공합니다. **영문판**은 한글이 있던 화면·영상 구간을 같은 프로젝트·같은 참가자 계정으로 영어 입력을 써서 다시 촬영했고(`-en` 이름의 새 개체를 만들었으며 삭제는 없었습니다), 나머지 화면은 원래 촬영본을 재사용합니다. 실습 10의 Setup incomplete / Resolve 경고 화면은 Monitoring Reader가 이미 부여돼 있어 재현하지 못해, 영문판에는 "English screenshot in preparation" 자리표시 화면을 두고 단계 설명으로 경고를 안내합니다.
-- **아직 확인하지 않은 것:** **실습 15(Web IQ 직접 호출)와 참조 가이드(Work IQ·Fabric IQ 연결, Copilot SDK 시작, GitHub Copilot 업데이트)의 실행**, **여러 참가자의 동시 사용과 70명 규모**(Foundry IQ의 serverless Search 서비스 수 한도·임베딩 쿼터, Hosted agent 프로젝트별 일괄 배포), **Cost Control의 Send alert·Block usage·달러 예산**, **AI Gateway 생성·Publish·채널 연결·Optimize 후보 승격·하네스 에이전트의 Optimize 제출·Azure Policy 할당**(2026.11.17에 별도 환경에서만 확인), 별도 Azure Web IQ 리소스, SharePoint 지식 소스·지식 그래프, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000 TPM에서의 하네스 재현(2026.11.17 시험은 실패, 이번 재촬영은 100,000 TPM), 비용 데이터가 쌓인 뒤의 Cost 화면(Cost Management Reader 필요 여부), 고객 교육망, Microsoft Authenticator 푸시(촬영 계정은 TOTP로 등록). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
+- **확인한 것:** 2026.11.18 North Central US에서 참가자 역할 3개만 가진 새 Internal Guest 계정 1개로 초기 암호 로그인·TOTP MFA 등록·재로그인과 실습 1~14를 처음부터 끝까지 실행하고 화면을 새로 촬영했습니다(영상은 실습 1~5만). 실습 6(Foundry IQ)은 운영자가 검색 서비스·역할을, 실습 12(Hosted agent)는 운영자가 에이전트를 미리 준비한 상태였습니다. 환경은 기존 RG의 리소스를 모두 지운 뒤 새로 만들었습니다(`gpt-6.1-terra` 10,000 TPM으로 필수 실습 1~5, 이후 실습은 운영자가 100,000 TPM으로 상향). Manage의 Cost·Compliance·Gateways는 생성·할당 없이 화면만 확인했습니다. 화면·영상은 계정·구독·테넌트 값을 가렸고 OCR로 개인 정보 문자열이 없는지 점검했습니다. [읽기 전용 검증 JSON](assets/verification.json)(ID는 0으로 대체)과 2026.11.08 로그인 검증 [JSON](assets/guest-auth-verification.json)을 제공합니다. **영문판**은 한글이 있던 화면·영상 구간을 같은 프로젝트·같은 참가자 계정으로 영어 입력을 써서 다시 촬영했고(`-en` 이름의 새 개체를 만들었으며 삭제는 없었습니다), 나머지 화면은 원래 촬영본을 재사용합니다. 실습 10의 Setup incomplete / Resolve 경고 화면은 Monitoring Reader가 이미 부여돼 있어 재현하지 못해, 영문판에는 "English screenshot in preparation" 자리표시 화면을 두고 단계 설명으로 경고를 안내합니다. **실습 7(Web IQ)**은 2026.11.21에 같은 참가자 계정으로 Azure Portal·Web IQ 포털·Foundry 포털에서 다시 실행했습니다. 운영자가 `Microsoft.WebIQ` 공급자를 등록한 뒤 참가자가 Web IQ 리소스를 만들고, Playground에서 HTTP 200을 받고, Foundry Catalog의 Web IQ 도구를 연결해 질문한 뒤 Traces에서 `execute_tool mcp_WebIQ.web`을 확인했습니다. 화면 21장을 촬영했고(영문판은 그중 9장을 영어 입력으로 다시 촬영) 참가자는 포털에서 리소스를 삭제하지 못해 운영자가 CLI로 삭제했습니다.
+- **아직 확인하지 않은 것:** **참조 가이드(Work IQ·Fabric IQ 연결, Copilot SDK 시작, GitHub Copilot 업데이트)의 실행**, **여러 참가자의 동시 사용과 70명 규모**(Foundry IQ의 serverless Search 서비스 수 한도·임베딩 쿼터, Hosted agent 프로젝트별 일괄 배포, 참가자마다 자기 Web IQ AppID를 받는지), **Cost Control의 Send alert·Block usage·달러 예산**, **AI Gateway 생성·Publish·채널 연결·Optimize 후보 승격·하네스 에이전트의 Optimize 제출·Azure Policy 할당**(2026.11.17에 별도 환경에서만 확인), 다른 구독 유형의 Web IQ(이번에는 내부 구독 1곳), Custom MCP 연결 경로, Web IQ의 Entra ID 인증·Scopes·BYOL·Commerce·Auto, Cost analysis의 Web IQ 호출 비용, 스크립트가 새로 띄운 브라우저로 보낸 질문의 트레이스가 도착하지 않은 원인, SharePoint 지식 소스·지식 그래프, 운영 구독의 North Central US `gpt-6.1-terra` 쿼터, 10,000 TPM에서의 하네스 재현(2026.11.17 시험은 실패, 이번 재촬영은 100,000 TPM), 비용 데이터가 쌓인 뒤의 Cost 화면(Cost Management Reader 필요 여부), 고객 교육망, Microsoft Authenticator 푸시(촬영 계정은 TOTP로 등록). 개최 전 운영자 가이드의 필수 점검으로 확인하세요.
 - **공식 자료:** 기능 이름·상태(Preview/GA)는 2026.11.18에 Ignite 2026 [Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/)와 공식 블로그·Learn으로 대조했으며(표: [`#ignite-official-check`](index.html#ignite-official-check)), 발표된 모든 변경이 포털에 반영됐다고 단정하지 않습니다. 웹 문서 점검이 Foundry IQ·SDK·Voice 등의 기능 실행 검증을 뜻하지는 않습니다.
 
 ## 테스트

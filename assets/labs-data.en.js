@@ -110,14 +110,14 @@ window.LABS_DATA = {
     {
       "key": "web-iq",
       "enabled": true,
-      "title": "Connect current web information with the Foundry Web search tool",
-      "lead": "Compare general web search added directly (powered by Web IQ) with Web search in a toolbox (powered by Grounding with Bing Search). Ask the same question without creating a separate Azure Web IQ resource.",
+      "title": "Connect current web information to your agent with Web IQ",
+      "lead": "Create a Web IQ resource in the Azure portal, prepare the Playground and an API key in the Web IQ portal, then connect the Web IQ tool to a Foundry agent in the Foundry portal to get the latest news with sources. Every step uses portal screens and no CLI. If you cannot create the resource, use the Foundry built-in Web search tool (backed by Web IQ) instead.",
       "required": true,
-      "screens": ["2026-11-18 New Foundry · North Central US · participant account (3 roles)"],
+      "screens": ["Web IQ resource, portal and tool connection: 2026-11-21 Azure portal, Web IQ portal and New Foundry · participant account (3 roles) · 21 screens · paid subscription and provider registration by the operator required", "Built-in Web search comparison: 2026-11-18 New Foundry · North Central US · participant account (3 roles)"],
       "prerequisites": ["agent", "observe"],
       "sections": ["ignite-web-iq"],
-      "steps": [["ignite-web-iq-add"], ["ignite-web-iq-test"], ["ignite-web-iq-compare"]],
-      "more": ["toolbox", "work-iq", "cost-management"]
+      "steps": [["ignite-web-iq-resource"], ["ignite-web-iq-portal"], ["ignite-web-iq-add"], ["ignite-web-iq-test"], ["ignite-web-iq-compare"]],
+      "more": ["web-iq", "toolbox", "cost-management"]
     },
     {
       "key": "harness",
@@ -202,18 +202,6 @@ window.LABS_DATA = {
       "sections": ["ignite-cost"],
       "steps": [["ignite-cost-read"], ["ignite-cost-control-create"], ["ignite-cost-control-check"]],
       "more": ["cost-management"]
-    },
-    {
-      "key": "web-iq-api",
-      "enabled": true,
-      "title": "Call Web IQ directly (separate resource)",
-      "lead": "Create a separate Azure Web IQ resource and call the Web IQ API through the Playground, REST, and MCP with an AppID and an API key to understand the Web IQ service itself. We did not run this lab in this guide (based on official docs).",
-      "required": false,
-      "screens": ["No screens · based on official docs of 2026-11-21 · not run directly · paid subscription and operator approval required"],
-      "prerequisites": ["web-iq"],
-      "sections": ["ignite-web-iq-api"],
-      "steps": [["ignite-web-iq-api-resource"], ["ignite-web-iq-api-appid"], ["ignite-web-iq-api-playground"], ["ignite-web-iq-api-rest"], ["ignite-web-iq-api-mcp"], ["ignite-web-iq-api-compare"]],
-      "more": ["web-iq", "cost-management"]
     }
   ]
 };

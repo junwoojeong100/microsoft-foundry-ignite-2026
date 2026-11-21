@@ -3539,6 +3539,699 @@ window.IGNITE_DATA = {
      "height": 90
     }
    ]
+  },
+  {
+   "id": "99-webiq-resource-search",
+   "group": "web-iq-resource",
+   "title": "Find Microsoft Web IQ in the Azure portal",
+   "action": "Type Microsoft Web IQ in the search box at the top of the Azure portal. Select Microsoft Web IQ resources under Services (selecting Microsoft Web IQ under Marketplace also leads to the create page).",
+   "expected": "The results show Microsoft Web IQ resources under Services and Microsoft Web IQ under Marketplace. If they do not appear, the operator must register the Microsoft.WebIQ provider in the subscription.",
+   "image": "assets/ignite/screenshots/ko/99-webiq-resource-search.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Search box",
+     "x": 559,
+     "y": 1,
+     "width": 458,
+     "height": 38
+    },
+    {
+     "label": "Microsoft Web IQ resources (Services)",
+     "x": 547,
+     "y": 121,
+     "width": 494,
+     "height": 42
+    },
+    {
+     "label": "Microsoft Web IQ (Marketplace)",
+     "x": 547,
+     "y": 301,
+     "width": 494,
+     "height": 42
+    }
+   ]
+  },
+  {
+   "id": "100-webiq-resource-list",
+   "group": "web-iq-resource",
+   "title": "Microsoft Web IQ resources · Create",
+   "action": "On the Microsoft Web IQ resources list, select + Create. The list is empty at first.",
+   "expected": "The “No Microsoft Web IQ resources to display” message and the Create button appear. The Subscription filter is the workshop subscription.",
+   "image": "assets/ignite/screenshots/ko/100-webiq-resource-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Create (top)",
+     "x": 16,
+     "y": 132,
+     "width": 104,
+     "height": 40
+    },
+    {
+     "label": "Empty-list message",
+     "x": 607,
+     "y": 532,
+     "width": 387,
+     "height": 36
+    }
+   ]
+  },
+  {
+   "id": "101-webiq-create-basics",
+   "group": "web-iq-resource",
+   "title": "Create a Microsoft Web IQ resource · Basics",
+   "action": "Leave Subscription as it is and pick your own RG (rg-se01) under Resource group. In Name, enter a name that follows the naming rule the operator gave you (for example webiq-se02). Region is fixed to Global.",
+   "expected": "Resource group rg-se01 · Name webiq-se02 · Region Global are filled in. The orange notice at the top means you must read and accept the Terms of Use at the bottom before you can create the resource.",
+   "image": "assets/ignite/screenshots/ko/101-webiq-create-basics.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Resource group",
+     "x": 274,
+     "y": 434,
+     "width": 450,
+     "height": 32
+    },
+    {
+     "label": "Name",
+     "x": 274,
+     "y": 528,
+     "width": 450,
+     "height": 32
+    },
+    {
+     "label": "Region (fixed to Global)",
+     "x": 274,
+     "y": 567,
+     "width": 450,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "102-webiq-create-terms",
+   "group": "web-iq-resource",
+   "title": "Read the Warning and Terms, then Next",
+   "action": "Scroll down, read the Warning and Terms, select the “I confirm I have read and understood the notice and warning above.” checkbox, and then select Next.",
+   "expected": "The warning says data sent to Web IQ leaves the Azure compliance and geo boundary, the Data Protection Addendum does not apply and use incurs costs, and the key requirements include showing clickable citations for sourced claims.",
+   "image": "assets/ignite/screenshots/ko/102-webiq-create-terms.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Key requirements",
+     "x": 24,
+     "y": 406,
+     "width": 700,
+     "height": 152
+    },
+    {
+     "label": "Confirmation checkbox",
+     "x": 275,
+     "y": 742,
+     "width": 448,
+     "height": 26
+    },
+    {
+     "label": "Next",
+     "x": 116,
+     "y": 852,
+     "width": 88,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "103-webiq-create-review",
+   "group": "web-iq-resource",
+   "title": "Review + submit · Create",
+   "action": "Skip the Tags tab (Next), check the values on Review + submit, and then select Create.",
+   "expected": "The summary shows Subscription · Resource group · Name · Resource group location (North Central US), and the Basics and Tags tabs have green check marks. The last tab is named Review + submit, not Review + create.",
+   "image": "assets/ignite/screenshots/ko/103-webiq-create-review.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Validation passed",
+     "x": 20,
+     "y": 150,
+     "width": 172,
+     "height": 42
+    },
+    {
+     "label": "Summary of your entries",
+     "x": 16,
+     "y": 266,
+     "width": 438,
+     "height": 140
+    },
+    {
+     "label": "Create",
+     "x": 204,
+     "y": 852,
+     "width": 88,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "104-webiq-deployment-complete",
+   "group": "web-iq-resource",
+   "title": "Deployment complete · Go to resource",
+   "action": "When the deployment finishes, Your deployment is complete appears. Select Go to resource.",
+   "expected": "Your deployment is complete and the Deployment name and Resource group appear. Go to resource opens the resource group (rg-se01), not the Web IQ resource itself. Select the item of type Microsoft Web IQ resource in the list.",
+   "image": "assets/ignite/screenshots/ko/104-webiq-deployment-complete.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Your deployment is complete",
+     "x": 317,
+     "y": 185,
+     "width": 304,
+     "height": 31
+    },
+    {
+     "label": "Go to resource",
+     "x": 338,
+     "y": 406,
+     "width": 95,
+     "height": 21
+    }
+   ]
+  },
+  {
+   "id": "105-webiq-resource-overview",
+   "group": "web-iq-resource",
+   "title": "Web IQ resource · Go to Web IQ portal",
+   "action": "In the resource group list, open webiq-se02, which has the type Microsoft Web IQ resource. On Overview, select Go to Web IQ portal; it opens a new tab.",
+   "expected": "The resource name webiq-se02 | Microsoft Web IQ, Location Global, the “Manage this resource through the Microsoft Web IQ portal” notice and the Go to Web IQ portal button appear.",
+   "image": "assets/ignite/screenshots/ko/105-webiq-resource-overview.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Resource name",
+     "x": 54,
+     "y": 72,
+     "width": 336,
+     "height": 40
+    },
+    {
+     "label": "Location: Global",
+     "x": 293,
+     "y": 259,
+     "width": 234,
+     "height": 28
+    },
+    {
+     "label": "Go to Web IQ portal",
+     "x": 291,
+     "y": 506,
+     "width": 189,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "106-webiq-portal-select-resource",
+   "group": "web-iq-portal",
+   "title": "Web IQ portal · Select an Azure Resource",
+   "action": "Go to Web IQ portal first shows a “You’re leaving portal.azure.com” notice; select Continue. When you pick the same workshop account (Pick an account), the Web IQ portal opens the Select an Azure Resource window. Pick the Azure subscription and the Resource, and then select Finish.",
+   "expected": "The workshop subscription is selected as Azure subscription, the resource you just created (shown as resource name - RG name) as Resource, and Finish is enabled. This window appears only the first time you connect. It did not ask for a tenant ID.",
+   "image": "assets/ignite/screenshots/ko/106-webiq-portal-select-resource.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Azure subscription",
+     "x": 560,
+     "y": 354,
+     "width": 480,
+     "height": 40
+    },
+    {
+     "label": "Resource",
+     "x": 560,
+     "y": 446,
+     "width": 480,
+     "height": 40
+    },
+    {
+     "label": "Finish",
+     "x": 832,
+     "y": 595,
+     "width": 104,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "107-webiq-portal-ready",
+   "group": "web-iq-portal",
+   "title": "Web IQ portal · Setup complete",
+   "action": "When “You’re ready to use WebIQ” appears, select Try it out to go to the Playground. You can also select Skip.",
+   "expected": "The “Your setup is complete. Try a sample query in Playground or continue to the portal.” message appears. At this step the Web IQ portal creates the AppID and the default profile for the resource.",
+   "image": "assets/ignite/screenshots/ko/107-webiq-portal-ready.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Setup-complete message",
+     "x": 568,
+     "y": 246,
+     "width": 298,
+     "height": 40
+    },
+    {
+     "label": "Try it out",
+     "x": 824,
+     "y": 615,
+     "width": 104,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "108-webiq-playground-run",
+   "group": "web-iq-portal",
+   "title": "Playground · Run Request (HTTP 200)",
+   "action": "Check that the profile at the top left is webiq-se02 - Default, API Key is default and Verticals is Web, and then select Run Request. Read the Response on the right.",
+   "expected": "HTTP 200 and the JSON response (title, url, content and lastUpdatedAt in webResults) appear. A successful response means the resource, subscription and AppID are connected correctly. Select Code to see the same request as cURL, Python and JavaScript code.",
+   "image": "assets/ignite/screenshots/ko/108-webiq-playground-run.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Profile (AppID)",
+     "x": 13,
+     "y": 77,
+     "width": 269,
+     "height": 38
+    },
+    {
+     "label": "API Key: default",
+     "x": 316,
+     "y": 109,
+     "width": 364,
+     "height": 38
+    },
+    {
+     "label": "Verticals",
+     "x": 316,
+     "y": 187,
+     "width": 364,
+     "height": 38
+    },
+    {
+     "label": "Run Request",
+     "x": 316,
+     "y": 359,
+     "width": 364,
+     "height": 40
+    },
+    {
+     "label": "HTTP 200 · response",
+     "x": 1247,
+     "y": 16,
+     "width": 65,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "109-webiq-api-access",
+   "group": "web-iq-portal",
+   "title": "API access · Default API key",
+   "action": "Select API access in the left menu. On the API keys tab under Authentication, copy the key with the Copy API key icon of the default key. If there is no key, create one with Create API Key.",
+   "expected": "The Key Management & API access page shows Profile Name · AppID · Allowed Verticals · Per-vertical quota limits (Auto 2 QPS, All Others 15 QPS) and the default key (Expires: Never). The full key value is never shown, and this screenshot hides the AppID and part of the key.",
+   "image": "assets/ignite/screenshots/ko/109-webiq-api-access.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "AppID (hidden)",
+     "x": 1141,
+     "y": 123,
+     "width": 375,
+     "height": 28
+    },
+    {
+     "label": "Per-vertical quota limits",
+     "x": 316,
+     "y": 265,
+     "width": 169,
+     "height": 28
+    },
+    {
+     "label": "API keys tab",
+     "x": 316,
+     "y": 442,
+     "width": 69,
+     "height": 52
+    },
+    {
+     "label": "default key",
+     "x": 316,
+     "y": 607,
+     "width": 1256,
+     "height": 65
+    },
+    {
+     "label": "Copy API key",
+     "x": 813,
+     "y": 623,
+     "width": 32,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "110-webiq-agent-remove-toolbox",
+   "group": "web-iq-add",
+   "title": "Remove the default toolbox of the new agent",
+   "action": "When you create the new agent workshop-webiq-agent-en (same way as Lab 4-1), a toolbox that contains Web search is attached automatically. Select Remove in the toolbox’s Actions menu.",
+   "expected": "Tools shows workshop-webiq-agent-en-toolbox with Web search inside, and the Actions menu has Remove.",
+   "image": "assets/ignite/screenshots/en/110-webiq-agent-remove-toolbox.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Toolbox",
+     "x": 240,
+     "y": 597,
+     "width": 435,
+     "height": 52
+    },
+    {
+     "label": "Actions",
+     "x": 667,
+     "y": 607,
+     "width": 32,
+     "height": 32
+    },
+    {
+     "label": "Remove",
+     "x": 672,
+     "y": 749,
+     "width": 136,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "111-webiq-add-tools-menu",
+   "group": "web-iq-add",
+   "title": "Tools → Add → Add tools",
+   "action": "After removing the toolbox, select Add in the Tools area and then Add tools.",
+   "expected": "The Add menu shows Web search · Code interpreter · Tool search · Add tools · Add skills · Create toolbox · Browse toolboxes.",
+   "image": "assets/ignite/screenshots/en/111-webiq-add-tools-menu.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Add",
+     "x": 240,
+     "y": 669,
+     "width": 75,
+     "height": 40
+    },
+    {
+     "label": "Add tools",
+     "x": 245,
+     "y": 519,
+     "width": 318,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "112-webiq-catalog-webiq",
+   "group": "web-iq-add",
+   "title": "Select a tool · Catalog · Web IQ",
+   "action": "In the Select a tool window, select the Catalog tab and type Web IQ in the search box. Select the Web IQ (Remote MCP) card and then Create.",
+   "expected": "The Web IQ card (Microsoft Web IQ provides AI agents with up-to-date, accurate, and authoritative grounding content…, Remote MCP) is selected with a check mark and Create is enabled. Azure - Foundry IQ, shown next to it, is for the knowledge connection in Lab 6.",
+   "image": "assets/ignite/screenshots/en/112-webiq-catalog-webiq.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Catalog tab",
+     "x": 297,
+     "y": 142,
+     "width": 72,
+     "height": 40
+    },
+    {
+     "label": "Search box",
+     "x": 253,
+     "y": 251,
+     "width": 864,
+     "height": 38
+    },
+    {
+     "label": "Web IQ card",
+     "x": 208,
+     "y": 348,
+     "width": 290,
+     "height": 96
+    },
+    {
+     "label": "Create",
+     "x": 1226,
+     "y": 758,
+     "width": 76,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "113-webiq-connect-dialog",
+   "group": "web-iq-add",
+   "title": "Connect the Web IQ tool",
+   "action": "Name (WebIQ) and Remote MCP Server endpoint (https://api.microsoft.ai/v3/mcp) are prefilled. Paste the API key you copied in the Web IQ portal into the value field of the x-apikey credential and select Connect.",
+   "expected": "Authentication is Key-based and the credential name is x-apikey. The key value is shown as dots and is blurred in this screenshot too. After Connect, WebIQ (https://api.microsoft.ai/v3/mcp) appears under Tools.",
+   "image": "assets/ignite/screenshots/en/113-webiq-connect-dialog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Name",
+     "x": 442,
+     "y": 352,
+     "width": 716,
+     "height": 38
+    },
+    {
+     "label": "Remote MCP Server endpoint",
+     "x": 442,
+     "y": 420,
+     "width": 716,
+     "height": 38
+    },
+    {
+     "label": "Credential name x-apikey",
+     "x": 441,
+     "y": 550,
+     "width": 108,
+     "height": 28
+    },
+    {
+     "label": "API key value (hidden)",
+     "x": 579,
+     "y": 544,
+     "width": 535,
+     "height": 40
+    },
+    {
+     "label": "Connect",
+     "x": 993,
+     "y": 613,
+     "width": 87,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "114-webiq-approval-setting",
+   "group": "web-iq-add",
+   "title": "Tool approval · Always auto-approve all tools",
+   "action": "In the ⋮ (Actions) menu of WebIQ under Tools, select Edit to open the Configure WebIQ window. Change Approval setting to Always auto-approve all tools and select Apply.",
+   "expected": "The Approval setting list shows Never auto-approve tools (default) · Always auto-approve all tools · Always auto-approve specific tools. With the default, every tool call needs your approval.",
+   "image": "assets/ignite/screenshots/en/114-webiq-approval-setting.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Approval setting",
+     "x": 630,
+     "y": 541,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Always auto-approve all tools",
+     "x": 633,
+     "y": 612,
+     "width": 334,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "115-webiq-tool-saved",
+   "group": "web-iq-add",
+   "title": "Saved · Version 2",
+   "action": "Select Save and the agent is saved as Version 2.",
+   "expected": "Tools shows WebIQ (https://api.microsoft.ai/v3/mcp) · Model Context Protocol (MCP), the Version is 2 and Save is disabled.",
+   "image": "assets/ignite/screenshots/en/115-webiq-tool-saved.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "WebIQ tool",
+     "x": 240,
+     "y": 657,
+     "width": 459,
+     "height": 60
+    },
+    {
+     "label": "Version 2",
+     "x": 1021,
+     "y": 69,
+     "width": 183,
+     "height": 30
+    },
+    {
+     "label": "Save (disabled)",
+     "x": 1204,
+     "y": 64,
+     "width": 64,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "116-webiq-answer",
+   "group": "web-iq-test",
+   "title": "Ask with the Web IQ tool",
+   "action": "In New chat, send this lab's question: Based on the latest official news, tell me what Microsoft IQ, announced at Microsoft Ignite 2026, is.",
+   "expected": "It answers in English with what it got from the web and source links. Below the response you see the gpt-6.1-terra 3s 16787t chip and mcp_list_tools · WebIQ · message.",
+   "image": "assets/ignite/screenshots/en/116-webiq-answer.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Question",
+     "x": 773,
+     "y": 224,
+     "width": 774,
+     "height": 28
+    },
+    {
+     "label": "Answer and sources",
+     "x": 756,
+     "y": 271,
+     "width": 808,
+     "height": 88
+    },
+    {
+     "label": "Response info (model, time, tokens, tool)",
+     "x": 756,
+     "y": 359,
+     "width": 620,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "117-webiq-traces-list",
+   "group": "web-iq-test",
+   "title": "Traces · The trace has arrived",
+   "action": "Open the agent’s Traces tab. A trace arrives tens of seconds to a few minutes after you ask, so refresh and wait.",
+   "expected": "One trace for the question you just sent appears as Completed (3.878s · 15,111 in / 112 out). Agent version is 2.",
+   "image": "assets/ignite/screenshots/en/117-webiq-traces-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Trace of the question you just sent",
+     "x": 241,
+     "y": 409,
+     "width": 1359,
+     "height": 52
+    }
+   ]
+  },
+  {
+   "id": "118-webiq-trace-detail",
+   "group": "web-iq-test",
+   "title": "Trace details · execute_tool mcp_WebIQ.web",
+   "action": "Select the Trace ID to open the details. Find the Execute Tool row under Trajectories, and read the evidence the tool returned under Input + Output on the right.",
+   "expected": "With 3 spans · 1 chat call · 1 tool call, execute_tool mcp_WebIQ.web and chat gpt-6.1-terra appear under invoke_agent workshop-webiq-agent-en:2. The Tool entry under Output contains webResults (title, url, content).",
+   "image": "assets/ignite/screenshots/en/118-webiq-trace-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Execute Tool: mcp_WebIQ.web",
+     "x": 275,
+     "y": 216,
+     "width": 165,
+     "height": 28
+    },
+    {
+     "label": "Input + Output",
+     "x": 1034,
+     "y": 207,
+     "width": 101,
+     "height": 28
+    },
+    {
+     "label": "webResults returned by the tool",
+     "x": 1053,
+     "y": 544,
+     "width": 30,
+     "height": 22
+    }
+   ]
+  },
+  {
+   "id": "119-webiq-usage",
+   "group": "web-iq-test",
+   "title": "Web IQ portal · Usage dashboard",
+   "action": "Open Usage in the left menu of the Web IQ portal. Calls are counted and shown after the date changes.",
+   "expected": "Under “Showing data through Nov 21, 2026” you see Total Usage 3 · Peak Daily Volume 3 · Success Rate 100.0% and the API Requests bar for 11/21. Those 3 calls are the Playground requests sent the night before. When we opened the page the same night, “Showing data through” was the previous day and the values were N/A.",
+   "image": "assets/ignite/screenshots/ko/119-webiq-usage.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Data-through date",
+     "x": 1353,
+     "y": 32,
+     "width": 219,
+     "height": 24
+    },
+    {
+     "label": "Total Usage · Success Rate",
+     "x": 316,
+     "y": 132,
+     "width": 1256,
+     "height": 112
+    },
+    {
+     "label": "API Requests",
+     "x": 341,
+     "y": 312,
+     "width": 130,
+     "height": 36
+    }
+   ]
   }
  ]
 };

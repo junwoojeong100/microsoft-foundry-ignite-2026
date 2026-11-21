@@ -3559,6 +3559,699 @@ window.IGNITE_DATA = {
      "height": 90
     }
    ]
+  },
+  {
+   "id": "99-webiq-resource-search",
+   "group": "web-iq-resource",
+   "title": "Azure Portal에서 Microsoft Web IQ 찾기",
+   "action": "Azure Portal 위쪽 검색창에 Microsoft Web IQ를 입력합니다. Services의 Microsoft Web IQ resources를 선택합니다(Marketplace의 Microsoft Web IQ를 선택해도 만들기로 갑니다).",
+   "expected": "검색 결과에 Services의 Microsoft Web IQ resources와 Marketplace의 Microsoft Web IQ가 보입니다. 보이지 않으면 운영자가 구독에 Microsoft.WebIQ 공급자를 등록해야 합니다.",
+   "image": "assets/ignite/screenshots/ko/99-webiq-resource-search.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "검색창",
+     "x": 559,
+     "y": 1,
+     "width": 458,
+     "height": 38
+    },
+    {
+     "label": "Microsoft Web IQ resources(Services)",
+     "x": 547,
+     "y": 121,
+     "width": 494,
+     "height": 42
+    },
+    {
+     "label": "Microsoft Web IQ(Marketplace)",
+     "x": 547,
+     "y": 301,
+     "width": 494,
+     "height": 42
+    }
+   ]
+  },
+  {
+   "id": "100-webiq-resource-list",
+   "group": "web-iq-resource",
+   "title": "Microsoft Web IQ resources · Create",
+   "action": "Microsoft Web IQ resources 목록에서 + Create를 선택합니다. 처음에는 목록이 비어 있습니다.",
+   "expected": "“No Microsoft Web IQ resources to display” 안내와 Create 단추가 보입니다. 필터의 Subscription은 워크샵 구독입니다.",
+   "image": "assets/ignite/screenshots/ko/100-webiq-resource-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Create(위쪽)",
+     "x": 16,
+     "y": 132,
+     "width": 104,
+     "height": 40
+    },
+    {
+     "label": "빈 목록 안내",
+     "x": 607,
+     "y": 532,
+     "width": 387,
+     "height": 36
+    }
+   ]
+  },
+  {
+   "id": "101-webiq-create-basics",
+   "group": "web-iq-resource",
+   "title": "Create a Microsoft Web IQ resource · Basics",
+   "action": "Subscription은 그대로 두고 Resource group에서 본인 RG(rg-se01)를 고릅니다. Name에는 운영자가 알려 준 이름 규칙의 이름(예: webiq-se02)을 입력합니다. Region은 Global로 고정입니다.",
+   "expected": "Resource group rg-se01 · Name webiq-se02 · Region Global이 채워집니다. 위쪽 주황색 안내는 맨 아래 Terms of Use를 읽고 동의해야 만들 수 있다는 뜻입니다.",
+   "image": "assets/ignite/screenshots/ko/101-webiq-create-basics.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Resource group",
+     "x": 274,
+     "y": 434,
+     "width": 450,
+     "height": 32
+    },
+    {
+     "label": "Name",
+     "x": 274,
+     "y": 528,
+     "width": 450,
+     "height": 32
+    },
+    {
+     "label": "Region(Global 고정)",
+     "x": 274,
+     "y": 567,
+     "width": 450,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "102-webiq-create-terms",
+   "group": "web-iq-resource",
+   "title": "Warning·Terms 확인 후 Next",
+   "action": "아래로 스크롤해 Warning과 Terms를 읽고 “I confirm I have read and understood the notice and warning above.” 확인란을 선택한 뒤 Next를 선택합니다.",
+   "expected": "Web IQ에 보낸 데이터가 Azure 규정 준수·지역 경계 밖으로 나가고 Data Protection Addendum이 적용되지 않으며 비용이 든다는 경고와, 출처를 클릭할 수 있는 인용으로 표시하라는 등의 핵심 요구 사항이 보입니다.",
+   "image": "assets/ignite/screenshots/ko/102-webiq-create-terms.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "핵심 요구 사항",
+     "x": 24,
+     "y": 406,
+     "width": 700,
+     "height": 152
+    },
+    {
+     "label": "동의 확인란",
+     "x": 275,
+     "y": 742,
+     "width": 448,
+     "height": 26
+    },
+    {
+     "label": "Next",
+     "x": 116,
+     "y": 852,
+     "width": 88,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "103-webiq-create-review",
+   "group": "web-iq-resource",
+   "title": "Review + submit · Create",
+   "action": "Tags 탭은 건너뛰고(Next) Review + submit에서 값을 확인한 뒤 Create를 선택합니다.",
+   "expected": "Subscription · Resource group · Name · Resource group location(North Central US) 요약이 보이고 Basics와 Tags 탭에 초록 확인 표시가 있습니다. 마지막 탭 이름은 Review + create가 아니라 Review + submit입니다.",
+   "image": "assets/ignite/screenshots/ko/103-webiq-create-review.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "검증 통과 표시",
+     "x": 20,
+     "y": 150,
+     "width": 172,
+     "height": 42
+    },
+    {
+     "label": "입력값 요약",
+     "x": 16,
+     "y": 266,
+     "width": 438,
+     "height": 140
+    },
+    {
+     "label": "Create",
+     "x": 204,
+     "y": 852,
+     "width": 88,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "104-webiq-deployment-complete",
+   "group": "web-iq-resource",
+   "title": "배포 완료 · Go to resource",
+   "action": "배포가 끝나면 Your deployment is complete가 나옵니다. Go to resource를 선택합니다.",
+   "expected": "Your deployment is complete와 Deployment name·Resource group이 보입니다. Go to resource는 Web IQ 리소스가 아니라 리소스 그룹(rg-se01)을 엽니다. 목록에서 Microsoft Web IQ resource 형식의 항목을 선택합니다.",
+   "image": "assets/ignite/screenshots/ko/104-webiq-deployment-complete.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Your deployment is complete",
+     "x": 317,
+     "y": 185,
+     "width": 304,
+     "height": 31
+    },
+    {
+     "label": "Go to resource",
+     "x": 338,
+     "y": 406,
+     "width": 95,
+     "height": 21
+    }
+   ]
+  },
+  {
+   "id": "105-webiq-resource-overview",
+   "group": "web-iq-resource",
+   "title": "Web IQ 리소스 · Go to Web IQ portal",
+   "action": "리소스 그룹의 목록에서 Microsoft Web IQ resource 형식의 webiq-se02을 엽니다. Overview의 Go to Web IQ portal을 선택하면 새 탭이 열립니다.",
+   "expected": "리소스 이름 webiq-se02 | Microsoft Web IQ, Location Global, “Manage this resource through the Microsoft Web IQ portal” 안내와 Go to Web IQ portal 단추가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/105-webiq-resource-overview.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "리소스 이름",
+     "x": 54,
+     "y": 72,
+     "width": 336,
+     "height": 40
+    },
+    {
+     "label": "Location: Global",
+     "x": 293,
+     "y": 259,
+     "width": 234,
+     "height": 28
+    },
+    {
+     "label": "Go to Web IQ portal",
+     "x": 291,
+     "y": 506,
+     "width": 189,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "106-webiq-portal-select-resource",
+   "group": "web-iq-portal",
+   "title": "Web IQ 포털 · Azure 리소스 선택",
+   "action": "Go to Web IQ portal을 누르면 “You’re leaving portal.azure.com” 안내가 나오고 Continue를 선택합니다. 같은 워크샵 계정을 고르면(Pick an account) Web IQ 포털이 Select an Azure Resource 창을 엽니다. Azure subscription과 Resource를 고르고 Finish를 선택합니다.",
+   "expected": "Azure subscription에 워크샵 구독, Resource에 방금 만든 리소스(형식: 리소스 이름 - RG 이름)가 선택되고 Finish가 활성화됩니다. 이 창은 처음 연결할 때만 나옵니다. 테넌트 ID를 묻지 않았습니다. 사진의 리소스 이름 webiq-se02-lab은 촬영 환경의 예시이며, 실제 화면에는 방금 만든 리소스가 나옵니다.",
+   "image": "assets/ignite/screenshots/ko/106-webiq-portal-select-resource.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Azure subscription",
+     "x": 560,
+     "y": 354,
+     "width": 480,
+     "height": 40
+    },
+    {
+     "label": "Resource",
+     "x": 560,
+     "y": 446,
+     "width": 480,
+     "height": 40
+    },
+    {
+     "label": "Finish",
+     "x": 832,
+     "y": 595,
+     "width": 104,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "107-webiq-portal-ready",
+   "group": "web-iq-portal",
+   "title": "Web IQ 포털 · 설정 완료",
+   "action": "“You’re ready to use WebIQ”가 나오면 Try it out을 선택해 Playground로 갑니다. Skip을 선택해도 됩니다.",
+   "expected": "“Your setup is complete. Try a sample query in Playground or continue to the portal.” 안내가 보입니다. 이 단계에서 Web IQ 포털이 리소스용 AppID와 기본 프로필을 만듭니다. 사진의 리소스 이름 webiq-se02-lab은 촬영 환경의 예시이며, 실제 화면에는 방금 만든 리소스가 나옵니다.",
+   "image": "assets/ignite/screenshots/ko/107-webiq-portal-ready.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "설정 완료 안내",
+     "x": 568,
+     "y": 246,
+     "width": 298,
+     "height": 40
+    },
+    {
+     "label": "Try it out",
+     "x": 824,
+     "y": 615,
+     "width": 104,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "108-webiq-playground-run",
+   "group": "web-iq-portal",
+   "title": "Playground · Run Request(HTTP 200)",
+   "action": "왼쪽 위 프로필이 webiq-se02 - Default인지, API Key가 default인지, Verticals가 Web인지 확인하고 Run Request를 선택합니다. 오른쪽에서 Response를 봅니다.",
+   "expected": "HTTP 200과 JSON 응답(webResults의 title·url·content·lastUpdatedAt)이 보입니다. 성공 응답은 리소스·구독·AppID가 올바르게 연결됐다는 뜻입니다. Code를 선택하면 같은 요청이 cURL·Python·JavaScript 코드로 나옵니다.",
+   "image": "assets/ignite/screenshots/ko/108-webiq-playground-run.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "프로필(AppID)",
+     "x": 13,
+     "y": 77,
+     "width": 269,
+     "height": 38
+    },
+    {
+     "label": "API Key: default",
+     "x": 316,
+     "y": 109,
+     "width": 364,
+     "height": 38
+    },
+    {
+     "label": "Verticals",
+     "x": 316,
+     "y": 187,
+     "width": 364,
+     "height": 38
+    },
+    {
+     "label": "Run Request",
+     "x": 316,
+     "y": 359,
+     "width": 364,
+     "height": 40
+    },
+    {
+     "label": "HTTP 200 · 응답",
+     "x": 1247,
+     "y": 16,
+     "width": 65,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "109-webiq-api-access",
+   "group": "web-iq-portal",
+   "title": "API access · 기본 API 키",
+   "action": "왼쪽 메뉴에서 API access를 선택합니다. Authentication의 API keys 탭에서 default 키의 Copy API key 아이콘으로 키를 복사합니다. 키가 없으면 Create API Key로 만듭니다.",
+   "expected": "Key Management & API access 화면에 Profile Name · AppID · Allowed Verticals · Per-vertical quota limits(Auto 2 QPS, All Others 15 QPS)와 default 키(Expires: Never)가 보입니다. 키 전체 값은 화면에 나오지 않으며 이 사진은 AppID와 키 일부를 가렸습니다.",
+   "image": "assets/ignite/screenshots/ko/109-webiq-api-access.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "AppID(가림)",
+     "x": 1141,
+     "y": 123,
+     "width": 375,
+     "height": 28
+    },
+    {
+     "label": "Per-vertical quota limits",
+     "x": 316,
+     "y": 265,
+     "width": 169,
+     "height": 28
+    },
+    {
+     "label": "API keys 탭",
+     "x": 316,
+     "y": 442,
+     "width": 69,
+     "height": 52
+    },
+    {
+     "label": "default 키",
+     "x": 316,
+     "y": 607,
+     "width": 1256,
+     "height": 65
+    },
+    {
+     "label": "Copy API key",
+     "x": 813,
+     "y": 623,
+     "width": 32,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "110-webiq-agent-remove-toolbox",
+   "group": "web-iq-add",
+   "title": "새 에이전트의 기본 툴박스 제거",
+   "action": "새 에이전트 workshop-webiq-agent를 만들면(실습 4-1과 같은 방법) Web search가 든 툴박스가 자동으로 붙습니다. 툴박스의 Actions에서 Remove를 선택해 제거합니다.",
+   "expected": "Tools에 workshop-webiq-agent-toolbox와 그 안의 Web search가 보이고 Actions 메뉴에 Remove가 있습니다.",
+   "image": "assets/ignite/screenshots/ko/110-webiq-agent-remove-toolbox.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "툴박스",
+     "x": 240,
+     "y": 597,
+     "width": 435,
+     "height": 52
+    },
+    {
+     "label": "Actions",
+     "x": 667,
+     "y": 607,
+     "width": 32,
+     "height": 32
+    },
+    {
+     "label": "Remove",
+     "x": 672,
+     "y": 749,
+     "width": 136,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "111-webiq-add-tools-menu",
+   "group": "web-iq-add",
+   "title": "Tools → Add → Add tools",
+   "action": "툴박스를 제거한 뒤 Tools 영역의 Add를 누르고 Add tools를 선택합니다.",
+   "expected": "Add 메뉴에 Web search · Code interpreter · Tool search · Add tools · Add skills · Create toolbox · Browse toolboxes가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/111-webiq-add-tools-menu.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Add",
+     "x": 240,
+     "y": 669,
+     "width": 75,
+     "height": 40
+    },
+    {
+     "label": "Add tools",
+     "x": 245,
+     "y": 519,
+     "width": 318,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "112-webiq-catalog-webiq",
+   "group": "web-iq-add",
+   "title": "Select a tool · Catalog · Web IQ",
+   "action": "Select a tool 창에서 Catalog 탭을 선택하고 검색창에 Web IQ를 입력합니다. Web IQ(Remote MCP) 카드를 선택하고 Create를 누릅니다.",
+   "expected": "Web IQ 카드(Microsoft Web IQ provides AI agents with up-to-date, accurate, and authoritative grounding content…, Remote MCP)가 선택돼 체크 표시가 있고 Create가 활성화됩니다. 함께 나온 Azure - Foundry IQ는 실습 6의 지식 연결용입니다.",
+   "image": "assets/ignite/screenshots/ko/112-webiq-catalog-webiq.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Catalog 탭",
+     "x": 297,
+     "y": 142,
+     "width": 72,
+     "height": 40
+    },
+    {
+     "label": "검색창",
+     "x": 253,
+     "y": 251,
+     "width": 864,
+     "height": 38
+    },
+    {
+     "label": "Web IQ 카드",
+     "x": 208,
+     "y": 348,
+     "width": 290,
+     "height": 96
+    },
+    {
+     "label": "Create",
+     "x": 1226,
+     "y": 758,
+     "width": 76,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "113-webiq-connect-dialog",
+   "group": "web-iq-add",
+   "title": "Connect the Web IQ tool",
+   "action": "Name(WebIQ)과 Remote MCP Server endpoint(https://api.microsoft.ai/v3/mcp)는 미리 채워져 있습니다. Credential의 x-apikey 값 칸에 Web IQ 포털에서 복사한 API 키를 붙여 넣고 Connect를 선택합니다.",
+   "expected": "Authentication은 Key-based이고 Credential 이름이 x-apikey입니다. 키 값은 점으로 가려지며 이 사진에서도 흐리게 가렸습니다. Connect하면 Tools에 WebIQ (https://api.microsoft.ai/v3/mcp)가 나타납니다.",
+   "image": "assets/ignite/screenshots/ko/113-webiq-connect-dialog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Name",
+     "x": 442,
+     "y": 352,
+     "width": 716,
+     "height": 38
+    },
+    {
+     "label": "Remote MCP Server endpoint",
+     "x": 442,
+     "y": 420,
+     "width": 716,
+     "height": 38
+    },
+    {
+     "label": "Credential 이름 x-apikey",
+     "x": 441,
+     "y": 550,
+     "width": 108,
+     "height": 28
+    },
+    {
+     "label": "API 키 값(가림)",
+     "x": 579,
+     "y": 544,
+     "width": 535,
+     "height": 40
+    },
+    {
+     "label": "Connect",
+     "x": 993,
+     "y": 613,
+     "width": 87,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "114-webiq-approval-setting",
+   "group": "web-iq-add",
+   "title": "도구 승인 방식 · Always auto-approve all tools",
+   "action": "Tools의 WebIQ ⋮(Actions)에서 Edit를 선택하면 Configure WebIQ 창이 열립니다. Approval setting을 Always auto-approve all tools로 바꾸고 Apply를 선택합니다.",
+   "expected": "Approval setting 목록에 Never auto-approve tools(기본) · Always auto-approve all tools · Always auto-approve specific tools가 보입니다. 기본값이면 도구를 부를 때마다 승인이 필요합니다.",
+   "image": "assets/ignite/screenshots/ko/114-webiq-approval-setting.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Approval setting",
+     "x": 630,
+     "y": 541,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Always auto-approve all tools",
+     "x": 658,
+     "y": 593,
+     "width": 284,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "115-webiq-tool-saved",
+   "group": "web-iq-add",
+   "title": "저장 · Version 2",
+   "action": "Save를 선택하면 에이전트가 Version 2로 저장됩니다.",
+   "expected": "Tools에 WebIQ (https://api.microsoft.ai/v3/mcp) · Model Context Protocol (MCP)가 보이고 Version이 2이며 Save는 비활성화됩니다.",
+   "image": "assets/ignite/screenshots/ko/115-webiq-tool-saved.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "WebIQ 도구",
+     "x": 240,
+     "y": 657,
+     "width": 459,
+     "height": 60
+    },
+    {
+     "label": "Version 2",
+     "x": 1015,
+     "y": 69,
+     "width": 190,
+     "height": 30
+    },
+    {
+     "label": "Save(비활성)",
+     "x": 1204,
+     "y": 64,
+     "width": 64,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "116-webiq-answer",
+   "group": "web-iq-test",
+   "title": "Web IQ 도구로 질문",
+   "action": "New chat에서 이 실습의 질문을 보냅니다: Microsoft Ignite 2026에서 발표된 Microsoft IQ가 무엇인지 최신 공식 소식을 바탕으로 알려 주세요.",
+   "expected": "웹에서 가져온 내용을 한국어로 답하고 출처 링크가 붙습니다. 응답 아래에 gpt-6.1-terra 3s 18962t 칩과 mcp_list_tools · WebIQ · message가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/116-webiq-answer.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "질문",
+     "x": 773,
+     "y": 224,
+     "width": 774,
+     "height": 28
+    },
+    {
+     "label": "답변과 출처",
+     "x": 756,
+     "y": 271,
+     "width": 808,
+     "height": 152
+    },
+    {
+     "label": "응답 정보(모델·시간·토큰·도구)",
+     "x": 756,
+     "y": 423,
+     "width": 620,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "117-webiq-traces-list",
+   "group": "web-iq-test",
+   "title": "Traces · 도착한 트레이스",
+   "action": "에이전트의 Traces 탭을 엽니다. 트레이스는 질문한 뒤 수십 초에서 몇 분 늦게 도착하므로 새로 고치며 기다립니다.",
+   "expected": "방금 보낸 질문의 트레이스 1건이 Completed로 보입니다(3.832s · 19,131 in / 248 out). Agent version은 2입니다.",
+   "image": "assets/ignite/screenshots/ko/117-webiq-traces-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "방금 보낸 질문의 트레이스",
+     "x": 241,
+     "y": 544,
+     "width": 1359,
+     "height": 52
+    }
+   ]
+  },
+  {
+   "id": "118-webiq-trace-detail",
+   "group": "web-iq-test",
+   "title": "Trace 상세 · execute_tool mcp_WebIQ.web",
+   "action": "Trace ID를 선택해 상세를 엽니다. Trajectories에서 Execute Tool 줄을 확인하고 오른쪽 Input + Output에서 도구가 돌려준 근거를 봅니다.",
+   "expected": "3 spans · 1 chat call · 1 tool call로 invoke_agent workshop-webiq-agent:2 아래에 execute_tool mcp_WebIQ.web과 chat gpt-6.1-terra가 보입니다. Output의 Tool에 webResults(title·url·content)가 있습니다.",
+   "image": "assets/ignite/screenshots/ko/118-webiq-trace-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Execute Tool: mcp_WebIQ.web",
+     "x": 275,
+     "y": 216,
+     "width": 165,
+     "height": 28
+    },
+    {
+     "label": "Input + Output",
+     "x": 1034,
+     "y": 207,
+     "width": 101,
+     "height": 28
+    },
+    {
+     "label": "도구가 돌려준 webResults",
+     "x": 1053,
+     "y": 544,
+     "width": 30,
+     "height": 22
+    }
+   ]
+  },
+  {
+   "id": "119-webiq-usage",
+   "group": "web-iq-test",
+   "title": "Web IQ 포털 · Usage 대시보드",
+   "action": "Web IQ 포털 왼쪽 메뉴의 Usage를 엽니다. 호출은 날짜가 바뀐 뒤에 집계돼 나타납니다.",
+   "expected": "“Showing data through Nov 21, 2026” 아래에 Total Usage 3 · Peak Daily Volume 3 · Success Rate 100.0%와 API Requests 막대(11/21)가 보입니다. 이 3건은 전날 밤 Playground에서 보낸 호출입니다. 같은 날 밤에 열었을 때는 “Showing data through”가 전날이었고 값이 N/A였습니다.",
+   "image": "assets/ignite/screenshots/ko/119-webiq-usage.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "집계 기준일",
+     "x": 1353,
+     "y": 32,
+     "width": 219,
+     "height": 24
+    },
+    {
+     "label": "Total Usage · Success Rate",
+     "x": 316,
+     "y": 132,
+     "width": 1256,
+     "height": 112
+    },
+    {
+     "label": "API Requests",
+     "x": 341,
+     "y": 312,
+     "width": 130,
+     "height": 36
+    }
+   ]
   }
  ]
 };

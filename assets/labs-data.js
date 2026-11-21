@@ -110,14 +110,14 @@ window.LABS_DATA = {
     {
       "key": "web-iq",
       "enabled": true,
-      "title": "Foundry의 Web search 도구로 최신 웹 정보 연결하기",
-      "lead": "직접 추가한 일반 웹 검색(Web IQ 기반)과 툴박스 안의 Web search(Grounding with Bing Search 기반)를 같은 질문으로 비교합니다. 별도 Azure Web IQ 리소스는 만들지 않습니다.",
+      "title": "Web IQ로 에이전트에 최신 웹 정보 연결하기",
+      "lead": "Azure Portal에서 Web IQ 리소스를 만들고 Web IQ 포털에서 Playground·API 키를 준비한 뒤, Foundry 포털에서 에이전트에 Web IQ 도구를 연결해 최신 소식을 출처와 함께 받습니다. 모든 단계를 포털 화면에서 진행하며 CLI는 쓰지 않습니다. 리소스를 만들 수 없으면 Foundry 내장 Web search 도구(백엔드 Web IQ)로 대신합니다.",
       "required": true,
-      "screens": ["2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정"],
+      "screens": ["Web IQ 리소스·포털·도구 연결: 2026-11-21 Azure Portal·Web IQ 포털·New Foundry · 참가자 역할 3개 계정 · 화면 21장 · 유료 구독과 운영자의 공급자 등록 필요", "내장 Web search 비교: 2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정"],
       "prerequisites": ["agent", "observe"],
       "sections": ["ignite-web-iq"],
-      "steps": [["ignite-web-iq-add"], ["ignite-web-iq-test"], ["ignite-web-iq-compare"]],
-      "more": ["toolbox", "work-iq", "cost-management"]
+      "steps": [["ignite-web-iq-resource"], ["ignite-web-iq-portal"], ["ignite-web-iq-add"], ["ignite-web-iq-test"], ["ignite-web-iq-compare"]],
+      "more": ["web-iq", "toolbox", "cost-management"]
     },
     {
       "key": "harness",
@@ -202,18 +202,6 @@ window.LABS_DATA = {
       "sections": ["ignite-cost"],
       "steps": [["ignite-cost-read"], ["ignite-cost-control-create"], ["ignite-cost-control-check"]],
       "more": ["cost-management"]
-    },
-    {
-      "key": "web-iq-api",
-      "enabled": true,
-      "title": "Web IQ를 직접 호출해 보기(별도 리소스)",
-      "lead": "별도 Azure Web IQ 리소스를 만들고 AppID·API 키로 Playground·REST·MCP에서 Web IQ API를 호출해 Web IQ 서비스 자체를 이해합니다. 이 가이드에서 직접 실행하지 않았습니다(공식 문서 기준).",
-      "required": false,
-      "screens": ["화면 없음 · 2026-11-21 공식 문서 기준 · 직접 실행하지 않음 · 유료 구독과 운영자 승인 필요"],
-      "prerequisites": ["web-iq"],
-      "sections": ["ignite-web-iq-api"],
-      "steps": [["ignite-web-iq-api-resource"], ["ignite-web-iq-api-appid"], ["ignite-web-iq-api-playground"], ["ignite-web-iq-api-rest"], ["ignite-web-iq-api-mcp"], ["ignite-web-iq-api-compare"]],
-      "more": ["web-iq", "cost-management"]
     }
   ]
 };
