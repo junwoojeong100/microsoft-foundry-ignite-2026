@@ -4232,6 +4232,1249 @@ window.IGNITE_DATA = {
      "height": 36
     }
    ]
+  },
+  {
+   "id": "120-workiq-catalog",
+   "group": "work-iq-connect",
+   "title": "Select a tool · Catalog · Work IQ MCP",
+   "action": "On the Tools tab under Tools in the left menu, select Connect a tool to open the Select a tool window. Select the Catalog tab, type Work IQ in the search box, select the Work IQ MCP (Remote MCP) card and then Create.",
+   "expected": "Two Work IQ MCP cards appear in the results. Pick the first one, labeled Remote MCP (the second is Custom · Preview); it gets a check mark and Create becomes enabled.",
+   "image": "assets/ignite/screenshots/ko/120-workiq-catalog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Catalog tab",
+     "x": 297,
+     "y": 142,
+     "width": 72,
+     "height": 40
+    },
+    {
+     "label": "Search box",
+     "x": 253,
+     "y": 251,
+     "width": 864,
+     "height": 38
+    },
+    {
+     "label": "Work IQ MCP card (Remote MCP)",
+     "x": 506,
+     "y": 346,
+     "width": 290,
+     "height": 96
+    },
+    {
+     "label": "Create",
+     "x": 1226,
+     "y": 758,
+     "width": 76,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "121-workiq-connect-dialog",
+   "group": "work-iq-connect",
+   "title": "Connect the Work IQ MCP tool",
+   "action": "Name (WorkIQMCP), Remote MCP Server endpoint (https://workiq.svc.cloud.microsoft/mcp) and Scopes are prefilled, and Authentication is OAuth Identity Passthrough. Enter the app registration's values in Client ID and Client secret and the sign-in addresses in Token URL, Auth URL and Refresh URL, then select Connect.",
+   "expected": "Token URL and Refresh URL are https://login.microsoftonline.com/{tenant ID}/oauth2/v2.0/token, and Auth URL is the same address ending in /authorize. Scopes holds offline_access and {Work IQ app ID}/WorkIQAgent.Ask. In this screenshot the Client secret is blurred and the Client ID and the tenant ID are replaced with zeros.",
+   "image": "assets/ignite/screenshots/ko/121-workiq-connect-dialog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Remote MCP Server endpoint",
+     "x": 442,
+     "y": 318,
+     "width": 716,
+     "height": 38
+    },
+    {
+     "label": "Client ID",
+     "x": 442,
+     "y": 443,
+     "width": 357,
+     "height": 38
+    },
+    {
+     "label": "Client secret",
+     "x": 801,
+     "y": 442,
+     "width": 313,
+     "height": 40
+    },
+    {
+     "label": "Token URL",
+     "x": 442,
+     "y": 512,
+     "width": 357,
+     "height": 38
+    },
+    {
+     "label": "Scopes",
+     "x": 442,
+     "y": 648,
+     "width": 716,
+     "height": 38
+    },
+    {
+     "label": "Connect",
+     "x": 993,
+     "y": 715,
+     "width": 87,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "122-workiq-redirect",
+   "group": "work-iq-connect",
+   "title": "OAuth Redirect URL",
+   "action": "Select Connect to create the connection; the 'You've created a credential provider' window shows the Redirect URL. Copy it, add it under Authentication → Web → Redirect URIs of the app registration, and select Close.",
+   "expected": "The Redirect URL looks like https://global.consent.azure-apim.net/redirect/… (the ID is masked in this screenshot). The connection details page has the same value in its Redirect URL field, so you can find it again after closing the window.",
+   "image": "assets/ignite/screenshots/ko/122-workiq-redirect.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Redirect URL",
+     "x": 537,
+     "y": 451,
+     "width": 494,
+     "height": 38
+    },
+    {
+     "label": "Close",
+     "x": 994,
+     "y": 544,
+     "width": 70,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "123-workiq-connection",
+   "group": "work-iq-connect",
+   "title": "Connection details · WorkIQMCP",
+   "action": "After Close, the connection details page (Tools → WorkIQMCP) opens. Check the Remote MCP server endpoint, Authentication and Project connection ID.",
+   "expected": "The endpoint is https://workiq.svc.cloud.microsoft/mcp (not the A2A address) and Authentication is OAuth Identity Passthrough. 'Used in agents' is still empty.",
+   "image": "assets/ignite/screenshots/ko/123-workiq-connection.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Remote MCP server endpoint",
+     "x": 450,
+     "y": 310,
+     "width": 271,
+     "height": 28
+    },
+    {
+     "label": "Authentication",
+     "x": 1026,
+     "y": 311,
+     "width": 97,
+     "height": 25
+    },
+    {
+     "label": "Project connection ID",
+     "x": 450,
+     "y": 415,
+     "width": 138,
+     "height": 25
+    }
+   ]
+  },
+  {
+   "id": "124-workiq-agent-toolbox",
+   "group": "work-iq-add",
+   "title": "A new agent · remove the toolbox attached automatically",
+   "action": "As in Lab 4-1, create a new agent workshop-workiq-agent-en and paste the instructions into Instructions. In Actions (⋮) of the workshop-workiq-agent-en-toolbox (Web search) row that was attached automatically under Tools, select Remove.",
+   "expected": "Without the toolbox you can tell whether an answer came from Work IQ or from web search. The menu has Edit · Replace · Switch version · Remove · Opt out.",
+   "image": "assets/ignite/screenshots/en/124-workiq-agent-toolbox.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Toolbox row",
+     "x": 240,
+     "y": 671,
+     "width": 435,
+     "height": 52
+    },
+    {
+     "label": "Remove",
+     "x": 672,
+     "y": 823,
+     "width": 136,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "125-workiq-add-configured",
+   "group": "work-iq-add",
+   "title": "Select a tool · Configured · WorkIQMCP",
+   "action": "Open Add → Add tools in the Tools area and the Select a tool window opens on the Configured tab. Select the WorkIQMCP connection you created earlier and select Add tool.",
+   "expected": "The Configured tab lists the tools you can use right away (built-in tools and the project's connections). Do not create a new connection; pick WorkIQMCP (there is also a built-in Work IQ card marked Preview, which this lab does not use).",
+   "image": "assets/ignite/screenshots/ko/125-workiq-add-configured.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Configured tab",
+     "x": 212,
+     "y": 142,
+     "width": 93,
+     "height": 40
+    },
+    {
+     "label": "WorkIQMCP",
+     "x": 1102,
+     "y": 630,
+     "width": 290,
+     "height": 96
+    },
+    {
+     "label": "Add tool",
+     "x": 1216,
+     "y": 758,
+     "width": 86,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "126-workiq-tool-row",
+   "group": "work-iq-add",
+   "title": "Tools · the WorkIQMCP row",
+   "action": "A WorkIQMCP (https://workiq.svc.cloud.microsoft/mcp) · Model Context Protocol (MCP) row appears under Tools. In Actions (⋮) of this row, select Edit.",
+   "expected": "The tool row is visible and Save is enabled. The Actions (⋮) menu has Edit.",
+   "image": "assets/ignite/screenshots/en/126-workiq-tool-row.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "WorkIQMCP row",
+     "x": 240,
+     "y": 657,
+     "width": 459,
+     "height": 60
+    },
+    {
+     "label": "Actions (⋮)",
+     "x": 655,
+     "y": 671,
+     "width": 32,
+     "height": 32
+    },
+    {
+     "label": "Save",
+     "x": 1204,
+     "y": 64,
+     "width": 64,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "127-workiq-configure",
+   "group": "work-iq-add",
+   "title": "Configure WorkIQMCP · allow only ask",
+   "action": "In the Configure WorkIQMCP window, enter ask in Allowed WorkIQMCP tools, leave Approval setting at its default Never auto-approve tools and select Apply.",
+   "expected": "ask is the only allowed tool. With the default approval setting, every tool call needs the user's approval.",
+   "image": "assets/ignite/screenshots/en/127-workiq-configure.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Allowed WorkIQMCP tools",
+     "x": 630,
+     "y": 415,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Approval setting",
+     "x": 630,
+     "y": 541,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Apply",
+     "x": 824,
+     "y": 606,
+     "width": 69,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "128-workiq-saved",
+   "group": "work-iq-add",
+   "title": "Saved · Version 2",
+   "action": "Select Save and the agent is saved as Version 2.",
+   "expected": "Tools shows the WorkIQMCP row, the Version is 2 and Save is disabled.",
+   "image": "assets/ignite/screenshots/en/128-workiq-saved.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Version 2",
+     "x": 1015,
+     "y": 69,
+     "width": 190,
+     "height": 30
+    },
+    {
+     "label": "WorkIQMCP row",
+     "x": 240,
+     "y": 657,
+     "width": 459,
+     "height": 60
+    }
+   ]
+  },
+  {
+   "id": "129-workiq-consent-prompt",
+   "group": "work-iq-consent",
+   "title": "First question · sign-in and consent request",
+   "action": "In New chat in the Playground, send Question 1. The first time, instead of an answer you get a 'Sign in to Work IQ MCP …' notice with Open consent and Cancel buttons.",
+   "expected": "The chips below the response are gpt-6.1-terra 3s 0t · oauth_consent_request. A response that only shows this notice does not mean the lookup finished. Select Open consent.",
+   "image": "assets/ignite/screenshots/en/129-workiq-consent-prompt.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Open consent",
+     "x": 1338,
+     "y": 276,
+     "width": 123,
+     "height": 32
+    },
+    {
+     "label": "oauth_consent_request",
+     "x": 926,
+     "y": 365,
+     "width": 131,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "130-workiq-consent-confirm",
+   "group": "work-iq-consent",
+   "title": "Consent window · Confirmation required",
+   "action": "Selecting Open consent opens a new window. Select 'I have verified this request and trust the source' and then Allow access.",
+   "expected": "After Allow access you see 'Authentication successful' and the window closes a few seconds later (this picture is before you select it). The same question continues. Consent is given once per user and connection.",
+   "image": "assets/ignite/screenshots/ko/130-workiq-consent-confirm.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Confirmation required",
+     "x": 571,
+     "y": 56,
+     "width": 458,
+     "height": 48
+    },
+    {
+     "label": "I have verified…",
+     "x": 588,
+     "y": 535,
+     "width": 24,
+     "height": 24
+    },
+    {
+     "label": "Allow access",
+     "x": 641,
+     "y": 590,
+     "width": 158,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "131-workiq-approval",
+   "group": "work-iq-consent",
+   "title": "Tool call approval request · Approve once",
+   "action": "The same question continues with a 'The agent wants to call Work IQ MCP ask(…)' approval request. Read the tool (ask) and the arguments (the question), select Approve and choose Approve once.",
+   "expected": "Approve is a button menu with Approve once · Always approve this tool · Always approve all Work IQ MCP tools. A plain click only opens the menu. You can also refuse with Deny.",
+   "image": "assets/ignite/screenshots/en/131-workiq-approval.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Approval request text",
+     "x": 776,
+     "y": 389,
+     "width": 210,
+     "height": 25
+    },
+    {
+     "label": "Approve",
+     "x": 1363,
+     "y": 507,
+     "width": 109,
+     "height": 32
+    },
+    {
+     "label": "Approve once",
+     "x": 1215,
+     "y": 536,
+     "width": 251,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "132-workiq-answer-1",
+   "group": "work-iq-answer",
+   "title": "Question 1 · today's meetings",
+   "action": "After you approve, the answer to the same question follows. Question: Summarize my upcoming meetings for today.",
+   "expected": "Two meetings, 5:00–5:30 AM Foundry workshop kickoff and 7:00–7:30 AM Weekly project sync, appear with source cards, and the gpt-6.1-terra 42s 4435t · WorkIQMCP chips are shown below the response. The times are UTC (the meetings are at 14:00 and 16:00 Korea time), and a sentence says the time zone was not specified.",
+   "image": "assets/ignite/screenshots/en/132-workiq-answer-1.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Answer",
+     "x": 756,
+     "y": 550,
+     "width": 808,
+     "height": 28
+    },
+    {
+     "label": "WorkIQMCP chip",
+     "x": 952,
+     "y": 718,
+     "width": 72,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "133-workiq-answer-2",
+   "group": "work-iq-answer",
+   "title": "Question 2 · emails that need a reply",
+   "action": "Question: Find up to 3 emails that I received this week and that need a reply, and list them with their subjects.",
+   "expected": "The subjects of the 3 emails we had prepared (Please confirm the workshop agenda · Question about the demo quota · Reminder: review the Work IQ lab draft) appear with why each needs a reply. Source cards are attached and the chips are gpt-6.1-terra 35s 6562t · WorkIQMCP.",
+   "image": "assets/ignite/screenshots/en/133-workiq-answer-2.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Answer",
+     "x": 756,
+     "y": 458,
+     "width": 808,
+     "height": 28
+    },
+    {
+     "label": "WorkIQMCP chip",
+     "x": 952,
+     "y": 594,
+     "width": 72,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "134-workiq-answer-3",
+   "group": "work-iq-answer",
+   "title": "Question 3 · an email you cannot access (permission boundary)",
+   "action": "Question: Summarize the contents of the restricted email \"Restricted: Project Falcon budget approval\". This email exists only in the operator's mailbox.",
+   "expected": "Instead of the contents you get an answer that it could not find the email, so it cannot summarize it, and cannot tell whether the cause is permissions. When the mailbox owner (the operator) asks the same question, it summarizes the contents.",
+   "image": "assets/ignite/screenshots/en/134-workiq-answer-3.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Answer",
+     "x": 756,
+     "y": 458,
+     "width": 808,
+     "height": 48
+    },
+    {
+     "label": "WorkIQMCP chip",
+     "x": 952,
+     "y": 510,
+     "width": 72,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "135-workiq-traces-list",
+   "group": "work-iq-traces",
+   "title": "Traces · two traces per question",
+   "action": "Open the agent's Traces tab. A trace arrives tens of seconds after you ask, so refresh and wait.",
+   "expected": "One question creates 2 Completed traces: one of about 1 second (the approval request step) and one of 20 to 35 seconds (the step that called the tool and answered).",
+   "image": "assets/ignite/screenshots/en/135-workiq-traces-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Traces tab",
+     "x": 377,
+     "y": 96,
+     "width": 64,
+     "height": 40
+    },
+    {
+     "label": "Status",
+     "x": 652,
+     "y": 293,
+     "width": 48,
+     "height": 28
+    },
+    {
+     "label": "Duration",
+     "x": 743,
+     "y": 384,
+     "width": 78,
+     "height": 25
+    }
+   ]
+  },
+  {
+   "id": "136-workiq-trace-detail",
+   "group": "work-iq-traces",
+   "title": "Trace details · execute_tool mcp_WorkIQMCP.ask",
+   "action": "Select the Trace ID of the long trace that called the tool to open the details. Find the Execute Tool row under Trajectories.",
+   "expected": "With 4 spans · 2 chat calls · 1 tool call, execute_tool mcp_WorkIQMCP.ask (about 20 seconds) and the chat calls appear under invoke_agent workshop-workiq-agent-en:2.",
+   "image": "assets/ignite/screenshots/en/136-workiq-trace-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "invoke_agent",
+     "x": 137,
+     "y": 44,
+     "width": 384,
+     "height": 36
+    },
+    {
+     "label": "Execute Tool: mcp_WorkIQMCP.ask",
+     "x": 276,
+     "y": 248,
+     "width": 189,
+     "height": 28
+    }
+   ]
+  },
+  {
+   "id": "137-fabric-workspace",
+   "group": "fabric-iq-prep",
+   "title": "Fabric · a new workspace",
+   "action": "In the left navigation of the Fabric portal, select Workspaces → New workspace and enter a name. Under Details in Advanced, pick the F SKU capacity as Capacity and select Apply.",
+   "expected": "The F2 capacity we created (fcignitelab01 - North Central US) is preselected in the capacity list. The Fabric Trial option was disabled for this account. This picture is before the name is entered, so Apply is disabled.",
+   "image": "assets/ignite/screenshots/ko/137-fabric-workspace.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Capacity",
+     "x": 1041,
+     "y": 453,
+     "width": 206,
+     "height": 27
+    },
+    {
+     "label": "Fabric Trial (disabled)",
+     "x": 1066,
+     "y": 161,
+     "width": 494,
+     "height": 28
+    },
+    {
+     "label": "Cancel",
+     "x": 1105,
+     "y": 849,
+     "width": 76,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "138-fabric-notebook-loaded",
+   "group": "fabric-iq-prep",
+   "title": "Notebook · the sample data is loaded",
+   "action": "In the workspace, create New item → Notebook and use Add data items in the Explorer to create a new lakehouse AdventureWorksLH. Paste the code from the Learn example into the first cell and select Run all.",
+   "expected": "The Spark session is ready in about 10 seconds, and 'Uploading FactSalesQuota to lakehouse: 100% 28/28' means all 28 tables are loaded (4 min 37 s in this run). When it finishes, end the session with Stop session.",
+   "image": "assets/ignite/screenshots/ko/138-fabric-notebook-loaded.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Run all",
+     "x": 184,
+     "y": 84,
+     "width": 128,
+     "height": 40
+    },
+    {
+     "label": "AdventureWorksLH",
+     "x": 147,
+     "y": 264,
+     "width": 147,
+     "height": 27
+    },
+    {
+     "label": "Load progress 28/28",
+     "x": 1118,
+     "y": 570,
+     "width": 192,
+     "height": 36
+    }
+   ]
+  },
+  {
+   "id": "139-fabric-agent-add-source",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · add a data source",
+   "action": "In New item, search for data agent, create a Data agent and skip the Welcome window. Select Add sources → Data source to open the OneLake catalog window. Select AdventureWorksLH and select Add.",
+   "expected": "AdventureWorksLH (Lakehouse) appears in the list and Add becomes enabled once you select it.",
+   "image": "assets/ignite/screenshots/ko/139-fabric-agent-add-source.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Add a data source",
+     "x": 180,
+     "y": 108,
+     "width": 172,
+     "height": 33
+    },
+    {
+     "label": "AdventureWorksLH",
+     "x": 282,
+     "y": 241,
+     "width": 127,
+     "height": 29
+    },
+    {
+     "label": "Add",
+     "x": 1286,
+     "y": 788,
+     "width": 58,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "140-fabric-agent-tables",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · choose the tables to ask about",
+   "action": "In the Explorer, check these 10 tables of AdventureWorksLH: dimcustomer · dimdate · dimgeography · dimproduct · dimproductcategory · dimpromotion · dimreseller · dimsalesterritory · factinternetsales · factresellersales.",
+   "expected": "Only those 10 tables are checked (widen the Explorer and close the Preview runtime notice at the top to see them on one screen). dimproductsubcategory is not selected.",
+   "image": "assets/ignite/screenshots/ko/140-fabric-agent-tables.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "dimcustomer",
+     "x": 98,
+     "y": 124,
+     "width": 527,
+     "height": 40
+    },
+    {
+     "label": "dimsalesterritory",
+     "x": 98,
+     "y": 508,
+     "width": 527,
+     "height": 40
+    },
+    {
+     "label": "factresellersales",
+     "x": 98,
+     "y": 796,
+     "width": 527,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "141-fabric-agent-instructions",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · data source instructions",
+   "action": "On the Setup tab, open Data source instructions under AdventureWorksLH and paste the data source instructions from the Learn example.",
+   "expected": "The Data source instructions field is filled with sentences that describe the tables and their purpose. The data agent uses them to pick the right tables for a question.",
+   "image": "assets/ignite/screenshots/ko/141-fabric-agent-instructions.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Setup tab",
+     "x": 153,
+     "y": 180,
+     "width": 69,
+     "height": 52
+    },
+    {
+     "label": "Data source instructions",
+     "x": 156,
+     "y": 307,
+     "width": 160,
+     "height": 28
+    },
+    {
+     "label": "Instructions text",
+     "x": 663,
+     "y": 647,
+     "width": 497,
+     "height": 46
+    }
+   ]
+  },
+  {
+   "id": "142-fabric-agent-example",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · an example question and query",
+   "action": "Under Example queries, select Add example, then enter an example question in Question and the matching SQL in SQL query (the SQL box starts with a placeholder comment, so clear it before pasting).",
+   "expected": "Example query 1 holds 'Show the monthly total and year-to-date total sales. Order by year and month.' and its SQL.",
+   "image": "assets/ignite/screenshots/ko/142-fabric-agent-example.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Example queries",
+     "x": 156,
+     "y": 375,
+     "width": 112,
+     "height": 28
+    },
+    {
+     "label": "Question",
+     "x": 714,
+     "y": 542,
+     "width": 432,
+     "height": 60
+    },
+    {
+     "label": "SQL query",
+     "x": 713,
+     "y": 625,
+     "width": 434,
+     "height": 28
+    }
+   ]
+  },
+  {
+   "id": "143-fabric-agent-test",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · Test the agent's responses",
+   "action": "Enter Question 1 in the Test the agent's responses pane on the right and check that the data agent answers.",
+   "expected": "In about 14 seconds it returns the monthly sales and the year-to-date totals from 2010-12 to 2014-01.",
+   "image": "assets/ignite/screenshots/ko/143-fabric-agent-test.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Test the agent's responses",
+     "x": 1196,
+     "y": 145,
+     "width": 197,
+     "height": 30
+    },
+    {
+     "label": "Example question",
+     "x": 714,
+     "y": 542,
+     "width": 432,
+     "height": 60
+    },
+    {
+     "label": "Answer",
+     "x": 1214,
+     "y": 320,
+     "width": 332,
+     "height": 48
+    }
+   ]
+  },
+  {
+   "id": "144-fabric-agent-publish",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · Publish",
+   "action": "Select Publish on the toolbar to open the Publish data agent window. Enter the Description of purpose and capabilities, leave Also publish to Microsoft Copilot Off and select Publish.",
+   "expected": "A 'Successfully published' notice appears. Only the published version can be connected through MCP, and you must publish again after you edit the draft.",
+   "image": "assets/ignite/screenshots/ko/144-fabric-agent-publish.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Publish data agent",
+     "x": 521,
+     "y": 260,
+     "width": 177,
+     "height": 36
+    },
+    {
+     "label": "Publish",
+     "x": 871,
+     "y": 600,
+     "width": 104,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "145-fabric-agent-share",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · share it with the people who ask",
+   "action": "On the toolbar, open Share to see the Grant people access window and add users under People who can ask this data agent questions. Clear Notify recipients by email and select Grant.",
+   "expected": "No Additional permissions (Share · Edit and view details · View details) are selected. This shares the data agent only; you grant lakehouse permissions separately.",
+   "image": "assets/ignite/screenshots/ko/145-fabric-agent-share.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "People who can ask…",
+     "x": 650,
+     "y": 172,
+     "width": 300,
+     "height": 28
+    },
+    {
+     "label": "Notify recipients by email",
+     "x": 684,
+     "y": 464,
+     "width": 165,
+     "height": 28
+    },
+    {
+     "label": "Grant",
+     "x": 817,
+     "y": 737,
+     "width": 67,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "146-fabric-lakehouse-share",
+   "group": "fabric-iq-prep",
+   "title": "Lakehouse · permission on the data source",
+   "action": "In the workspace, open Share for the lakehouse AdventureWorksLH, add the same users, select Read all SQL endpoint data and select Grant.",
+   "expected": "In this run we granted permissions on both the data agent and the lakehouse (we did not test granting only one). Clear Notify recipients by email.",
+   "image": "assets/ignite/screenshots/ko/146-fabric-lakehouse-share.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Read all SQL endpoint data",
+     "x": 684,
+     "y": 354,
+     "width": 196,
+     "height": 27
+    },
+    {
+     "label": "Notify recipients by email",
+     "x": 684,
+     "y": 514,
+     "width": 165,
+     "height": 28
+    },
+    {
+     "label": "Grant",
+     "x": 817,
+     "y": 787,
+     "width": 67,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "147-fabric-select-tool",
+   "group": "fabric-iq-connect",
+   "title": "Select a tool · Configured · Fabric IQ (OneLake Catalog)",
+   "action": "In the Foundry portal, on the Tools tab under Tools, select Connect a tool. On the Configured tab of the Select a tool window, select Fabric IQ (OneLake Catalog) and select Add tool.",
+   "expected": "Fabric IQ (OneLake Catalog) is marked Preview (the Fabric Data Agent card in the same list is not used in this lab). Add tool opens the OneLake Catalog window.",
+   "image": "assets/ignite/screenshots/ko/147-fabric-select-tool.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Configured tab",
+     "x": 212,
+     "y": 142,
+     "width": 93,
+     "height": 40
+    },
+    {
+     "label": "Fabric IQ (OneLake Catalog)",
+     "x": 1102,
+     "y": 314,
+     "width": 290,
+     "height": 96
+    },
+    {
+     "label": "Add tool",
+     "x": 1216,
+     "y": 758,
+     "width": 86,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "148-fabric-onelake-empty",
+   "group": "fabric-iq-connect",
+   "title": "OneLake Catalog · when the list looks empty",
+   "action": "When the OneLake Catalog window opens, the list is empty because the default filter is Semantic model. Open Filter.",
+   "expected": "'No relevant items' is shown and one filter is applied, as in Filter (1). The data is not missing; the filter hides it.",
+   "image": "assets/ignite/screenshots/ko/148-fabric-onelake-empty.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Filter (1)",
+     "x": 1188,
+     "y": 289,
+     "width": 133,
+     "height": 40
+    },
+    {
+     "label": "No relevant items",
+     "x": 575,
+     "y": 507,
+     "width": 437,
+     "height": 28
+    }
+   ]
+  },
+  {
+   "id": "149-fabric-onelake-catalog",
+   "group": "fabric-iq-connect",
+   "title": "OneLake Catalog · choose the Data agent",
+   "action": "In Filter, clear Semantic model and choose Data agent, and the items you can access appear. Select the published workshop-adventureworks-agent and select Add.",
+   "expected": "The lakehouse, the SQL analytics endpoint and the data agent are listed. Add creates the connection right away (no further input).",
+   "image": "assets/ignite/screenshots/ko/149-fabric-onelake-catalog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Filter",
+     "x": 1207,
+     "y": 289,
+     "width": 114,
+     "height": 40
+    },
+    {
+     "label": "workshop-adventureworks-agent",
+     "x": 327,
+     "y": 474,
+     "width": 196,
+     "height": 27
+    },
+    {
+     "label": "Add",
+     "x": 1212,
+     "y": 711,
+     "width": 59,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "150-fabric-connection",
+   "group": "fabric-iq-connect",
+   "title": "Connection details · workshopadventureworksagent",
+   "action": "When the connection is created, its details page opens (the name is the data agent's name without hyphens, workshopadventureworksagent). Check the Remote MCP server endpoint and Authentication.",
+   "expected": "The endpoint looks like https://{workspace ID}.zff.w.api.fabric.microsoft.com/v1/mcp/workspaces/… and Authentication is OAuth Identity Passthrough. The IDs are masked in this screenshot.",
+   "image": "assets/ignite/screenshots/ko/150-fabric-connection.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Remote MCP server endpoint",
+     "x": 450,
+     "y": 198,
+     "width": 419,
+     "height": 28
+    },
+    {
+     "label": "Authentication",
+     "x": 877,
+     "y": 199,
+     "width": 97,
+     "height": 25
+    },
+    {
+     "label": "Project connection ID",
+     "x": 450,
+     "y": 271,
+     "width": 138,
+     "height": 25
+    }
+   ]
+  },
+  {
+   "id": "151-fabric-tool-row",
+   "group": "fabric-iq-add",
+   "title": "Tools · the Fabric IQ (OneLake Catalog) row",
+   "action": "As in Lab 4-1, create a new agent workshop-fabriciq-agent-en, remove its toolbox, and add workshopadventureworksagent from the Configured tab of Add → Add tools. A Fabric IQ (OneLake Catalog) row appears under Tools.",
+   "expected": "The row is marked Preview and Save is enabled. Actions (⋮) has Edit.",
+   "image": "assets/ignite/screenshots/en/151-fabric-tool-row.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Fabric IQ (OneLake Catalog) row",
+     "x": 240,
+     "y": 657,
+     "width": 459,
+     "height": 60
+    },
+    {
+     "label": "Actions (⋮)",
+     "x": 655,
+     "y": 671,
+     "width": 32,
+     "height": 32
+    },
+    {
+     "label": "Save",
+     "x": 1204,
+     "y": 64,
+     "width": 64,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "152-fabric-configure",
+   "group": "fabric-iq-add",
+   "title": "Configure · the default approval setting",
+   "action": "Open the Configure workshopadventureworksagent window with Actions (⋮) → Edit, check Allowed tools and Approval setting, close it with Cancel and select Save. The agent is saved as Version 2.",
+   "expected": "The default Approval setting is Always auto-approve all tools (unlike Work IQ, whose default is Never auto-approve tools). You can leave Allowed tools empty.",
+   "image": "assets/ignite/screenshots/en/152-fabric-configure.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Allowed tools",
+     "x": 630,
+     "y": 419,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Approval setting",
+     "x": 630,
+     "y": 545,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Apply",
+     "x": 824,
+     "y": 626,
+     "width": 69,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "153-fabric-answer-1",
+   "group": "fabric-iq-answer",
+   "title": "Question 1 · monthly and year-to-date sales",
+   "action": "With account A (has Fabric access), send Question 1 in New chat. The answer comes right away, with no consent or approval screen.",
+   "expected": "A table of monthly totals and year-to-date totals from 2010-12 to 2014-01 appears (the table is long, so the screenshot is scrolled to show the last rows). The chips are gpt-6.1-terra 25s 4679t · mcp_list_tools · workshopadventureworksagent.",
+   "image": "assets/ignite/screenshots/en/153-fabric-answer-1.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Answer table (last row)",
+     "x": 757,
+     "y": 661,
+     "width": 806,
+     "height": 52
+    },
+    {
+     "label": "Tool chip workshopadventureworksagent",
+     "x": 1049,
+     "y": 718,
+     "width": 170,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "154-fabric-answer-2",
+   "group": "fabric-iq-answer",
+   "title": "Question 2 · the top 3 sales regions",
+   "action": "Question: Which 3 sales territory regions have the highest internet sales, and what are their sales amounts?",
+   "expected": "Australia 9,061,000.72 · Southwest 5,718,151.07 · Northwest 3,649,866.72 appear with a note about the currency. The chips are gpt-6.1-terra 21s 1363t · mcp_list_tools · workshopadventureworksagent.",
+   "image": "assets/ignite/screenshots/en/154-fabric-answer-2.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Answer",
+     "x": 756,
+     "y": 303,
+     "width": 808,
+     "height": 68
+    },
+    {
+     "label": "Tool chip workshopadventureworksagent",
+     "x": 1049,
+     "y": 407,
+     "width": 170,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "155-fabric-answer-3",
+   "group": "fabric-iq-answer",
+   "title": "Question 3 · the top 5 customers by total order amount",
+   "action": "Question: Which 5 customers have the highest total order amounts, and what are the amounts? Send the same question with account B too.",
+   "expected": "A list of 5 customers and amounts appears (1st: Maurice Shan 12,909.67). The same question can return different values from run to run because the data agent writes a different query, so compare with the result in the Fabric portal. In another run the top customer was Nichole Nara with 13,295.38. The chips are gpt-6.1-terra 22s 1711t.",
+   "image": "assets/ignite/screenshots/en/155-fabric-answer-3.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Answer list",
+     "x": 756,
+     "y": 303,
+     "width": 808,
+     "height": 108
+    },
+    {
+     "label": "Tool chip workshopadventureworksagent",
+     "x": 1049,
+     "y": 447,
+     "width": 170,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "156-fabric-b-loading",
+   "group": "fabric-iq-traces",
+   "title": "Account B (no access) · no answer arrives",
+   "action": "Open the same agent with account B, which has no Fabric access, and send Question 3.",
+   "expected": "Only the question remains and the answer area keeps showing a progress bar (a Stop button in the place of Send). No error text appears. In this run it stayed like this even after waiting more than 8 minutes.",
+   "image": "assets/ignite/screenshots/en/156-fabric-b-loading.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Progress bar",
+     "x": 756,
+     "y": 280,
+     "width": 808,
+     "height": 26
+    },
+    {
+     "label": "Stop",
+     "x": 1536,
+     "y": 818,
+     "width": 40,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "157-fabric-traces-list",
+   "group": "fabric-iq-traces",
+   "title": "Traces · Completed and Failed",
+   "action": "Open the agent's Traces tab. Each question creates a trace, and a new trace arrives tens of seconds late.",
+   "expected": "Account A's questions show as Completed (about 20 to 50 seconds, over a thousand tokens) and account B's question shows as Failed (0.001 seconds, 0 tokens).",
+   "image": "assets/ignite/screenshots/en/157-fabric-traces-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Traces tab",
+     "x": 377,
+     "y": 96,
+     "width": 64,
+     "height": 40
+    },
+    {
+     "label": "Failed",
+     "x": 461,
+     "y": 407,
+     "width": 52,
+     "height": 34
+    },
+    {
+     "label": "Completed",
+     "x": 461,
+     "y": 362,
+     "width": 80,
+     "height": 34
+    }
+   ]
+  },
+  {
+   "id": "158-fabric-trace-detail",
+   "group": "fabric-iq-traces",
+   "title": "Trace details · the tool and the data agent calls",
+   "action": "Select the Trace ID of a Completed trace to open the details. Find the tool call rows under Trajectories.",
+   "expected": "With 5 spans · 1 chat call · 2 tool calls, execute_tool mcp_workshopadventureworksagent.DataAgent_… (about 21 seconds) sits under invoke_agent workshop-fabriciq-agent-en:2, and invoke_agent workshop-adventureworks-agent and execute_tool analyze_lakehouse_tables are nested inside it.",
+   "image": "assets/ignite/screenshots/en/158-fabric-trace-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "invoke_agent",
+     "x": 132,
+     "y": 40,
+     "width": 402,
+     "height": 43
+    },
+    {
+     "label": "execute_tool mcp_workshopadventureworksagent…",
+     "x": 270,
+     "y": 214,
+     "width": 514,
+     "height": 32
+    },
+    {
+     "label": "execute_tool analyze_lakehouse_tables",
+     "x": 342,
+     "y": 278,
+     "width": 222,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "159-fabric-trace-error",
+   "group": "fabric-iq-traces",
+   "title": "Trace details · tool_user_error",
+   "action": "Select the Trace ID of the Failed trace to open the details.",
+   "expected": "It shows 1 span · 1 error and a red tool_user_error banner on the right. There is no tool call row and it ended in 0.0 seconds. No cause is shown apart from the fact that this account has no Fabric access.",
+   "image": "assets/ignite/screenshots/en/159-fabric-trace-error.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "tool_user_error",
+     "x": 1044,
+     "y": 250,
+     "width": 411,
+     "height": 44
+    },
+    {
+     "label": "1 error",
+     "x": 1401,
+     "y": 94,
+     "width": 47,
+     "height": 30
+    }
+   ]
   }
  ]
 };

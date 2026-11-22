@@ -4252,6 +4252,1249 @@ window.IGNITE_DATA = {
      "height": 36
     }
    ]
+  },
+  {
+   "id": "120-workiq-catalog",
+   "group": "work-iq-connect",
+   "title": "Select a tool · Catalog · Work IQ MCP",
+   "action": "왼쪽 메뉴 Tools의 Tools 탭에서 Connect a tool을 눌러 Select a tool 창을 엽니다. Catalog 탭을 선택하고 검색창에 Work IQ를 입력한 뒤 Work IQ MCP(Remote MCP) 카드를 선택하고 Create를 누릅니다.",
+   "expected": "검색 결과에 Work IQ MCP 카드가 두 장 나옵니다. Remote MCP로 표시된 첫 카드(두 번째는 Custom · Preview)를 고르면 체크 표시가 생기고 Create가 활성화됩니다.",
+   "image": "assets/ignite/screenshots/ko/120-workiq-catalog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Catalog 탭",
+     "x": 297,
+     "y": 142,
+     "width": 72,
+     "height": 40
+    },
+    {
+     "label": "검색창",
+     "x": 253,
+     "y": 251,
+     "width": 864,
+     "height": 38
+    },
+    {
+     "label": "Work IQ MCP 카드(Remote MCP)",
+     "x": 506,
+     "y": 346,
+     "width": 290,
+     "height": 96
+    },
+    {
+     "label": "Create",
+     "x": 1226,
+     "y": 758,
+     "width": 76,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "121-workiq-connect-dialog",
+   "group": "work-iq-connect",
+   "title": "Connect the Work IQ MCP tool",
+   "action": "Name(WorkIQMCP)·Remote MCP Server endpoint(https://workiq.svc.cloud.microsoft/mcp)·Scopes는 미리 채워져 있고 Authentication은 OAuth Identity Passthrough입니다. Client ID와 Client secret에 앱 등록의 값을, Token URL·Auth URL·Refresh URL에 로그인 주소를 입력하고 Connect를 선택합니다.",
+   "expected": "Token URL과 Refresh URL은 https://login.microsoftonline.com/{테넌트 ID}/oauth2/v2.0/token, Auth URL은 같은 주소의 /authorize입니다. Scopes에는 offline_access와 {Work IQ 앱 ID}/WorkIQAgent.Ask가 들어 있습니다. 이 사진에서는 Client secret 값을 흐리게, Client ID와 테넌트 ID를 0으로 가렸습니다.",
+   "image": "assets/ignite/screenshots/ko/121-workiq-connect-dialog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Remote MCP Server endpoint",
+     "x": 442,
+     "y": 318,
+     "width": 716,
+     "height": 38
+    },
+    {
+     "label": "Client ID",
+     "x": 442,
+     "y": 443,
+     "width": 357,
+     "height": 38
+    },
+    {
+     "label": "Client secret",
+     "x": 801,
+     "y": 442,
+     "width": 313,
+     "height": 40
+    },
+    {
+     "label": "Token URL",
+     "x": 442,
+     "y": 512,
+     "width": 357,
+     "height": 38
+    },
+    {
+     "label": "Scopes",
+     "x": 442,
+     "y": 648,
+     "width": 716,
+     "height": 38
+    },
+    {
+     "label": "Connect",
+     "x": 993,
+     "y": 715,
+     "width": 87,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "122-workiq-redirect",
+   "group": "work-iq-connect",
+   "title": "OAuth Redirect URL",
+   "action": "Connect를 선택하면 연결이 만들어지고 'You've created a credential provider' 창이 Redirect URL을 보여 줍니다. 이 URL을 복사해 앱 등록의 Authentication → Web → Redirect URIs에 추가한 뒤 Close를 선택합니다.",
+   "expected": "Redirect URL은 https://global.consent.azure-apim.net/redirect/… 형태입니다(이 사진에서는 ID를 가렸습니다). 연결 상세 페이지의 Redirect URL 칸에도 같은 값이 있어 창을 닫아도 다시 볼 수 있습니다.",
+   "image": "assets/ignite/screenshots/ko/122-workiq-redirect.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Redirect URL",
+     "x": 537,
+     "y": 451,
+     "width": 494,
+     "height": 38
+    },
+    {
+     "label": "Close",
+     "x": 994,
+     "y": 544,
+     "width": 70,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "123-workiq-connection",
+   "group": "work-iq-connect",
+   "title": "연결 상세 · WorkIQMCP",
+   "action": "Close하면 연결 상세 페이지(Tools → WorkIQMCP)가 열립니다. Remote MCP server endpoint, Authentication, Project connection ID를 확인합니다.",
+   "expected": "엔드포인트가 https://workiq.svc.cloud.microsoft/mcp(A2A 주소가 아닙니다)이고 Authentication이 OAuth Identity Passthrough입니다. 'Used in agents'는 아직 비어 있습니다.",
+   "image": "assets/ignite/screenshots/ko/123-workiq-connection.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Remote MCP server endpoint",
+     "x": 450,
+     "y": 310,
+     "width": 271,
+     "height": 28
+    },
+    {
+     "label": "Authentication",
+     "x": 1026,
+     "y": 311,
+     "width": 97,
+     "height": 25
+    },
+    {
+     "label": "Project connection ID",
+     "x": 450,
+     "y": 415,
+     "width": 138,
+     "height": 25
+    }
+   ]
+  },
+  {
+   "id": "124-workiq-agent-toolbox",
+   "group": "work-iq-add",
+   "title": "새 에이전트 · 자동으로 붙은 툴박스 제거",
+   "action": "실습 4-1처럼 새 에이전트 workshop-workiq-agent를 만들고 Instructions를 붙여 넣습니다. Tools에 자동으로 붙은 workshop-workiq-agent-toolbox(Web search) 줄의 Actions(⋮)에서 Remove를 선택합니다.",
+   "expected": "툴박스를 떼면 답이 Work IQ에서 왔는지 웹 검색에서 왔는지 구분할 수 있습니다. 메뉴에는 Edit · Replace · Switch version · Remove · Opt out이 있습니다.",
+   "image": "assets/ignite/screenshots/ko/124-workiq-agent-toolbox.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "툴박스 줄",
+     "x": 240,
+     "y": 671,
+     "width": 435,
+     "height": 52
+    },
+    {
+     "label": "Remove",
+     "x": 672,
+     "y": 823,
+     "width": 136,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "125-workiq-add-configured",
+   "group": "work-iq-add",
+   "title": "Select a tool · Configured · WorkIQMCP",
+   "action": "Tools 영역의 Add → Add tools를 열면 Select a tool 창이 Configured 탭으로 열립니다. 앞에서 만든 WorkIQMCP 연결을 선택하고 Add tool을 누릅니다.",
+   "expected": "Configured 탭에는 바로 쓸 수 있는 도구(기본 제공 도구와 프로젝트의 연결)가 나옵니다. 새 연결을 만들지 말고 WorkIQMCP를 고릅니다(Preview 표시가 붙은 기본 제공 Work IQ 카드도 있지만 이 실습에서는 쓰지 않습니다).",
+   "image": "assets/ignite/screenshots/ko/125-workiq-add-configured.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Configured 탭",
+     "x": 212,
+     "y": 142,
+     "width": 93,
+     "height": 40
+    },
+    {
+     "label": "WorkIQMCP",
+     "x": 1102,
+     "y": 630,
+     "width": 290,
+     "height": 96
+    },
+    {
+     "label": "Add tool",
+     "x": 1216,
+     "y": 758,
+     "width": 86,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "126-workiq-tool-row",
+   "group": "work-iq-add",
+   "title": "Tools · WorkIQMCP 줄",
+   "action": "Tools에 WorkIQMCP (https://workiq.svc.cloud.microsoft/mcp) · Model Context Protocol (MCP) 줄이 생깁니다. 이 줄의 Actions(⋮)에서 Edit를 선택합니다.",
+   "expected": "도구 줄이 보이고 Save가 활성화됩니다. Actions(⋮) 메뉴에서 Edit를 열 수 있습니다.",
+   "image": "assets/ignite/screenshots/ko/126-workiq-tool-row.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "WorkIQMCP 줄",
+     "x": 240,
+     "y": 657,
+     "width": 459,
+     "height": 60
+    },
+    {
+     "label": "Actions(⋮)",
+     "x": 655,
+     "y": 671,
+     "width": 32,
+     "height": 32
+    },
+    {
+     "label": "Save",
+     "x": 1204,
+     "y": 64,
+     "width": 64,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "127-workiq-configure",
+   "group": "work-iq-add",
+   "title": "Configure WorkIQMCP · 허용 도구 ask",
+   "action": "Configure WorkIQMCP 창의 Allowed WorkIQMCP tools에 ask를 입력하고 Approval setting은 기본값 Never auto-approve tools로 둔 채 Apply를 선택합니다.",
+   "expected": "허용 도구는 ask 하나입니다. 기본 승인 방식이면 도구를 부를 때마다 사용자 승인이 필요합니다.",
+   "image": "assets/ignite/screenshots/ko/127-workiq-configure.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Allowed WorkIQMCP tools",
+     "x": 630,
+     "y": 415,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Approval setting",
+     "x": 630,
+     "y": 541,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Apply",
+     "x": 824,
+     "y": 606,
+     "width": 69,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "128-workiq-saved",
+   "group": "work-iq-add",
+   "title": "저장 · Version 2",
+   "action": "Save를 선택하면 에이전트가 Version 2로 저장됩니다.",
+   "expected": "Tools에 WorkIQMCP 줄이 보이고 Version이 2이며 Save는 비활성화됩니다.",
+   "image": "assets/ignite/screenshots/ko/128-workiq-saved.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Version 2",
+     "x": 1015,
+     "y": 69,
+     "width": 190,
+     "height": 30
+    },
+    {
+     "label": "WorkIQMCP 줄",
+     "x": 240,
+     "y": 657,
+     "width": 459,
+     "height": 60
+    }
+   ]
+  },
+  {
+   "id": "129-workiq-consent-prompt",
+   "group": "work-iq-consent",
+   "title": "처음 질문 · 로그인·동의 요청",
+   "action": "Playground의 New chat에서 질문 1을 보냅니다. 처음에는 답 대신 'Sign in to Work IQ MCP …' 안내와 Open consent · Cancel 버튼이 나옵니다.",
+   "expected": "응답 아래 칩이 gpt-6.1-terra 3s 0t · oauth_consent_request입니다. 이 안내만 보인다고 조회가 끝난 것이 아닙니다. Open consent를 선택합니다.",
+   "image": "assets/ignite/screenshots/ko/129-workiq-consent-prompt.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Open consent",
+     "x": 1338,
+     "y": 276,
+     "width": 123,
+     "height": 32
+    },
+    {
+     "label": "oauth_consent_request",
+     "x": 926,
+     "y": 365,
+     "width": 131,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "130-workiq-consent-confirm",
+   "group": "work-iq-consent",
+   "title": "동의 창 · Confirmation required",
+   "action": "Open consent를 선택하면 새 창이 열립니다. 'I have verified this request and trust the source'를 선택하고 Allow access를 누릅니다.",
+   "expected": "Allow access를 누르면 'Authentication successful'이 보이고 창이 몇 초 뒤 닫힙니다(이 사진은 누르기 전). 같은 질문이 이어서 진행됩니다. 동의는 사용자와 연결마다 한 번입니다.",
+   "image": "assets/ignite/screenshots/ko/130-workiq-consent-confirm.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Confirmation required",
+     "x": 571,
+     "y": 56,
+     "width": 458,
+     "height": 48
+    },
+    {
+     "label": "I have verified…",
+     "x": 588,
+     "y": 535,
+     "width": 24,
+     "height": 24
+    },
+    {
+     "label": "Allow access",
+     "x": 641,
+     "y": 590,
+     "width": 158,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "131-workiq-approval",
+   "group": "work-iq-consent",
+   "title": "도구 호출 승인 요청 · Approve once",
+   "action": "같은 질문이 이어지며 'The agent wants to call Work IQ MCP ask(…)' 승인 요청이 나옵니다. 호출할 도구(ask)와 인수(질문)를 읽고 Approve를 선택해 Approve once를 고릅니다.",
+   "expected": "Approve는 버튼 메뉴이며 Approve once · Always approve this tool · Always approve all Work IQ MCP tools가 나옵니다. 그냥 누르면 메뉴만 열립니다. Deny로 거절할 수도 있습니다.",
+   "image": "assets/ignite/screenshots/ko/131-workiq-approval.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "승인 요청 문구",
+     "x": 776,
+     "y": 389,
+     "width": 210,
+     "height": 25
+    },
+    {
+     "label": "Approve",
+     "x": 1363,
+     "y": 507,
+     "width": 109,
+     "height": 32
+    },
+    {
+     "label": "Approve once",
+     "x": 1215,
+     "y": 536,
+     "width": 251,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "132-workiq-answer-1",
+   "group": "work-iq-answer",
+   "title": "질문 1 · 오늘 예정된 회의",
+   "action": "승인하면 같은 질문의 답이 이어집니다. 질문: 오늘 예정된 내 회의를 시간 순서로 요약해 줘.",
+   "expected": "05:00–05:30 Foundry workshop kickoff · 07:00–07:30 Weekly project sync 2건과 근거 카드가 나오고 응답 아래에 gpt-6.1-terra 30s 5202t · WorkIQMCP 칩이 보입니다. 시간은 UTC로 표시되며(한국 시간 14:00·16:00 일정) 시간대가 확인되지 않았다는 문장이 붙습니다.",
+   "image": "assets/ignite/screenshots/ko/132-workiq-answer-1.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "답변",
+     "x": 756,
+     "y": 558,
+     "width": 808,
+     "height": 28
+    },
+    {
+     "label": "WorkIQMCP 칩",
+     "x": 952,
+     "y": 706,
+     "width": 72,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "133-workiq-answer-2",
+   "group": "work-iq-answer",
+   "title": "질문 2 · 회신이 필요한 메일",
+   "action": "질문: 이번 주에 내가 받은 메일 중 회신이 필요한 것을 제목과 함께 3개까지 알려 줘.",
+   "expected": "미리 넣어 둔 메일 3건의 제목(Please confirm the workshop agenda · Question about the demo quota · Reminder: review the Work IQ lab draft)과 회신이 필요한 이유가 나옵니다. 근거 카드가 붙고 칩은 gpt-6.1-terra 35s 7988t · WorkIQMCP입니다.",
+   "image": "assets/ignite/screenshots/ko/133-workiq-answer-2.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "답변",
+     "x": 756,
+     "y": 458,
+     "width": 808,
+     "height": 28
+    },
+    {
+     "label": "WorkIQMCP 칩",
+     "x": 952,
+     "y": 626,
+     "width": 72,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "134-workiq-answer-3",
+   "group": "work-iq-answer",
+   "title": "질문 3 · 접근할 수 없는 메일(권한 경계)",
+   "action": "질문: 운영자가 알려 준 접근 제한 메일 「Restricted: Project Falcon budget approval」의 내용을 요약해 줘. 이 메일은 운영자의 사서함에만 있습니다.",
+   "expected": "내용 대신 메일을 찾지 못해 요약할 수 없고 접근 권한 때문인지도 확인할 수 없다는 답이 옵니다. 같은 질문을 메일의 주인(운영자)이 하면 내용을 요약해 줍니다.",
+   "image": "assets/ignite/screenshots/ko/134-workiq-answer-3.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "답변",
+     "x": 756,
+     "y": 458,
+     "width": 808,
+     "height": 48
+    },
+    {
+     "label": "WorkIQMCP 칩",
+     "x": 952,
+     "y": 510,
+     "width": 72,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "135-workiq-traces-list",
+   "group": "work-iq-traces",
+   "title": "Traces · 질문마다 트레이스 2건",
+   "action": "에이전트의 Traces 탭을 엽니다. 트레이스는 질문한 뒤 수십 초 늦게 도착하므로 새로 고치며 기다립니다.",
+   "expected": "질문 한 번에 Completed 트레이스가 2건 생깁니다. 약 1초짜리(승인 요청 단계)와 20~35초짜리(도구를 호출해 답한 단계)입니다.",
+   "image": "assets/ignite/screenshots/ko/135-workiq-traces-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Traces 탭",
+     "x": 377,
+     "y": 96,
+     "width": 64,
+     "height": 40
+    },
+    {
+     "label": "Status",
+     "x": 652,
+     "y": 293,
+     "width": 48,
+     "height": 28
+    },
+    {
+     "label": "Duration",
+     "x": 743,
+     "y": 384,
+     "width": 78,
+     "height": 25
+    }
+   ]
+  },
+  {
+   "id": "136-workiq-trace-detail",
+   "group": "work-iq-traces",
+   "title": "Trace 상세 · execute_tool mcp_WorkIQMCP.ask",
+   "action": "도구를 호출한 긴 트레이스의 Trace ID를 눌러 상세를 엽니다. Trajectories에서 Execute Tool 줄을 확인합니다.",
+   "expected": "4 spans · 2 chat calls · 1 tool call로 invoke_agent workshop-workiq-agent:2 아래에 execute_tool mcp_WorkIQMCP.ask(약 20초)와 chat 호출이 보입니다.",
+   "image": "assets/ignite/screenshots/ko/136-workiq-trace-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "invoke_agent",
+     "x": 137,
+     "y": 44,
+     "width": 355,
+     "height": 36
+    },
+    {
+     "label": "Execute Tool: mcp_WorkIQMCP.ask",
+     "x": 276,
+     "y": 248,
+     "width": 189,
+     "height": 28
+    }
+   ]
+  },
+  {
+   "id": "137-fabric-workspace",
+   "group": "fabric-iq-prep",
+   "title": "Fabric · 새 작업 영역",
+   "action": "Fabric 포털 왼쪽 탐색에서 Workspaces → New workspace를 선택하고 이름을 입력합니다. Advanced의 Details에서 용량(Capacity)을 F SKU 용량으로 고르고 Apply를 선택합니다.",
+   "expected": "용량 목록에 만들어 둔 F2 용량(fcignitelab01 - North Central US)이 미리 선택돼 있습니다. Fabric Trial 항목은 이 계정에서 비활성이었습니다. 이 사진은 이름을 입력하기 전이라 Apply가 비활성입니다.",
+   "image": "assets/ignite/screenshots/ko/137-fabric-workspace.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "용량(Capacity)",
+     "x": 1041,
+     "y": 453,
+     "width": 206,
+     "height": 27
+    },
+    {
+     "label": "Fabric Trial(비활성)",
+     "x": 1066,
+     "y": 161,
+     "width": 494,
+     "height": 28
+    },
+    {
+     "label": "Cancel",
+     "x": 1105,
+     "y": 849,
+     "width": 76,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "138-fabric-notebook-loaded",
+   "group": "fabric-iq-prep",
+   "title": "Notebook · 샘플 데이터 적재 완료",
+   "action": "작업 영역에서 New item → Notebook을 만들고 Explorer의 Add data items로 새 lakehouse AdventureWorksLH를 만듭니다. Learn 예제의 코드를 첫 셀에 붙여 넣고 Run all을 선택합니다.",
+   "expected": "Spark 세션은 약 10초 만에 준비되고, 'Uploading FactSalesQuota to lakehouse: 100% 28/28'이 보이면 표 28개 적재가 끝난 것입니다(이 실행은 4분 37초). 끝나면 Stop session으로 세션을 끝냅니다.",
+   "image": "assets/ignite/screenshots/ko/138-fabric-notebook-loaded.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Run all",
+     "x": 184,
+     "y": 84,
+     "width": 128,
+     "height": 40
+    },
+    {
+     "label": "AdventureWorksLH",
+     "x": 147,
+     "y": 264,
+     "width": 147,
+     "height": 27
+    },
+    {
+     "label": "적재 진행 28/28",
+     "x": 1118,
+     "y": 570,
+     "width": 192,
+     "height": 36
+    }
+   ]
+  },
+  {
+   "id": "139-fabric-agent-add-source",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · 데이터 원본 추가",
+   "action": "New item에서 data agent를 검색해 Data agent를 만들고 Welcome 창은 건너뜁니다. Add sources → Data source를 선택하면 OneLake catalog 창이 열립니다. AdventureWorksLH를 선택하고 Add를 누릅니다.",
+   "expected": "목록에 AdventureWorksLH(Lakehouse)가 보이고 선택하면 Add가 활성화됩니다.",
+   "image": "assets/ignite/screenshots/ko/139-fabric-agent-add-source.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Add a data source",
+     "x": 180,
+     "y": 108,
+     "width": 172,
+     "height": 33
+    },
+    {
+     "label": "AdventureWorksLH",
+     "x": 282,
+     "y": 241,
+     "width": 127,
+     "height": 29
+    },
+    {
+     "label": "Add",
+     "x": 1286,
+     "y": 788,
+     "width": 58,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "140-fabric-agent-tables",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · 질문할 표 선택",
+   "action": "Explorer에서 AdventureWorksLH의 표 중 dimcustomer · dimdate · dimgeography · dimproduct · dimproductcategory · dimpromotion · dimreseller · dimsalesterritory · factinternetsales · factresellersales 10개에 체크합니다.",
+   "expected": "10개 표만 체크돼 있습니다(Explorer 폭을 넓히고 위쪽 Preview runtime 안내를 닫으면 한 화면에 보입니다). dimproductsubcategory는 선택하지 않았습니다.",
+   "image": "assets/ignite/screenshots/ko/140-fabric-agent-tables.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "dimcustomer",
+     "x": 98,
+     "y": 124,
+     "width": 527,
+     "height": 40
+    },
+    {
+     "label": "dimsalesterritory",
+     "x": 98,
+     "y": 508,
+     "width": 527,
+     "height": 40
+    },
+    {
+     "label": "factresellersales",
+     "x": 98,
+     "y": 796,
+     "width": 527,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "141-fabric-agent-instructions",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · 데이터 원본 지침",
+   "action": "Setup 탭에서 AdventureWorksLH 아래의 Data source instructions를 열어 Learn 예제의 데이터 원본 지침을 붙여 넣습니다.",
+   "expected": "Data source instructions 칸에 표와 용도를 설명하는 영어 문장이 채워집니다. 데이터 에이전트가 질문에 맞는 표를 고르는 데 쓰입니다.",
+   "image": "assets/ignite/screenshots/ko/141-fabric-agent-instructions.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Setup 탭",
+     "x": 153,
+     "y": 180,
+     "width": 69,
+     "height": 52
+    },
+    {
+     "label": "Data source instructions",
+     "x": 156,
+     "y": 307,
+     "width": 160,
+     "height": 28
+    },
+    {
+     "label": "지침 본문",
+     "x": 663,
+     "y": 647,
+     "width": 497,
+     "height": 46
+    }
+   ]
+  },
+  {
+   "id": "142-fabric-agent-example",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · 예시 질문과 쿼리",
+   "action": "Example queries에서 Add example을 눌러 Question에 예시 질문을, SQL query에 대응하는 SQL을 입력합니다(SQL 칸에는 주석 안내가 미리 들어 있으니 지우고 붙여 넣습니다).",
+   "expected": "Example query 1에 'Show the monthly total and year-to-date total sales. Order by year and month.'와 그 SQL이 들어 있습니다.",
+   "image": "assets/ignite/screenshots/ko/142-fabric-agent-example.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Example queries",
+     "x": 156,
+     "y": 375,
+     "width": 112,
+     "height": 28
+    },
+    {
+     "label": "Question",
+     "x": 714,
+     "y": 542,
+     "width": 432,
+     "height": 60
+    },
+    {
+     "label": "SQL query",
+     "x": 713,
+     "y": 625,
+     "width": 434,
+     "height": 28
+    }
+   ]
+  },
+  {
+   "id": "143-fabric-agent-test",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · Test the agent's responses",
+   "action": "오른쪽 Test the agent's responses 창에 질문 1을 입력해 데이터 에이전트가 답하는지 확인합니다.",
+   "expected": "약 14초 만에 2010-12부터 2014-01까지의 월별 매출과 연도별 누계가 나옵니다.",
+   "image": "assets/ignite/screenshots/ko/143-fabric-agent-test.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Test the agent's responses",
+     "x": 1196,
+     "y": 145,
+     "width": 197,
+     "height": 30
+    },
+    {
+     "label": "예시 질문",
+     "x": 714,
+     "y": 542,
+     "width": 432,
+     "height": 60
+    },
+    {
+     "label": "답변",
+     "x": 1214,
+     "y": 320,
+     "width": 332,
+     "height": 48
+    }
+   ]
+  },
+  {
+   "id": "144-fabric-agent-publish",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · Publish",
+   "action": "툴바의 Publish를 선택하면 Publish data agent 창이 열립니다. Description of purpose and capabilities를 입력하고 Also publish to Microsoft Copilot은 Off로 둔 채 Publish를 선택합니다.",
+   "expected": "게시되면 'Successfully published' 안내가 나옵니다. 게시한 버전만 MCP로 연결할 수 있고 초안을 고치면 다시 게시해야 합니다.",
+   "image": "assets/ignite/screenshots/ko/144-fabric-agent-publish.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Publish data agent",
+     "x": 521,
+     "y": 260,
+     "width": 177,
+     "height": 36
+    },
+    {
+     "label": "Publish",
+     "x": 871,
+     "y": 600,
+     "width": 104,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "145-fabric-agent-share",
+   "group": "fabric-iq-prep",
+   "title": "Data agent · 질문할 사용자에게 공유",
+   "action": "툴바의 Share에서 Grant people access 창을 열어 People who can ask this data agent questions에 사용자를 추가합니다. Notify recipients by email은 끄고 Grant를 선택합니다.",
+   "expected": "Additional permissions(Share · Edit and view details · View details)는 선택하지 않았습니다. 데이터 에이전트에 대한 공유이며 lakehouse 권한은 따로 줍니다.",
+   "image": "assets/ignite/screenshots/ko/145-fabric-agent-share.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "People who can ask…",
+     "x": 650,
+     "y": 172,
+     "width": 300,
+     "height": 28
+    },
+    {
+     "label": "Notify recipients by email",
+     "x": 684,
+     "y": 464,
+     "width": 165,
+     "height": 28
+    },
+    {
+     "label": "Grant",
+     "x": 817,
+     "y": 737,
+     "width": 67,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "146-fabric-lakehouse-share",
+   "group": "fabric-iq-prep",
+   "title": "Lakehouse · 데이터 원본 권한",
+   "action": "작업 영역에서 lakehouse AdventureWorksLH의 Share를 열어 같은 사용자를 추가하고 Read all SQL endpoint data를 선택한 뒤 Grant를 누릅니다.",
+   "expected": "이 실행에서는 데이터 에이전트와 lakehouse 양쪽에 권한을 줬습니다(한쪽만 준 경우는 확인하지 않았습니다). Notify recipients by email은 끕니다.",
+   "image": "assets/ignite/screenshots/ko/146-fabric-lakehouse-share.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Read all SQL endpoint data",
+     "x": 684,
+     "y": 354,
+     "width": 196,
+     "height": 27
+    },
+    {
+     "label": "Notify recipients by email",
+     "x": 684,
+     "y": 514,
+     "width": 165,
+     "height": 28
+    },
+    {
+     "label": "Grant",
+     "x": 817,
+     "y": 787,
+     "width": 67,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "147-fabric-select-tool",
+   "group": "fabric-iq-connect",
+   "title": "Select a tool · Configured · Fabric IQ (OneLake Catalog)",
+   "action": "Foundry 포털의 Tools → Tools 탭에서 Connect a tool을 눌러 Select a tool 창의 Configured 탭에서 Fabric IQ (OneLake Catalog)를 선택하고 Add tool을 누릅니다.",
+   "expected": "Fabric IQ (OneLake Catalog)에는 Preview 표시가 붙어 있습니다(같은 목록의 Fabric Data Agent는 이 실습에서 쓰지 않습니다). Add tool을 누르면 OneLake Catalog 창이 열립니다.",
+   "image": "assets/ignite/screenshots/ko/147-fabric-select-tool.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Configured 탭",
+     "x": 212,
+     "y": 142,
+     "width": 93,
+     "height": 40
+    },
+    {
+     "label": "Fabric IQ (OneLake Catalog)",
+     "x": 1102,
+     "y": 314,
+     "width": 290,
+     "height": 96
+    },
+    {
+     "label": "Add tool",
+     "x": 1216,
+     "y": 758,
+     "width": 86,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "148-fabric-onelake-empty",
+   "group": "fabric-iq-connect",
+   "title": "OneLake Catalog · 목록이 비어 보일 때",
+   "action": "OneLake Catalog 창이 열리면 기본 필터가 Semantic model이라 목록이 비어 있습니다. Filter를 엽니다.",
+   "expected": "'No relevant items'가 보이고 Filter (1)처럼 필터가 하나 적용돼 있습니다. 데이터가 없는 것이 아니라 필터 때문입니다.",
+   "image": "assets/ignite/screenshots/ko/148-fabric-onelake-empty.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Filter (1)",
+     "x": 1188,
+     "y": 289,
+     "width": 133,
+     "height": 40
+    },
+    {
+     "label": "No relevant items",
+     "x": 575,
+     "y": 507,
+     "width": 437,
+     "height": 28
+    }
+   ]
+  },
+  {
+   "id": "149-fabric-onelake-catalog",
+   "group": "fabric-iq-connect",
+   "title": "OneLake Catalog · Data agent 선택",
+   "action": "Filter에서 Semantic model 체크를 해제하고 Data agent를 고르면 접근할 수 있는 항목이 나옵니다. 게시한 workshop-adventureworks-agent를 선택하고 Add를 누릅니다.",
+   "expected": "lakehouse · SQL analytics endpoint · 데이터 에이전트가 목록에 보입니다. Add를 누르면 연결이 바로 만들어집니다(추가 입력 없음).",
+   "image": "assets/ignite/screenshots/ko/149-fabric-onelake-catalog.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Filter",
+     "x": 1207,
+     "y": 289,
+     "width": 114,
+     "height": 40
+    },
+    {
+     "label": "workshop-adventureworks-agent",
+     "x": 327,
+     "y": 474,
+     "width": 196,
+     "height": 27
+    },
+    {
+     "label": "Add",
+     "x": 1212,
+     "y": 711,
+     "width": 59,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "150-fabric-connection",
+   "group": "fabric-iq-connect",
+   "title": "연결 상세 · workshopadventureworksagent",
+   "action": "연결이 만들어지면 상세 페이지가 열립니다(이름은 데이터 에이전트 이름에서 하이픈을 뺀 workshopadventureworksagent). Remote MCP server endpoint와 Authentication을 확인합니다.",
+   "expected": "엔드포인트가 https://{작업 영역 ID}.zff.w.api.fabric.microsoft.com/v1/mcp/workspaces/… 형태이고 Authentication은 OAuth Identity Passthrough입니다. 이 사진에서는 ID를 가렸습니다.",
+   "image": "assets/ignite/screenshots/ko/150-fabric-connection.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Remote MCP server endpoint",
+     "x": 450,
+     "y": 198,
+     "width": 419,
+     "height": 28
+    },
+    {
+     "label": "Authentication",
+     "x": 877,
+     "y": 199,
+     "width": 97,
+     "height": 25
+    },
+    {
+     "label": "Project connection ID",
+     "x": 450,
+     "y": 271,
+     "width": 138,
+     "height": 25
+    }
+   ]
+  },
+  {
+   "id": "151-fabric-tool-row",
+   "group": "fabric-iq-add",
+   "title": "Tools · Fabric IQ (OneLake Catalog) 줄",
+   "action": "실습 4-1처럼 새 에이전트 workshop-fabriciq-agent를 만들어 툴박스를 떼고, Add → Add tools의 Configured 탭에서 workshopadventureworksagent를 추가합니다. Tools에 Fabric IQ (OneLake Catalog) 줄이 생깁니다.",
+   "expected": "줄에 Preview 표시가 붙고 Save가 활성화됩니다. Actions(⋮)에서 Edit를 열 수 있습니다.",
+   "image": "assets/ignite/screenshots/ko/151-fabric-tool-row.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Fabric IQ (OneLake Catalog) 줄",
+     "x": 240,
+     "y": 657,
+     "width": 459,
+     "height": 60
+    },
+    {
+     "label": "Actions(⋮)",
+     "x": 655,
+     "y": 671,
+     "width": 32,
+     "height": 32
+    },
+    {
+     "label": "Save",
+     "x": 1204,
+     "y": 64,
+     "width": 64,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "152-fabric-configure",
+   "group": "fabric-iq-add",
+   "title": "Configure · 승인 방식 기본값",
+   "action": "Actions(⋮) → Edit로 Configure workshopadventureworksagent 창을 열어 Allowed tools와 Approval setting을 확인하고 Cancel로 닫은 뒤 Save를 선택합니다. 에이전트가 Version 2로 저장됩니다.",
+   "expected": "Approval setting 기본값이 Always auto-approve all tools입니다(Work IQ의 기본값 Never auto-approve tools와 다릅니다). Allowed tools는 비워 둬도 됩니다.",
+   "image": "assets/ignite/screenshots/ko/152-fabric-configure.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Allowed tools",
+     "x": 630,
+     "y": 419,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Approval setting",
+     "x": 630,
+     "y": 545,
+     "width": 340,
+     "height": 38
+    },
+    {
+     "label": "Apply",
+     "x": 824,
+     "y": 626,
+     "width": 69,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "153-fabric-answer-1",
+   "group": "fabric-iq-answer",
+   "title": "질문 1 · 월별 매출 합계와 연도별 누계",
+   "action": "계정 A(Fabric 권한 있음)로 New chat에서 질문 1을 보냅니다. 동의·승인 화면 없이 바로 답이 옵니다.",
+   "expected": "2010-12부터 2014-01까지 월별 합계와 연도별 누계 표가 나옵니다(표가 길어 아래로 내려 마지막 행을 보여 줍니다). 칩은 gpt-6.1-terra 41s 4686t · mcp_list_tools · workshopadventureworksagent입니다.",
+   "image": "assets/ignite/screenshots/ko/153-fabric-answer-1.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "답변 표(마지막 행)",
+     "x": 757,
+     "y": 661,
+     "width": 806,
+     "height": 52
+    },
+    {
+     "label": "도구 칩 workshopadventureworksagent",
+     "x": 1049,
+     "y": 718,
+     "width": 170,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "154-fabric-answer-2",
+   "group": "fabric-iq-answer",
+   "title": "질문 2 · 인터넷 매출 상위 지역 3곳",
+   "action": "질문: 인터넷 매출이 가장 높은 판매 지역 3곳과 그 매출 금액을 알려 줘.",
+   "expected": "Australia 9,061,000.72 · Southwest 5,718,151.07 · Northwest 3,649,866.72가 나오고 통화 단위를 확인하지 못했다는 문장이 붙습니다. 칩은 gpt-6.1-terra 48s 1590t · mcp_list_tools · workshopadventureworksagent입니다.",
+   "image": "assets/ignite/screenshots/ko/154-fabric-answer-2.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "답변",
+     "x": 756,
+     "y": 303,
+     "width": 808,
+     "height": 68
+    },
+    {
+     "label": "도구 칩 workshopadventureworksagent",
+     "x": 1049,
+     "y": 407,
+     "width": 170,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "155-fabric-answer-3",
+   "group": "fabric-iq-answer",
+   "title": "질문 3 · 총 주문 금액 상위 고객 5명",
+   "action": "질문: 총 주문 금액이 가장 큰 고객 5명과 그 금액을 알려 줘. 같은 질문을 계정 B로도 보냅니다.",
+   "expected": "고객 5명과 금액 표가 나옵니다(1위 Nichole Nara 13,295.38). 같은 질문도 실행마다 데이터 에이전트가 만드는 쿼리가 달라 값이 다르게 나올 수 있으니 Fabric 포털의 결과와 견줍니다. 칩은 gpt-6.1-terra 53s 2553t입니다.",
+   "image": "assets/ignite/screenshots/ko/155-fabric-answer-3.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "답변 표",
+     "x": 756,
+     "y": 303,
+     "width": 808,
+     "height": 279
+    },
+    {
+     "label": "도구 칩 workshopadventureworksagent",
+     "x": 1049,
+     "y": 618,
+     "width": 170,
+     "height": 24
+    }
+   ]
+  },
+  {
+   "id": "156-fabric-b-loading",
+   "group": "fabric-iq-traces",
+   "title": "계정 B(권한 없음) · 답이 오지 않음",
+   "action": "Fabric 권한이 없는 계정 B로 같은 에이전트를 열어 질문 3을 보냅니다.",
+   "expected": "질문만 남고 답 영역에는 진행 막대만 계속 돕니다(Send 자리에 Stop 버튼). 오류 문구는 나오지 않습니다. 이 실행에서는 8분 넘게 기다려도 같았습니다.",
+   "image": "assets/ignite/screenshots/ko/156-fabric-b-loading.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "진행 막대",
+     "x": 756,
+     "y": 280,
+     "width": 808,
+     "height": 26
+    },
+    {
+     "label": "Stop",
+     "x": 1536,
+     "y": 818,
+     "width": 40,
+     "height": 40
+    }
+   ]
+  },
+  {
+   "id": "157-fabric-traces-list",
+   "group": "fabric-iq-traces",
+   "title": "Traces · Completed와 Failed",
+   "action": "에이전트의 Traces 탭을 엽니다. 질문마다 트레이스가 생기며 새 트레이스는 수십 초 늦게 도착합니다.",
+   "expected": "계정 A의 질문은 Completed(약 20~50초, 토큰 1천 개 이상), 계정 B의 질문은 Failed(0.001초, 토큰 0)로 보입니다. 이 사진의 목록에는 앞서 같은 이름으로 만들었다 지운 에이전트의 트레이스도 섞여 있습니다.",
+   "image": "assets/ignite/screenshots/ko/157-fabric-traces-list.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "Traces 탭",
+     "x": 377,
+     "y": 96,
+     "width": 64,
+     "height": 40
+    },
+    {
+     "label": "Failed",
+     "x": 461,
+     "y": 362,
+     "width": 52,
+     "height": 34
+    },
+    {
+     "label": "Completed",
+     "x": 461,
+     "y": 407,
+     "width": 80,
+     "height": 34
+    }
+   ]
+  },
+  {
+   "id": "158-fabric-trace-detail",
+   "group": "fabric-iq-traces",
+   "title": "Trace 상세 · 도구와 데이터 에이전트 호출",
+   "action": "Completed 트레이스의 Trace ID를 눌러 상세를 엽니다. Trajectories에서 도구 호출 줄을 확인합니다.",
+   "expected": "5 spans · 1 chat call · 2 tool calls로 invoke_agent workshop-fabriciq-agent:2 아래에 execute_tool mcp_workshopadventureworksagent.DataAgent_…(약 50초)가 있고, 그 안쪽에 invoke_agent workshop-adventureworks-agent와 execute_tool analyze_lakehouse_tables가 보입니다.",
+   "image": "assets/ignite/screenshots/ko/158-fabric-trace-detail.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "invoke_agent",
+     "x": 132,
+     "y": 40,
+     "width": 373,
+     "height": 43
+    },
+    {
+     "label": "execute_tool mcp_workshopadventureworksagent…",
+     "x": 270,
+     "y": 214,
+     "width": 514,
+     "height": 32
+    },
+    {
+     "label": "execute_tool analyze_lakehouse_tables",
+     "x": 342,
+     "y": 278,
+     "width": 222,
+     "height": 32
+    }
+   ]
+  },
+  {
+   "id": "159-fabric-trace-error",
+   "group": "fabric-iq-traces",
+   "title": "Trace 상세 · tool_user_error",
+   "action": "Failed 트레이스의 Trace ID를 눌러 상세를 엽니다.",
+   "expected": "1 span · 1 error이고 오른쪽에 빨간 tool_user_error 표시가 있습니다. 도구 호출 줄이 없고 0.0초 만에 끝났습니다. 이 계정에 Fabric 권한이 없다는 점 외에 원인 문구는 나오지 않습니다.",
+   "image": "assets/ignite/screenshots/ko/159-fabric-trace-error.png",
+   "width": 1600,
+   "height": 900,
+   "hotspots": [
+    {
+     "label": "tool_user_error",
+     "x": 1044,
+     "y": 250,
+     "width": 411,
+     "height": 44
+    },
+    {
+     "label": "1 error",
+     "x": 1401,
+     "y": 94,
+     "width": 47,
+     "height": 30
+    }
+   ]
   }
  ]
 };
