@@ -1,0 +1,673 @@
+WEBVTT
+
+1
+00:00:00.270 --> 00:00:05.209
+Foundry home · open Create → Knowledge on the left
+
+2
+00:00:05.259 --> 00:00:11.283
+First Knowledge screen · Foundry IQ resource connection
+
+3
+00:00:11.333 --> 00:00:17.901
+Create Foundry IQ resource dialog
+
+4
+00:00:17.951 --> 00:00:23.738
+Foundry IQ resource list · choose the search service the operator created
+
+5
+00:00:23.788 --> 00:00:29.307
+Auth Type list · choose Project Managed Identity
+
+6
+00:00:29.357 --> 00:00:31.164
+Search resource and Auth Type selection
+
+7
+00:00:31.214 --> 00:00:38.420
+Select Connect · connecting to the search resource
+
+8
+00:00:38.470 --> 00:00:45.721
+Connected · Create a knowledge base
+
+9
+00:00:45.771 --> 00:00:53.127
+Create a knowledge base · new knowledge base form
+
+10
+00:00:53.177 --> 00:00:59.111
+Knowledge base name and description
+
+11
+00:00:59.161 --> 00:01:03.639
+Upload files · the 3 sample documents selected
+
+12
+00:01:03.689 --> 00:01:08.938
+Knowledge source creation · embedding model selection
+
+13
+00:01:08.988 --> 00:01:15.217
+Knowledge source creation · Create
+
+14
+00:01:15.267 --> 00:01:18.753
+File upload and processing progress
+
+15
+00:01:18.803 --> 00:01:25.242
+Knowledge source Active · 3 files processed
+
+16
+00:01:25.292 --> 00:01:32.236
+Saved knowledge base
+
+17
+00:01:32.286 --> 00:01:35.926
+Model Playground · start from gpt-6.1-terra
+
+18
+00:01:35.976 --> 00:01:43.976
+Model Playground · typing the instructions
+
+19
+00:01:44.191 --> 00:01:49.962
+Model Playground · paste the instructions
+
+20
+00:01:50.012 --> 00:01:54.676
+Save as agent · open the dialog
+
+21
+00:01:54.726 --> 00:02:00.834
+Save as agent · enter the agent name
+
+22
+00:02:00.884 --> 00:02:05.245
+Agent created · Version 1
+
+23
+00:02:05.295 --> 00:02:09.056
+Agent creation · default toolbox removal
+
+24
+00:02:09.106 --> 00:02:13.440
+Default toolbox removed
+
+25
+00:02:13.490 --> 00:02:16.824
+Open the Knowledge area
+
+26
+00:02:16.874 --> 00:02:24.874
+Knowledge → Add → Connect to Foundry IQ
+
+27
+00:02:25.304 --> 00:02:30.986
+Knowledge base list · choose workshop-kb-en
+
+28
+00:02:31.036 --> 00:02:37.348
+Knowledge base connection
+
+29
+00:02:37.398 --> 00:02:44.698
+Knowledge base added under Knowledge · select Save
+
+30
+00:02:44.748 --> 00:02:52.494
+Agent saved · Version 2
+
+31
+00:02:52.544 --> 00:02:59.686
+Question 1 · typed in a new chat
+
+32
+00:02:59.736 --> 00:03:04.924
+Question 1 · schedule and venue (one document)
+
+33
+00:03:04.974 --> 00:03:11.807
+New chat · a new conversation for question 2
+
+34
+00:03:11.857 --> 00:03:18.765
+Question 2 · typed in a new chat
+
+35
+00:03:18.815 --> 00:03:24.009
+Question 2 · using several documents together
+
+36
+00:03:24.059 --> 00:03:29.094
+New chat · a new conversation for question 3
+
+37
+00:03:29.144 --> 00:03:36.051
+Question 3 · typed in a new chat
+
+38
+00:03:36.101 --> 00:03:44.101
+Question 3 · content that is not in the documents
+
+39
+00:03:44.428 --> 00:03:52.428
+Traces · filter Status to Completed
+
+40
+00:03:52.511 --> 00:03:55.435
+Traces · runs for the knowledge base questions
+
+41
+00:03:55.485 --> 00:04:02.816
+Select a Trace ID · open the details
+
+42
+00:04:02.866 --> 00:04:09.421
+Trace details · knowledge base tool call
+
+43
+00:04:09.471 --> 00:04:17.471
+Trace details · tool call input and output
+
+44
+00:04:33.194 --> 00:04:41.153
+Find Microsoft Web IQ in the Azure portal
+
+45
+00:04:41.203 --> 00:04:49.203
+Microsoft Web IQ resources · Create
+
+46
+00:04:54.886 --> 00:05:02.085
+Create a Microsoft Web IQ resource · Basics
+
+47
+00:05:02.135 --> 00:05:10.135
+Read the Warning and Terms, then Next
+
+48
+00:05:12.649 --> 00:05:20.600
+Review + submit · Create
+
+49
+00:05:20.650 --> 00:05:28.650
+Deployment complete · Go to resource
+
+50
+00:05:37.950 --> 00:05:44.801
+Web IQ resource · Go to Web IQ portal
+
+51
+00:05:44.851 --> 00:05:52.851
+“You’re leaving portal.azure.com” notice · Continue
+
+52
+00:06:00.988 --> 00:06:08.988
+Web IQ portal · first screen after sign-in
+
+53
+00:06:15.957 --> 00:06:23.957
+Web IQ portal · Account settings → Add Azure Resource
+
+54
+00:06:31.227 --> 00:06:37.788
+Web IQ portal · Connect Azure resource
+
+55
+00:06:37.838 --> 00:06:45.838
+Web IQ portal · Setup complete
+
+56
+00:06:55.959 --> 00:07:03.959
+Playground · Profile and API Key (default) selected
+
+57
+00:07:16.751 --> 00:07:24.751
+Playground · Run Request (HTTP 200)
+
+58
+00:07:24.933 --> 00:07:32.933
+API access · Default API key
+
+59
+00:07:43.591 --> 00:07:51.591
+Enter the Instructions · Save as agent
+
+60
+00:08:00.066 --> 00:08:05.271
+New agent created · the toolbox attached automatically
+
+61
+00:08:05.321 --> 00:08:12.666
+Remove the default toolbox of the new agent
+
+62
+00:08:12.716 --> 00:08:20.716
+Tools → Add → Add tools
+
+63
+00:08:27.705 --> 00:08:35.529
+Select a tool · Catalog · Web IQ
+
+64
+00:08:35.579 --> 00:08:43.579
+Connect the Web IQ tool
+
+65
+00:08:47.585 --> 00:08:55.585
+Tool approval · Always auto-approve all tools
+
+66
+00:09:01.246 --> 00:09:09.246
+Saved · Version 2
+
+67
+00:09:11.198 --> 00:09:18.465
+Type the question · Send
+
+68
+00:09:18.515 --> 00:09:26.515
+Ask with the Web IQ tool
+
+69
+00:09:41.764 --> 00:09:47.966
+Open the Traces tab · Trace view
+
+70
+00:09:48.016 --> 00:09:56.016
+Traces · The trace has arrived
+
+71
+00:09:56.831 --> 00:10:04.831
+Trace details · execute_tool mcp_WebIQ.web
+
+72
+00:10:15.603 --> 00:10:23.603
+Web IQ portal · Usage dashboard
+
+73
+00:10:30.891 --> 00:10:38.891
+New agent for the built-in Web search comparison · Instructions
+
+74
+00:10:46.922 --> 00:10:51.589
+Comparison agent created · Web search in the toolbox
+
+75
+00:10:51.639 --> 00:10:58.546
+Web search in the toolbox · Grounding with Bing notice
+
+76
+00:10:58.596 --> 00:11:06.596
+Toolbox path: type the same question
+
+77
+00:11:08.759 --> 00:11:16.759
+Same question through the toolbox path (Grounding with Bing)
+
+78
+00:11:17.877 --> 00:11:25.201
+Tools → Add → Web search
+
+79
+00:11:25.251 --> 00:11:33.251
+Web search added directly · notice
+
+80
+00:11:41.097 --> 00:11:48.733
+Web search added directly: type the same question
+
+81
+00:11:48.783 --> 00:11:56.783
+Question with the Web search tool added directly
+
+82
+00:12:03.642 --> 00:12:11.642
+Tools tab · Connect a tool
+
+83
+00:12:24.045 --> 00:12:32.045
+Select a tool · Catalog · Work IQ MCP
+
+84
+00:12:35.362 --> 00:12:43.362
+Client ID and Client secret (the secret value stays blurred)
+
+85
+00:12:44.105 --> 00:12:50.392
+Connect the Work IQ MCP tool
+
+86
+00:12:50.442 --> 00:12:58.442
+Operator step · add the Redirect URL to the app registration (Authentication → Web → Redirect URIs)
+
+87
+00:13:00.751 --> 00:13:08.751
+Connection details · WorkIQMCP
+
+88
+00:13:09.701 --> 00:13:17.701
+Model Playground · create a new agent with Save as agent
+
+89
+00:13:24.443 --> 00:13:32.443
+A new agent · paste the instructions
+
+90
+00:13:40.067 --> 00:13:48.067
+A new agent · remove the toolbox attached automatically
+
+91
+00:13:54.556 --> 00:14:01.030
+Select a tool · Configured · WorkIQMCP
+
+92
+00:14:01.080 --> 00:14:08.116
+Tools · the WorkIQMCP row
+
+93
+00:14:08.166 --> 00:14:16.166
+Configure WorkIQMCP · allow only ask
+
+94
+00:14:18.586 --> 00:14:26.586
+Saved · Version 2
+
+95
+00:14:27.904 --> 00:14:35.904
+Question 1 · today's meetings
+
+96
+00:14:39.061 --> 00:14:43.850
+First question · sign-in and consent request
+
+97
+00:14:43.900 --> 00:14:55.780
+Consent window · Confirmation required
+
+98
+00:15:04.537 --> 00:15:11.857
+Consent given · the same question continues
+
+99
+00:15:11.907 --> 00:15:19.907
+Tool call approval request · Approve once
+
+100
+00:15:24.715 --> 00:15:32.715
+Question 1 · today's meetings
+
+101
+00:15:39.028 --> 00:15:47.028
+Question 2 · emails that need a reply
+
+102
+00:15:51.358 --> 00:15:59.358
+Question 2 · tool call approval request
+
+103
+00:16:01.744 --> 00:16:09.744
+Question 2 · emails that need a reply
+
+104
+00:16:15.090 --> 00:16:23.090
+Question 3 · an email you cannot access (permission boundary)
+
+105
+00:16:27.248 --> 00:16:35.248
+Question 3 · tool call approval request
+
+106
+00:16:36.480 --> 00:16:44.480
+Question 3 · an email you cannot access (permission boundary)
+
+107
+00:16:52.480 --> 00:17:00.480
+Traces tab · the runs you just made
+
+108
+00:17:04.368 --> 00:17:12.368
+Traces · the traces of the questions you just asked
+
+109
+00:17:18.119 --> 00:17:26.119
+Trace details · execute_tool mcp_WorkIQMCP.ask
+
+110
+00:17:30.561 --> 00:17:38.561
+Fabric · a new workspace
+
+111
+00:17:44.502 --> 00:17:49.573
+Fabric · a new workspace
+
+112
+00:17:49.623 --> 00:17:57.623
+Notebook · the sample data is loaded
+
+113
+00:18:05.822 --> 00:18:11.947
+Notebook · the sample data is loaded
+
+114
+00:18:11.997 --> 00:18:19.997
+Notebook · the sample data is loaded
+
+115
+00:18:24.230 --> 00:18:30.337
+Data agent · add a data source
+
+116
+00:18:30.387 --> 00:18:38.387
+Data agent · add a data source
+
+117
+00:18:45.976 --> 00:18:53.662
+Data agent · add a data source
+
+118
+00:18:53.712 --> 00:19:01.712
+Data agent · add a data source
+
+119
+00:19:02.835 --> 00:19:08.469
+Data agent · choose the tables to ask about
+
+120
+00:19:08.519 --> 00:19:15.683
+Data agent · choose the tables to ask about
+
+121
+00:19:15.733 --> 00:19:21.136
+Data agent · choose the tables to ask about
+
+122
+00:19:21.186 --> 00:19:27.147
+Data agent · data source instructions
+
+123
+00:19:27.197 --> 00:19:32.287
+Data agent · data source instructions
+
+124
+00:19:32.337 --> 00:19:36.587
+Data agent · an example question and query
+
+125
+00:19:36.637 --> 00:19:44.275
+Data agent · an example question and query
+
+126
+00:19:44.325 --> 00:19:50.552
+Data agent · an example question and query
+
+127
+00:19:50.602 --> 00:19:58.602
+Data agent · Test the agent's responses
+
+128
+00:19:59.703 --> 00:20:02.680
+Data agent · Test the agent's responses
+
+129
+00:20:02.730 --> 00:20:10.730
+Data agent · Publish
+
+130
+00:20:11.206 --> 00:20:16.799
+Data agent · Publish
+
+131
+00:20:16.849 --> 00:20:22.164
+Data agent · Publish
+
+132
+00:20:22.214 --> 00:20:30.214
+Data agent · share it with the people who ask
+
+133
+00:20:35.857 --> 00:20:38.756
+Data agent · share it with the people who ask
+
+134
+00:20:38.806 --> 00:20:46.806
+Data agent · share it with the people who ask
+
+135
+00:20:51.956 --> 00:20:59.956
+Lakehouse · permission on the data source
+
+136
+00:21:04.955 --> 00:21:10.009
+Lakehouse · permission on the data source
+
+137
+00:21:10.059 --> 00:21:18.059
+Lakehouse · permission on the data source
+
+138
+00:21:18.574 --> 00:21:25.753
+Tools tab · Connect a tool
+
+139
+00:21:25.803 --> 00:21:28.996
+Select a tool · Configured · Fabric IQ (OneLake Catalog)
+
+140
+00:21:29.046 --> 00:21:37.046
+Select a tool · Configured · Fabric IQ (OneLake Catalog)
+
+141
+00:21:38.847 --> 00:21:43.080
+OneLake Catalog · when the list looks empty
+
+142
+00:21:43.130 --> 00:21:51.130
+OneLake Catalog · clear Semantic model in Filter
+
+143
+00:21:53.990 --> 00:22:01.990
+OneLake Catalog · choose the Data agent
+
+144
+00:22:03.913 --> 00:22:11.913
+Connection details · workshopadventureworksagent
+
+145
+00:22:14.243 --> 00:22:22.243
+New agent · enter the instructions
+
+146
+00:22:31.944 --> 00:22:39.297
+New agent · enter the instructions
+
+147
+00:22:39.347 --> 00:22:47.347
+New agent · enter the name
+
+148
+00:22:48.030 --> 00:22:53.339
+Remove the default toolbox of the new agent
+
+149
+00:22:53.389 --> 00:23:00.470
+Tools → Add → Add tools
+
+150
+00:23:00.520 --> 00:23:04.209
+Select a tool · Configured · workshopadventureworksagent
+
+151
+00:23:04.259 --> 00:23:09.205
+Tools · the Fabric IQ (OneLake Catalog) row
+
+152
+00:23:09.255 --> 00:23:17.255
+Configure · the default approval setting
+
+153
+00:23:18.490 --> 00:23:24.603
+Saved · Version 2
+
+154
+00:23:24.653 --> 00:23:29.411
+Saved · Version 2
+
+155
+00:23:29.461 --> 00:23:34.218
+Saved · Version 2
+
+156
+00:23:34.268 --> 00:23:39.036
+Saved · Version 2
+
+157
+00:23:39.086 --> 00:23:43.830
+Saved · Version 2
+
+158
+00:23:43.880 --> 00:23:51.880
+Saved · Version 2
+
+159
+00:23:53.917 --> 00:24:01.917
+Question 1 · monthly and year-to-date sales
+
+160
+00:24:06.215 --> 00:24:14.215
+Question 1 · monthly and year-to-date sales
+
+161
+00:24:17.792 --> 00:24:25.792
+Question 2 · the top 3 sales regions
+
+162
+00:24:26.920 --> 00:24:34.920
+Question 2 · the top 3 sales regions
+
+163
+00:24:38.330 --> 00:24:46.330
+Question 3 · the top 5 customers by total order amount
+
+164
+00:24:48.309 --> 00:24:49.770
+Question 3 · the top 5 customers by total order amount
+
+165
+00:24:49.820 --> 00:25:47.140
+Account B (no access) · no answer arrives
+
+166
+00:25:59.107 --> 00:26:06.527
+Traces · Completed and Failed
+
+167
+00:26:06.577 --> 00:26:14.289
+Trace details · the tool and the data agent calls
+
+168
+00:26:14.339 --> 00:26:17.910
+Trace details · tool_user_error

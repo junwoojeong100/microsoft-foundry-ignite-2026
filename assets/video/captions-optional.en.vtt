@@ -1,0 +1,653 @@
+WEBVTT
+
+1
+00:00:07.174 --> 00:00:15.174
+Harness column in the Build → Agents list
+
+2
+00:00:15.898 --> 00:00:22.679
+Models · deployments (gpt-6.1-terra)
+
+3
+00:00:22.729 --> 00:00:30.574
+Models → gpt-6.1-terra · Playground
+
+4
+00:00:30.624 --> 00:00:38.606
+gpt-6.1-terra Playground · instructions entered
+
+5
+00:00:38.656 --> 00:00:42.053
+Create an agent · name the agent
+
+6
+00:00:42.103 --> 00:00:50.103
+Create an agent · harness selection
+
+7
+00:00:51.173 --> 00:00:56.082
+New harness agent · Playground (Version 1, gpt-6.1-terra)
+
+8
+00:00:56.132 --> 00:01:01.761
+Harness tools · defaults
+
+9
+00:01:01.811 --> 00:01:09.620
+Unneeded tools turned off
+
+10
+00:01:09.670 --> 00:01:16.702
+Unsupported tools dialog · Cancel keeps the model
+
+11
+00:01:16.752 --> 00:01:24.752
+Harness tools still restricted after the model check
+
+12
+00:01:27.807 --> 00:01:35.660
+Saved as Version 2
+
+13
+00:01:35.710 --> 00:01:42.273
+Saved settings on the YAML tab
+
+14
+00:01:42.323 --> 00:01:47.716
+Chat · a new conversation on gpt-6.1-terra
+
+15
+00:01:47.766 --> 00:01:51.831
+The question that makes the agent read a web page
+
+16
+00:01:51.881 --> 00:01:59.315
+Question sent · the agent reads the web page
+
+17
+00:01:59.365 --> 00:02:07.365
+Run with gpt-6.1-terra
+
+18
+00:02:09.312 --> 00:02:13.705
+Agents list with the harness agent
+
+19
+00:02:13.755 --> 00:02:18.144
+Routines tab
+
+20
+00:02:18.194 --> 00:02:26.194
+Workflows tab · retirement notice
+
+21
+00:02:26.668 --> 00:02:32.166
+Open the harness agent from the list
+
+22
+00:02:32.216 --> 00:02:39.456
+Details tab · endpoints and channels
+
+23
+00:02:39.506 --> 00:02:46.656
+Playground · scroll down to the Guardrail (Preview) section
+
+24
+00:02:46.706 --> 00:02:50.523
+Agent Guardrail (Preview) section
+
+25
+00:02:50.573 --> 00:02:58.573
+Manage guardrail menu
+
+26
+00:02:59.753 --> 00:03:04.638
+Traces · the list of runs is loading
+
+27
+00:03:04.688 --> 00:03:12.688
+Traces list
+
+28
+00:03:15.320 --> 00:03:21.680
+Monitor · Overview is loading
+
+29
+00:03:21.730 --> 00:03:29.730
+Agent Monitor · Overview
+
+30
+00:03:31.158 --> 00:03:39.158
+Monitor → Cost (Preview)
+
+31
+00:03:41.873 --> 00:03:47.979
+Insights tab · scan settings
+
+32
+00:03:48.029 --> 00:03:52.211
+Judge model · GPT-5 or newer models only
+
+33
+00:03:52.261 --> 00:04:00.261
+Estimated cost for the first scan · Run scan now
+
+34
+00:04:00.838 --> 00:04:06.298
+Run now · scan in progress
+
+35
+00:04:06.348 --> 00:04:14.348
+Scan complete · the result appears in the Insights panel
+
+36
+00:04:19.760 --> 00:04:27.760
+Agent Playground · open the Evaluation tab
+
+37
+00:04:32.575 --> 00:04:40.575
+Agent Evaluation tab
+
+38
+00:04:43.860 --> 00:04:49.061
+Evaluations → Evaluator catalog
+
+39
+00:04:49.111 --> 00:04:57.111
+Create evaluator dialog
+
+40
+00:04:57.240 --> 00:05:03.690
+Evaluator name and Display name entered
+
+41
+00:05:03.740 --> 00:05:08.690
+Model · choose the judge deployment
+
+42
+00:05:08.740 --> 00:05:15.690
+Target agent · its instructions fill in read-only
+
+43
+00:05:15.740 --> 00:05:23.190
+Prompt · what the evaluator should check
+
+44
+00:05:23.240 --> 00:05:31.240
+Prompt · the criteria text is being typed
+
+45
+00:05:31.644 --> 00:05:37.449
+Evaluator details form
+
+46
+00:05:37.499 --> 00:05:43.220
+Context (Optional) · production traces from the target agent
+
+47
+00:05:43.270 --> 00:05:46.025
+Generate rubric · the dimensions are being created
+
+48
+00:05:46.075 --> 00:05:48.818
+Generate rubric · the dimensions are being created
+
+49
+00:05:48.868 --> 00:05:53.042
+Generate rubric · the dimensions are being created
+
+50
+00:05:53.092 --> 00:06:01.092
+Generate rubric · automatic rubric generation
+
+51
+00:06:01.191 --> 00:06:09.191
+Rubric dimensions · criteria for scores 1, 3 and 5
+
+52
+00:06:12.521 --> 00:06:20.521
+Save evaluator · evaluator details
+
+53
+00:06:21.967 --> 00:06:26.385
+Create evaluation 1/5 · Target
+
+54
+00:06:26.435 --> 00:06:33.070
+2/5 · Scope
+
+55
+00:06:33.120 --> 00:06:39.381
+3/5 · Data · the prompt for the synthetic questions
+
+56
+00:06:39.431 --> 00:06:44.747
+3/5 · Data · synthetic data generation
+
+57
+00:06:44.797 --> 00:06:52.797
+4/5 · Criteria · evaluator selection
+
+58
+00:06:54.030 --> 00:07:01.426
+Only the Custom evaluator selected
+
+59
+00:07:01.476 --> 00:07:06.070
+5/5 · Review → Submit
+
+60
+00:07:06.120 --> 00:07:14.120
+Review · Submit creates the evaluation
+
+61
+00:07:18.620 --> 00:07:23.184
+Evaluation details · the run starts In progress
+
+62
+00:07:23.234 --> 00:07:29.535
+Evaluation run status
+
+63
+00:07:29.585 --> 00:07:33.350
+Evaluation run · generating data → running the agent → scoring
+
+64
+00:07:33.400 --> 00:07:37.183
+Evaluation run · generating data → running the agent → scoring
+
+65
+00:07:37.233 --> 00:07:41.046
+Evaluation run · generating data → running the agent → scoring
+
+66
+00:07:41.096 --> 00:07:44.837
+Evaluation run · generating data → running the agent → scoring
+
+67
+00:07:44.887 --> 00:07:48.594
+Evaluation run · generating data → running the agent → scoring
+
+68
+00:07:48.644 --> 00:07:52.861
+Evaluation run · generating data → running the agent → scoring
+
+69
+00:07:52.911 --> 00:07:56.778
+Evaluation run · generating data → running the agent → scoring
+
+70
+00:07:56.828 --> 00:08:01.169
+Evaluation run · generating data → running the agent → scoring
+
+71
+00:08:01.219 --> 00:08:04.985
+Evaluation run · generating data → running the agent → scoring
+
+72
+00:08:05.035 --> 00:08:08.740
+Evaluation run · generating data → running the agent → scoring
+
+73
+00:08:08.790 --> 00:08:12.662
+Evaluation run · generating data → running the agent → scoring
+
+74
+00:08:12.712 --> 00:08:16.606
+Evaluation run · generating data → running the agent → scoring
+
+75
+00:08:16.656 --> 00:08:20.448
+Evaluation run · generating data → running the agent → scoring
+
+76
+00:08:20.498 --> 00:08:24.312
+Evaluation run · generating data → running the agent → scoring
+
+77
+00:08:24.362 --> 00:08:28.415
+Evaluation run · generating data → running the agent → scoring
+
+78
+00:08:28.465 --> 00:08:32.331
+Evaluation run · generating data → running the agent → scoring
+
+79
+00:08:32.380 --> 00:08:36.228
+Evaluation run · generating data → running the agent → scoring
+
+80
+00:08:36.278 --> 00:08:40.690
+Evaluation run · generating data → running the agent → scoring
+
+81
+00:08:40.740 --> 00:08:44.847
+Evaluation run · generating data → running the agent → scoring
+
+82
+00:08:44.897 --> 00:08:48.648
+Evaluation run · generating data → running the agent → scoring
+
+83
+00:08:48.698 --> 00:08:52.801
+Evaluation run · generating data → running the agent → scoring
+
+84
+00:08:52.851 --> 00:09:00.851
+Evaluation run · generating data → running the agent → scoring
+
+85
+00:09:00.951 --> 00:09:08.951
+Evaluation results · Evaluation runs
+
+86
+00:09:11.480 --> 00:09:15.889
+Select the run name to open Run details
+
+87
+00:09:15.939 --> 00:09:19.930
+Run details · results by row
+
+88
+00:09:19.980 --> 00:09:27.980
+Select View details in a row
+
+89
+00:09:29.757 --> 00:09:37.730
+Row details · scores and reasons by dimension
+
+90
+00:09:37.780 --> 00:09:44.626
+Prompt Agent workshop-assistant-en · select the Optimize tab
+
+91
+00:09:44.676 --> 00:09:51.890
+Optimize tab introduction
+
+92
+00:09:51.940 --> 00:09:57.527
+Optimize start menu
+
+93
+00:09:57.577 --> 00:10:02.970
+Optimize wizard · Target
+
+94
+00:10:03.020 --> 00:10:06.730
+Optimize wizard · Data preparation methods
+
+95
+00:10:06.780 --> 00:10:11.430
+Select dataset and criteria · the dataset list
+
+96
+00:10:11.480 --> 00:10:15.385
+Select dataset · search for the Lab 12 dataset
+
+97
+00:10:15.435 --> 00:10:23.435
+Optimize wizard · dataset selection
+
+98
+00:10:23.764 --> 00:10:27.885
+Optimize wizard · evaluator selection
+
+99
+00:10:27.935 --> 00:10:35.935
+Evaluator Threshold setting
+
+100
+00:10:38.532 --> 00:10:46.532
+Optimize wizard · Review and estimated cost
+
+101
+00:10:46.780 --> 00:10:50.919
+Submit · the new run appears in the runs list
+
+102
+00:10:50.969 --> 00:10:57.999
+Optimization run in progress
+
+103
+00:10:58.049 --> 00:11:02.125
+Optimization run · building and scoring the candidates
+
+104
+00:11:02.175 --> 00:11:06.382
+Optimization run · building and scoring the candidates
+
+105
+00:11:06.432 --> 00:11:10.597
+Optimization run · building and scoring the candidates
+
+106
+00:11:10.647 --> 00:11:14.577
+Optimization run · building and scoring the candidates
+
+107
+00:11:14.627 --> 00:11:18.616
+Optimization run · building and scoring the candidates
+
+108
+00:11:18.666 --> 00:11:22.635
+Optimization run · building and scoring the candidates
+
+109
+00:11:22.685 --> 00:11:26.579
+Optimization run · building and scoring the candidates
+
+110
+00:11:26.629 --> 00:11:30.610
+Optimization run · building and scoring the candidates
+
+111
+00:11:30.660 --> 00:11:37.930
+Optimization run · building and scoring the candidates
+
+112
+00:11:37.980 --> 00:11:45.980
+Optimization finished · scores
+
+113
+00:11:50.380 --> 00:11:58.380
+Run details · candidate score comparison
+
+114
+00:11:59.039 --> 00:12:07.039
+What a candidate changed
+
+115
+00:12:09.877 --> 00:12:16.291
+Foundry home
+
+116
+00:12:16.341 --> 00:12:24.341
+Hosted agent in the Agents list
+
+117
+00:12:24.678 --> 00:12:28.180
+Open the Hosted agent Playground · Agent info (Kind: hosted)
+
+118
+00:12:28.230 --> 00:12:31.727
+Code asset: the uploaded code.zip
+
+119
+00:12:31.777 --> 00:12:37.375
+Hosted agent Playground (before a session starts)
+
+120
+00:12:37.425 --> 00:12:45.425
+Type the question for the Hosted agent
+
+121
+00:12:46.810 --> 00:12:51.846
+Message sent in the Playground
+
+122
+00:12:51.896 --> 00:12:59.896
+Log stream: container logs and the Session identifier
+
+123
+00:13:00.072 --> 00:13:05.295
+Details: status, version, agent ID and endpoint
+
+124
+00:13:05.345 --> 00:13:09.573
+Traces: waiting for the new trace to arrive (usually within a minute; refresh if it is not there yet)
+
+125
+00:13:09.623 --> 00:13:14.017
+Traces list (Trace view)
+
+126
+00:13:14.067 --> 00:13:20.776
+Traces: Conversation view
+
+127
+00:13:20.826 --> 00:13:28.826
+Traces: Session view
+
+128
+00:13:32.094 --> 00:13:38.790
+Trace details: invoke_agent and chat spans
+
+129
+00:13:38.840 --> 00:13:46.840
+The chat span: Instructions · User input · Output
+
+130
+00:13:49.808 --> 00:13:55.154
+Monitor overview
+
+131
+00:13:55.204 --> 00:14:02.290
+Monitor: Hosting compute·Hosting memory
+
+132
+00:14:02.340 --> 00:14:07.535
+Continue in code: calling the agent from code
+
+133
+00:14:07.585 --> 00:14:15.585
+Continue in code: the sample code
+
+134
+00:14:17.399 --> 00:14:25.399
+Foundry home
+
+135
+00:14:25.799 --> 00:14:31.800
+Manage → Fleet overview (Preview)
+
+136
+00:14:31.850 --> 00:14:36.408
+Fleet: Assets in this scope · Agents tab
+
+137
+00:14:36.458 --> 00:14:44.458
+Fleet: Assets in this scope · Models tab
+
+138
+00:14:44.681 --> 00:14:49.863
+Manage → Operations (Preview)
+
+139
+00:14:49.913 --> 00:14:54.950
+Operations: Tokens tab
+
+140
+00:14:55.000 --> 00:15:00.029
+Operations: Errors tab
+
+141
+00:15:00.079 --> 00:15:06.245
+Operations: Latency tab
+
+142
+00:15:06.295 --> 00:15:14.295
+Operations: Assets with invocations table
+
+143
+00:15:16.083 --> 00:15:21.371
+Manage → Cost (Preview)
+
+144
+00:15:21.421 --> 00:15:26.821
+Cost: Highest spend assets and Cost by project
+
+145
+00:15:26.871 --> 00:15:34.871
+Cost by project: grouped by Agent
+
+146
+00:15:35.529 --> 00:15:41.734
+Manage → Compliance
+
+147
+00:15:41.784 --> 00:15:48.084
+Compliance: Asset tab
+
+148
+00:15:48.134 --> 00:15:56.134
+Manage → Gateways · AI Gateway (Preview)
+
+149
+00:15:58.090 --> 00:16:06.090
+Foundry home
+
+150
+00:16:08.405 --> 00:16:13.405
+Monitor → Cost (Preview) · cards and Cost by agent
+
+151
+00:16:13.455 --> 00:16:18.752
+Cost by agent: model deployments and invocations per agent
+
+152
+00:16:18.802 --> 00:16:24.152
+Cost by agent · Token usage view
+
+153
+00:16:24.202 --> 00:16:32.202
+Token usage view: tokens per agent
+
+154
+00:16:32.466 --> 00:16:40.466
+Monitor → Cost Control (Preview) · no budget
+
+155
+00:16:41.661 --> 00:16:48.691
+Create cost control · name, scope and how it is shared
+
+156
+00:16:48.741 --> 00:16:55.390
+Set the budget · Tokens 10M · Monthly
+
+157
+00:16:55.440 --> 00:17:02.188
+Threshold actions · options only
+
+158
+00:17:02.238 --> 00:17:10.238
+Usage data · connected Application Insights and Create
+
+159
+00:17:12.108 --> 00:17:18.464
+Cost Control list · the new budget
+
+160
+00:17:18.514 --> 00:17:25.468
+Budget details · Edit and Delete
+
+161
+00:17:25.518 --> 00:17:33.518
+The Project budget card on the Cost tab
+
+162
+00:17:33.853 --> 00:17:40.678
+Delete cost control? · confirm the deletion
+
+163
+00:17:40.728 --> 00:17:45.550
+Cleaned up · the Cost Control list is empty again

@@ -5094,7 +5094,7 @@ window.IGNITE_DATA = {
    "group": "fabric-iq-connect",
    "title": "Select a tool · Configured · Fabric IQ (OneLake Catalog)",
    "action": "In the Foundry portal, on the Tools tab under Tools, select Connect a tool. On the Configured tab of the Select a tool window, select Fabric IQ (OneLake Catalog) and select Add tool.",
-   "expected": "Fabric IQ (OneLake Catalog) is marked Preview (the Fabric Data Agent card in the same list is not used in this lab). Add tool opens the OneLake Catalog window.",
+   "expected": "Fabric IQ (OneLake Catalog) is marked Preview (the Fabric Data Agent card in the same list is greyed out as disabled and is not used in this lab). Add tool opens the OneLake Catalog window.",
    "image": "assets/ignite/screenshots/ko/147-fabric-select-tool.png",
    "width": 1600,
    "height": 900,

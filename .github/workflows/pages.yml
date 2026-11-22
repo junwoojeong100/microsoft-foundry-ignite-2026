@@ -37,6 +37,11 @@ jobs:
           test -s assets/video/full-walkthrough.mp4
           test -s assets/video/summary-walkthrough.en.mp4
           test -s assets/video/full-walkthrough.en.mp4
+          test -s assets/video/iq-walkthrough.mp4
+          test -s assets/video/optional-walkthrough.mp4
+          test -s assets/video/iq-walkthrough.en.mp4
+          test -s assets/video/optional-walkthrough.en.mp4
+          if [ -e assets/video/.stub-files ]; then echo "::error::placeholder lab videos are still in assets/video (see assets/video/.stub-files); run internal/tools/publish_lab_videos.py without --stub"; exit 1; fi
           mkdir -p _site
           cp index.html operator.html index.en.html operator.en.html _site/
           cp -R assets _site/assets

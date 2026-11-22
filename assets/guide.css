@@ -166,6 +166,15 @@ select{background:#fff;border:1px solid #c7d5e0;border-radius:6px;padding:4px 8p
 .chapter:hover{background:#eaf3ff;border-color:#abc7e3}
 .chapter time{color:var(--blue);font:700 10px ui-monospace,monospace;min-width:39px}
 .chapter-step{margin-left:auto;padding-left:8px;color:var(--muted);font-size:10px;font-weight:700;white-space:nowrap}
+.video-meta{font-size:12px;color:var(--muted);margin-top:16px}
+.video-meta+.video-frame{margin-top:10px}
+.chapter-row{display:flex;gap:6px;min-width:0}
+.chapter-row .chapter{flex:1;min-width:0}
+.chapter-row .chapter span{min-width:0;word-break:keep-all;overflow-wrap:anywhere}
+.chapter[aria-current="true"]{background:#eaf3ff;border-color:var(--blue)}
+.chapter-guide{flex:none;display:inline-flex;align-items:center;padding:0 10px;border:1px solid #e1e9f1;border-radius:8px;background:#f6f9fc;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap}
+.chapter-guide:hover{background:#eaf3ff;border-color:#abc7e3}
+.lab-video-jump{margin-top:14px}
 .stage-header{display:flex;gap:14px;align-items:flex-start}
 .stage-number{flex:none;display:grid;place-items:center;width:39px;height:39px;background:#e8f2ff;color:var(--blue);border-radius:11px;font:750 15px ui-monospace,monospace}
 .stage-header h2{font-size:22px}
@@ -270,6 +279,9 @@ dialog::backdrop{background:#0a1d32bd;backdrop-filter:blur(5px)}
   :root[data-theme="dark"] .media-status.error{color:#ffbaba}
   :root[data-theme="dark"] .chapter{background:#1b2c42;border-color:var(--line);color:#c6dcf2}
   :root[data-theme="dark"] .chapter:hover{background:#243e5a;border-color:#7099c1}
+  :root[data-theme="dark"] .chapter[aria-current="true"]{background:#243e5a;border-color:var(--blue)}
+  :root[data-theme="dark"] .chapter-guide{background:#1b2c42;border-color:var(--line);color:var(--blue)}
+  :root[data-theme="dark"] .chapter-guide:hover{background:#243e5a;border-color:#7099c1}
   :root[data-theme="dark"] .stage-number{background:var(--soft)}
   :root[data-theme="dark"] .stage-note{background:#1a2e44;color:#c6dcf2}
   :root[data-theme="dark"] .gallery-heading{color:var(--muted)}
@@ -344,7 +356,7 @@ html[lang="en"] td:first-child{white-space:normal}
   .panel,.stage{padding:20px 17px;border-radius:13px;margin-bottom:17px}h2{font-size:21px}
   .lab-band{padding:20px 17px}.toc .lab-child.lab-visible{display:none}
   .intro{font-size:13.5px}.flow{gap:18px;margin-top:19px}.flow li{font-size:11px;padding:10px 3px}.flow li+li:before{left:-15px;top:12px}.flow small{font-size:9px}
-  .iq-flow{flex-direction:column;gap:20px}.iq-flow li+li:before{content:"↓";left:50%;top:-19px;transform:translateX(-50%)}
+  .iq-flow,.flow-stack{flex-direction:column;gap:20px}.iq-flow li+li:before,.flow-stack li+li:before{content:"↓";left:50%;top:-19px;transform:translateX(-50%)}
   .runbook-grid{grid-template-columns:1fr;gap:12px;margin-top:18px}.runbook-card{padding:16px}.runbook-card h3{font-size:16px}.scope-badge{font-size:11px;padding:2px 5px}
   .screen-grid{grid-template-columns:1fr;gap:12px;margin-top:18px}.screen-card{padding:16px}.screen-header h3{font-size:16px}.screen-action{font-size:13px}.screen-figure>a{min-height:0}.screen-figure figcaption{font-size:11.5px}
   .screen-body{grid-template-columns:1fr;gap:16px}.field-steps{font-size:13.5px}.screen-check{font-size:12.5px}
@@ -359,7 +371,7 @@ html[lang="en"] td:first-child{white-space:normal}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 @media print{
-  .topbar,aside,.hero-actions,.video-frame,.video-tools,.chapters,.stage-jump,.gallery-tools,.thumbnails,.copy-button,.copy-inline,dialog{display:none!important}
+  .topbar,aside,.hero-actions,.video-frame,.video-tools,.chapters,.lab-video-jump,.stage-jump,.gallery-tools,.thumbnails,.copy-button,.copy-inline,dialog{display:none!important}
   body{background:white;color:black}.workspace{display:block;padding:0}.hero{background:white;color:black}.hero-inner{padding:20px 0}.hero-grid{display:block}.proof{display:none}.hero-lead,.hero-meta,.eyebrow{color:#333}
   .panel,.stage{break-inside:avoid;border:0;padding:15px 0}.gallery-caption{padding-bottom:0}details{display:block}.footnotes{font-size:9px}
   .runbook-card{break-inside:avoid}

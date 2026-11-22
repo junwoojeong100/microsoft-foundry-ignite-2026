@@ -103,7 +103,8 @@ window.LABS_DATA = {
       "required": true,
       "screens": ["2026-11-18 New Foundry · North Central US · participant account (3 roles) + operator prep in advance"],
       "prerequisites": ["agent", "observe"],
-      "sections": ["ignite-foundry-iq"],
+      "sections": ["video-iq", "ignite-foundry-iq"],
+      "video": {"id": "video-iq", "badge": "Video", "title": "Labs 6–9 recording"},
       "steps": [["ignite-foundry-iq-prep"], ["ignite-foundry-iq-kb"], ["ignite-foundry-iq-agent"], ["ignite-foundry-iq-test"]],
       "more": ["work-iq", "fabric-iq", "business-plugins"]
     },
@@ -135,12 +136,12 @@ window.LABS_DATA = {
       "key": "fabric-iq",
       "enabled": true,
       "title": "Connect Fabric data to your agent with Fabric IQ",
-      "lead": "Prepare and publish a workspace, a sample lakehouse and a data agent in the Fabric portal, attach it to the project with a Fabric IQ connection in the Foundry portal, connect it to a new agent as a tool and ask in business terms. Also check that an account without permission gets no answer and Traces records Failed. We ran it directly in Azure and Fabric on 2026-11-22.",
+      "lead": "Create, publish and share a workspace, a sample lakehouse and a data agent in the Fabric portal, create a project connection with the Fabric IQ (OneLake Catalog) tool (fabric_iq_preview) in the Foundry portal, connect it to a new agent and ask in business terms. Also check that an account without permission gets no answer and Traces records Failed. We ran it directly in Azure and Fabric on 2026-11-22.",
       "required": false,
-      "screens": ["Fabric item preparation, connection, questions and Traces: 2026-11-22 Fabric portal and New Foundry · F2 capacity + Member test account (3 participant roles) · 23 screens · needs a Fabric license and paid F2+ capacity, the Fabric admin's tenant settings, and one account with access and one without"],
+      "screens": ["Fabric data agent, connection, questions and Traces: 2026-11-22 Fabric portal and New Foundry · F2 capacity + Member test account (3 participant roles) · 23 screens · needs a Fabric license and paid F2+ capacity, the Fabric admin's tenant settings, and one account with access and one without"],
       "prerequisites": ["agent", "observe"],
       "sections": ["ignite-fabric-iq"],
-      "steps": [["ignite-fabric-iq-connect"], ["ignite-fabric-iq-add"], ["ignite-fabric-iq-test"]],
+      "steps": [["ignite-fabric-iq-prep"], ["ignite-fabric-iq-connect"], ["ignite-fabric-iq-add"], ["ignite-fabric-iq-test"]],
       "more": ["fabric-iq", "toolbox", "cost-management"]
     },
     {
@@ -151,7 +152,8 @@ window.LABS_DATA = {
       "required": false,
       "screens": ["2026-11-18 New Foundry · North Central US · re-captured with a participant account (3 roles)"],
       "prerequisites": ["model", "observe"],
-      "sections": ["ignite-start", "ignite-harness", "ignite-observe"],
+      "sections": ["video-optional", "ignite-start", "ignite-harness", "ignite-observe"],
+      "video": {"id": "video-optional", "badge": "Video", "title": "Optional Labs 10–16 recording"},
       "steps": [["ignite-start"], ["ignite-harness-create"], ["ignite-harness-tools"], ["ignite-harness-run"], ["ignite-observe"]],
       "more": ["copilot-sdk", "voice-agents", "foundry-mcp-server", "m365-accounts-for-agents"]
     },

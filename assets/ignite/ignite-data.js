@@ -5114,7 +5114,7 @@ window.IGNITE_DATA = {
    "group": "fabric-iq-connect",
    "title": "Select a tool · Configured · Fabric IQ (OneLake Catalog)",
    "action": "Foundry 포털의 Tools → Tools 탭에서 Connect a tool을 눌러 Select a tool 창의 Configured 탭에서 Fabric IQ (OneLake Catalog)를 선택하고 Add tool을 누릅니다.",
-   "expected": "Fabric IQ (OneLake Catalog)에는 Preview 표시가 붙어 있습니다(같은 목록의 Fabric Data Agent는 이 실습에서 쓰지 않습니다). Add tool을 누르면 OneLake Catalog 창이 열립니다.",
+   "expected": "Fabric IQ (OneLake Catalog)에는 Preview 표시가 붙어 있습니다(같은 목록의 Fabric Data Agent 카드는 회색으로 비활성이며 이 실습에서 쓰지 않습니다). Add tool을 누르면 OneLake Catalog 창이 열립니다.",
    "image": "assets/ignite/screenshots/ko/147-fabric-select-tool.png",
    "width": 1600,
    "height": 900,

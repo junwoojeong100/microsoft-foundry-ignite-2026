@@ -103,7 +103,8 @@ window.LABS_DATA = {
       "required": true,
       "screens": ["2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정 + 운영자 사전 준비"],
       "prerequisites": ["agent", "observe"],
-      "sections": ["ignite-foundry-iq"],
+      "sections": ["video-iq", "ignite-foundry-iq"],
+      "video": {"id": "video-iq", "badge": "영상", "title": "실습 6~9 녹화"},
       "steps": [["ignite-foundry-iq-prep"], ["ignite-foundry-iq-kb"], ["ignite-foundry-iq-agent"], ["ignite-foundry-iq-test"]],
       "more": ["work-iq", "fabric-iq", "business-plugins"]
     },
@@ -135,12 +136,12 @@ window.LABS_DATA = {
       "key": "fabric-iq",
       "enabled": true,
       "title": "Fabric IQ로 에이전트에 Fabric 데이터 연결하기",
-      "lead": "Fabric 포털에서 작업 영역·샘플 레이크하우스·데이터 에이전트를 준비해 게시하고, Foundry 포털의 Fabric IQ 연결로 프로젝트에 붙인 뒤 새 에이전트에 도구로 연결해 업무 용어로 묻습니다. 권한이 없는 계정은 답이 오지 않고 Traces에 Failed가 남는지도 확인합니다. 2026-11-22에 Azure와 Fabric에서 직접 실행했습니다.",
+      "lead": "Fabric 포털에서 작업 영역·샘플 레이크하우스·데이터 에이전트를 만들어 게시·공유하고, Foundry 포털의 Fabric IQ (OneLake Catalog) 도구(fabric_iq_preview)로 프로젝트에 연결을 만든 뒤 새 에이전트에 연결해 업무 용어로 묻습니다. 권한이 없는 계정은 답이 오지 않고 Traces에 Failed가 남는지도 확인합니다. 2026-11-22에 Azure와 Fabric에서 직접 실행했습니다.",
       "required": false,
-      "screens": ["Fabric 항목 준비·연결·질문·Traces: 2026-11-22 Fabric 포털·New Foundry · F2 용량 + Member 테스트 계정(참가자 역할 3개) · 화면 23장 · Fabric 라이선스와 유료 F2 이상 용량, Fabric 관리자의 테넌트 설정, 접근 권한이 있는 계정과 없는 계정 필요"],
+      "screens": ["Fabric 데이터 에이전트 만들기·연결·질문·Traces: 2026-11-22 Fabric 포털·New Foundry · F2 용량 + Member 테스트 계정(참가자 역할 3개) · 화면 23장 · Fabric 라이선스와 유료 F2 이상 용량, Fabric 관리자의 테넌트 설정, 접근 권한이 있는 계정과 없는 계정 필요"],
       "prerequisites": ["agent", "observe"],
       "sections": ["ignite-fabric-iq"],
-      "steps": [["ignite-fabric-iq-connect"], ["ignite-fabric-iq-add"], ["ignite-fabric-iq-test"]],
+      "steps": [["ignite-fabric-iq-prep"], ["ignite-fabric-iq-connect"], ["ignite-fabric-iq-add"], ["ignite-fabric-iq-test"]],
       "more": ["fabric-iq", "toolbox", "cost-management"]
     },
     {
@@ -151,7 +152,8 @@ window.LABS_DATA = {
       "required": false,
       "screens": ["2026-11-18 New Foundry · North Central US · 참가자 역할 3개 계정 재촬영"],
       "prerequisites": ["model", "observe"],
-      "sections": ["ignite-start", "ignite-harness", "ignite-observe"],
+      "sections": ["video-optional", "ignite-start", "ignite-harness", "ignite-observe"],
+      "video": {"id": "video-optional", "badge": "영상", "title": "선택 실습 10~16 녹화"},
       "steps": [["ignite-start"], ["ignite-harness-create"], ["ignite-harness-tools"], ["ignite-harness-run"], ["ignite-observe"]],
       "more": ["copilot-sdk", "voice-agents", "foundry-mcp-server", "m365-accounts-for-agents"]
     },

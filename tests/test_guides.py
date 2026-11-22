@@ -6,7 +6,9 @@ import json
 from pathlib import Path
 import posixpath
 import re
+import shutil
 import struct
+import subprocess
 import unittest
 from urllib.parse import unquote, urlsplit
 
@@ -46,13 +48,14 @@ def counterpart(name: str) -> str:
 
 
 def data_file(kind: str, lang: str) -> str:
-    """assets/guide-data.js, assets/labs-data.js, assets/ignite/ignite-data.js and their .en.js editions."""
-    path = {"guide": "assets/guide-data.js", "labs": "assets/labs-data.js", "ignite": "assets/ignite/ignite-data.js"}[kind]
+    """assets/guide-data.js, assets/labs-data.js, assets/ignite/ignite-data.js, assets/ignite/video-data.js and their .en.js editions."""
+    path = {"guide": "assets/guide-data.js", "labs": "assets/labs-data.js", "ignite": "assets/ignite/ignite-data.js",
+            "video": "assets/ignite/video-data.js"}[kind]
     return path if lang == "ko" else path[:-3] + ".en.js"
 
 
 def load_data(kind: str, lang: str = "ko") -> dict:
-    variable = {"guide": "GUIDE_DATA", "labs": "LABS_DATA", "ignite": "IGNITE_DATA"}[kind]
+    variable = {"guide": "GUIDE_DATA", "labs": "LABS_DATA", "ignite": "IGNITE_DATA", "video": "LAB_VIDEOS"}[kind]
     text = (ROOT / data_file(kind, lang)).read_text(encoding="utf-8")
     return json.loads(re.fullmatch(rf"window\.{variable} = (.*?);?\s*", text, re.S).group(1))
 
@@ -67,6 +70,19 @@ def mp4_seconds(path: Path) -> float:
     else:
         timescale, duration = struct.unpack(">II", data[position + 16:position + 24])
     return duration / timescale
+
+
+def vtt_cues(path: Path) -> list[tuple[float, float, str]]:
+    """(start, end, text) of every cue in a WebVTT file."""
+    cues = []
+    for block in re.split(r"\n{2,}", path.read_text(encoding="utf-8").replace("\r\n", "\n").strip()):
+        lines = block.split("\n")
+        timing = next((index for index, line in enumerate(lines) if "-->" in line), None)
+        if timing is not None:
+            start, end = (sum(float(part) * scale for part, scale in zip(reversed(stamp.split()[0].split(":")), (1, 60, 3600)))
+                          for stamp in lines[timing].split("-->"))
+            cues.append((start, end, "\n".join(lines[timing + 1:])))
+    return cues
 
 
 class PageParser(HTMLParser):
@@ -294,6 +310,9 @@ class GuidePageTests(unittest.TestCase):
             self.assertIn(name, copy_line)
         for video in ("summary-walkthrough.en.mp4", "full-walkthrough.en.mp4"):
             self.assertIn(f"test -s assets/video/{video}", workflow)
+        for lang in ("ko", "en"):
+            for video in load_data("video", lang)["videos"]:
+                self.assertIn(f"test -s {video['file']}", workflow, f"the workflow must check the {lang} {video['id']} video")
 
     def test_operator_example_matches_the_example_config(self):
         # The operator guide shows config/workshop.example.json as a JSON block and as a settings table. A value changed in one place must change in all of them.
@@ -353,6 +372,140 @@ class GuideDataTests(unittest.TestCase):
         self.assertLessEqual(max(cue["end"] for cue in data["videoCues"]), length + 0.5)
         self.assertGreater(mp4_seconds(summary), 60)
         self.assertLessEqual(video.stat().st_size + summary.stat().st_size, 100 * 1024 * 1024, "English videos must stay inside the GitHub size guidance")
+
+
+class LabVideoTests(unittest.TestCase):
+    """Labs 6-9 and 10-16 have one video each per language. assets/ignite/video-data[.en].js feeds the players of assets/lab-video.js,
+    so the data, the MP4 and VTT files and the guide's step anchors must agree."""
+
+    @staticmethod
+    def load(lang="ko"):
+        return load_data("video", lang)
+
+    @staticmethod
+    def enabled_labs(lang="ko"):
+        return [lab for lab in LabMapTests.load(lang)["labs"] if lab["enabled"]]
+
+    def group_labs(self):
+        """Lab numbers per video: Foundry IQ to Fabric IQ (6-9), and the optional labs from the harness on (10-16)."""
+        keys = [lab["key"] for lab in self.enabled_labs()]
+        return {"iq": list(range(keys.index("foundry-iq") + 1, keys.index("fabric-iq") + 2)),
+                "optional": list(range(keys.index("harness") + 1, len(keys) + 1))}
+
+    def test_each_language_has_both_videos_and_every_referenced_file_exists(self):
+        groups = self.group_labs()
+        for lang in ("ko", "en"):
+            data = self.load(lang)
+            self.assertEqual((1, lang), (data["schemaVersion"], data["locale"]))
+            self.assertEqual(["video-iq", "video-optional"], [video["id"] for video in data["videos"]], lang)
+            for video in data["videos"]:
+                with self.subTest(lang=lang, video=video["id"]):
+                    self.assertEqual(groups[video["group"]], video["labs"])
+                    self.assertTrue(video["title"])
+                    for key in ("file", "captions", "poster"):
+                        self.assertTrue((ROOT / video[key]).is_file(), f"{lang} {video['id']}: missing {video[key]}")
+                    # The English edition plays its own recording and captions, never the Korean ones.
+                    self.assertEqual(lang == "en", video["file"].endswith(".en.mp4"))
+                    self.assertEqual(lang == "en", video["captions"].endswith(".en.vtt"))
+
+    def test_video_files_match_the_data_and_stay_inside_the_size_limit(self):
+        for lang in ("ko", "en"):
+            for video in self.load(lang)["videos"]:
+                with self.subTest(lang=lang, video=video["id"]):
+                    path = ROOT / video["file"]
+                    self.assertAlmostEqual(mp4_seconds(path), video["durationSeconds"], delta=0.6)
+                    self.assertLess(path.stat().st_size, 50 * 1024 * 1024, f"{video['file']} must stay under GitHub's recommended 50 MiB")
+                    self.assertAlmostEqual(video["width"] / video["height"], 16 / 9, places=2, msg="the player box is 16:9")
+
+    @unittest.skipUnless(shutil.which("ffprobe"), "ffprobe is not installed")
+    def test_video_streams_are_silent_h264_at_the_size_of_the_data(self):
+        for lang in ("ko", "en"):
+            for video in self.load(lang)["videos"]:
+                with self.subTest(lang=lang, video=video["id"]):
+                    probe = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,codec_name,width,height:format=duration",
+                                            "-of", "json", str(ROOT / video["file"])], capture_output=True, text=True, check=True)
+                    info = json.loads(probe.stdout)
+                    # The builder adds a chapter data track, so the streams are not only video; there must be no audio.
+                    self.assertNotIn("audio", [stream["codec_type"] for stream in info["streams"]], "the pages promise silent videos")
+                    stream = next(stream for stream in info["streams"] if stream["codec_type"] == "video")
+                    self.assertEqual(("h264", video["width"], video["height"]), (stream["codec_name"], stream["width"], stream["height"]))
+                    self.assertAlmostEqual(float(info["format"]["duration"]), video["durationSeconds"], delta=0.6)
+
+    def test_chapters_are_ordered_inside_the_video_and_point_at_guide_steps(self):
+        for lang in ("ko", "en"):
+            labs = self.enabled_labs(lang)
+            steps = {section: (number, step) for number, lab in enumerate(labs, 1) for step, ids in enumerate(lab["steps"], 1) for section in ids}
+            existing = known_ids(GUIDES[lang][0])
+            for video in self.load(lang)["videos"]:
+                with self.subTest(lang=lang, video=video["id"]):
+                    seconds = [chapter["seconds"] for chapter in video["chapters"]]
+                    self.assertEqual(sorted(set(seconds)), seconds, "chapters are in ascending time order")
+                    self.assertTrue(0 <= seconds[0] and seconds[-1] < video["durationSeconds"], "every chapter starts inside the video")
+                    for chapter in video["chapters"]:
+                        self.assertIn(chapter["id"], existing, "the chapter links to an element of the page")
+                        self.assertIn(chapter["id"], steps, "the chapter is a step of a lab")
+                        number, step = steps[chapter["id"]]
+                        self.assertEqual(f"{number}-{step}", chapter["step"])
+                        self.assertIn(chapter["step"], chapter["title"], "the title names the step the guide numbers")
+                        # A lab can be recorded under more than one lab key (Lab 9: l09a-fabric-prep, then l09-fabric-iq); the key starts with the lab number.
+                        self.assertEqual(f"l{number:02d}", chapter["lab"][:3])
+                    order = [steps[chapter["id"]] for chapter in video["chapters"]]
+                    self.assertEqual(sorted(order), order, "the video follows the labs and steps in the order of the guide")
+                    self.assertEqual(video["labs"], sorted({number for number, _ in order}), "every lab of the video has chapters")
+
+    def test_korean_and_english_video_data_have_the_same_chapters(self):
+        ko, en = self.load("ko"), self.load("en")
+        self.assertEqual(len(ko["videos"]), len(en["videos"]))
+        for ko_video, en_video in zip(ko["videos"], en["videos"]):
+            for key in ("id", "group", "labs", "width", "height"):
+                self.assertEqual(ko_video[key], en_video[key], f"{ko_video['id']}.{key}")
+            # Each language was recorded on its own, so the times differ; the chapters and their order do not.
+            rows = lambda video: [(chapter["id"], chapter["lab"], chapter["step"]) for chapter in video["chapters"]]  # noqa: E731
+            self.assertEqual(rows(ko_video), rows(en_video), ko_video["id"])
+
+    def test_embedded_cues_match_the_downloadable_captions(self):
+        # The player takes the cues from the data (a <track src> cannot be loaded from a file), the download is the VTT.
+        for lang in ("ko", "en"):
+            for video in self.load(lang)["videos"]:
+                with self.subTest(lang=lang, video=video["id"]):
+                    cues = vtt_cues(ROOT / video["captions"])
+                    self.assertTrue(cues)
+                    self.assertEqual(len(cues), len(video["cues"]))
+                    for (start, end, text), cue in zip(cues, video["cues"]):
+                        self.assertAlmostEqual(start, cue["start"], places=2)
+                        self.assertAlmostEqual(end, cue["end"], places=2)
+                        self.assertEqual(text, cue["text"])
+                    self.assertLessEqual(max(end for _, end, _ in cues), video["durationSeconds"] + 0.5)
+
+    def test_pages_have_both_panels_and_every_lab_links_to_its_video(self):
+        for lang in ("ko", "en"):
+            text = parse(GUIDES[lang][0])[1]
+            labs = self.enabled_labs(lang)
+            expected = []
+            for video in self.load(lang)["videos"]:
+                self.assertEqual(1, len(re.findall(rf'<section[^>]*id="{video["id"]}"[^>]*data-lab-video="{video["id"]}"', text)), f"{lang}: panel {video['id']}")
+                panel = re.search(rf'<section[^>]*id="{video["id"]}"[^>]*>(.*?)</section>', text, re.S).group(1)
+                self.assertIn("2026.11.22" if lang == "ko" else "2026-11-22", panel, f"{lang}: {video['id']} says when it was recorded")
+                # One collapsed list says where the recording differs from the guide text, and it covers every lab of the video.
+                details = re.findall(r'<details class="expand">\s*<summary>(.*?)</summary>(.*?)</details>', panel, re.S)
+                self.assertEqual(1, len(details), f"{lang}: {video['id']} has one collapsed list of differences")
+                summary, body = details[0]
+                self.assertEqual({"ko": "영상과 가이드 본문이 다른 점", "en": "Where the video differs from the guide text"}[lang], summary)
+                labels = [re.match(r"\s*<strong>(.*?)</strong>", item).group(1) for item in re.findall(r"<li>(.*?)</li>", body, re.S)]
+                covered = {int(number.split("-")[0]) for label in labels for number in re.findall(r"\d+(?:-\d+)?", label)}
+                self.assertEqual(set(video["labs"]), covered, f"{lang}: {video['id']} notes the differences of every lab of the video")
+                for number in video["labs"]:
+                    # One link per lab, however many lab keys the recording used for it: the player compares the key's first three characters.
+                    expected.append(f"l{number:02d}")
+                    lab = labs[number - 1]
+                    links = []
+                    for section in lab["sections"]:
+                        block = re.search(rf'<section[^>]*id="{section}"[^>]*>(.*?)</section>', text, re.S).group(1)
+                        for tag in re.findall(r"<a\b[^>]*>", block):
+                            if re.search(rf'data-lab-video-jump="l{number:02d}[^"]*"', tag):
+                                links += re.findall(r'href="#([\w-]+)"', tag)
+                    self.assertEqual([video["id"]], links, f"{lang}: {lab['key']} needs one watch link to {video['id']} in its own sections")
+            self.assertEqual(sorted(expected), sorted(re.findall(r'data-lab-video-jump="(l\d\d)', text)), f"{lang}: a watch link without a chapter")
 
 
 class IntroCardTests(unittest.TestCase):
@@ -565,6 +718,10 @@ class IntroCardTests(unittest.TestCase):
         self.assertEqual([step for steps in lab["steps"] for step in steps], re.findall(r'<h3[^>]*id="([^"]+)"', section), "the steps follow the lab map in order")
         self.assertEqual(spec["pres"], re.findall(r'<pre id="([^"]+)"', section))
         self.assertEqual(spec["galleries"], re.findall(r'data-lab-gallery="([^"]+)"', section), "every step with screens has its galleries in order")
+        # A gallery names the step it illustrates and sits inside that step.
+        for part in re.split(r"(?=<h3 )", section)[1:]:
+            step = re.match(r'<h3[^>]*id="([^"]+)"', part).group(1)
+            self.assertEqual({step}, set(re.findall(r'data-lab-gallery="([^"]+)"', part)), f"{lang}: the galleries under {step} belong to it")
         shots = IgnitePart2Tests.load(lang)["shots"]
         prefix = spec["key"].split("-")[0] + "-iq"
         counts = {group: sum(shot["group"] == group for shot in shots) for group in spec["counts"]}
@@ -584,6 +741,8 @@ class IntroCardTests(unittest.TestCase):
         iq_table = re.search(rf'<table[^>]*aria-label="{re.escape(PHRASES[lang]["iq_table"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
         row = next(row for row in re.findall(r"<tr>(.*?)</tr>", iq_table, re.S) if f"<strong>{spec['name']}</strong>" in row)
         self.assertIn(f'data-lab-ref="lab:{spec["key"]}"', row)
+        self.assertIn(PHRASES[lang]["run"].lower(), row.lower(), f"{lang}: the overview row says the {spec['name']} lab was run")
+        self.assertNotIn(PHRASES[lang]["no_run"].lower(), row.lower())
         glance = re.search(rf'<table[^>]*aria-label="{re.escape(spec["glance"])}"[^>]*>(.*?)</table>', text, re.S).group(1)
         row = next(row for row in re.findall(r"<tr>(.*?)</tr>", glance, re.S) if f'data-lab-ref="lab:{spec["key"]}"' in row.split("</td>", 1)[0])
         cell = re.findall(r"<td>(.*?)</td>", row, re.S)[2].lower()
@@ -598,22 +757,54 @@ class IntroCardTests(unittest.TestCase):
 
     def test_fabric_iq_is_an_optional_lab_run_directly_right_after_work_iq(self):
         # Lab 9 (lab key fabric-iq) was run in Azure and Fabric on 2026-11-22 with an F2 capacity and Member test accounts: 23 screens.
+        # Four steps: 9-1 the data agent in the Fabric portal (operator), 9-2 the Fabric IQ connection, 9-3 the agent tool, 9-4 the questions.
         words = {
             "ko": {"ran": "직접 실행했습니다", "not_run": "직접 실행하지 않았습니다", "glance": "Microsoft IQ와 실습별 한눈에 보기", "group": "Fabric IQ (실습 9"},
             "en": {"ran": "were run directly", "not_run": "We did not run this lab", "glance": "Microsoft IQ and each lab at a glance", "group": "Fabric IQ (Lab 9"},
+        }
+        # These headings are the chapter titles of the video (after "Lab 9-1 · " and "Lab 9-2 · ").
+        headings = {
+            "ko": {"ignite-fabric-iq-prep": "Fabric에서 데이터 에이전트 만들고 게시·공유하기", "ignite-fabric-iq-connect": "프로젝트에 Fabric IQ 연결 만들기"},
+            "en": {"ignite-fabric-iq-prep": "Create, publish and share the data agent in Fabric", "ignite-fabric-iq-connect": "Create the Fabric IQ connection in the project"},
         }
         for lang in ("ko", "en"):
             with self.subTest(lang=lang):
                 self.check_run_iq_lab(lang, {
                     "key": "fabric-iq", "after": "work-iq", "name": "Fabric IQ", "section": "ignite-fabric-iq", "prep": "fabric-iq-prep", "prep_end": "hosted-prep",
-                    "steps": ["ignite-fabric-iq-connect", "ignite-fabric-iq-add", "ignite-fabric-iq-test"],
+                    "steps": ["ignite-fabric-iq-prep", "ignite-fabric-iq-connect", "ignite-fabric-iq-add", "ignite-fabric-iq-test"],
                     "pres": ["ignite-fabric-iq-instructions", "ignite-fabric-iq-q1", "ignite-fabric-iq-q2", "ignite-fabric-iq-q3"],
-                    "galleries": ["ignite-fabric-iq-connect", "ignite-fabric-iq-connect", "ignite-fabric-iq-add", "ignite-fabric-iq-test", "ignite-fabric-iq-test"],
+                    "galleries": ["ignite-fabric-iq-prep", "ignite-fabric-iq-connect", "ignite-fabric-iq-add", "ignite-fabric-iq-test", "ignite-fabric-iq-test"],
                     "counts": {"fabric-iq-prep": 10, "fabric-iq-connect": 4, "fabric-iq-add": 2, "fabric-iq-answer": 3, "fabric-iq-traces": 4},
-                    "needles": ["Fabric IQ (OneLake Catalog)", "Semantic model", "tool_user_error", "analyze_lakehouse_tables", "Foundry Project Manager", "dimproductsubcategory"],
+                    "needles": ["Fabric IQ (OneLake Catalog)", "fabric_iq_preview", "Semantic model", "tool_user_error", "analyze_lakehouse_tables", "Foundry Project Manager", "dimproductsubcategory"],
                     "operator": ["Item.Execute.All", "DataAgent.Execute.All", "UserEntraToken", "Foundry Project Manager", "F2", "fcignitelab01"],
                     **words[lang],
                 })
+                text = parse(GUIDES[lang][0])[1]
+                for step, heading in headings[lang].items():
+                    self.assertRegex(text, rf'<h3[^>]*id="{step}"[^>]*>{re.escape(heading)}</h3>', f"{lang}: the heading of {step} is the title of its video chapter")
+                # The Fabric portal list belongs to 9-1 (the operator's step) and the Foundry connection list to 9-2.
+                prep = text.split('id="ignite-fabric-iq-prep"', 1)[1].split('id="ignite-fabric-iq-connect"', 1)[0]
+                connect = text.split('id="ignite-fabric-iq-connect"', 1)[1].split('id="ignite-fabric-iq-add"', 1)[0]
+                for needle in ("Notebook", "AdventureWorksLH", "Read all SQL endpoint data"):
+                    self.assertIn(needle, prep, f"{lang}: 9-1 holds the Fabric portal work ({needle})")
+                    self.assertNotIn(needle, connect, f"{lang}: 9-2 is only the Foundry connection ({needle})")
+                for needle in ("Connect a tool", "Remote MCP server endpoint"):
+                    self.assertIn(needle, connect, f"{lang}: 9-2 holds the Foundry connection ({needle})")
+                    self.assertNotIn(needle, prep, f"{lang}: 9-1 stays in the Fabric portal ({needle})")
+                # One method only: the Fabric IQ (OneLake Catalog) tool. The older Fabric Data Agent card is named once, in the connection step, as disabled with its deprecation message.
+                tooltip = "This tool will be deprecated on Nov 6th, 2026. Please use the Fabric IQ tool instead."
+                lab = re.search(r'<section[^>]*id="ignite-fabric-iq"[^>]*>(.*?)</section>', text, re.S).group(1)
+                self.assertEqual(1, lab.count("Fabric Data Agent"), f"{lang}: the lab names the Fabric Data Agent card once")
+                card = [item for item in re.findall(r"<li>(.*?)</li>", connect, re.S) if "Fabric Data Agent" in item]
+                self.assertEqual(1, len(card), f"{lang}: the card is named in the connection step")
+                self.assertIn(tooltip, card[0])
+                self.assertIn({"ko": "비활성", "en": "disabled"}[lang], card[0])
+                # Anywhere in the guides, the older data agent tool appears only as the deprecated one or as the tool to move away from.
+                for name in GUIDES[lang]:
+                    page = parse(name)[1]
+                    for mention in re.finditer(r"Fabric Data Agent|데이터 에이전트 도구|data agent tool", page):
+                        around = page[max(0, mention.start() - 200):mention.end() + 200]
+                        self.assertRegex(around, r"fabric_dataagent_preview|deprecated", f"{lang}: {name} offers the older data agent tool as a second method near {mention.group(0)!r}")
 
     def test_work_iq_is_an_optional_lab_run_directly_right_after_web_iq(self):
         # Lab 8 (lab key work-iq) was run on 2026-11-22 with Member test accounts: 17 screens. Guest participant accounts get empty results.
@@ -654,6 +845,7 @@ class LabMapTests(unittest.TestCase):
             for key in ("key", "enabled", "required", "prerequisites", "sections", "steps", "more"):
                 self.assertEqual(ko_lab[key], en_lab[key], f"{ko_lab['key']}.{key}")
             self.assertEqual(len(ko_lab["screens"]), len(en_lab["screens"]), ko_lab["key"])
+            self.assertEqual(ko_lab.get("video", {}).get("id"), en_lab.get("video", {}).get("id"), f"{ko_lab['key']}.video")
 
     def test_lab_map_preserves_sections_and_prerequisite_order(self):
         for lang in ("ko", "en"):
@@ -673,14 +865,22 @@ class LabMapTests(unittest.TestCase):
             "ignite-start", "ignite-harness", "ignite-observe", "ignite-improve",
             "ignite-insights", "ignite-evaluator", "ignite-evaluation", "ignite-optimize",
             "ignite-hosted-agent", "ignite-fleet", "ignite-cost",
+            "video-iq", "video-optional",
         } | {f"step-{chapter['id']}" for chapter in GuideDataTests.load(lang)["chapters"] if chapter["id"] != "monitoring-setup"}
         self.assertEqual(original, set(assigned))
         existing = known_ids(GUIDES[lang][0])
+        page = parse(GUIDES[lang][0])[1]
         for lab in labs:
             with self.subTest(lab=lab["key"]):
                 self.assertTrue(lab["screens"] and lab["lead"])
                 self.assertTrue(set(lab["sections"]) <= existing)
                 self.assertTrue({section for step in lab["steps"] for section in step} <= existing)
+                if "video" in lab:
+                    # The video panel is the first section of its lab, so it sits right before the lab's first step.
+                    video = lab["video"]
+                    self.assertEqual(video["id"], lab["sections"][0])
+                    self.assertTrue(video["badge"] and video["title"])
+                    self.assertRegex(page, rf'<section[^>]*id="{video["id"]}"[^>]*data-lab-video="{video["id"]}"')
                 self.assertTrue(all(numbers[key] < numbers[lab["key"]] for key in lab["prerequisites"]))
                 self.assertTrue(all(f"learn-{key}" in existing and key in data["cards"] for key in lab["more"]))
         common = [item["id"] for item in data["before"] + data["after"]]
@@ -699,6 +899,21 @@ class LabMapTests(unittest.TestCase):
             for key, text in refs:
                 self.assertIn(key, numbers)
                 self.assertEqual(PHRASES[lang]["lab"].format(n=numbers[key]), html.unescape(text), f"{lang} {key}")
+
+    def test_operator_guide_names_the_steps_of_the_participant_guide_by_their_computed_numbers(self):
+        # The operator pages have no script, so their links to participant steps carry the step number as plain text ("7-5", "Lab 9-1").
+        for lang in ("ko", "en"):
+            labs = [lab for lab in self.load(lang)["labs"] if lab["enabled"]]
+            steps = {section: f"{i + 1}-{step + 1}" for i, lab in enumerate(labs) for step, sections in enumerate(lab["steps"]) for section in sections}
+            index = GUIDES[lang][0]
+            text = parse(GUIDES[lang][1])[1]
+            checked = 0
+            for target, label in re.findall(rf'<a\b[^>]*href="{re.escape(index)}#([\w-]+)"[^>]*>(.*?)</a>', text, re.S):
+                named = re.findall(r"(?<![\d-])\d+-\d+(?![\d-])", re.sub(r"<[^>]+>", "", label))
+                if target in steps and named:
+                    checked += 1
+                    self.assertEqual([steps[target]], named, f"{GUIDES[lang][1]}: the link to {target} names the wrong step")
+            self.assertTrue(checked, f"{GUIDES[lang][1]}: no step references were found")
 
     def test_microsoft_iq_is_first_in_the_overview_and_official_table(self):
         for lang in ("ko", "en"):
@@ -846,7 +1061,8 @@ class IgnitePart2Tests(unittest.TestCase):
     def test_part2_scripts_load_data_before_renderer_and_before_navigation(self):
         for lang in ("ko", "en"):
             scripts = parse(GUIDES[lang][0])[0].scripts
-            names = (data_file("ignite", lang), "assets/ignite-part2.js", data_file("labs", lang), "assets/labs.js", "assets/navigation.js")
+            names = (data_file("ignite", lang), "assets/ignite-part2.js", data_file("labs", lang), "assets/labs.js",
+                     data_file("video", lang), "assets/lab-video.js", "assets/navigation.js")
             order = [scripts.index(name) for name in names]
             self.assertEqual(sorted(order), order)
             self.assertIn(data_file("guide", lang), scripts)

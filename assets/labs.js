@@ -37,6 +37,7 @@
       if (assigned.has(id)) fail(t("labs.sectionDuplicate", {id}));
       assigned.add(id);
     });
+    if (lab.video && !lab.sections.includes(lab.video.id)) fail(t("labs.videoSection", {id: lab.video.id}));
     lab.steps.forEach((ids, step) => ids.forEach(id => {
       element(id);
       if (sectionNumbers.has(id)) fail(t("labs.stepDuplicate", {id}));
@@ -71,6 +72,12 @@
     const parentLink = link(band.id, String(number), lab.title);
     parentLink.dataset.labLink = lab.key;
     toc.append(parentLink);
+    if (lab.video) {
+      const videoLink = link(lab.video.id, lab.video.badge, lab.video.title);
+      videoLink.className = "lab-child";
+      videoLink.dataset.labChild = lab.key;
+      toc.append(videoLink);
+    }
     lab.sections.forEach(id => {
       const section = element(id);
       section.dataset.lab = lab.key;
