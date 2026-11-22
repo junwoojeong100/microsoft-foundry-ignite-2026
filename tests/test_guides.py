@@ -31,6 +31,9 @@ PHRASES = {
            "json_label": "Workshop JSON config example", "settings_label": "Meaning of the settings"},
 }
 GUIDES = {"ko": ("index.html", "operator.html"), "en": ("index.en.html", "operator.en.html")}
+# The READMEs are read on github.com, where a relative link to an HTML file opens its source instead of the page.
+READMES = {"ko": "README.ko.md", "en": "README.md"}
+MARKDOWN_LINK = re.compile(r"(?<!!)\[((?:[^\[\]]|\[[^\]]*\])*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 # The operator handoff template spells out absolute Pages URLs. Keep this in step with the published repository.
 SITE_URL = "https://junwoojeong100.github.io/microsoft-foundry-ignite-2026/"
 SITE_HOST = urlsplit(SITE_URL).netloc
@@ -83,6 +86,12 @@ def vtt_cues(path: Path) -> list[tuple[float, float, str]]:
                           for stamp in lines[timing].split("-->"))
             cues.append((start, end, "\n".join(lines[timing + 1:])))
     return cues
+
+
+def github_slug(heading: str) -> str:
+    """The anchor GitHub gives a heading: markup and punctuation dropped (hyphens stay), lower case, spaces to hyphens."""
+    text = re.sub(r"[`*~]", "", heading.strip()).lower()
+    return re.sub(r"[^\w\- ]", "", text).replace(" ", "-")
 
 
 class PageParser(HTMLParser):
@@ -328,6 +337,70 @@ class GuidePageTests(unittest.TestCase):
             self.assertIn("location", rows)
             expected = {key: (json.dumps(config.get(key)) if isinstance(config.get(key), bool) else str(config.get(key))) for key in rows}
             self.assertEqual(expected, rows, f"{name}: settings table differs from config/workshop.example.json")
+
+
+class ReadmeLinkTests(unittest.TestCase):
+    """On github.com a relative link to index.html or operator.html opens the HTML source, not the guide, and its #anchor goes nowhere.
+    The READMEs therefore link the guides by their published address; only the "source" column of the guide table links the HTML files themselves."""
+
+    @staticmethod
+    def links(name):
+        """(line number, line, link text, target) of every Markdown link and <autolink> of a README."""
+        for number, line in enumerate((ROOT / name).read_text(encoding="utf-8").splitlines(), 1):
+            for match in MARKDOWN_LINK.finditer(line):
+                yield number, line, match.group(1), match.group(2)
+            for url in re.findall(r"<(https?://[^>\s]+)>", line):
+                yield number, line, url, url
+
+    def test_guide_pages_are_linked_by_their_published_address(self):
+        for lang, name in READMES.items():
+            with self.subTest(readme=name):
+                problems = []
+                for number, _, label, target in self.links(name):
+                    parts = urlsplit(target)
+                    if target.startswith(EXTERNAL) or not parts.path.endswith(".html"):
+                        continue
+                    if label == f"`{parts.path}`" and not parts.fragment:
+                        continue  # the source column of the guide table
+                    anchor = f"#{parts.fragment}" if parts.fragment else ""
+                    problems.append(f"{name}:{number}: {target} opens the HTML source on GitHub; link {SITE_URL}{parts.path}{anchor} instead")
+                self.assertEqual([], problems)
+
+    def test_links_resolve_to_files_pages_and_anchors(self):
+        for lang, name in READMES.items():
+            with self.subTest(readme=name):
+                text = (ROOT / name).read_text(encoding="utf-8")
+                headings = {github_slug(heading) for heading in re.findall(r"^#{1,6}\s+(.*)$", text, re.M)}
+                problems = []
+                for number, _, _, target in self.links(name):
+                    parts = urlsplit(target)
+                    if target.startswith(SITE_URL):
+                        page = posixpath.basename(parts.path) or "index.html"
+                        if page not in PAGES:
+                            problems.append(f"{name}:{number}: {target} points at a page that does not exist")
+                        elif parts.fragment and unquote(parts.fragment) not in known_ids(page):
+                            problems.append(f"{name}:{number}: {target} points at a missing anchor")
+                    elif target.startswith(EXTERNAL):
+                        if SITE_HOST in parts.netloc:
+                            problems.append(f"{name}:{number}: {target} is not under {SITE_URL}")
+                    elif target.startswith("#"):
+                        if unquote(target[1:]) not in headings:
+                            problems.append(f"{name}:{number}: {target} matches no heading")
+                    elif not (ROOT / unquote(parts.path)).exists():
+                        problems.append(f"{name}:{number}: {target} is not in the repository")
+                self.assertEqual([], problems)
+
+    def test_each_readme_links_the_guides_of_its_own_language(self):
+        for lang, name in READMES.items():
+            with self.subTest(readme=name):
+                by_line = {}
+                for number, _, _, target in self.links(name):
+                    parts = urlsplit(target)
+                    if target.startswith(SITE_URL) or (not target.startswith(EXTERNAL) and parts.path.endswith(".html")):
+                        by_line.setdefault(number, set()).add(language_of(posixpath.basename(parts.path) or "index.html"))
+                # The guide table lists both editions side by side; everywhere else a README stays in its own language.
+                self.assertEqual([], [f"{name}:{number}" for number, languages in by_line.items() if len(languages) == 1 and languages != {lang}])
+                self.assertTrue(any(len(languages) == 2 for languages in by_line.values()), "the guide table links both editions")
 
 
 class GuideDataTests(unittest.TestCase):
