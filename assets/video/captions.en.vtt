@@ -211,3 +211,1335 @@ WEBVTT
 53
 00:09:34.740 --> 00:09:38.190
 54 · Conversation flow in User view
+
+54
+00:09:38.440 --> 00:09:41.040
+Labs 6–9 · Connect context to your agent with Microsoft IQ
+
+55
+00:09:41.510 --> 00:09:46.449
+Foundry home · open Create → Knowledge on the left
+
+56
+00:09:46.499 --> 00:09:52.523
+First Knowledge screen · Foundry IQ resource connection
+
+57
+00:09:52.573 --> 00:09:59.141
+Create Foundry IQ resource dialog
+
+58
+00:09:59.191 --> 00:10:04.978
+Foundry IQ resource list · choose the search service the operator created
+
+59
+00:10:05.028 --> 00:10:10.547
+Auth Type list · choose Project Managed Identity
+
+60
+00:10:10.597 --> 00:10:12.404
+Search resource and Auth Type selection
+
+61
+00:10:12.454 --> 00:10:19.660
+Select Connect · connecting to the search resource
+
+62
+00:10:19.710 --> 00:10:26.961
+Connected · Create a knowledge base
+
+63
+00:10:27.011 --> 00:10:34.367
+Create a knowledge base · new knowledge base form
+
+64
+00:10:34.417 --> 00:10:40.351
+Knowledge base name and description
+
+65
+00:10:40.401 --> 00:10:44.879
+Upload files · the 3 sample documents selected
+
+66
+00:10:44.929 --> 00:10:50.178
+Knowledge source creation · embedding model selection
+
+67
+00:10:50.228 --> 00:10:56.457
+Knowledge source creation · Create
+
+68
+00:10:56.507 --> 00:10:59.993
+File upload and processing progress
+
+69
+00:11:00.043 --> 00:11:06.482
+Knowledge source Active · 3 files processed
+
+70
+00:11:06.532 --> 00:11:13.476
+Saved knowledge base
+
+71
+00:11:13.526 --> 00:11:17.166
+Model Playground · start from gpt-6.1-terra
+
+72
+00:11:17.216 --> 00:11:25.216
+Model Playground · typing the instructions
+
+73
+00:11:25.431 --> 00:11:31.202
+Model Playground · paste the instructions
+
+74
+00:11:31.252 --> 00:11:35.916
+Save as agent · open the dialog
+
+75
+00:11:35.966 --> 00:11:42.074
+Save as agent · enter the agent name
+
+76
+00:11:42.124 --> 00:11:46.485
+Agent created · Version 1
+
+77
+00:11:46.535 --> 00:11:50.296
+Agent creation · default toolbox removal
+
+78
+00:11:50.346 --> 00:11:54.680
+Default toolbox removed
+
+79
+00:11:54.730 --> 00:11:58.064
+Open the Knowledge area
+
+80
+00:11:58.114 --> 00:12:06.114
+Knowledge → Add → Connect to Foundry IQ
+
+81
+00:12:06.544 --> 00:12:12.226
+Knowledge base list · choose workshop-kb-en
+
+82
+00:12:12.276 --> 00:12:18.588
+Knowledge base connection
+
+83
+00:12:18.638 --> 00:12:25.938
+Knowledge base added under Knowledge · select Save
+
+84
+00:12:25.988 --> 00:12:33.734
+Agent saved · Version 2
+
+85
+00:12:33.784 --> 00:12:40.926
+Question 1 · typed in a new chat
+
+86
+00:12:40.976 --> 00:12:46.164
+Question 1 · schedule and venue (one document)
+
+87
+00:12:46.214 --> 00:12:53.047
+New chat · a new conversation for question 2
+
+88
+00:12:53.097 --> 00:13:00.005
+Question 2 · typed in a new chat
+
+89
+00:13:00.055 --> 00:13:05.249
+Question 2 · using several documents together
+
+90
+00:13:05.299 --> 00:13:10.334
+New chat · a new conversation for question 3
+
+91
+00:13:10.384 --> 00:13:17.291
+Question 3 · typed in a new chat
+
+92
+00:13:17.341 --> 00:13:25.341
+Question 3 · content that is not in the documents
+
+93
+00:13:25.668 --> 00:13:33.668
+Traces · filter Status to Completed
+
+94
+00:13:33.751 --> 00:13:36.675
+Traces · runs for the knowledge base questions
+
+95
+00:13:36.725 --> 00:13:44.056
+Select a Trace ID · open the details
+
+96
+00:13:44.106 --> 00:13:50.661
+Trace details · knowledge base tool call
+
+97
+00:13:50.711 --> 00:13:58.711
+Trace details · tool call input and output
+
+98
+00:14:14.434 --> 00:14:22.393
+Find Microsoft Web IQ in the Azure portal
+
+99
+00:14:22.443 --> 00:14:30.443
+Microsoft Web IQ resources · Create
+
+100
+00:14:36.126 --> 00:14:43.325
+Create a Microsoft Web IQ resource · Basics
+
+101
+00:14:43.375 --> 00:14:51.375
+Read the Warning and Terms, then Next
+
+102
+00:14:53.889 --> 00:15:01.840
+Review + submit · Create
+
+103
+00:15:01.890 --> 00:15:09.890
+Deployment complete · Go to resource
+
+104
+00:15:19.190 --> 00:15:26.041
+Web IQ resource · Go to Web IQ portal
+
+105
+00:15:26.091 --> 00:15:34.091
+“You’re leaving portal.azure.com” notice · Continue
+
+106
+00:15:42.228 --> 00:15:50.228
+Web IQ portal · first screen after sign-in
+
+107
+00:15:57.197 --> 00:16:05.197
+Web IQ portal · Account settings → Add Azure Resource
+
+108
+00:16:12.467 --> 00:16:19.028
+Web IQ portal · Connect Azure resource
+
+109
+00:16:19.078 --> 00:16:27.078
+Web IQ portal · Setup complete
+
+110
+00:16:37.199 --> 00:16:45.199
+Playground · Profile and API Key (default) selected
+
+111
+00:16:57.991 --> 00:17:05.991
+Playground · Run Request (HTTP 200)
+
+112
+00:17:06.173 --> 00:17:14.173
+API access · Default API key
+
+113
+00:17:24.831 --> 00:17:32.831
+Enter the Instructions · Save as agent
+
+114
+00:17:41.306 --> 00:17:46.511
+New agent created · the toolbox attached automatically
+
+115
+00:17:46.561 --> 00:17:53.906
+Remove the default toolbox of the new agent
+
+116
+00:17:53.956 --> 00:18:01.956
+Tools → Add → Add tools
+
+117
+00:18:08.945 --> 00:18:16.769
+Select a tool · Catalog · Web IQ
+
+118
+00:18:16.819 --> 00:18:24.819
+Connect the Web IQ tool
+
+119
+00:18:28.825 --> 00:18:36.825
+Tool approval · Always auto-approve all tools
+
+120
+00:18:42.486 --> 00:18:50.486
+Saved · Version 2
+
+121
+00:18:52.438 --> 00:18:59.705
+Type the question · Send
+
+122
+00:18:59.755 --> 00:19:07.755
+Ask with the Web IQ tool
+
+123
+00:19:23.004 --> 00:19:29.206
+Open the Traces tab · Trace view
+
+124
+00:19:29.256 --> 00:19:37.256
+Traces · The trace has arrived
+
+125
+00:19:38.071 --> 00:19:46.071
+Trace details · execute_tool mcp_WebIQ.web
+
+126
+00:19:56.843 --> 00:20:04.843
+Web IQ portal · Usage dashboard
+
+127
+00:20:12.131 --> 00:20:20.131
+New agent for the built-in Web search comparison · Instructions
+
+128
+00:20:28.162 --> 00:20:32.829
+Comparison agent created · Web search in the toolbox
+
+129
+00:20:32.879 --> 00:20:39.786
+Web search in the toolbox · Grounding with Bing notice
+
+130
+00:20:39.836 --> 00:20:47.836
+Toolbox path: type the same question
+
+131
+00:20:49.999 --> 00:20:57.999
+Same question through the toolbox path (Grounding with Bing)
+
+132
+00:20:59.117 --> 00:21:06.441
+Tools → Add → Web search
+
+133
+00:21:06.491 --> 00:21:14.491
+Web search added directly · notice
+
+134
+00:21:22.337 --> 00:21:29.973
+Web search added directly: type the same question
+
+135
+00:21:30.023 --> 00:21:38.023
+Question with the Web search tool added directly
+
+136
+00:21:44.882 --> 00:21:52.882
+Tools tab · Connect a tool
+
+137
+00:22:05.285 --> 00:22:13.285
+Select a tool · Catalog · Work IQ MCP
+
+138
+00:22:16.602 --> 00:22:24.602
+Client ID and Client secret (the secret value stays blurred)
+
+139
+00:22:25.345 --> 00:22:31.632
+Connect the Work IQ MCP tool
+
+140
+00:22:31.682 --> 00:22:39.682
+Operator step · add the Redirect URL to the app registration (Authentication → Web → Redirect URIs)
+
+141
+00:22:41.991 --> 00:22:49.991
+Connection details · WorkIQMCP
+
+142
+00:22:50.941 --> 00:22:58.941
+Model Playground · create a new agent with Save as agent
+
+143
+00:23:05.683 --> 00:23:13.683
+A new agent · paste the instructions
+
+144
+00:23:21.307 --> 00:23:29.307
+A new agent · remove the toolbox attached automatically
+
+145
+00:23:35.796 --> 00:23:42.270
+Select a tool · Configured · WorkIQMCP
+
+146
+00:23:42.320 --> 00:23:49.356
+Tools · the WorkIQMCP row
+
+147
+00:23:49.406 --> 00:23:57.406
+Configure WorkIQMCP · allow only ask
+
+148
+00:23:59.826 --> 00:24:07.826
+Saved · Version 2
+
+149
+00:24:09.144 --> 00:24:17.144
+Question 1 · today's meetings
+
+150
+00:24:20.301 --> 00:24:25.090
+First question · sign-in and consent request
+
+151
+00:24:25.140 --> 00:24:37.020
+Consent window · Confirmation required
+
+152
+00:24:45.777 --> 00:24:53.097
+Consent given · the same question continues
+
+153
+00:24:53.147 --> 00:25:01.147
+Tool call approval request · Approve once
+
+154
+00:25:05.955 --> 00:25:13.955
+Question 1 · today's meetings
+
+155
+00:25:20.268 --> 00:25:28.268
+Question 2 · emails that need a reply
+
+156
+00:25:32.598 --> 00:25:40.598
+Question 2 · tool call approval request
+
+157
+00:25:42.984 --> 00:25:50.984
+Question 2 · emails that need a reply
+
+158
+00:25:56.330 --> 00:26:04.330
+Question 3 · an email you cannot access (permission boundary)
+
+159
+00:26:08.488 --> 00:26:16.488
+Question 3 · tool call approval request
+
+160
+00:26:17.720 --> 00:26:25.720
+Question 3 · an email you cannot access (permission boundary)
+
+161
+00:26:33.720 --> 00:26:41.720
+Traces tab · the runs you just made
+
+162
+00:26:45.608 --> 00:26:53.608
+Traces · the traces of the questions you just asked
+
+163
+00:26:59.359 --> 00:27:07.359
+Trace details · execute_tool mcp_WorkIQMCP.ask
+
+164
+00:27:11.801 --> 00:27:19.801
+Fabric · a new workspace
+
+165
+00:27:25.742 --> 00:27:30.813
+Fabric · a new workspace
+
+166
+00:27:30.863 --> 00:27:38.863
+Notebook · the sample data is loaded
+
+167
+00:27:47.062 --> 00:27:53.187
+Notebook · the sample data is loaded
+
+168
+00:27:53.237 --> 00:28:01.237
+Notebook · the sample data is loaded
+
+169
+00:28:05.470 --> 00:28:11.577
+Data agent · add a data source
+
+170
+00:28:11.627 --> 00:28:19.627
+Data agent · add a data source
+
+171
+00:28:27.216 --> 00:28:34.902
+Data agent · add a data source
+
+172
+00:28:34.952 --> 00:28:42.952
+Data agent · add a data source
+
+173
+00:28:44.075 --> 00:28:49.709
+Data agent · choose the tables to ask about
+
+174
+00:28:49.759 --> 00:28:56.923
+Data agent · choose the tables to ask about
+
+175
+00:28:56.973 --> 00:29:02.376
+Data agent · choose the tables to ask about
+
+176
+00:29:02.426 --> 00:29:08.387
+Data agent · data source instructions
+
+177
+00:29:08.437 --> 00:29:13.527
+Data agent · data source instructions
+
+178
+00:29:13.577 --> 00:29:17.827
+Data agent · an example question and query
+
+179
+00:29:17.877 --> 00:29:25.515
+Data agent · an example question and query
+
+180
+00:29:25.565 --> 00:29:31.792
+Data agent · an example question and query
+
+181
+00:29:31.842 --> 00:29:39.842
+Data agent · Test the agent's responses
+
+182
+00:29:40.943 --> 00:29:43.920
+Data agent · Test the agent's responses
+
+183
+00:29:43.970 --> 00:29:51.970
+Data agent · Publish
+
+184
+00:29:52.446 --> 00:29:58.039
+Data agent · Publish
+
+185
+00:29:58.089 --> 00:30:03.404
+Data agent · Publish
+
+186
+00:30:03.454 --> 00:30:11.454
+Data agent · share it with the people who ask
+
+187
+00:30:17.097 --> 00:30:19.996
+Data agent · share it with the people who ask
+
+188
+00:30:20.046 --> 00:30:28.046
+Data agent · share it with the people who ask
+
+189
+00:30:33.196 --> 00:30:41.196
+Lakehouse · permission on the data source
+
+190
+00:30:46.195 --> 00:30:51.249
+Lakehouse · permission on the data source
+
+191
+00:30:51.299 --> 00:30:59.299
+Lakehouse · permission on the data source
+
+192
+00:30:59.814 --> 00:31:06.993
+Tools tab · Connect a tool
+
+193
+00:31:07.043 --> 00:31:10.236
+Select a tool · Configured · Fabric IQ (OneLake Catalog)
+
+194
+00:31:10.286 --> 00:31:18.286
+Select a tool · Configured · Fabric IQ (OneLake Catalog)
+
+195
+00:31:20.087 --> 00:31:24.320
+OneLake Catalog · when the list looks empty
+
+196
+00:31:24.370 --> 00:31:32.370
+OneLake Catalog · clear Semantic model in Filter
+
+197
+00:31:35.230 --> 00:31:43.230
+OneLake Catalog · choose the Data agent
+
+198
+00:31:45.153 --> 00:31:53.153
+Connection details · workshopadventureworksagent
+
+199
+00:31:55.483 --> 00:32:03.483
+New agent · enter the instructions
+
+200
+00:32:13.184 --> 00:32:20.537
+New agent · enter the instructions
+
+201
+00:32:20.587 --> 00:32:28.587
+New agent · enter the name
+
+202
+00:32:29.270 --> 00:32:34.579
+Remove the default toolbox of the new agent
+
+203
+00:32:34.629 --> 00:32:41.710
+Tools → Add → Add tools
+
+204
+00:32:41.760 --> 00:32:45.449
+Select a tool · Configured · workshopadventureworksagent
+
+205
+00:32:45.499 --> 00:32:50.445
+Tools · the Fabric IQ (OneLake Catalog) row
+
+206
+00:32:50.495 --> 00:32:58.495
+Configure · the default approval setting
+
+207
+00:32:59.730 --> 00:33:05.843
+Saved · Version 2
+
+208
+00:33:05.893 --> 00:33:10.651
+Saved · Version 2
+
+209
+00:33:10.701 --> 00:33:15.458
+Saved · Version 2
+
+210
+00:33:15.508 --> 00:33:20.276
+Saved · Version 2
+
+211
+00:33:20.326 --> 00:33:25.070
+Saved · Version 2
+
+212
+00:33:25.120 --> 00:33:33.120
+Saved · Version 2
+
+213
+00:33:35.157 --> 00:33:43.157
+Question 1 · monthly and year-to-date sales
+
+214
+00:33:47.455 --> 00:33:55.455
+Question 1 · monthly and year-to-date sales
+
+215
+00:33:59.032 --> 00:34:07.032
+Question 2 · the top 3 sales regions
+
+216
+00:34:08.160 --> 00:34:16.160
+Question 2 · the top 3 sales regions
+
+217
+00:34:19.570 --> 00:34:27.570
+Question 3 · the top 5 customers by total order amount
+
+218
+00:34:29.549 --> 00:34:31.010
+Question 3 · the top 5 customers by total order amount
+
+219
+00:34:31.060 --> 00:35:28.380
+Account B (no access) · no answer arrives
+
+220
+00:35:40.347 --> 00:35:47.767
+Traces · Completed and Failed
+
+221
+00:35:47.817 --> 00:35:55.529
+Trace details · the tool and the data agent calls
+
+222
+00:35:55.579 --> 00:35:59.150
+Trace details · tool_user_error
+
+223
+00:35:59.400 --> 00:36:02.000
+Optional Labs 10–16 · from the harness to cost
+
+224
+00:36:09.374 --> 00:36:17.374
+Harness column in the Build → Agents list
+
+225
+00:36:18.098 --> 00:36:24.879
+Models · deployments (gpt-6.1-terra)
+
+226
+00:36:24.929 --> 00:36:32.774
+Models → gpt-6.1-terra · Playground
+
+227
+00:36:32.824 --> 00:36:40.806
+gpt-6.1-terra Playground · instructions entered
+
+228
+00:36:40.856 --> 00:36:44.253
+Create an agent · name the agent
+
+229
+00:36:44.303 --> 00:36:52.303
+Create an agent · harness selection
+
+230
+00:36:53.373 --> 00:36:58.282
+New harness agent · Playground (Version 1, gpt-6.1-terra)
+
+231
+00:36:58.332 --> 00:37:03.961
+Harness tools · defaults
+
+232
+00:37:04.011 --> 00:37:11.820
+Unneeded tools turned off
+
+233
+00:37:11.870 --> 00:37:18.902
+Unsupported tools dialog · Cancel keeps the model
+
+234
+00:37:18.952 --> 00:37:26.952
+Harness tools still restricted after the model check
+
+235
+00:37:30.007 --> 00:37:37.860
+Saved as Version 2
+
+236
+00:37:37.910 --> 00:37:44.473
+Saved settings on the YAML tab
+
+237
+00:37:44.523 --> 00:37:49.916
+Chat · a new conversation on gpt-6.1-terra
+
+238
+00:37:49.966 --> 00:37:54.031
+The question that makes the agent read a web page
+
+239
+00:37:54.081 --> 00:38:01.515
+Question sent · the agent reads the web page
+
+240
+00:38:01.565 --> 00:38:09.565
+Run with gpt-6.1-terra
+
+241
+00:38:11.512 --> 00:38:15.905
+Agents list with the harness agent
+
+242
+00:38:15.955 --> 00:38:20.344
+Routines tab
+
+243
+00:38:20.394 --> 00:38:28.394
+Workflows tab · retirement notice
+
+244
+00:38:28.868 --> 00:38:34.366
+Open the harness agent from the list
+
+245
+00:38:34.416 --> 00:38:41.656
+Details tab · endpoints and channels
+
+246
+00:38:41.706 --> 00:38:48.856
+Playground · scroll down to the Guardrail (Preview) section
+
+247
+00:38:48.906 --> 00:38:52.723
+Agent Guardrail (Preview) section
+
+248
+00:38:52.773 --> 00:39:00.773
+Manage guardrail menu
+
+249
+00:39:01.953 --> 00:39:06.838
+Traces · the list of runs is loading
+
+250
+00:39:06.888 --> 00:39:14.888
+Traces list
+
+251
+00:39:17.520 --> 00:39:23.880
+Monitor · Overview is loading
+
+252
+00:39:23.930 --> 00:39:31.930
+Agent Monitor · Overview
+
+253
+00:39:33.358 --> 00:39:41.358
+Monitor → Cost (Preview)
+
+254
+00:39:44.073 --> 00:39:50.179
+Insights tab · scan settings
+
+255
+00:39:50.229 --> 00:39:54.411
+Judge model · GPT-5 or newer models only
+
+256
+00:39:54.461 --> 00:40:02.461
+Estimated cost for the first scan · Run scan now
+
+257
+00:40:03.038 --> 00:40:08.498
+Run now · scan in progress
+
+258
+00:40:08.548 --> 00:40:16.548
+Scan complete · the result appears in the Insights panel
+
+259
+00:40:21.960 --> 00:40:29.960
+Agent Playground · open the Evaluation tab
+
+260
+00:40:34.775 --> 00:40:42.775
+Agent Evaluation tab
+
+261
+00:40:46.060 --> 00:40:51.261
+Evaluations → Evaluator catalog
+
+262
+00:40:51.311 --> 00:40:59.311
+Create evaluator dialog
+
+263
+00:40:59.440 --> 00:41:05.890
+Evaluator name and Display name entered
+
+264
+00:41:05.940 --> 00:41:10.890
+Model · choose the judge deployment
+
+265
+00:41:10.940 --> 00:41:17.890
+Target agent · its instructions fill in read-only
+
+266
+00:41:17.940 --> 00:41:25.390
+Prompt · what the evaluator should check
+
+267
+00:41:25.440 --> 00:41:33.440
+Prompt · the criteria text is being typed
+
+268
+00:41:33.844 --> 00:41:39.649
+Evaluator details form
+
+269
+00:41:39.699 --> 00:41:45.420
+Context (Optional) · production traces from the target agent
+
+270
+00:41:45.470 --> 00:41:48.225
+Generate rubric · the dimensions are being created
+
+271
+00:41:48.275 --> 00:41:51.018
+Generate rubric · the dimensions are being created
+
+272
+00:41:51.068 --> 00:41:55.242
+Generate rubric · the dimensions are being created
+
+273
+00:41:55.292 --> 00:42:03.292
+Generate rubric · automatic rubric generation
+
+274
+00:42:03.391 --> 00:42:11.391
+Rubric dimensions · criteria for scores 1, 3 and 5
+
+275
+00:42:14.721 --> 00:42:22.721
+Save evaluator · evaluator details
+
+276
+00:42:24.167 --> 00:42:28.585
+Create evaluation 1/5 · Target
+
+277
+00:42:28.635 --> 00:42:35.270
+2/5 · Scope
+
+278
+00:42:35.320 --> 00:42:41.581
+3/5 · Data · the prompt for the synthetic questions
+
+279
+00:42:41.631 --> 00:42:46.947
+3/5 · Data · synthetic data generation
+
+280
+00:42:46.997 --> 00:42:54.997
+4/5 · Criteria · evaluator selection
+
+281
+00:42:56.230 --> 00:43:03.626
+Only the Custom evaluator selected
+
+282
+00:43:03.676 --> 00:43:08.270
+5/5 · Review → Submit
+
+283
+00:43:08.320 --> 00:43:16.320
+Review · Submit creates the evaluation
+
+284
+00:43:20.820 --> 00:43:25.384
+Evaluation details · the run starts In progress
+
+285
+00:43:25.434 --> 00:43:31.735
+Evaluation run status
+
+286
+00:43:31.785 --> 00:43:35.550
+Evaluation run · generating data → running the agent → scoring
+
+287
+00:43:35.600 --> 00:43:39.383
+Evaluation run · generating data → running the agent → scoring
+
+288
+00:43:39.433 --> 00:43:43.246
+Evaluation run · generating data → running the agent → scoring
+
+289
+00:43:43.296 --> 00:43:47.037
+Evaluation run · generating data → running the agent → scoring
+
+290
+00:43:47.087 --> 00:43:50.794
+Evaluation run · generating data → running the agent → scoring
+
+291
+00:43:50.844 --> 00:43:55.061
+Evaluation run · generating data → running the agent → scoring
+
+292
+00:43:55.111 --> 00:43:58.978
+Evaluation run · generating data → running the agent → scoring
+
+293
+00:43:59.028 --> 00:44:03.369
+Evaluation run · generating data → running the agent → scoring
+
+294
+00:44:03.419 --> 00:44:07.185
+Evaluation run · generating data → running the agent → scoring
+
+295
+00:44:07.235 --> 00:44:10.940
+Evaluation run · generating data → running the agent → scoring
+
+296
+00:44:10.990 --> 00:44:14.862
+Evaluation run · generating data → running the agent → scoring
+
+297
+00:44:14.912 --> 00:44:18.806
+Evaluation run · generating data → running the agent → scoring
+
+298
+00:44:18.856 --> 00:44:22.648
+Evaluation run · generating data → running the agent → scoring
+
+299
+00:44:22.698 --> 00:44:26.512
+Evaluation run · generating data → running the agent → scoring
+
+300
+00:44:26.562 --> 00:44:30.615
+Evaluation run · generating data → running the agent → scoring
+
+301
+00:44:30.665 --> 00:44:34.531
+Evaluation run · generating data → running the agent → scoring
+
+302
+00:44:34.580 --> 00:44:38.428
+Evaluation run · generating data → running the agent → scoring
+
+303
+00:44:38.478 --> 00:44:42.890
+Evaluation run · generating data → running the agent → scoring
+
+304
+00:44:42.940 --> 00:44:47.047
+Evaluation run · generating data → running the agent → scoring
+
+305
+00:44:47.097 --> 00:44:50.848
+Evaluation run · generating data → running the agent → scoring
+
+306
+00:44:50.898 --> 00:44:55.001
+Evaluation run · generating data → running the agent → scoring
+
+307
+00:44:55.051 --> 00:45:03.051
+Evaluation run · generating data → running the agent → scoring
+
+308
+00:45:03.151 --> 00:45:11.151
+Evaluation results · Evaluation runs
+
+309
+00:45:13.680 --> 00:45:18.089
+Select the run name to open Run details
+
+310
+00:45:18.139 --> 00:45:22.130
+Run details · results by row
+
+311
+00:45:22.180 --> 00:45:30.180
+Select View details in a row
+
+312
+00:45:31.957 --> 00:45:39.930
+Row details · scores and reasons by dimension
+
+313
+00:45:39.980 --> 00:45:46.826
+Prompt Agent workshop-assistant-en · select the Optimize tab
+
+314
+00:45:46.876 --> 00:45:54.090
+Optimize tab introduction
+
+315
+00:45:54.140 --> 00:45:59.727
+Optimize start menu
+
+316
+00:45:59.777 --> 00:46:05.170
+Optimize wizard · Target
+
+317
+00:46:05.220 --> 00:46:08.930
+Optimize wizard · Data preparation methods
+
+318
+00:46:08.980 --> 00:46:13.630
+Select dataset and criteria · the dataset list
+
+319
+00:46:13.680 --> 00:46:17.585
+Select dataset · search for the Lab 12 dataset
+
+320
+00:46:17.635 --> 00:46:25.635
+Optimize wizard · dataset selection
+
+321
+00:46:25.964 --> 00:46:30.085
+Optimize wizard · evaluator selection
+
+322
+00:46:30.135 --> 00:46:38.135
+Evaluator Threshold setting
+
+323
+00:46:40.732 --> 00:46:48.732
+Optimize wizard · Review and estimated cost
+
+324
+00:46:48.980 --> 00:46:53.119
+Submit · the new run appears in the runs list
+
+325
+00:46:53.169 --> 00:47:00.199
+Optimization run in progress
+
+326
+00:47:00.249 --> 00:47:04.325
+Optimization run · building and scoring the candidates
+
+327
+00:47:04.375 --> 00:47:08.582
+Optimization run · building and scoring the candidates
+
+328
+00:47:08.632 --> 00:47:12.797
+Optimization run · building and scoring the candidates
+
+329
+00:47:12.847 --> 00:47:16.777
+Optimization run · building and scoring the candidates
+
+330
+00:47:16.827 --> 00:47:20.816
+Optimization run · building and scoring the candidates
+
+331
+00:47:20.866 --> 00:47:24.835
+Optimization run · building and scoring the candidates
+
+332
+00:47:24.885 --> 00:47:28.779
+Optimization run · building and scoring the candidates
+
+333
+00:47:28.829 --> 00:47:32.810
+Optimization run · building and scoring the candidates
+
+334
+00:47:32.860 --> 00:47:40.130
+Optimization run · building and scoring the candidates
+
+335
+00:47:40.180 --> 00:47:48.180
+Optimization finished · scores
+
+336
+00:47:52.580 --> 00:48:00.580
+Run details · candidate score comparison
+
+337
+00:48:01.239 --> 00:48:09.239
+What a candidate changed
+
+338
+00:48:12.077 --> 00:48:18.491
+Foundry home
+
+339
+00:48:18.541 --> 00:48:26.541
+Hosted agent in the Agents list
+
+340
+00:48:26.878 --> 00:48:30.380
+Open the Hosted agent Playground · Agent info (Kind: hosted)
+
+341
+00:48:30.430 --> 00:48:33.927
+Code asset: the uploaded code.zip
+
+342
+00:48:33.977 --> 00:48:39.575
+Hosted agent Playground (before a session starts)
+
+343
+00:48:39.625 --> 00:48:47.625
+Type the question for the Hosted agent
+
+344
+00:48:49.010 --> 00:48:54.046
+Message sent in the Playground
+
+345
+00:48:54.096 --> 00:49:02.096
+Log stream: container logs and the Session identifier
+
+346
+00:49:02.272 --> 00:49:07.495
+Details: status, version, agent ID and endpoint
+
+347
+00:49:07.545 --> 00:49:11.773
+Traces: waiting for the new trace to arrive (usually within a minute; refresh if it is not there yet)
+
+348
+00:49:11.823 --> 00:49:16.217
+Traces list (Trace view)
+
+349
+00:49:16.267 --> 00:49:22.976
+Traces: Conversation view
+
+350
+00:49:23.026 --> 00:49:31.026
+Traces: Session view
+
+351
+00:49:34.294 --> 00:49:40.990
+Trace details: invoke_agent and chat spans
+
+352
+00:49:41.040 --> 00:49:49.040
+The chat span: Instructions · User input · Output
+
+353
+00:49:52.008 --> 00:49:57.354
+Monitor overview
+
+354
+00:49:57.404 --> 00:50:04.490
+Monitor: Hosting compute·Hosting memory
+
+355
+00:50:04.540 --> 00:50:09.735
+Continue in code: calling the agent from code
+
+356
+00:50:09.785 --> 00:50:17.785
+Continue in code: the sample code
+
+357
+00:50:19.599 --> 00:50:27.599
+Foundry home
+
+358
+00:50:27.999 --> 00:50:34.000
+Manage → Fleet overview (Preview)
+
+359
+00:50:34.050 --> 00:50:38.608
+Fleet: Assets in this scope · Agents tab
+
+360
+00:50:38.658 --> 00:50:46.658
+Fleet: Assets in this scope · Models tab
+
+361
+00:50:46.881 --> 00:50:52.063
+Manage → Operations (Preview)
+
+362
+00:50:52.113 --> 00:50:57.150
+Operations: Tokens tab
+
+363
+00:50:57.200 --> 00:51:02.229
+Operations: Errors tab
+
+364
+00:51:02.279 --> 00:51:08.445
+Operations: Latency tab
+
+365
+00:51:08.495 --> 00:51:16.495
+Operations: Assets with invocations table
+
+366
+00:51:18.283 --> 00:51:23.571
+Manage → Cost (Preview)
+
+367
+00:51:23.621 --> 00:51:29.021
+Cost: Highest spend assets and Cost by project
+
+368
+00:51:29.071 --> 00:51:37.071
+Cost by project: grouped by Agent
+
+369
+00:51:37.729 --> 00:51:43.934
+Manage → Compliance
+
+370
+00:51:43.984 --> 00:51:50.284
+Compliance: Asset tab
+
+371
+00:51:50.334 --> 00:51:58.334
+Manage → Gateways · AI Gateway (Preview)
+
+372
+00:52:00.290 --> 00:52:08.290
+Foundry home
+
+373
+00:52:10.605 --> 00:52:15.605
+Monitor → Cost (Preview) · cards and Cost by agent
+
+374
+00:52:15.655 --> 00:52:20.952
+Cost by agent: model deployments and invocations per agent
+
+375
+00:52:21.002 --> 00:52:26.352
+Cost by agent · Token usage view
+
+376
+00:52:26.402 --> 00:52:34.402
+Token usage view: tokens per agent
+
+377
+00:52:34.666 --> 00:52:42.666
+Monitor → Cost Control (Preview) · no budget
+
+378
+00:52:43.861 --> 00:52:50.891
+Create cost control · name, scope and how it is shared
+
+379
+00:52:50.941 --> 00:52:57.590
+Set the budget · Tokens 10M · Monthly
+
+380
+00:52:57.640 --> 00:53:04.388
+Threshold actions · options only
+
+381
+00:53:04.438 --> 00:53:12.438
+Usage data · connected Application Insights and Create
+
+382
+00:53:14.308 --> 00:53:20.664
+Cost Control list · the new budget
+
+383
+00:53:20.714 --> 00:53:27.668
+Budget details · Edit and Delete
+
+384
+00:53:27.718 --> 00:53:35.718
+The Project budget card on the Cost tab
+
+385
+00:53:36.053 --> 00:53:42.878
+Delete cost control? · confirm the deletion
+
+386
+00:53:42.928 --> 00:53:47.750
+Cleaned up · the Cost Control list is empty again

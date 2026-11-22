@@ -3,7 +3,7 @@ window.LABS_DATA = {
   "before": [
     {"id": "ignite-overview", "badge": "Overview", "title": "Microsoft IQ · Lab roadmap"},
     {"id": "prepare", "badge": "Prep", "title": "5 things before you start"},
-    {"id": "video", "badge": "Video", "title": "Labs 1–5 full recording"}
+    {"id": "video", "badge": "Video", "title": "Labs 1–16 full recording"}
   ],
   "after": [
     {"id": "troubleshooting", "badge": "Issues", "title": "Account, resources and permissions"},

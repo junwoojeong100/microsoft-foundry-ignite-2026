@@ -41,15 +41,15 @@
           <p class="hero-lead">The operator provides everything up to the account and resource group (RG).<br>Participants create the resources they need themselves inside their assigned RG.<br>Use the account, permissions and troubleshooting guidance for other Foundry labs too.</p>
           <div class="hero-actions">
             <a class="button primary" href="#prepare">5 checks before you start <span aria-hidden="true">→</span></a>
-            <a class="button dark" href="#summary">Watch the 2-minute summary first</a>
+            <a class="button dark" href="#summary">Watch the 5-minute summary first</a>
             <a class="button dark" href="#first-sign-in">Start the labs</a>
             <a class="button dark" href="#ignite-overview">Microsoft IQ · Lab roadmap</a>
           </div>
         </div>
         <div class="proof" id="summary">
-          <p class="proof-label"><strong>2 min 38 s key summary</strong> · Labs 1–5 · real portal video · English on-screen guidance</p>
+          <p class="proof-label"><strong>5 min 47 s key summary</strong> · Labs 1–16 · real portal video · English on-screen guidance</p>
           <div class="video-frame">
-            <video id="summary-video" controls autoplay muted playsinline preload="metadata" poster="assets/screenshots/01-guest-sign-in.png" aria-label="2 min 38 s key summary · silent autoplay">
+            <video id="summary-video" controls autoplay muted playsinline preload="metadata" poster="assets/screenshots/01-guest-sign-in.png" aria-label="5 min 47 s key summary · Labs 1–16 · silent autoplay">
               <source src="assets/video/summary-walkthrough.en.mp4" type="video/mp4">
               Open this page in a browser that supports MP4 playback, or download the summary MP4.
             </video>
@@ -59,8 +59,8 @@
             <a class="button dark small" href="assets/video/summary-walkthrough.en.mp4" download>Download summary MP4</a>
             <a class="button dark small" id="full-video-link" href="#video">Full video ↗</a>
           </div>
-          <p class="proof-note">Waiting segments are sped up to 8x, and error handling is left out of the summary. The summary and the full video cover Labs 1–5; <a href="#video-iq">Labs 6–9</a> and <a href="#video-optional">optional Labs 10–16</a> each have their own video with chapters. In the recording, we created Application insights together with the Foundry resource and checked it right away in Traces (<a href="#step-resource" data-lab-ref="sec:step-resource">Lab 2-1</a>·<a href="#step-connect" data-lab-ref="sec:step-connect">Lab 4-2</a>).</p>
-          <p class="proof-label">Agent run results confirmed in the recording</p>
+          <p class="proof-note">Waiting segments are sped up to 8x, and error handling is left out of the summary. The summary and the <a href="#video">full video</a> cover <strong>all of Labs 1–16</strong>, and the same recordings are also split into a <a href="#video-iq">Labs 6–9</a> video and an <a href="#video-optional">optional Labs 10–16</a> video. In the Labs 1–5 recording, we created Application insights together with the Foundry resource and checked it right away in Traces (<a href="#step-resource" data-lab-ref="sec:step-resource">Lab 2-1</a>·<a href="#step-connect" data-lab-ref="sec:step-connect">Lab 4-2</a>).</p>
+          <p class="proof-label">Agent run results confirmed in the Labs 1–5 recording</p>
           <div class="stats">
             <div class="stat"><strong id="hero-runs">3</strong><span>Completed runs</span></div>
             <div class="stat"><strong id="hero-tokens">675</strong><span>Total tokens</span></div>
@@ -71,10 +71,10 @@
       </div>
       <div class="hero-meta">
         <span><b id="shot-count">54</b> real screenshots</span>
-        <span>2 min 38 s summary · silent autoplay</span>
-        <span>Full video <b id="duration-label">9:38</b></span>
-        <span>10 chapters · silent · English captions</span>
-        <span>2 more videos for Labs 6–16 · chapters and captions</span>
+        <span>5 min 47 s summary · Labs 1–16 · silent autoplay</span>
+        <span>Full video <b id="duration-label">53:48</b> · Labs 1–16</span>
+        <span><b id="chapter-count">41</b> chapters · silent · English captions</span>
+        <span>2 split videos for Labs 6–9 and 10–16</span>
         <span>Recording example · North Central US · gpt-6.1-terra</span>
       </div>
     </div>
@@ -424,11 +424,11 @@
       </section>
       <section class="panel observed-section" id="video">
         <p class="section-label">FULL WALKTHROUGH</p>
-        <h2>Working in the real portal, from start to finish.</h2>
-        <p class="intro">This is a browser recording of working in the real portal (2026-11-18). Scenes recorded separately for each lab are stitched together, and waiting segments such as deployment and creation play at 8x speed and are labeled on screen. Sign-in, password change, and MFA registration are left out of the video for security reasons, so complete the <a href="#first-sign-in">required first sign-in lab</a> before anything else. The emails, names, and IDs typed in are masked, and there is no voice narration.</p>
-        <div class="notice"><strong>The video chapters cover Labs 1–5 and the alternate path.</strong> Follow the <strong>"Guide Lab"</strong> label on each chapter button. The "Alternate path" chapter shows how to connect directly from Traces in a project where Application Insights is not connected (<a href="#connect-alternate">Lab 4-2 alternate path</a>). Labs 6–9 and optional Labs 10–16 each have their own video (<a href="#video-iq">Labs 6–9 video</a> · <a href="#video-optional">optional Labs 10–16 video</a>).</div>
+        <h2>Working in the real portal for Labs 1–16, from start to finish.</h2>
+        <p class="intro">This is a browser recording of working in the real portal. We re-edited the existing recordings of <strong>Labs 1–5 (recorded 2026-11-18)</strong>, <strong>Labs 6–9 (recorded 2026-11-22)</strong> and <strong>optional Labs 10–16 (recorded 2026-11-22)</strong> on 2026-11-23, stitching them together with 3-second title cards. Within each part, scenes recorded separately for each lab are stitched together, and waiting segments such as deployment, creation and evaluation play at 8x speed and are labeled on screen. Sign-in, password change, and MFA registration are left out of the video for security reasons, so complete the <a href="#first-sign-in">required first sign-in lab</a> before anything else. The prep that only the operator does (<a href="operator.en.html#iq-prep">search service, Web IQ, Work IQ and Fabric prep</a>, <a href="operator.en.html#part2-prep">raising the TPM, the judge model and the Hosted agent deployment</a>) is not in the video either. Account, tenant and subscription strings are masked, and there is no voice narration.</p>
+        <div class="notice"><strong>The video chapters cover Labs 1–16 and the alternate path.</strong> For the Labs 1–5 chapters, follow the <strong>"Guide Lab"</strong> label on the button; for the Labs 6–16 chapters, follow the <strong>"Guide ↗"</strong> link. The "Alternate path" chapter shows how to connect directly from Traces in a project where Application Insights is not connected (<a href="#connect-alternate">Lab 4-2 alternate path</a>). Labs 6–16 were recorded in a separate run from the step-by-step screens, so their results can differ slightly from the screens; the differences are listed in the collapsed lists of the <a href="#video-iq">Labs 6–9 video</a> and <a href="#video-optional">optional Labs 10–16 video</a> boxes. The videos in those two boxes are the same recordings, split by group from the Labs 6–16 part of this full video.</div>
         <div class="video-frame">
-          <video id="walkthrough" controls playsinline preload="metadata" poster="assets/screenshots/en/47-agent-trace-list.png" aria-label="Full portal lab recording captured with a participant account">
+          <video id="walkthrough" controls playsinline preload="metadata" poster="assets/screenshots/en/47-agent-trace-list.png" aria-label="Full portal lab recording of Labs 1–16">
             <source src="assets/video/full-walkthrough.en.mp4" type="video/mp4">
             Open this page in a browser that supports MP4 playback, or download the file below.
           </video>
@@ -528,7 +528,7 @@
         <h2>Foundry lab roadmap that starts with Microsoft IQ</h2>
         <div id="ignite-boot-error" class="boot-error" hidden role="alert"></div>
         <noscript><p class="noscript">The lab order and the screen gallery are rendered by local JavaScript. If JavaScript is turned off, open the PNG files in the assets/ignite/screenshots/en and assets/ignite/screenshots/ko folders yourself, in numbered order.</p></noscript>
-        <p class="intro"><strong>Labs 1–7 are required</strong>. After you finish sign-in through running and tracing an agent (Labs 1–5), you connect organizational knowledge and the latest web information to the agent with <strong>Foundry IQ (Lab 6) and Web IQ (Lab 7)</strong>. Lab 7 uses only the Azure portal, the Web IQ portal and the Foundry portal and no CLI, and we ran everything from creating the Web IQ resource to checking Traces (Labs 7-1 to 7-4) and the comparison with the built-in Foundry Web search tool (Lab 7-5) directly. After that, Work IQ (Lab 8) and Fabric IQ (Lab 9), the harness, Insights, evaluation, Optimize, Hosted agent, Manage, and cost are <strong>optional Labs 8–16</strong>. <strong>All screens and the Labs 1–5 videos were newly captured on 2026-11-18 in New Foundry · North Central US (the Web IQ resource, portal and tool-connection screens of Lab 7 were captured on 2026-11-21 in the Azure portal, the Web IQ portal and New Foundry, and the screens of Labs 8 and 9 on 2026-11-22 in New Foundry and the Fabric portal).</strong> The screens and video segments that would have shown Korean were later re-captured with English inputs. Labs 1–5 have 54 screens and a full video (9 min 38 s). The guardrails and the New Foundry screens for Labs 6–16 come to 159 screens (including the 21 Web IQ screens of Lab 7, the 17 Work IQ screens of Lab 8 and the 23 Fabric IQ screens of Lab 9). Labs 6–9 and optional Labs 10–16 also have one video each with chapters (<a href="#video-iq">Labs 6–9 video</a> · <a href="#video-optional">optional Labs 10–16 video</a>). They were recorded on 2026-11-22 in a separate run from the step-by-step screens, so their results can differ slightly from the screens. Apart from Labs 8 and 9, everything was done in sequence with 1 participant-permission account, the same throughout (RG Contributor + Foundry User + subscription Usages Reader, plus 2 more RG roles for Lab 6), and Lab 8 (Work IQ) and Lab 9 (Fabric IQ) were run directly with Member test accounts that have a Microsoft 365 license. Lab 6 (Foundry IQ), Lab 7 (Web IQ) and Lab 14 (Hosted agent) need operator prep in advance, Lab 8 needs the tenant administrator's one-time setup, and Lab 9 needs a Fabric capacity and the Fabric administrator's settings. The verification box below sets out the evidence for the screens and the scope we did not run directly.</p>
+        <p class="intro"><strong>Labs 1–7 are required</strong>. After you finish sign-in through running and tracing an agent (Labs 1–5), you connect organizational knowledge and the latest web information to the agent with <strong>Foundry IQ (Lab 6) and Web IQ (Lab 7)</strong>. Lab 7 uses only the Azure portal, the Web IQ portal and the Foundry portal and no CLI, and we ran everything from creating the Web IQ resource to checking Traces (Labs 7-1 to 7-4) and the comparison with the built-in Foundry Web search tool (Lab 7-5) directly. After that, Work IQ (Lab 8) and Fabric IQ (Lab 9), the harness, Insights, evaluation, Optimize, Hosted agent, Manage, and cost are <strong>optional Labs 8–16</strong>. <strong>All screens and the Labs 1–5 videos were newly captured on 2026-11-18 in New Foundry · North Central US (the Web IQ resource, portal and tool-connection screens of Lab 7 were captured on 2026-11-21 in the Azure portal, the Web IQ portal and New Foundry, and the screens of Labs 8 and 9 on 2026-11-22 in New Foundry and the Fabric portal).</strong> The screens and video segments that would have shown Korean were later re-captured with English inputs. Labs 1–5 have 54 screens, and the key summary video (5 min 47 s) and the full video (53 min 48 s) cover all of Labs 1–16. The guardrails and the New Foundry screens for Labs 6–16 come to 159 screens (including the 21 Web IQ screens of Lab 7, the 17 Work IQ screens of Lab 8 and the 23 Fabric IQ screens of Lab 9). The Labs 6–16 part of the full video is also split into one video each for Labs 6–9 and optional Labs 10–16 (<a href="#video-iq">Labs 6–9 video</a> · <a href="#video-optional">optional Labs 10–16 video</a>). The Labs 6–16 videos were recorded on 2026-11-22 in a separate run from the step-by-step screens, so their results can differ slightly from the screens. Apart from Labs 8 and 9, everything was done in sequence with 1 participant-permission account, the same throughout (RG Contributor + Foundry User + subscription Usages Reader, plus 2 more RG roles for Lab 6), and Lab 8 (Work IQ) and Lab 9 (Fabric IQ) were run directly with Member test accounts that have a Microsoft 365 license. Lab 6 (Foundry IQ), Lab 7 (Web IQ) and Lab 14 (Hosted agent) need operator prep in advance, Lab 8 needs the tenant administrator's one-time setup, and Lab 9 needs a Fabric capacity and the Fabric administrator's settings. The verification box below sets out the evidence for the screens and the scope we did not run directly.</p>
         <p class="intro">We captured the screens ourselves in the portal on 2026-11-18. Feature names and status (GA or Preview) were checked against the Microsoft Foundry items in the <a href="https://news.microsoft.com/events/ignite/2026/book-of-news/" target="_blank" rel="noopener noreferrer">Ignite 2026 Book of News ↗</a> published on 2026-11-17, the Foundry blog that details them, and the official docs we re-checked on 2026-11-18. The results are in the <a href="#ignite-official-check">official check table</a> and in the "Ignite announcement" note of each lab. That does not mean every announced feature is already reflected in this portal. This guide covers <strong>Microsoft IQ (the most important announcement; <a href="#ignite-microsoft-iq">summary below</a>)</strong> and the Microsoft Foundry items. Labs for other areas, such as Azure infrastructure, Windows, and Agent 365, are out of scope, and the Ignite updates for GitHub Copilot are introduced in the <a href="#ignite-reference-guides">reference guides</a>.</p>
         <h3 class="role-title" id="ignite-microsoft-iq">The most important announcement at Ignite 2026 · Microsoft IQ (GA)</h3>
         <p class="intro"><strong>Bottom line: Microsoft IQ provides work, data, knowledge, and web context to agents.</strong> In required <a href="#ignite-foundry-iq" data-lab-ref="lab:foundry-iq">Lab 6</a>, you connect organizational knowledge with Foundry IQ. In required <a href="#ignite-web-iq" data-lab-ref="lab:web-iq">Lab 7</a>, you connect current web information with Web IQ. Lab 7 is a portal-first procedure (create a Web IQ resource in the Azure portal, prepare the Playground and an API key in the Web IQ portal, then attach the Web IQ tool to a Foundry agent; run directly on 2026-11-21), and we ran the comparison with the built-in Foundry Web search tool (backed by Web IQ) directly. Optional <a href="#ignite-work-iq" data-lab-ref="lab:work-iq">Lab 8</a> connects Microsoft 365 work context with Work IQ, and optional <a href="#ignite-fabric-iq" data-lab-ref="lab:fabric-iq">Lab 9</a> connects Fabric data with Fabric IQ (both run directly on 2026-11-22 with Member test accounts). In optional <a href="#ignite-insights" data-lab-ref="lab:insights">Lab 11</a> through <a href="#ignite-optimize" data-lab-ref="lab:optimize">Lab 13</a>, you use Insights, evaluations, and Agent Optimizer in <strong>Microsoft Foundry</strong> to diagnose quality issues and compare candidate improvements.</p>
@@ -2095,6 +2095,7 @@ Do not modify files or run commands; use only reading and web lookups.</pre>
 
       document.getElementById("shot-count").textContent = data.shots.length;
       document.getElementById("duration-label").textContent = formatTime(Math.round(data.recording.nativeDurationSeconds));
+      document.getElementById("chapter-count").textContent = data.chapters.length;
       document.getElementById("full-video-link").textContent = `Full video ${formatTime(Math.round(data.recording.nativeDurationSeconds))} ↗`;
       document.getElementById("hero-runs").textContent = data.monitorMetrics.agentRuns;
       document.getElementById("hero-tokens").textContent = data.monitorMetrics.totalTokens.toLocaleString("en-US");
@@ -2188,16 +2189,51 @@ Do not modify files or run commands; use only reading and web lookups.</pre>
         account:"Lab 1-2", resource:"Lab 2-1", project:"Lab 2-2", model:"Lab 3-2", agent:"Lab 4-1",
         "monitoring-setup":"Lab 4-2 alternate path", connect:"Lab 4-2", run:"Lab 4-3", monitor:"Lab 5-1", traces:"Lab 5-2"
       };
+      // The chapters are grouped into three parts (Labs 1-5, 6-9 and 10-16). The chapters of Labs 6-16 are titled like the guide steps and link to them.
+      const chapterList = document.getElementById("chapters");
+      const chapterButtons = [];
+      const partStarts = new Map((data.parts || []).map(part => [part.firstChapter, part]));
       data.chapters.forEach(chapter => {
-        if (!guideStep[chapter.id]) throw new Error(`Missing guide step for video chapter ${chapter.id}`);
+        if (!guideStep[chapter.id] && !chapter.step) throw new Error(`Missing guide step for video chapter ${chapter.id}`);
+        const part = partStarts.get(chapter.id);
+        if (part) {
+          const heading = document.createElement("p");
+          heading.className = "chapter-group";
+          heading.textContent = `${part.title} · recorded ${part.recorded} · ${data.chapters.filter(item => item.part === part.id).length} chapters`;
+          chapterList.append(heading);
+        }
         const button = document.createElement("button");
         button.type = "button";
         button.className = "chapter";
         button.dataset.time = chapter.videoSeconds;
-        button.innerHTML = `<time datetime="${isoDuration(chapter.videoSeconds)}">${formatTime(chapter.videoSeconds)}</time><span>Video: ${escape(chapter.title)}</span><small class="chapter-step">Guide ${guideStep[chapter.id]}</small>`;
         button.addEventListener("click", () => { void seekVideo(chapter.videoSeconds); });
-        document.getElementById("chapters").append(button);
+        chapterButtons.push(button);
+        if (chapter.step) {
+          const row = document.createElement("div");
+          row.className = "chapter-row";
+          button.innerHTML = `<time datetime="${isoDuration(chapter.videoSeconds)}">${formatTime(chapter.videoSeconds)}</time><span>${escape(chapter.title)}</span>`;
+          row.append(button);
+          row.insertAdjacentHTML("beforeend", `<a class="chapter-guide" href="#${escape(chapter.id)}" aria-label="Go to Lab ${escape(chapter.step)} in the guide">Guide ↗</a>`);
+          chapterList.append(row);
+        } else {
+          button.innerHTML = `<time datetime="${isoDuration(chapter.videoSeconds)}">${formatTime(chapter.videoSeconds)}</time><span>Video: ${escape(chapter.title)}</span><small class="chapter-step">Guide ${guideStep[chapter.id]}</small>`;
+          chapterList.append(button);
+        }
       });
+      // Once the video plays, mark the chapter that is on screen.
+      let chapterStarted = false;
+      const markChapter = () => {
+        if (!chapterStarted) return;
+        const now = video.currentTime + 0.05;
+        const current = data.chapters.reduce((found, chapter, index) => chapter.videoSeconds <= now ? index : found, -1);
+        chapterButtons.forEach((button, index) => {
+          if (index === current) button.setAttribute("aria-current", "true");
+          else button.removeAttribute("aria-current");
+        });
+      };
+      video.addEventListener("play", () => { chapterStarted = true; markChapter(); });
+      video.addEventListener("timeupdate", markChapter);
+      video.addEventListener("seeked", markChapter);
 
       const zoom = document.getElementById("zoom");
       const zoomCanvas = document.getElementById("zoom-canvas");

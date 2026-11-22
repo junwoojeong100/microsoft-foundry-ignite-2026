@@ -4,15 +4,15 @@ window.GUIDE_DATA = {
  "capturedDate": "2026-11-18",
  "recording": {
   "startedAt": "2026-11-18T03:48:14.735Z",
-  "durationSeconds": 578.24,
+  "durationSeconds": 3227.8,
   "width": 1600,
   "height": 900,
   "continuous": false,
   "includesAuthentication": false,
   "narration": false,
   "video": "assets/video/full-walkthrough.en.mp4",
-  "nativeDurationSeconds": 578.24,
-  "note": "We stitched together the recordings of each lab and played the waiting segments at high speed. Sign-in and MFA entry are left out of the video."
+  "nativeDurationSeconds": 3227.8,
+  "note": "We stitched together the per-lab recordings of Labs 1–5 (recorded 2026-11-18) and Labs 6–9 and optional Labs 10–16 (recorded 2026-11-22) and played the waiting segments at high speed. A 3-second title card separates the parts. Sign-in and MFA entry are left out of the video."
  },
  "lab": {
   "subscriptionId": "00000000-0000-0000-0000-000000000000",
@@ -36,61 +36,398 @@ window.GUIDE_DATA = {
    "id": "account",
    "title": "01 · Account, tenant and assigned RG check",
    "seconds": 0.0,
-   "videoSeconds": 0.0
+   "videoSeconds": 0.0,
+   "part": "labs-1-5"
   },
   {
    "id": "resource",
    "title": "02 · Foundry resource creation in the Azure Portal",
    "seconds": 40.36,
-   "videoSeconds": 40.36
+   "videoSeconds": 40.36,
+   "part": "labs-1-5"
   },
   {
    "id": "project",
    "title": "03 · Default project in the Foundry portal",
    "seconds": 201.4,
-   "videoSeconds": 201.4
+   "videoSeconds": 201.4,
+   "part": "labs-1-5"
   },
   {
    "id": "model",
    "title": "04 · gpt-6.1-terra model deployment and testing",
    "seconds": 244.4,
-   "videoSeconds": 244.4
+   "videoSeconds": 244.4,
+   "part": "labs-1-5"
   },
   {
    "id": "agent",
    "title": "05 · Workshop Prompt Agent creation",
    "seconds": 338.84,
-   "videoSeconds": 338.84
+   "videoSeconds": 338.84,
+   "part": "labs-1-5"
   },
   {
    "id": "connect",
    "title": "06 · App Insights connection check in Traces",
    "seconds": 385.244,
-   "videoSeconds": 385.244
+   "videoSeconds": 385.244,
+   "part": "labs-1-5"
   },
   {
    "id": "run",
    "title": "07 · Agent run and conversation check",
    "seconds": 400.168,
-   "videoSeconds": 400.168
+   "videoSeconds": 400.168,
+   "part": "labs-1-5"
   },
   {
    "id": "monitoring-setup",
    "title": "08 · Alternate path · App Insights creation and connection in Traces",
    "seconds": 450.32,
-   "videoSeconds": 450.32
+   "videoSeconds": 450.32,
+   "part": "labs-1-5"
   },
   {
    "id": "monitor",
    "title": "09 · Run count, tokens and errors in Monitor",
    "seconds": 497.92,
-   "videoSeconds": 497.92
+   "videoSeconds": 497.92,
+   "part": "labs-1-5"
   },
   {
    "id": "traces",
    "title": "10 · Input, output, tokens and latency in Traces",
    "seconds": 529.815,
-   "videoSeconds": 529.815
+   "videoSeconds": 529.815,
+   "part": "labs-1-5"
+  },
+  {
+   "id": "ignite-foundry-iq-prep",
+   "title": "Lab 6-1 · Connect the search resource in Knowledge",
+   "seconds": 578.24,
+   "videoSeconds": 578.24,
+   "part": "labs-6-9",
+   "lab": "l06-foundry-iq",
+   "step": "6-1"
+  },
+  {
+   "id": "ignite-foundry-iq-kb",
+   "title": "Lab 6-2 · Create a knowledge source and a knowledge base",
+   "seconds": 622.715,
+   "videoSeconds": 622.715,
+   "part": "labs-6-9",
+   "lab": "l06-foundry-iq",
+   "step": "6-2"
+  },
+  {
+   "id": "ignite-foundry-iq-agent",
+   "title": "Lab 6-3 · Connect the knowledge base to a new agent",
+   "seconds": 669.536,
+   "videoSeconds": 669.536,
+   "part": "labs-6-9",
+   "lab": "l06-foundry-iq",
+   "step": "6-3"
+  },
+  {
+   "id": "ignite-foundry-iq-test",
+   "title": "Lab 6-4 · Check the cited answers with three questions",
+   "seconds": 749.075,
+   "videoSeconds": 749.075,
+   "part": "labs-6-9",
+   "lab": "l06-foundry-iq",
+   "step": "6-4"
+  },
+  {
+   "id": "ignite-web-iq-resource",
+   "title": "Lab 7-1 · Create the Web IQ resource in the Azure portal",
+   "seconds": 836.48,
+   "videoSeconds": 836.48,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-1"
+  },
+  {
+   "id": "ignite-web-iq-portal",
+   "title": "Lab 7-2 · Web IQ portal: connect, Playground, API key",
+   "seconds": 922.811,
+   "videoSeconds": 922.811,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-2"
+  },
+  {
+   "id": "ignite-web-iq-add",
+   "title": "Lab 7-3 · Connect the Web IQ tool to a Foundry agent",
+   "seconds": 1031.719,
+   "videoSeconds": 1031.719,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-3"
+  },
+  {
+   "id": "ignite-web-iq-test",
+   "title": "Lab 7-4 · Ask the same question · check Traces and usage",
+   "seconds": 1124.489,
+   "videoSeconds": 1124.489,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-4"
+  },
+  {
+   "id": "ignite-web-iq-compare",
+   "title": "Lab 7-5 · Compare with the built-in Web search tool",
+   "seconds": 1199.848,
+   "videoSeconds": 1199.848,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-5"
+  },
+  {
+   "id": "ignite-work-iq-connect",
+   "title": "Lab 8-1 · Create the Work IQ MCP connection in the project",
+   "seconds": 1295.36,
+   "videoSeconds": 1295.36,
+   "part": "labs-6-9",
+   "lab": "l08-work-iq",
+   "step": "8-1"
+  },
+  {
+   "id": "ignite-work-iq-add",
+   "title": "Lab 8-2 · Attach the Work IQ tool to a Foundry agent",
+   "seconds": 1362.993,
+   "videoSeconds": 1362.993,
+   "part": "labs-6-9",
+   "lab": "l08-work-iq",
+   "step": "8-2"
+  },
+  {
+   "id": "ignite-work-iq-test",
+   "title": "Lab 8-3 · Ask, then check consent, permissions and Traces",
+   "seconds": 1440.828,
+   "videoSeconds": 1440.828,
+   "part": "labs-6-9",
+   "lab": "l08-work-iq",
+   "step": "8-3"
+  },
+  {
+   "id": "ignite-fabric-iq-prep",
+   "title": "Lab 9-1 · Create, publish and share the data agent in Fabric",
+   "seconds": 1625.52,
+   "videoSeconds": 1625.52,
+   "part": "labs-6-9",
+   "lab": "l09a-fabric-prep",
+   "step": "9-1"
+  },
+  {
+   "id": "ignite-fabric-iq-connect",
+   "title": "Lab 9-2 · Create the Fabric IQ connection in the project",
+   "seconds": 1854.16,
+   "videoSeconds": 1854.16,
+   "part": "labs-6-9",
+   "lab": "l09-fabric-iq",
+   "step": "9-2"
+  },
+  {
+   "id": "ignite-fabric-iq-add",
+   "title": "Lab 9-3 · Attach the Fabric IQ tool to a Foundry agent",
+   "seconds": 1906.156,
+   "videoSeconds": 1906.156,
+   "part": "labs-6-9",
+   "lab": "l09-fabric-iq",
+   "step": "9-3"
+  },
+  {
+   "id": "ignite-fabric-iq-test",
+   "title": "Lab 9-4 · Ask, then check permissions and Traces",
+   "seconds": 1980.733,
+   "videoSeconds": 1980.733,
+   "part": "labs-6-9",
+   "lab": "l09-fabric-iq",
+   "step": "9-4"
+  },
+  {
+   "id": "ignite-harness-create",
+   "title": "Lab 10-2 · Create a harness agent",
+   "seconds": 2159.2,
+   "videoSeconds": 2159.2,
+   "part": "labs-10-16",
+   "lab": "l10-harness",
+   "step": "10-2"
+  },
+  {
+   "id": "ignite-harness-tools",
+   "title": "Lab 10-3 · Restrict Harness tools and take care when changing models",
+   "seconds": 2216.388,
+   "videoSeconds": 2216.388,
+   "part": "labs-10-16",
+   "lab": "l10-harness",
+   "step": "10-3"
+  },
+  {
+   "id": "ignite-harness-run",
+   "title": "Lab 10-4 · Run the agent and check the details screen",
+   "seconds": 2263.085,
+   "videoSeconds": 2263.085,
+   "part": "labs-10-16",
+   "lab": "l10-harness",
+   "step": "10-4"
+  },
+  {
+   "id": "ignite-observe",
+   "title": "Lab 10-5 · Observe with Traces and Monitor",
+   "seconds": 2336.806,
+   "videoSeconds": 2336.806,
+   "part": "labs-10-16",
+   "lab": "l10-harness",
+   "step": "10-5"
+  },
+  {
+   "id": "ignite-insights",
+   "title": "Lab 11-1 · Find problems with Insights",
+   "seconds": 2378.56,
+   "videoSeconds": 2378.56,
+   "part": "labs-10-16",
+   "lab": "l11-insights",
+   "step": "11-1"
+  },
+  {
+   "id": "ignite-evaluator",
+   "title": "Lab 12-1 · Create a custom rubric evaluator",
+   "seconds": 2415.96,
+   "videoSeconds": 2415.96,
+   "part": "labs-10-16",
+   "lab": "l12-evaluation",
+   "step": "12-1"
+  },
+  {
+   "id": "ignite-evaluation",
+   "title": "Lab 12-2 · Create and run an evaluation",
+   "seconds": 2537.225,
+   "videoSeconds": 2537.225,
+   "part": "labs-10-16",
+   "lab": "l12-evaluation",
+   "step": "12-2"
+  },
+  {
+   "id": "ignite-optimize",
+   "title": "Lab 13-1 · Propose improvements with Optimize",
+   "seconds": 2737.72,
+   "videoSeconds": 2737.72,
+   "part": "labs-10-16",
+   "lab": "l13-optimize",
+   "step": "13-1"
+  },
+  {
+   "id": "ignite-hosted-agent-find",
+   "title": "Lab 14-1 · Find the Hosted agent and open the Playground",
+   "seconds": 2888.6,
+   "videoSeconds": 2888.6,
+   "part": "labs-10-16",
+   "lab": "l14-hosted",
+   "step": "14-1"
+  },
+  {
+   "id": "ignite-hosted-agent-test",
+   "title": "Lab 14-2 · Send a message and check Details",
+   "seconds": 2915.987,
+   "videoSeconds": 2915.987,
+   "part": "labs-10-16",
+   "lab": "l14-hosted",
+   "step": "14-2"
+  },
+  {
+   "id": "ignite-hosted-agent-observe",
+   "title": "Lab 14-3 · Observe with Traces and Monitor",
+   "seconds": 2945.276,
+   "videoSeconds": 2945.276,
+   "part": "labs-10-16",
+   "lab": "l14-hosted",
+   "step": "14-3"
+  },
+  {
+   "id": "ignite-fleet",
+   "title": "Lab 15-1 · See operations, costs and policies in Manage",
+   "seconds": 3015.4,
+   "videoSeconds": 3015.4,
+   "part": "labs-10-16",
+   "lab": "l15-manage",
+   "step": "15-1"
+  },
+  {
+   "id": "ignite-cost-read",
+   "title": "Lab 16-1 · Read Monitor → Cost",
+   "seconds": 3115.44,
+   "videoSeconds": 3115.44,
+   "part": "labs-10-16",
+   "lab": "l16-cost",
+   "step": "16-1"
+  },
+  {
+   "id": "ignite-cost-control-create",
+   "title": "Lab 16-2 · Create a monthly token budget with Cost Control (tracking-only)",
+   "seconds": 3149.63,
+   "videoSeconds": 3149.63,
+   "part": "labs-10-16",
+   "lab": "l16-cost",
+   "step": "16-2"
+  },
+  {
+   "id": "ignite-cost-control-check",
+   "title": "Lab 16-3 · Check and clean up the budget you created",
+   "seconds": 3188.675,
+   "videoSeconds": 3188.675,
+   "part": "labs-10-16",
+   "lab": "l16-cost",
+   "step": "16-3"
+  }
+ ],
+ "parts": [
+  {
+   "id": "labs-1-5",
+   "title": "Labs 1–5 · from the account check to Monitor and Traces",
+   "labs": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "recorded": "2026-11-18",
+   "videoSeconds": 0.0,
+   "firstChapter": "account",
+   "slateSeconds": 0
+  },
+  {
+   "id": "labs-6-9",
+   "title": "Labs 6–9 · Microsoft IQ — Foundry IQ, Web IQ, Work IQ, Fabric IQ",
+   "labs": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "recorded": "2026-11-22",
+   "videoSeconds": 578.24,
+   "firstChapter": "ignite-foundry-iq-prep",
+   "slateSeconds": 3.0
+  },
+  {
+   "id": "labs-10-16",
+   "title": "Optional Labs 10–16 · from the harness to cost",
+   "labs": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+   ],
+   "recorded": "2026-11-22",
+   "videoSeconds": 2159.2,
+   "firstChapter": "ignite-harness-create",
+   "slateSeconds": 3.0
   }
  ],
  "shots": [
@@ -1947,6 +2284,1671 @@ window.GUIDE_DATA = {
    "start": 574.74,
    "end": 578.19,
    "text": "54 · Conversation flow in User view"
+  },
+  {
+   "start": 578.44,
+   "end": 581.04,
+   "text": "Labs 6–9 · Connect context to your agent with Microsoft IQ"
+  },
+  {
+   "start": 581.51,
+   "end": 586.449,
+   "text": "Foundry home · open Create → Knowledge on the left"
+  },
+  {
+   "start": 586.499,
+   "end": 592.523,
+   "text": "First Knowledge screen · Foundry IQ resource connection"
+  },
+  {
+   "start": 592.573,
+   "end": 599.141,
+   "text": "Create Foundry IQ resource dialog"
+  },
+  {
+   "start": 599.191,
+   "end": 604.978,
+   "text": "Foundry IQ resource list · choose the search service the operator created"
+  },
+  {
+   "start": 605.028,
+   "end": 610.547,
+   "text": "Auth Type list · choose Project Managed Identity"
+  },
+  {
+   "start": 610.597,
+   "end": 612.404,
+   "text": "Search resource and Auth Type selection"
+  },
+  {
+   "start": 612.454,
+   "end": 619.66,
+   "text": "Select Connect · connecting to the search resource"
+  },
+  {
+   "start": 619.71,
+   "end": 626.961,
+   "text": "Connected · Create a knowledge base"
+  },
+  {
+   "start": 627.011,
+   "end": 634.367,
+   "text": "Create a knowledge base · new knowledge base form"
+  },
+  {
+   "start": 634.417,
+   "end": 640.351,
+   "text": "Knowledge base name and description"
+  },
+  {
+   "start": 640.401,
+   "end": 644.879,
+   "text": "Upload files · the 3 sample documents selected"
+  },
+  {
+   "start": 644.929,
+   "end": 650.178,
+   "text": "Knowledge source creation · embedding model selection"
+  },
+  {
+   "start": 650.228,
+   "end": 656.457,
+   "text": "Knowledge source creation · Create"
+  },
+  {
+   "start": 656.507,
+   "end": 659.993,
+   "text": "File upload and processing progress"
+  },
+  {
+   "start": 660.043,
+   "end": 666.482,
+   "text": "Knowledge source Active · 3 files processed"
+  },
+  {
+   "start": 666.532,
+   "end": 673.476,
+   "text": "Saved knowledge base"
+  },
+  {
+   "start": 673.526,
+   "end": 677.166,
+   "text": "Model Playground · start from gpt-6.1-terra"
+  },
+  {
+   "start": 677.216,
+   "end": 685.216,
+   "text": "Model Playground · typing the instructions"
+  },
+  {
+   "start": 685.431,
+   "end": 691.202,
+   "text": "Model Playground · paste the instructions"
+  },
+  {
+   "start": 691.252,
+   "end": 695.916,
+   "text": "Save as agent · open the dialog"
+  },
+  {
+   "start": 695.966,
+   "end": 702.074,
+   "text": "Save as agent · enter the agent name"
+  },
+  {
+   "start": 702.124,
+   "end": 706.485,
+   "text": "Agent created · Version 1"
+  },
+  {
+   "start": 706.535,
+   "end": 710.296,
+   "text": "Agent creation · default toolbox removal"
+  },
+  {
+   "start": 710.346,
+   "end": 714.68,
+   "text": "Default toolbox removed"
+  },
+  {
+   "start": 714.73,
+   "end": 718.064,
+   "text": "Open the Knowledge area"
+  },
+  {
+   "start": 718.114,
+   "end": 726.114,
+   "text": "Knowledge → Add → Connect to Foundry IQ"
+  },
+  {
+   "start": 726.544,
+   "end": 732.226,
+   "text": "Knowledge base list · choose workshop-kb-en"
+  },
+  {
+   "start": 732.276,
+   "end": 738.588,
+   "text": "Knowledge base connection"
+  },
+  {
+   "start": 738.638,
+   "end": 745.938,
+   "text": "Knowledge base added under Knowledge · select Save"
+  },
+  {
+   "start": 745.988,
+   "end": 753.734,
+   "text": "Agent saved · Version 2"
+  },
+  {
+   "start": 753.784,
+   "end": 760.926,
+   "text": "Question 1 · typed in a new chat"
+  },
+  {
+   "start": 760.976,
+   "end": 766.164,
+   "text": "Question 1 · schedule and venue (one document)"
+  },
+  {
+   "start": 766.214,
+   "end": 773.047,
+   "text": "New chat · a new conversation for question 2"
+  },
+  {
+   "start": 773.097,
+   "end": 780.005,
+   "text": "Question 2 · typed in a new chat"
+  },
+  {
+   "start": 780.055,
+   "end": 785.249,
+   "text": "Question 2 · using several documents together"
+  },
+  {
+   "start": 785.299,
+   "end": 790.334,
+   "text": "New chat · a new conversation for question 3"
+  },
+  {
+   "start": 790.384,
+   "end": 797.291,
+   "text": "Question 3 · typed in a new chat"
+  },
+  {
+   "start": 797.341,
+   "end": 805.341,
+   "text": "Question 3 · content that is not in the documents"
+  },
+  {
+   "start": 805.668,
+   "end": 813.668,
+   "text": "Traces · filter Status to Completed"
+  },
+  {
+   "start": 813.751,
+   "end": 816.675,
+   "text": "Traces · runs for the knowledge base questions"
+  },
+  {
+   "start": 816.725,
+   "end": 824.056,
+   "text": "Select a Trace ID · open the details"
+  },
+  {
+   "start": 824.106,
+   "end": 830.661,
+   "text": "Trace details · knowledge base tool call"
+  },
+  {
+   "start": 830.711,
+   "end": 838.711,
+   "text": "Trace details · tool call input and output"
+  },
+  {
+   "start": 854.434,
+   "end": 862.393,
+   "text": "Find Microsoft Web IQ in the Azure portal"
+  },
+  {
+   "start": 862.443,
+   "end": 870.443,
+   "text": "Microsoft Web IQ resources · Create"
+  },
+  {
+   "start": 876.126,
+   "end": 883.325,
+   "text": "Create a Microsoft Web IQ resource · Basics"
+  },
+  {
+   "start": 883.375,
+   "end": 891.375,
+   "text": "Read the Warning and Terms, then Next"
+  },
+  {
+   "start": 893.889,
+   "end": 901.84,
+   "text": "Review + submit · Create"
+  },
+  {
+   "start": 901.89,
+   "end": 909.89,
+   "text": "Deployment complete · Go to resource"
+  },
+  {
+   "start": 919.19,
+   "end": 926.041,
+   "text": "Web IQ resource · Go to Web IQ portal"
+  },
+  {
+   "start": 926.091,
+   "end": 934.091,
+   "text": "“You’re leaving portal.azure.com” notice · Continue"
+  },
+  {
+   "start": 942.228,
+   "end": 950.228,
+   "text": "Web IQ portal · first screen after sign-in"
+  },
+  {
+   "start": 957.197,
+   "end": 965.197,
+   "text": "Web IQ portal · Account settings → Add Azure Resource"
+  },
+  {
+   "start": 972.467,
+   "end": 979.028,
+   "text": "Web IQ portal · Connect Azure resource"
+  },
+  {
+   "start": 979.078,
+   "end": 987.078,
+   "text": "Web IQ portal · Setup complete"
+  },
+  {
+   "start": 997.199,
+   "end": 1005.199,
+   "text": "Playground · Profile and API Key (default) selected"
+  },
+  {
+   "start": 1017.991,
+   "end": 1025.991,
+   "text": "Playground · Run Request (HTTP 200)"
+  },
+  {
+   "start": 1026.173,
+   "end": 1034.173,
+   "text": "API access · Default API key"
+  },
+  {
+   "start": 1044.831,
+   "end": 1052.831,
+   "text": "Enter the Instructions · Save as agent"
+  },
+  {
+   "start": 1061.306,
+   "end": 1066.511,
+   "text": "New agent created · the toolbox attached automatically"
+  },
+  {
+   "start": 1066.561,
+   "end": 1073.906,
+   "text": "Remove the default toolbox of the new agent"
+  },
+  {
+   "start": 1073.956,
+   "end": 1081.956,
+   "text": "Tools → Add → Add tools"
+  },
+  {
+   "start": 1088.945,
+   "end": 1096.769,
+   "text": "Select a tool · Catalog · Web IQ"
+  },
+  {
+   "start": 1096.819,
+   "end": 1104.819,
+   "text": "Connect the Web IQ tool"
+  },
+  {
+   "start": 1108.825,
+   "end": 1116.825,
+   "text": "Tool approval · Always auto-approve all tools"
+  },
+  {
+   "start": 1122.486,
+   "end": 1130.486,
+   "text": "Saved · Version 2"
+  },
+  {
+   "start": 1132.438,
+   "end": 1139.705,
+   "text": "Type the question · Send"
+  },
+  {
+   "start": 1139.755,
+   "end": 1147.755,
+   "text": "Ask with the Web IQ tool"
+  },
+  {
+   "start": 1163.004,
+   "end": 1169.206,
+   "text": "Open the Traces tab · Trace view"
+  },
+  {
+   "start": 1169.256,
+   "end": 1177.256,
+   "text": "Traces · The trace has arrived"
+  },
+  {
+   "start": 1178.071,
+   "end": 1186.071,
+   "text": "Trace details · execute_tool mcp_WebIQ.web"
+  },
+  {
+   "start": 1196.843,
+   "end": 1204.843,
+   "text": "Web IQ portal · Usage dashboard"
+  },
+  {
+   "start": 1212.131,
+   "end": 1220.131,
+   "text": "New agent for the built-in Web search comparison · Instructions"
+  },
+  {
+   "start": 1228.162,
+   "end": 1232.829,
+   "text": "Comparison agent created · Web search in the toolbox"
+  },
+  {
+   "start": 1232.879,
+   "end": 1239.786,
+   "text": "Web search in the toolbox · Grounding with Bing notice"
+  },
+  {
+   "start": 1239.836,
+   "end": 1247.836,
+   "text": "Toolbox path: type the same question"
+  },
+  {
+   "start": 1249.999,
+   "end": 1257.999,
+   "text": "Same question through the toolbox path (Grounding with Bing)"
+  },
+  {
+   "start": 1259.117,
+   "end": 1266.441,
+   "text": "Tools → Add → Web search"
+  },
+  {
+   "start": 1266.491,
+   "end": 1274.491,
+   "text": "Web search added directly · notice"
+  },
+  {
+   "start": 1282.337,
+   "end": 1289.973,
+   "text": "Web search added directly: type the same question"
+  },
+  {
+   "start": 1290.023,
+   "end": 1298.023,
+   "text": "Question with the Web search tool added directly"
+  },
+  {
+   "start": 1304.882,
+   "end": 1312.882,
+   "text": "Tools tab · Connect a tool"
+  },
+  {
+   "start": 1325.285,
+   "end": 1333.285,
+   "text": "Select a tool · Catalog · Work IQ MCP"
+  },
+  {
+   "start": 1336.602,
+   "end": 1344.602,
+   "text": "Client ID and Client secret (the secret value stays blurred)"
+  },
+  {
+   "start": 1345.345,
+   "end": 1351.632,
+   "text": "Connect the Work IQ MCP tool"
+  },
+  {
+   "start": 1351.682,
+   "end": 1359.682,
+   "text": "Operator step · add the Redirect URL to the app registration (Authentication → Web → Redirect URIs)"
+  },
+  {
+   "start": 1361.991,
+   "end": 1369.991,
+   "text": "Connection details · WorkIQMCP"
+  },
+  {
+   "start": 1370.941,
+   "end": 1378.941,
+   "text": "Model Playground · create a new agent with Save as agent"
+  },
+  {
+   "start": 1385.683,
+   "end": 1393.683,
+   "text": "A new agent · paste the instructions"
+  },
+  {
+   "start": 1401.307,
+   "end": 1409.307,
+   "text": "A new agent · remove the toolbox attached automatically"
+  },
+  {
+   "start": 1415.796,
+   "end": 1422.27,
+   "text": "Select a tool · Configured · WorkIQMCP"
+  },
+  {
+   "start": 1422.32,
+   "end": 1429.356,
+   "text": "Tools · the WorkIQMCP row"
+  },
+  {
+   "start": 1429.406,
+   "end": 1437.406,
+   "text": "Configure WorkIQMCP · allow only ask"
+  },
+  {
+   "start": 1439.826,
+   "end": 1447.826,
+   "text": "Saved · Version 2"
+  },
+  {
+   "start": 1449.144,
+   "end": 1457.144,
+   "text": "Question 1 · today's meetings"
+  },
+  {
+   "start": 1460.301,
+   "end": 1465.09,
+   "text": "First question · sign-in and consent request"
+  },
+  {
+   "start": 1465.14,
+   "end": 1477.02,
+   "text": "Consent window · Confirmation required"
+  },
+  {
+   "start": 1485.777,
+   "end": 1493.097,
+   "text": "Consent given · the same question continues"
+  },
+  {
+   "start": 1493.147,
+   "end": 1501.147,
+   "text": "Tool call approval request · Approve once"
+  },
+  {
+   "start": 1505.955,
+   "end": 1513.955,
+   "text": "Question 1 · today's meetings"
+  },
+  {
+   "start": 1520.268,
+   "end": 1528.268,
+   "text": "Question 2 · emails that need a reply"
+  },
+  {
+   "start": 1532.598,
+   "end": 1540.598,
+   "text": "Question 2 · tool call approval request"
+  },
+  {
+   "start": 1542.984,
+   "end": 1550.984,
+   "text": "Question 2 · emails that need a reply"
+  },
+  {
+   "start": 1556.33,
+   "end": 1564.33,
+   "text": "Question 3 · an email you cannot access (permission boundary)"
+  },
+  {
+   "start": 1568.488,
+   "end": 1576.488,
+   "text": "Question 3 · tool call approval request"
+  },
+  {
+   "start": 1577.72,
+   "end": 1585.72,
+   "text": "Question 3 · an email you cannot access (permission boundary)"
+  },
+  {
+   "start": 1593.72,
+   "end": 1601.72,
+   "text": "Traces tab · the runs you just made"
+  },
+  {
+   "start": 1605.608,
+   "end": 1613.608,
+   "text": "Traces · the traces of the questions you just asked"
+  },
+  {
+   "start": 1619.359,
+   "end": 1627.359,
+   "text": "Trace details · execute_tool mcp_WorkIQMCP.ask"
+  },
+  {
+   "start": 1631.801,
+   "end": 1639.801,
+   "text": "Fabric · a new workspace"
+  },
+  {
+   "start": 1645.742,
+   "end": 1650.813,
+   "text": "Fabric · a new workspace"
+  },
+  {
+   "start": 1650.863,
+   "end": 1658.863,
+   "text": "Notebook · the sample data is loaded"
+  },
+  {
+   "start": 1667.062,
+   "end": 1673.187,
+   "text": "Notebook · the sample data is loaded"
+  },
+  {
+   "start": 1673.237,
+   "end": 1681.237,
+   "text": "Notebook · the sample data is loaded"
+  },
+  {
+   "start": 1685.47,
+   "end": 1691.577,
+   "text": "Data agent · add a data source"
+  },
+  {
+   "start": 1691.627,
+   "end": 1699.627,
+   "text": "Data agent · add a data source"
+  },
+  {
+   "start": 1707.216,
+   "end": 1714.902,
+   "text": "Data agent · add a data source"
+  },
+  {
+   "start": 1714.952,
+   "end": 1722.952,
+   "text": "Data agent · add a data source"
+  },
+  {
+   "start": 1724.075,
+   "end": 1729.709,
+   "text": "Data agent · choose the tables to ask about"
+  },
+  {
+   "start": 1729.759,
+   "end": 1736.923,
+   "text": "Data agent · choose the tables to ask about"
+  },
+  {
+   "start": 1736.973,
+   "end": 1742.376,
+   "text": "Data agent · choose the tables to ask about"
+  },
+  {
+   "start": 1742.426,
+   "end": 1748.387,
+   "text": "Data agent · data source instructions"
+  },
+  {
+   "start": 1748.437,
+   "end": 1753.527,
+   "text": "Data agent · data source instructions"
+  },
+  {
+   "start": 1753.577,
+   "end": 1757.827,
+   "text": "Data agent · an example question and query"
+  },
+  {
+   "start": 1757.877,
+   "end": 1765.515,
+   "text": "Data agent · an example question and query"
+  },
+  {
+   "start": 1765.565,
+   "end": 1771.792,
+   "text": "Data agent · an example question and query"
+  },
+  {
+   "start": 1771.842,
+   "end": 1779.842,
+   "text": "Data agent · Test the agent's responses"
+  },
+  {
+   "start": 1780.943,
+   "end": 1783.92,
+   "text": "Data agent · Test the agent's responses"
+  },
+  {
+   "start": 1783.97,
+   "end": 1791.97,
+   "text": "Data agent · Publish"
+  },
+  {
+   "start": 1792.446,
+   "end": 1798.039,
+   "text": "Data agent · Publish"
+  },
+  {
+   "start": 1798.089,
+   "end": 1803.404,
+   "text": "Data agent · Publish"
+  },
+  {
+   "start": 1803.454,
+   "end": 1811.454,
+   "text": "Data agent · share it with the people who ask"
+  },
+  {
+   "start": 1817.097,
+   "end": 1819.996,
+   "text": "Data agent · share it with the people who ask"
+  },
+  {
+   "start": 1820.046,
+   "end": 1828.046,
+   "text": "Data agent · share it with the people who ask"
+  },
+  {
+   "start": 1833.196,
+   "end": 1841.196,
+   "text": "Lakehouse · permission on the data source"
+  },
+  {
+   "start": 1846.195,
+   "end": 1851.249,
+   "text": "Lakehouse · permission on the data source"
+  },
+  {
+   "start": 1851.299,
+   "end": 1859.299,
+   "text": "Lakehouse · permission on the data source"
+  },
+  {
+   "start": 1859.814,
+   "end": 1866.993,
+   "text": "Tools tab · Connect a tool"
+  },
+  {
+   "start": 1867.043,
+   "end": 1870.236,
+   "text": "Select a tool · Configured · Fabric IQ (OneLake Catalog)"
+  },
+  {
+   "start": 1870.286,
+   "end": 1878.286,
+   "text": "Select a tool · Configured · Fabric IQ (OneLake Catalog)"
+  },
+  {
+   "start": 1880.087,
+   "end": 1884.32,
+   "text": "OneLake Catalog · when the list looks empty"
+  },
+  {
+   "start": 1884.37,
+   "end": 1892.37,
+   "text": "OneLake Catalog · clear Semantic model in Filter"
+  },
+  {
+   "start": 1895.23,
+   "end": 1903.23,
+   "text": "OneLake Catalog · choose the Data agent"
+  },
+  {
+   "start": 1905.153,
+   "end": 1913.153,
+   "text": "Connection details · workshopadventureworksagent"
+  },
+  {
+   "start": 1915.483,
+   "end": 1923.483,
+   "text": "New agent · enter the instructions"
+  },
+  {
+   "start": 1933.184,
+   "end": 1940.537,
+   "text": "New agent · enter the instructions"
+  },
+  {
+   "start": 1940.587,
+   "end": 1948.587,
+   "text": "New agent · enter the name"
+  },
+  {
+   "start": 1949.27,
+   "end": 1954.579,
+   "text": "Remove the default toolbox of the new agent"
+  },
+  {
+   "start": 1954.629,
+   "end": 1961.71,
+   "text": "Tools → Add → Add tools"
+  },
+  {
+   "start": 1961.76,
+   "end": 1965.449,
+   "text": "Select a tool · Configured · workshopadventureworksagent"
+  },
+  {
+   "start": 1965.499,
+   "end": 1970.445,
+   "text": "Tools · the Fabric IQ (OneLake Catalog) row"
+  },
+  {
+   "start": 1970.495,
+   "end": 1978.495,
+   "text": "Configure · the default approval setting"
+  },
+  {
+   "start": 1979.73,
+   "end": 1985.843,
+   "text": "Saved · Version 2"
+  },
+  {
+   "start": 1985.893,
+   "end": 1990.651,
+   "text": "Saved · Version 2"
+  },
+  {
+   "start": 1990.701,
+   "end": 1995.458,
+   "text": "Saved · Version 2"
+  },
+  {
+   "start": 1995.508,
+   "end": 2000.276,
+   "text": "Saved · Version 2"
+  },
+  {
+   "start": 2000.326,
+   "end": 2005.07,
+   "text": "Saved · Version 2"
+  },
+  {
+   "start": 2005.12,
+   "end": 2013.12,
+   "text": "Saved · Version 2"
+  },
+  {
+   "start": 2015.157,
+   "end": 2023.157,
+   "text": "Question 1 · monthly and year-to-date sales"
+  },
+  {
+   "start": 2027.455,
+   "end": 2035.455,
+   "text": "Question 1 · monthly and year-to-date sales"
+  },
+  {
+   "start": 2039.032,
+   "end": 2047.032,
+   "text": "Question 2 · the top 3 sales regions"
+  },
+  {
+   "start": 2048.16,
+   "end": 2056.16,
+   "text": "Question 2 · the top 3 sales regions"
+  },
+  {
+   "start": 2059.57,
+   "end": 2067.57,
+   "text": "Question 3 · the top 5 customers by total order amount"
+  },
+  {
+   "start": 2069.549,
+   "end": 2071.01,
+   "text": "Question 3 · the top 5 customers by total order amount"
+  },
+  {
+   "start": 2071.06,
+   "end": 2128.38,
+   "text": "Account B (no access) · no answer arrives"
+  },
+  {
+   "start": 2140.347,
+   "end": 2147.767,
+   "text": "Traces · Completed and Failed"
+  },
+  {
+   "start": 2147.817,
+   "end": 2155.529,
+   "text": "Trace details · the tool and the data agent calls"
+  },
+  {
+   "start": 2155.579,
+   "end": 2159.15,
+   "text": "Trace details · tool_user_error"
+  },
+  {
+   "start": 2159.4,
+   "end": 2162.0,
+   "text": "Optional Labs 10–16 · from the harness to cost"
+  },
+  {
+   "start": 2169.374,
+   "end": 2177.374,
+   "text": "Harness column in the Build → Agents list"
+  },
+  {
+   "start": 2178.098,
+   "end": 2184.879,
+   "text": "Models · deployments (gpt-6.1-terra)"
+  },
+  {
+   "start": 2184.929,
+   "end": 2192.774,
+   "text": "Models → gpt-6.1-terra · Playground"
+  },
+  {
+   "start": 2192.824,
+   "end": 2200.806,
+   "text": "gpt-6.1-terra Playground · instructions entered"
+  },
+  {
+   "start": 2200.856,
+   "end": 2204.253,
+   "text": "Create an agent · name the agent"
+  },
+  {
+   "start": 2204.303,
+   "end": 2212.303,
+   "text": "Create an agent · harness selection"
+  },
+  {
+   "start": 2213.373,
+   "end": 2218.282,
+   "text": "New harness agent · Playground (Version 1, gpt-6.1-terra)"
+  },
+  {
+   "start": 2218.332,
+   "end": 2223.961,
+   "text": "Harness tools · defaults"
+  },
+  {
+   "start": 2224.011,
+   "end": 2231.82,
+   "text": "Unneeded tools turned off"
+  },
+  {
+   "start": 2231.87,
+   "end": 2238.902,
+   "text": "Unsupported tools dialog · Cancel keeps the model"
+  },
+  {
+   "start": 2238.952,
+   "end": 2246.952,
+   "text": "Harness tools still restricted after the model check"
+  },
+  {
+   "start": 2250.007,
+   "end": 2257.86,
+   "text": "Saved as Version 2"
+  },
+  {
+   "start": 2257.91,
+   "end": 2264.473,
+   "text": "Saved settings on the YAML tab"
+  },
+  {
+   "start": 2264.523,
+   "end": 2269.916,
+   "text": "Chat · a new conversation on gpt-6.1-terra"
+  },
+  {
+   "start": 2269.966,
+   "end": 2274.031,
+   "text": "The question that makes the agent read a web page"
+  },
+  {
+   "start": 2274.081,
+   "end": 2281.515,
+   "text": "Question sent · the agent reads the web page"
+  },
+  {
+   "start": 2281.565,
+   "end": 2289.565,
+   "text": "Run with gpt-6.1-terra"
+  },
+  {
+   "start": 2291.512,
+   "end": 2295.905,
+   "text": "Agents list with the harness agent"
+  },
+  {
+   "start": 2295.955,
+   "end": 2300.344,
+   "text": "Routines tab"
+  },
+  {
+   "start": 2300.394,
+   "end": 2308.394,
+   "text": "Workflows tab · retirement notice"
+  },
+  {
+   "start": 2308.868,
+   "end": 2314.366,
+   "text": "Open the harness agent from the list"
+  },
+  {
+   "start": 2314.416,
+   "end": 2321.656,
+   "text": "Details tab · endpoints and channels"
+  },
+  {
+   "start": 2321.706,
+   "end": 2328.856,
+   "text": "Playground · scroll down to the Guardrail (Preview) section"
+  },
+  {
+   "start": 2328.906,
+   "end": 2332.723,
+   "text": "Agent Guardrail (Preview) section"
+  },
+  {
+   "start": 2332.773,
+   "end": 2340.773,
+   "text": "Manage guardrail menu"
+  },
+  {
+   "start": 2341.953,
+   "end": 2346.838,
+   "text": "Traces · the list of runs is loading"
+  },
+  {
+   "start": 2346.888,
+   "end": 2354.888,
+   "text": "Traces list"
+  },
+  {
+   "start": 2357.52,
+   "end": 2363.88,
+   "text": "Monitor · Overview is loading"
+  },
+  {
+   "start": 2363.93,
+   "end": 2371.93,
+   "text": "Agent Monitor · Overview"
+  },
+  {
+   "start": 2373.358,
+   "end": 2381.358,
+   "text": "Monitor → Cost (Preview)"
+  },
+  {
+   "start": 2384.073,
+   "end": 2390.179,
+   "text": "Insights tab · scan settings"
+  },
+  {
+   "start": 2390.229,
+   "end": 2394.411,
+   "text": "Judge model · GPT-5 or newer models only"
+  },
+  {
+   "start": 2394.461,
+   "end": 2402.461,
+   "text": "Estimated cost for the first scan · Run scan now"
+  },
+  {
+   "start": 2403.038,
+   "end": 2408.498,
+   "text": "Run now · scan in progress"
+  },
+  {
+   "start": 2408.548,
+   "end": 2416.548,
+   "text": "Scan complete · the result appears in the Insights panel"
+  },
+  {
+   "start": 2421.96,
+   "end": 2429.96,
+   "text": "Agent Playground · open the Evaluation tab"
+  },
+  {
+   "start": 2434.775,
+   "end": 2442.775,
+   "text": "Agent Evaluation tab"
+  },
+  {
+   "start": 2446.06,
+   "end": 2451.261,
+   "text": "Evaluations → Evaluator catalog"
+  },
+  {
+   "start": 2451.311,
+   "end": 2459.311,
+   "text": "Create evaluator dialog"
+  },
+  {
+   "start": 2459.44,
+   "end": 2465.89,
+   "text": "Evaluator name and Display name entered"
+  },
+  {
+   "start": 2465.94,
+   "end": 2470.89,
+   "text": "Model · choose the judge deployment"
+  },
+  {
+   "start": 2470.94,
+   "end": 2477.89,
+   "text": "Target agent · its instructions fill in read-only"
+  },
+  {
+   "start": 2477.94,
+   "end": 2485.39,
+   "text": "Prompt · what the evaluator should check"
+  },
+  {
+   "start": 2485.44,
+   "end": 2493.44,
+   "text": "Prompt · the criteria text is being typed"
+  },
+  {
+   "start": 2493.844,
+   "end": 2499.649,
+   "text": "Evaluator details form"
+  },
+  {
+   "start": 2499.699,
+   "end": 2505.42,
+   "text": "Context (Optional) · production traces from the target agent"
+  },
+  {
+   "start": 2505.47,
+   "end": 2508.225,
+   "text": "Generate rubric · the dimensions are being created"
+  },
+  {
+   "start": 2508.275,
+   "end": 2511.018,
+   "text": "Generate rubric · the dimensions are being created"
+  },
+  {
+   "start": 2511.068,
+   "end": 2515.242,
+   "text": "Generate rubric · the dimensions are being created"
+  },
+  {
+   "start": 2515.292,
+   "end": 2523.292,
+   "text": "Generate rubric · automatic rubric generation"
+  },
+  {
+   "start": 2523.391,
+   "end": 2531.391,
+   "text": "Rubric dimensions · criteria for scores 1, 3 and 5"
+  },
+  {
+   "start": 2534.721,
+   "end": 2542.721,
+   "text": "Save evaluator · evaluator details"
+  },
+  {
+   "start": 2544.167,
+   "end": 2548.585,
+   "text": "Create evaluation 1/5 · Target"
+  },
+  {
+   "start": 2548.635,
+   "end": 2555.27,
+   "text": "2/5 · Scope"
+  },
+  {
+   "start": 2555.32,
+   "end": 2561.581,
+   "text": "3/5 · Data · the prompt for the synthetic questions"
+  },
+  {
+   "start": 2561.631,
+   "end": 2566.947,
+   "text": "3/5 · Data · synthetic data generation"
+  },
+  {
+   "start": 2566.997,
+   "end": 2574.997,
+   "text": "4/5 · Criteria · evaluator selection"
+  },
+  {
+   "start": 2576.23,
+   "end": 2583.626,
+   "text": "Only the Custom evaluator selected"
+  },
+  {
+   "start": 2583.676,
+   "end": 2588.27,
+   "text": "5/5 · Review → Submit"
+  },
+  {
+   "start": 2588.32,
+   "end": 2596.32,
+   "text": "Review · Submit creates the evaluation"
+  },
+  {
+   "start": 2600.82,
+   "end": 2605.384,
+   "text": "Evaluation details · the run starts In progress"
+  },
+  {
+   "start": 2605.434,
+   "end": 2611.735,
+   "text": "Evaluation run status"
+  },
+  {
+   "start": 2611.785,
+   "end": 2615.55,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2615.6,
+   "end": 2619.383,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2619.433,
+   "end": 2623.246,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2623.296,
+   "end": 2627.037,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2627.087,
+   "end": 2630.794,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2630.844,
+   "end": 2635.061,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2635.111,
+   "end": 2638.978,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2639.028,
+   "end": 2643.369,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2643.419,
+   "end": 2647.185,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2647.235,
+   "end": 2650.94,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2650.99,
+   "end": 2654.862,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2654.912,
+   "end": 2658.806,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2658.856,
+   "end": 2662.648,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2662.698,
+   "end": 2666.512,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2666.562,
+   "end": 2670.615,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2670.665,
+   "end": 2674.531,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2674.58,
+   "end": 2678.428,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2678.478,
+   "end": 2682.89,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2682.94,
+   "end": 2687.047,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2687.097,
+   "end": 2690.848,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2690.898,
+   "end": 2695.001,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2695.051,
+   "end": 2703.051,
+   "text": "Evaluation run · generating data → running the agent → scoring"
+  },
+  {
+   "start": 2703.151,
+   "end": 2711.151,
+   "text": "Evaluation results · Evaluation runs"
+  },
+  {
+   "start": 2713.68,
+   "end": 2718.089,
+   "text": "Select the run name to open Run details"
+  },
+  {
+   "start": 2718.139,
+   "end": 2722.13,
+   "text": "Run details · results by row"
+  },
+  {
+   "start": 2722.18,
+   "end": 2730.18,
+   "text": "Select View details in a row"
+  },
+  {
+   "start": 2731.957,
+   "end": 2739.93,
+   "text": "Row details · scores and reasons by dimension"
+  },
+  {
+   "start": 2739.98,
+   "end": 2746.826,
+   "text": "Prompt Agent workshop-assistant-en · select the Optimize tab"
+  },
+  {
+   "start": 2746.876,
+   "end": 2754.09,
+   "text": "Optimize tab introduction"
+  },
+  {
+   "start": 2754.14,
+   "end": 2759.727,
+   "text": "Optimize start menu"
+  },
+  {
+   "start": 2759.777,
+   "end": 2765.17,
+   "text": "Optimize wizard · Target"
+  },
+  {
+   "start": 2765.22,
+   "end": 2768.93,
+   "text": "Optimize wizard · Data preparation methods"
+  },
+  {
+   "start": 2768.98,
+   "end": 2773.63,
+   "text": "Select dataset and criteria · the dataset list"
+  },
+  {
+   "start": 2773.68,
+   "end": 2777.585,
+   "text": "Select dataset · search for the Lab 12 dataset"
+  },
+  {
+   "start": 2777.635,
+   "end": 2785.635,
+   "text": "Optimize wizard · dataset selection"
+  },
+  {
+   "start": 2785.964,
+   "end": 2790.085,
+   "text": "Optimize wizard · evaluator selection"
+  },
+  {
+   "start": 2790.135,
+   "end": 2798.135,
+   "text": "Evaluator Threshold setting"
+  },
+  {
+   "start": 2800.732,
+   "end": 2808.732,
+   "text": "Optimize wizard · Review and estimated cost"
+  },
+  {
+   "start": 2808.98,
+   "end": 2813.119,
+   "text": "Submit · the new run appears in the runs list"
+  },
+  {
+   "start": 2813.169,
+   "end": 2820.199,
+   "text": "Optimization run in progress"
+  },
+  {
+   "start": 2820.249,
+   "end": 2824.325,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2824.375,
+   "end": 2828.582,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2828.632,
+   "end": 2832.797,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2832.847,
+   "end": 2836.777,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2836.827,
+   "end": 2840.816,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2840.866,
+   "end": 2844.835,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2844.885,
+   "end": 2848.779,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2848.829,
+   "end": 2852.81,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2852.86,
+   "end": 2860.13,
+   "text": "Optimization run · building and scoring the candidates"
+  },
+  {
+   "start": 2860.18,
+   "end": 2868.18,
+   "text": "Optimization finished · scores"
+  },
+  {
+   "start": 2872.58,
+   "end": 2880.58,
+   "text": "Run details · candidate score comparison"
+  },
+  {
+   "start": 2881.239,
+   "end": 2889.239,
+   "text": "What a candidate changed"
+  },
+  {
+   "start": 2892.077,
+   "end": 2898.491,
+   "text": "Foundry home"
+  },
+  {
+   "start": 2898.541,
+   "end": 2906.541,
+   "text": "Hosted agent in the Agents list"
+  },
+  {
+   "start": 2906.878,
+   "end": 2910.38,
+   "text": "Open the Hosted agent Playground · Agent info (Kind: hosted)"
+  },
+  {
+   "start": 2910.43,
+   "end": 2913.927,
+   "text": "Code asset: the uploaded code.zip"
+  },
+  {
+   "start": 2913.977,
+   "end": 2919.575,
+   "text": "Hosted agent Playground (before a session starts)"
+  },
+  {
+   "start": 2919.625,
+   "end": 2927.625,
+   "text": "Type the question for the Hosted agent"
+  },
+  {
+   "start": 2929.01,
+   "end": 2934.046,
+   "text": "Message sent in the Playground"
+  },
+  {
+   "start": 2934.096,
+   "end": 2942.096,
+   "text": "Log stream: container logs and the Session identifier"
+  },
+  {
+   "start": 2942.272,
+   "end": 2947.495,
+   "text": "Details: status, version, agent ID and endpoint"
+  },
+  {
+   "start": 2947.545,
+   "end": 2951.773,
+   "text": "Traces: waiting for the new trace to arrive (usually within a minute; refresh if it is not there yet)"
+  },
+  {
+   "start": 2951.823,
+   "end": 2956.217,
+   "text": "Traces list (Trace view)"
+  },
+  {
+   "start": 2956.267,
+   "end": 2962.976,
+   "text": "Traces: Conversation view"
+  },
+  {
+   "start": 2963.026,
+   "end": 2971.026,
+   "text": "Traces: Session view"
+  },
+  {
+   "start": 2974.294,
+   "end": 2980.99,
+   "text": "Trace details: invoke_agent and chat spans"
+  },
+  {
+   "start": 2981.04,
+   "end": 2989.04,
+   "text": "The chat span: Instructions · User input · Output"
+  },
+  {
+   "start": 2992.008,
+   "end": 2997.354,
+   "text": "Monitor overview"
+  },
+  {
+   "start": 2997.404,
+   "end": 3004.49,
+   "text": "Monitor: Hosting compute·Hosting memory"
+  },
+  {
+   "start": 3004.54,
+   "end": 3009.735,
+   "text": "Continue in code: calling the agent from code"
+  },
+  {
+   "start": 3009.785,
+   "end": 3017.785,
+   "text": "Continue in code: the sample code"
+  },
+  {
+   "start": 3019.599,
+   "end": 3027.599,
+   "text": "Foundry home"
+  },
+  {
+   "start": 3027.999,
+   "end": 3034.0,
+   "text": "Manage → Fleet overview (Preview)"
+  },
+  {
+   "start": 3034.05,
+   "end": 3038.608,
+   "text": "Fleet: Assets in this scope · Agents tab"
+  },
+  {
+   "start": 3038.658,
+   "end": 3046.658,
+   "text": "Fleet: Assets in this scope · Models tab"
+  },
+  {
+   "start": 3046.881,
+   "end": 3052.063,
+   "text": "Manage → Operations (Preview)"
+  },
+  {
+   "start": 3052.113,
+   "end": 3057.15,
+   "text": "Operations: Tokens tab"
+  },
+  {
+   "start": 3057.2,
+   "end": 3062.229,
+   "text": "Operations: Errors tab"
+  },
+  {
+   "start": 3062.279,
+   "end": 3068.445,
+   "text": "Operations: Latency tab"
+  },
+  {
+   "start": 3068.495,
+   "end": 3076.495,
+   "text": "Operations: Assets with invocations table"
+  },
+  {
+   "start": 3078.283,
+   "end": 3083.571,
+   "text": "Manage → Cost (Preview)"
+  },
+  {
+   "start": 3083.621,
+   "end": 3089.021,
+   "text": "Cost: Highest spend assets and Cost by project"
+  },
+  {
+   "start": 3089.071,
+   "end": 3097.071,
+   "text": "Cost by project: grouped by Agent"
+  },
+  {
+   "start": 3097.729,
+   "end": 3103.934,
+   "text": "Manage → Compliance"
+  },
+  {
+   "start": 3103.984,
+   "end": 3110.284,
+   "text": "Compliance: Asset tab"
+  },
+  {
+   "start": 3110.334,
+   "end": 3118.334,
+   "text": "Manage → Gateways · AI Gateway (Preview)"
+  },
+  {
+   "start": 3120.29,
+   "end": 3128.29,
+   "text": "Foundry home"
+  },
+  {
+   "start": 3130.605,
+   "end": 3135.605,
+   "text": "Monitor → Cost (Preview) · cards and Cost by agent"
+  },
+  {
+   "start": 3135.655,
+   "end": 3140.952,
+   "text": "Cost by agent: model deployments and invocations per agent"
+  },
+  {
+   "start": 3141.002,
+   "end": 3146.352,
+   "text": "Cost by agent · Token usage view"
+  },
+  {
+   "start": 3146.402,
+   "end": 3154.402,
+   "text": "Token usage view: tokens per agent"
+  },
+  {
+   "start": 3154.666,
+   "end": 3162.666,
+   "text": "Monitor → Cost Control (Preview) · no budget"
+  },
+  {
+   "start": 3163.861,
+   "end": 3170.891,
+   "text": "Create cost control · name, scope and how it is shared"
+  },
+  {
+   "start": 3170.941,
+   "end": 3177.59,
+   "text": "Set the budget · Tokens 10M · Monthly"
+  },
+  {
+   "start": 3177.64,
+   "end": 3184.388,
+   "text": "Threshold actions · options only"
+  },
+  {
+   "start": 3184.438,
+   "end": 3192.438,
+   "text": "Usage data · connected Application Insights and Create"
+  },
+  {
+   "start": 3194.308,
+   "end": 3200.664,
+   "text": "Cost Control list · the new budget"
+  },
+  {
+   "start": 3200.714,
+   "end": 3207.668,
+   "text": "Budget details · Edit and Delete"
+  },
+  {
+   "start": 3207.718,
+   "end": 3215.718,
+   "text": "The Project budget card on the Cost tab"
+  },
+  {
+   "start": 3216.053,
+   "end": 3222.878,
+   "text": "Delete cost control? · confirm the deletion"
+  },
+  {
+   "start": 3222.928,
+   "end": 3227.75,
+   "text": "Cleaned up · the Cost Control list is empty again"
   }
  ]
 };

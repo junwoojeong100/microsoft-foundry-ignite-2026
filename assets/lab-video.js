@@ -21,7 +21,7 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const players = new Map();
 
-  // Starting one video pauses every other video on the page, including the summary and the Labs 1-5 walkthrough.
+  // Starting one video pauses every other video on the page, including the summary and the full Labs 1-16 walkthrough.
   document.addEventListener("play", event => {
     if (!(event.target instanceof HTMLVideoElement)) return;
     document.querySelectorAll("video").forEach(video => {

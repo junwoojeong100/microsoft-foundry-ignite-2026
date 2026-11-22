@@ -166,6 +166,8 @@ select{background:#fff;border:1px solid #c7d5e0;border-radius:6px;padding:4px 8p
 .chapter:hover{background:#eaf3ff;border-color:#abc7e3}
 .chapter time{color:var(--blue);font:700 10px ui-monospace,monospace;min-width:39px}
 .chapter-step{margin-left:auto;padding-left:8px;color:var(--muted);font-size:10px;font-weight:700;white-space:nowrap}
+.chapter-group{grid-column:1/-1;margin-top:10px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;font-weight:700;color:var(--muted)}
+.chapter-group:first-child{margin-top:0;padding-top:0;border-top:0}
 .video-meta{font-size:12px;color:var(--muted);margin-top:16px}
 .video-meta+.video-frame{margin-top:10px}
 .chapter-row{display:flex;gap:6px;min-width:0}

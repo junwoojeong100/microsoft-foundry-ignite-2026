@@ -4,15 +4,15 @@ window.GUIDE_DATA = {
  "capturedDate": "2026-11-18",
  "recording": {
   "startedAt": "2026-11-18T03:48:14.735Z",
-  "durationSeconds": 567.64,
+  "durationSeconds": 3188.8,
   "width": 1600,
   "height": 900,
   "continuous": false,
   "includesAuthentication": false,
   "narration": false,
   "video": "assets/video/full-walkthrough.mp4",
-  "nativeDurationSeconds": 567.64,
-  "note": "실습별 녹화를 이어 붙였고 기다리는 구간은 빠르게 재생했습니다. 로그인·MFA 입력은 영상에서 제외했습니다."
+  "nativeDurationSeconds": 3188.8,
+  "note": "실습 1~5(2026.11.18 녹화)와 실습 6~9·선택 실습 10~16(2026.11.22 녹화)의 실습별 녹화를 이어 붙였고, 기다리는 구간은 빠르게 재생했습니다. 파트 사이에는 3초짜리 구분 화면이 있습니다. 로그인·MFA 입력은 영상에서 제외했습니다."
  },
  "lab": {
   "subscriptionId": "00000000-0000-0000-0000-000000000000",
@@ -36,61 +36,398 @@ window.GUIDE_DATA = {
    "id": "account",
    "title": "01 · 계정·테넌트·배정 RG 확인",
    "seconds": 0.0,
-   "videoSeconds": 0.0
+   "videoSeconds": 0.0,
+   "part": "labs-1-5"
   },
   {
    "id": "resource",
    "title": "02 · Azure Portal에서 Foundry 리소스 만들기",
    "seconds": 40.36,
-   "videoSeconds": 40.36
+   "videoSeconds": 40.36,
+   "part": "labs-1-5"
   },
   {
    "id": "project",
    "title": "03 · Foundry Portal에서 기본 프로젝트 열기",
    "seconds": 201.493,
-   "videoSeconds": 201.493
+   "videoSeconds": 201.493,
+   "part": "labs-1-5"
   },
   {
    "id": "model",
    "title": "04 · gpt-6.1-terra 모델 배포와 테스트",
    "seconds": 229.6,
-   "videoSeconds": 229.6
+   "videoSeconds": 229.6,
+   "part": "labs-1-5"
   },
   {
    "id": "agent",
    "title": "05 · 워크샵 Prompt Agent 만들기",
    "seconds": 322.4,
-   "videoSeconds": 322.4
+   "videoSeconds": 322.4,
+   "part": "labs-1-5"
   },
   {
    "id": "connect",
    "title": "06 · Traces에서 App Insights 연결 확인",
    "seconds": 364.048,
-   "videoSeconds": 364.048
+   "videoSeconds": 364.048,
+   "part": "labs-1-5"
   },
   {
    "id": "run",
    "title": "07 · 에이전트 실행과 대화 확인",
    "seconds": 374.422,
-   "videoSeconds": 374.422
+   "videoSeconds": 374.422,
+   "part": "labs-1-5"
   },
   {
    "id": "monitoring-setup",
    "title": "08 · 대체 경로 · Traces에서 App Insights 만들고 연결",
    "seconds": 423.28,
-   "videoSeconds": 423.28
+   "videoSeconds": 423.28,
+   "part": "labs-1-5"
   },
   {
    "id": "monitor",
    "title": "09 · Monitor에서 실행 수·토큰·오류 확인",
    "seconds": 475.48,
-   "videoSeconds": 475.48
+   "videoSeconds": 475.48,
+   "part": "labs-1-5"
   },
   {
    "id": "traces",
    "title": "10 · Traces에서 입력·출력·토큰·지연 확인",
    "seconds": 517.714,
-   "videoSeconds": 517.714
+   "videoSeconds": 517.714,
+   "part": "labs-1-5"
+  },
+  {
+   "id": "ignite-foundry-iq-prep",
+   "title": "실습 6-1 · Knowledge에서 검색 리소스 연결",
+   "seconds": 567.64,
+   "videoSeconds": 567.64,
+   "part": "labs-6-9",
+   "lab": "l06-foundry-iq",
+   "step": "6-1"
+  },
+  {
+   "id": "ignite-foundry-iq-kb",
+   "title": "실습 6-2 · 지식 소스와 지식 베이스 만들기",
+   "seconds": 612.665,
+   "videoSeconds": 612.665,
+   "part": "labs-6-9",
+   "lab": "l06-foundry-iq",
+   "step": "6-2"
+  },
+  {
+   "id": "ignite-foundry-iq-agent",
+   "title": "실습 6-3 · 새 에이전트에 지식 베이스 연결",
+   "seconds": 661.496,
+   "videoSeconds": 661.496,
+   "part": "labs-6-9",
+   "lab": "l06-foundry-iq",
+   "step": "6-3"
+  },
+  {
+   "id": "ignite-foundry-iq-test",
+   "title": "실습 6-4 · 질문 세 개로 출처 응답 확인",
+   "seconds": 733.804,
+   "videoSeconds": 733.804,
+   "part": "labs-6-9",
+   "lab": "l06-foundry-iq",
+   "step": "6-4"
+  },
+  {
+   "id": "ignite-web-iq-resource",
+   "title": "실습 7-1 · Azure Portal에서 Web IQ 리소스 만들기",
+   "seconds": 813.92,
+   "videoSeconds": 813.92,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-1"
+  },
+  {
+   "id": "ignite-web-iq-portal",
+   "title": "실습 7-2 · Web IQ 포털에서 리소스 연결·Playground·API 키",
+   "seconds": 906.72,
+   "videoSeconds": 906.72,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-2"
+  },
+  {
+   "id": "ignite-web-iq-add",
+   "title": "실습 7-3 · Foundry 에이전트에 Web IQ 도구 연결",
+   "seconds": 1005.987,
+   "videoSeconds": 1005.987,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-3"
+  },
+  {
+   "id": "ignite-web-iq-test",
+   "title": "실습 7-4 · 같은 질문으로 확인 · Traces와 사용량",
+   "seconds": 1105.873,
+   "videoSeconds": 1105.873,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-4"
+  },
+  {
+   "id": "ignite-web-iq-compare",
+   "title": "실습 7-5 · 내장 Web search 도구와 비교",
+   "seconds": 1196.02,
+   "videoSeconds": 1196.02,
+   "part": "labs-6-9",
+   "lab": "l07-web-iq",
+   "step": "7-5"
+  },
+  {
+   "id": "ignite-work-iq-connect",
+   "title": "실습 8-1 · 프로젝트에 Work IQ MCP 연결 만들기",
+   "seconds": 1300.04,
+   "videoSeconds": 1300.04,
+   "part": "labs-6-9",
+   "lab": "l08-work-iq",
+   "step": "8-1"
+  },
+  {
+   "id": "ignite-work-iq-add",
+   "title": "실습 8-2 · Foundry 에이전트에 Work IQ 도구 연결",
+   "seconds": 1355.81,
+   "videoSeconds": 1355.81,
+   "part": "labs-6-9",
+   "lab": "l08-work-iq",
+   "step": "8-2"
+  },
+  {
+   "id": "ignite-work-iq-test",
+   "title": "실습 8-3 · 질문하고 동의·권한·Traces 확인",
+   "seconds": 1426.41,
+   "videoSeconds": 1426.41,
+   "part": "labs-6-9",
+   "lab": "l08-work-iq",
+   "step": "8-3"
+  },
+  {
+   "id": "ignite-fabric-iq-prep",
+   "title": "실습 9-1 · Fabric에서 데이터 에이전트 만들고 게시·공유하기",
+   "seconds": 1606.04,
+   "videoSeconds": 1606.04,
+   "part": "labs-6-9",
+   "lab": "l09a-fabric-prep",
+   "step": "9-1"
+  },
+  {
+   "id": "ignite-fabric-iq-connect",
+   "title": "실습 9-2 · 프로젝트에 Fabric IQ 연결 만들기",
+   "seconds": 1834.68,
+   "videoSeconds": 1834.68,
+   "part": "labs-6-9",
+   "lab": "l09-fabric-iq",
+   "step": "9-2"
+  },
+  {
+   "id": "ignite-fabric-iq-add",
+   "title": "실습 9-3 · Foundry 에이전트에 Fabric IQ 도구 연결",
+   "seconds": 1884.389,
+   "videoSeconds": 1884.389,
+   "part": "labs-6-9",
+   "lab": "l09-fabric-iq",
+   "step": "9-3"
+  },
+  {
+   "id": "ignite-fabric-iq-test",
+   "title": "실습 9-4 · 질문하고 권한·Traces 확인",
+   "seconds": 1949.372,
+   "videoSeconds": 1949.372,
+   "part": "labs-6-9",
+   "lab": "l09-fabric-iq",
+   "step": "9-4"
+  },
+  {
+   "id": "ignite-harness-create",
+   "title": "실습 10-2 · 하네스 에이전트 만들기",
+   "seconds": 2128.4,
+   "videoSeconds": 2128.4,
+   "part": "labs-10-16",
+   "lab": "l10-harness",
+   "step": "10-2"
+  },
+  {
+   "id": "ignite-harness-tools",
+   "title": "실습 10-3 · Harness tools 제한과 모델 변경 주의",
+   "seconds": 2177.362,
+   "videoSeconds": 2177.362,
+   "part": "labs-10-16",
+   "lab": "l10-harness",
+   "step": "10-3"
+  },
+  {
+   "id": "ignite-harness-run",
+   "title": "실습 10-4 · 실행하고 상세 화면 확인",
+   "seconds": 2223.299,
+   "videoSeconds": 2223.299,
+   "part": "labs-10-16",
+   "lab": "l10-harness",
+   "step": "10-4"
+  },
+  {
+   "id": "ignite-observe",
+   "title": "실습 10-5 · Traces와 Monitor로 관찰",
+   "seconds": 2279.959,
+   "videoSeconds": 2279.959,
+   "part": "labs-10-16",
+   "lab": "l10-harness",
+   "step": "10-5"
+  },
+  {
+   "id": "ignite-insights",
+   "title": "실습 11-1 · Insights로 문제 찾기",
+   "seconds": 2328.48,
+   "videoSeconds": 2328.48,
+   "part": "labs-10-16",
+   "lab": "l11-insights",
+   "step": "11-1"
+  },
+  {
+   "id": "ignite-evaluator",
+   "title": "실습 12-1 · 커스텀 루브릭 평가자 만들기",
+   "seconds": 2383.56,
+   "videoSeconds": 2383.56,
+   "part": "labs-10-16",
+   "lab": "l12-evaluation",
+   "step": "12-1"
+  },
+  {
+   "id": "ignite-evaluation",
+   "title": "실습 12-2 · 평가 만들고 실행하기",
+   "seconds": 2489.788,
+   "videoSeconds": 2489.788,
+   "part": "labs-10-16",
+   "lab": "l12-evaluation",
+   "step": "12-2"
+  },
+  {
+   "id": "ignite-optimize",
+   "title": "실습 13-1 · Optimize로 개선안 만들기",
+   "seconds": 2697.48,
+   "videoSeconds": 2697.48,
+   "part": "labs-10-16",
+   "lab": "l13-optimize",
+   "step": "13-1"
+  },
+  {
+   "id": "ignite-hosted-agent-find",
+   "title": "실습 14-1 · Hosted 에이전트 찾고 Playground 열기",
+   "seconds": 2855.92,
+   "videoSeconds": 2855.92,
+   "part": "labs-10-16",
+   "lab": "l14-hosted",
+   "step": "14-1"
+  },
+  {
+   "id": "ignite-hosted-agent-test",
+   "title": "실습 14-2 · 메시지 보내고 Details 확인",
+   "seconds": 2883.45,
+   "videoSeconds": 2883.45,
+   "part": "labs-10-16",
+   "lab": "l14-hosted",
+   "step": "14-2"
+  },
+  {
+   "id": "ignite-hosted-agent-observe",
+   "title": "실습 14-3 · Traces·Monitor로 관찰",
+   "seconds": 2911.917,
+   "videoSeconds": 2911.917,
+   "part": "labs-10-16",
+   "lab": "l14-hosted",
+   "step": "14-3"
+  },
+  {
+   "id": "ignite-fleet",
+   "title": "실습 15-1 · Manage로 운영·비용·정책 보기",
+   "seconds": 2978.68,
+   "videoSeconds": 2978.68,
+   "part": "labs-10-16",
+   "lab": "l15-manage",
+   "step": "15-1"
+  },
+  {
+   "id": "ignite-cost-read",
+   "title": "실습 16-1 · Monitor → Cost 읽기",
+   "seconds": 3085.12,
+   "videoSeconds": 3085.12,
+   "part": "labs-10-16",
+   "lab": "l16-cost",
+   "step": "16-1"
+  },
+  {
+   "id": "ignite-cost-control-create",
+   "title": "실습 16-2 · Cost Control로 월 토큰 예산 만들기(추적 전용)",
+   "seconds": 3115.395,
+   "videoSeconds": 3115.395,
+   "part": "labs-10-16",
+   "lab": "l16-cost",
+   "step": "16-2"
+  },
+  {
+   "id": "ignite-cost-control-check",
+   "title": "실습 16-3 · 만든 예산 확인과 정리",
+   "seconds": 3152.222,
+   "videoSeconds": 3152.222,
+   "part": "labs-10-16",
+   "lab": "l16-cost",
+   "step": "16-3"
+  }
+ ],
+ "parts": [
+  {
+   "id": "labs-1-5",
+   "title": "실습 1~5 · 계정 확인부터 Monitor·Traces까지",
+   "labs": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "recorded": "2026-11-18",
+   "videoSeconds": 0.0,
+   "firstChapter": "account",
+   "slateSeconds": 0
+  },
+  {
+   "id": "labs-6-9",
+   "title": "실습 6~9 · Microsoft IQ — Foundry IQ·Web IQ·Work IQ·Fabric IQ",
+   "labs": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "recorded": "2026-11-22",
+   "videoSeconds": 567.64,
+   "firstChapter": "ignite-foundry-iq-prep",
+   "slateSeconds": 3.0
+  },
+  {
+   "id": "labs-10-16",
+   "title": "선택 실습 10~16 · 하네스부터 비용까지",
+   "labs": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+   ],
+   "recorded": "2026-11-22",
+   "videoSeconds": 2128.4,
+   "firstChapter": "ignite-harness-create",
+   "slateSeconds": 3.0
   }
  ],
  "shots": [
@@ -1947,6 +2284,1491 @@ window.GUIDE_DATA = {
    "start": 562.493,
    "end": 567.59,
    "text": "54 · User view로 대화 흐름 확인"
+  },
+  {
+   "start": 567.84,
+   "end": 570.44,
+   "text": "실습 6~9 · Microsoft IQ로 에이전트에 맥락 연결"
+  },
+  {
+   "start": 570.943,
+   "end": 576.19,
+   "text": "Foundry 홈 · 왼쪽 Create → Knowledge 열기"
+  },
+  {
+   "start": 576.24,
+   "end": 582.645,
+   "text": "Knowledge 첫 화면 · Foundry IQ 리소스 연결"
+  },
+  {
+   "start": 582.695,
+   "end": 589.378,
+   "text": "Create Foundry IQ resource 대화상자"
+  },
+  {
+   "start": 589.428,
+   "end": 595.285,
+   "text": "Foundry IQ resource 목록 · 운영자가 만든 검색 서비스 선택"
+  },
+  {
+   "start": 595.335,
+   "end": 600.971,
+   "text": "Auth Type 목록 · Project Managed Identity 선택"
+  },
+  {
+   "start": 601.021,
+   "end": 602.834,
+   "text": "검색 리소스와 Auth Type 선택"
+  },
+  {
+   "start": 602.884,
+   "end": 609.61,
+   "text": "Connect 누르기 · 검색 리소스에 연결하는 중"
+  },
+  {
+   "start": 609.66,
+   "end": 616.471,
+   "text": "연결 완료 · Create a knowledge base"
+  },
+  {
+   "start": 616.521,
+   "end": 622.458,
+   "text": "Create a knowledge base · 새 지식 베이스 만들기"
+  },
+  {
+   "start": 622.508,
+   "end": 628.778,
+   "text": "지식 베이스 이름·설명 입력"
+  },
+  {
+   "start": 628.828,
+   "end": 633.329,
+   "text": "Upload files · 샘플 문서 3개 선택"
+  },
+  {
+   "start": 633.379,
+   "end": 638.539,
+   "text": "지식 소스 만들기 · 임베딩 모델 선택"
+  },
+  {
+   "start": 638.589,
+   "end": 644.935,
+   "text": "지식 소스 만들기 · Create"
+  },
+  {
+   "start": 644.985,
+   "end": 651.018,
+   "text": "파일 업로드·처리 진행"
+  },
+  {
+   "start": 651.068,
+   "end": 658.444,
+   "text": "지식 소스 Active · 파일 3개 처리 완료"
+  },
+  {
+   "start": 658.494,
+   "end": 665.209,
+   "text": "지식 베이스 저장"
+  },
+  {
+   "start": 665.259,
+   "end": 670.722,
+   "text": "모델 Playground · gpt-6.1-terra에서 시작"
+  },
+  {
+   "start": 670.772,
+   "end": 676.413,
+   "text": "모델 Playground · 지시문 붙여 넣기"
+  },
+  {
+   "start": 676.463,
+   "end": 680.835,
+   "text": "Save as agent · 대화상자 열기"
+  },
+  {
+   "start": 680.885,
+   "end": 687.256,
+   "text": "Save as agent · 에이전트 이름 입력"
+  },
+  {
+   "start": 687.306,
+   "end": 691.702,
+   "text": "에이전트 생성 · Version 1"
+  },
+  {
+   "start": 691.752,
+   "end": 695.489,
+   "text": "에이전트 만들기 · 기본 툴박스 제거"
+  },
+  {
+   "start": 695.539,
+   "end": 699.982,
+   "text": "기본 툴박스 제거 완료"
+  },
+  {
+   "start": 700.032,
+   "end": 703.341,
+   "text": "Knowledge 영역 열기"
+  },
+  {
+   "start": 703.391,
+   "end": 711.227,
+   "text": "Knowledge → Add → Connect to Foundry IQ"
+  },
+  {
+   "start": 711.277,
+   "end": 716.502,
+   "text": "Knowledge base 목록 · workshop-kb 선택"
+  },
+  {
+   "start": 716.552,
+   "end": 722.729,
+   "text": "지식 베이스 연결"
+  },
+  {
+   "start": 722.779,
+   "end": 730.748,
+   "text": "Knowledge에 지식 베이스 추가 · Save 누르기"
+  },
+  {
+   "start": 730.798,
+   "end": 736.088,
+   "text": "에이전트 저장 · Version 2"
+  },
+  {
+   "start": 736.138,
+   "end": 742.882,
+   "text": "질문 1 입력 · New chat에서 보내기"
+  },
+  {
+   "start": 742.932,
+   "end": 747.974,
+   "text": "질문 1 · 일정과 장소(문서 하나)"
+  },
+  {
+   "start": 748.024,
+   "end": 752.501,
+   "text": "New chat · 질문 2를 위한 새 대화"
+  },
+  {
+   "start": 752.551,
+   "end": 759.563,
+   "text": "질문 2 입력 · 새 대화에서 보내기"
+  },
+  {
+   "start": 759.613,
+   "end": 764.569,
+   "text": "질문 2 · 여러 문서를 함께 사용"
+  },
+  {
+   "start": 764.619,
+   "end": 768.334,
+   "text": "New chat · 질문 3을 위한 새 대화"
+  },
+  {
+   "start": 768.384,
+   "end": 775.331,
+   "text": "질문 3 입력 · 새 대화에서 보내기"
+  },
+  {
+   "start": 775.381,
+   "end": 783.223,
+   "text": "질문 3 · 문서에 없는 내용"
+  },
+  {
+   "start": 783.273,
+   "end": 791.269,
+   "text": "Traces · Status를 Completed로 걸러 보기"
+  },
+  {
+   "start": 791.319,
+   "end": 794.427,
+   "text": "Traces · 지식 베이스 질문 실행 목록"
+  },
+  {
+   "start": 794.477,
+   "end": 801.744,
+   "text": "Trace ID 선택 · 상세 화면 열기"
+  },
+  {
+   "start": 801.794,
+   "end": 808.512,
+   "text": "Trace 상세 · 지식 베이스 도구 호출"
+  },
+  {
+   "start": 808.562,
+   "end": 816.562,
+   "text": "Trace 상세 · 도구 호출의 입력과 출력"
+  },
+  {
+   "start": 829.467,
+   "end": 837.467,
+   "text": "Azure Portal에서 Microsoft Web IQ 찾기"
+  },
+  {
+   "start": 837.708,
+   "end": 845.708,
+   "text": "Microsoft Web IQ resources · Create"
+  },
+  {
+   "start": 851.448,
+   "end": 859.001,
+   "text": "Create a Microsoft Web IQ resource · Basics"
+  },
+  {
+   "start": 859.051,
+   "end": 867.051,
+   "text": "Warning·Terms 확인 후 Next"
+  },
+  {
+   "start": 870.701,
+   "end": 878.701,
+   "text": "Review + submit · Create"
+  },
+  {
+   "start": 880.6,
+   "end": 888.6,
+   "text": "배포 완료 · Go to resource"
+  },
+  {
+   "start": 898.978,
+   "end": 906.978,
+   "text": "Web IQ 리소스 · Go to Web IQ portal"
+  },
+  {
+   "start": 910.147,
+   "end": 918.147,
+   "text": "“You’re leaving portal.azure.com” 안내 · Continue"
+  },
+  {
+   "start": 924.897,
+   "end": 932.897,
+   "text": "Web IQ 포털 · 로그인 뒤 첫 화면"
+  },
+  {
+   "start": 940.049,
+   "end": 948.049,
+   "text": "Web IQ 포털 · Account settings → Add Azure Resource"
+  },
+  {
+   "start": 956.546,
+   "end": 964.278,
+   "text": "Web IQ 포털 · Azure 리소스 연결(Connect Azure resource)"
+  },
+  {
+   "start": 964.328,
+   "end": 972.328,
+   "text": "Web IQ 포털 · 설정 완료"
+  },
+  {
+   "start": 991.814,
+   "end": 999.814,
+   "text": "Playground · Run Request(HTTP 200)"
+  },
+  {
+   "start": 1000.247,
+   "end": 1008.247,
+   "text": "API access · 기본 API 키"
+  },
+  {
+   "start": 1018.533,
+   "end": 1026.533,
+   "text": "Instructions 입력 · Save as agent"
+  },
+  {
+   "start": 1038.125,
+   "end": 1044.953,
+   "text": "새 에이전트 만들기 완료 · 자동으로 붙은 툴박스"
+  },
+  {
+   "start": 1045.003,
+   "end": 1052.369,
+   "text": "새 에이전트의 기본 툴박스 제거"
+  },
+  {
+   "start": 1052.419,
+   "end": 1060.419,
+   "text": "Tools → Add → Add tools"
+  },
+  {
+   "start": 1069.585,
+   "end": 1077.254,
+   "text": "Select a tool · Catalog · Web IQ"
+  },
+  {
+   "start": 1077.304,
+   "end": 1085.304,
+   "text": "Connect the Web IQ tool"
+  },
+  {
+   "start": 1090.454,
+   "end": 1098.454,
+   "text": "도구 승인 방식 · Always auto-approve all tools"
+  },
+  {
+   "start": 1103.868,
+   "end": 1111.868,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1116.248,
+   "end": 1124.046,
+   "text": "질문 입력 · Send"
+  },
+  {
+   "start": 1124.096,
+   "end": 1132.096,
+   "text": "Web IQ 도구로 질문"
+  },
+  {
+   "start": 1150.57,
+   "end": 1158.57,
+   "text": "Traces 탭 열기 · Trace view"
+  },
+  {
+   "start": 1158.836,
+   "end": 1166.836,
+   "text": "Traces · 도착한 트레이스"
+  },
+  {
+   "start": 1172.257,
+   "end": 1180.257,
+   "text": "Trace 상세 · execute_tool mcp_WebIQ.web"
+  },
+  {
+   "start": 1193.015,
+   "end": 1201.015,
+   "text": "Web IQ 포털 · Usage 대시보드"
+  },
+  {
+   "start": 1212.031,
+   "end": 1220.031,
+   "text": "내장 Web search 비교용 새 에이전트 · Instructions"
+  },
+  {
+   "start": 1229.553,
+   "end": 1234.509,
+   "text": "비교용 에이전트 만들기 완료 · 툴박스의 Web search"
+  },
+  {
+   "start": 1234.559,
+   "end": 1242.263,
+   "text": "툴박스 안의 Web search · Grounding with Bing 안내"
+  },
+  {
+   "start": 1242.313,
+   "end": 1250.313,
+   "text": "툴박스 경로: 같은 질문 입력"
+  },
+  {
+   "start": 1252.798,
+   "end": 1260.798,
+   "text": "툴박스 경로(Grounding with Bing)로 같은 질문"
+  },
+  {
+   "start": 1263.094,
+   "end": 1271.094,
+   "text": "Tools → Add → Web search"
+  },
+  {
+   "start": 1271.245,
+   "end": 1279.245,
+   "text": "Web search 직접 추가 · 안내"
+  },
+  {
+   "start": 1286.482,
+   "end": 1294.482,
+   "text": "Web search 직접 추가: 같은 질문 입력"
+  },
+  {
+   "start": 1295.01,
+   "end": 1303.01,
+   "text": "직접 추가한 Web search 도구로 질문"
+  },
+  {
+   "start": 1308.637,
+   "end": 1316.637,
+   "text": "Tools 탭 · Connect a tool"
+  },
+  {
+   "start": 1323.099,
+   "end": 1331.099,
+   "text": "Select a tool · Catalog · Work IQ MCP"
+  },
+  {
+   "start": 1332.394,
+   "end": 1339.263,
+   "text": "Client ID · Client secret 입력(비밀 값은 흐리게 가려짐)"
+  },
+  {
+   "start": 1339.313,
+   "end": 1345.473,
+   "text": "Connect the Work IQ MCP tool"
+  },
+  {
+   "start": 1345.523,
+   "end": 1353.523,
+   "text": "운영자 단계 · Redirect URL을 앱 등록(Authentication → Web)의 Redirect URIs에 추가"
+  },
+  {
+   "start": 1354.808,
+   "end": 1362.808,
+   "text": "연결 상세 · WorkIQMCP"
+  },
+  {
+   "start": 1364.807,
+   "end": 1370.961,
+   "text": "모델 Playground · Save as agent로 새 에이전트 만들기"
+  },
+  {
+   "start": 1371.011,
+   "end": 1379.011,
+   "text": "새 에이전트 · Instructions 붙여 넣기"
+  },
+  {
+   "start": 1386.816,
+   "end": 1394.816,
+   "text": "새 에이전트 · 자동으로 붙은 툴박스 제거"
+  },
+  {
+   "start": 1401.004,
+   "end": 1407.794,
+   "text": "Select a tool · Configured · WorkIQMCP"
+  },
+  {
+   "start": 1407.844,
+   "end": 1415.016,
+   "text": "Tools · WorkIQMCP 줄"
+  },
+  {
+   "start": 1415.066,
+   "end": 1423.066,
+   "text": "Configure WorkIQMCP · 허용 도구 ask"
+  },
+  {
+   "start": 1425.408,
+   "end": 1433.408,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1435.298,
+   "end": 1443.298,
+   "text": "질문 1 · 오늘 예정된 회의"
+  },
+  {
+   "start": 1446.302,
+   "end": 1449.73,
+   "text": "처음 질문 · 로그인·동의 요청"
+  },
+  {
+   "start": 1449.78,
+   "end": 1462.06,
+   "text": "동의 창 · Confirmation required"
+  },
+  {
+   "start": 1470.366,
+   "end": 1477.251,
+   "text": "동의 완료 · 같은 질문이 이어서 진행됨"
+  },
+  {
+   "start": 1477.301,
+   "end": 1485.301,
+   "text": "도구 호출 승인 요청 · Approve once"
+  },
+  {
+   "start": 1486.816,
+   "end": 1494.816,
+   "text": "질문 1 · 오늘 예정된 회의"
+  },
+  {
+   "start": 1499.396,
+   "end": 1507.396,
+   "text": "질문 2 · 회신이 필요한 메일"
+  },
+  {
+   "start": 1512.176,
+   "end": 1520.176,
+   "text": "질문 2 · 도구 호출 승인 요청"
+  },
+  {
+   "start": 1523.21,
+   "end": 1531.21,
+   "text": "질문 2 · 회신이 필요한 메일"
+  },
+  {
+   "start": 1535.724,
+   "end": 1543.724,
+   "text": "질문 3 · 접근할 수 없는 메일(권한 경계)"
+  },
+  {
+   "start": 1548.079,
+   "end": 1556.079,
+   "text": "질문 3 · 도구 호출 승인 요청"
+  },
+  {
+   "start": 1557.4,
+   "end": 1565.4,
+   "text": "질문 3 · 접근할 수 없는 메일(권한 경계)"
+  },
+  {
+   "start": 1575.245,
+   "end": 1583.245,
+   "text": "Traces 탭 · 방금 질문한 실행"
+  },
+  {
+   "start": 1586.739,
+   "end": 1594.739,
+   "text": "Traces · 방금 질문한 실행의 트레이스 목록"
+  },
+  {
+   "start": 1600.044,
+   "end": 1608.044,
+   "text": "Trace 상세 · execute_tool mcp_WorkIQMCP.ask"
+  },
+  {
+   "start": 1612.321,
+   "end": 1620.321,
+   "text": "Fabric · 새 작업 영역"
+  },
+  {
+   "start": 1626.262,
+   "end": 1631.333,
+   "text": "Fabric · 새 작업 영역"
+  },
+  {
+   "start": 1631.383,
+   "end": 1639.383,
+   "text": "Notebook · 샘플 데이터 적재 완료"
+  },
+  {
+   "start": 1647.582,
+   "end": 1653.707,
+   "text": "Notebook · 샘플 데이터 적재 완료"
+  },
+  {
+   "start": 1653.757,
+   "end": 1661.757,
+   "text": "Notebook · 샘플 데이터 적재 완료"
+  },
+  {
+   "start": 1665.99,
+   "end": 1672.097,
+   "text": "Data agent · 데이터 원본 추가"
+  },
+  {
+   "start": 1672.147,
+   "end": 1680.147,
+   "text": "Data agent · 데이터 원본 추가"
+  },
+  {
+   "start": 1687.736,
+   "end": 1695.422,
+   "text": "Data agent · 데이터 원본 추가"
+  },
+  {
+   "start": 1695.472,
+   "end": 1703.472,
+   "text": "Data agent · 데이터 원본 추가"
+  },
+  {
+   "start": 1704.595,
+   "end": 1710.229,
+   "text": "Data agent · 질문할 표 선택"
+  },
+  {
+   "start": 1710.279,
+   "end": 1717.443,
+   "text": "Data agent · 질문할 표 선택"
+  },
+  {
+   "start": 1717.493,
+   "end": 1722.896,
+   "text": "Data agent · 질문할 표 선택"
+  },
+  {
+   "start": 1722.946,
+   "end": 1728.907,
+   "text": "Data agent · 데이터 원본 지침"
+  },
+  {
+   "start": 1728.957,
+   "end": 1734.047,
+   "text": "Data agent · 데이터 원본 지침"
+  },
+  {
+   "start": 1734.097,
+   "end": 1738.347,
+   "text": "Data agent · 예시 질문과 쿼리"
+  },
+  {
+   "start": 1738.397,
+   "end": 1746.035,
+   "text": "Data agent · 예시 질문과 쿼리"
+  },
+  {
+   "start": 1746.085,
+   "end": 1752.312,
+   "text": "Data agent · 예시 질문과 쿼리"
+  },
+  {
+   "start": 1752.362,
+   "end": 1760.362,
+   "text": "Data agent · Test the agent's responses"
+  },
+  {
+   "start": 1761.463,
+   "end": 1764.44,
+   "text": "Data agent · Test the agent's responses"
+  },
+  {
+   "start": 1764.49,
+   "end": 1772.49,
+   "text": "Data agent · Publish"
+  },
+  {
+   "start": 1772.966,
+   "end": 1778.559,
+   "text": "Data agent · Publish"
+  },
+  {
+   "start": 1778.609,
+   "end": 1783.924,
+   "text": "Data agent · Publish"
+  },
+  {
+   "start": 1783.974,
+   "end": 1791.974,
+   "text": "Data agent · 질문할 사용자에게 공유"
+  },
+  {
+   "start": 1797.617,
+   "end": 1800.516,
+   "text": "Data agent · 질문할 사용자에게 공유"
+  },
+  {
+   "start": 1800.566,
+   "end": 1808.566,
+   "text": "Data agent · 질문할 사용자에게 공유"
+  },
+  {
+   "start": 1813.716,
+   "end": 1821.716,
+   "text": "Lakehouse · 데이터 원본 권한"
+  },
+  {
+   "start": 1826.715,
+   "end": 1831.769,
+   "text": "Lakehouse · 데이터 원본 권한"
+  },
+  {
+   "start": 1831.819,
+   "end": 1839.66,
+   "text": "Lakehouse · 데이터 원본 권한"
+  },
+  {
+   "start": 1839.71,
+   "end": 1846.873,
+   "text": "Tools 탭 · Connect a tool"
+  },
+  {
+   "start": 1846.923,
+   "end": 1851.358,
+   "text": "Select a tool · Configured · Fabric IQ (OneLake Catalog)"
+  },
+  {
+   "start": 1851.408,
+   "end": 1858.816,
+   "text": "Select a tool · Configured · Fabric IQ (OneLake Catalog)"
+  },
+  {
+   "start": 1858.866,
+   "end": 1863.225,
+   "text": "OneLake Catalog · 목록이 비어 보일 때"
+  },
+  {
+   "start": 1863.275,
+   "end": 1871.275,
+   "text": "OneLake Catalog · Filter에서 Semantic model 해제"
+  },
+  {
+   "start": 1873.854,
+   "end": 1881.854,
+   "text": "OneLake Catalog · Data agent 선택"
+  },
+  {
+   "start": 1883.387,
+   "end": 1891.387,
+   "text": "연결 상세 · workshopadventureworksagent"
+  },
+  {
+   "start": 1895.204,
+   "end": 1903.204,
+   "text": "새 에이전트 · 지시문 입력"
+  },
+  {
+   "start": 1903.599,
+   "end": 1909.907,
+   "text": "새 에이전트 · 지시문 입력"
+  },
+  {
+   "start": 1909.957,
+   "end": 1917.957,
+   "text": "새 에이전트 · 이름 입력"
+  },
+  {
+   "start": 1918.051,
+   "end": 1923.536,
+   "text": "새 에이전트의 기본 툴박스 제거"
+  },
+  {
+   "start": 1923.586,
+   "end": 1930.734,
+   "text": "Tools → Add → Add tools"
+  },
+  {
+   "start": 1930.784,
+   "end": 1934.807,
+   "text": "Select a tool · Configured · workshopadventureworksagent"
+  },
+  {
+   "start": 1934.857,
+   "end": 1939.446,
+   "text": "Tools · Fabric IQ (OneLake Catalog) 줄"
+  },
+  {
+   "start": 1939.496,
+   "end": 1947.496,
+   "text": "Configure · 승인 방식 기본값"
+  },
+  {
+   "start": 1948.355,
+   "end": 1953.954,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1954.004,
+   "end": 1958.218,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1958.268,
+   "end": 1962.494,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1962.544,
+   "end": 1966.766,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1966.816,
+   "end": 1971.038,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1971.087,
+   "end": 1975.303,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1975.353,
+   "end": 1982.143,
+   "text": "저장 · Version 2"
+  },
+  {
+   "start": 1982.193,
+   "end": 1990.193,
+   "text": "질문 1 · 월별 매출 합계와 연도별 누계"
+  },
+  {
+   "start": 1996.541,
+   "end": 2004.541,
+   "text": "질문 1 · 월별 매출 합계와 연도별 누계"
+  },
+  {
+   "start": 2006.294,
+   "end": 2014.294,
+   "text": "질문 2 · 인터넷 매출 상위 지역 3곳"
+  },
+  {
+   "start": 2016.015,
+   "end": 2024.015,
+   "text": "질문 2 · 인터넷 매출 상위 지역 3곳"
+  },
+  {
+   "start": 2026.817,
+   "end": 2034.817,
+   "text": "질문 3 · 총 주문 금액 상위 고객 5명"
+  },
+  {
+   "start": 2037.92,
+   "end": 2039.37,
+   "text": "질문 3 · 총 주문 금액 상위 고객 5명"
+  },
+  {
+   "start": 2039.42,
+   "end": 2094.26,
+   "text": "계정 B(권한 없음) · 답이 오지 않음"
+  },
+  {
+   "start": 2106.58,
+   "end": 2114.58,
+   "text": "Traces · Completed와 Failed"
+  },
+  {
+   "start": 2116.654,
+   "end": 2124.654,
+   "text": "Trace 상세 · 도구와 데이터 에이전트 호출"
+  },
+  {
+   "start": 2124.707,
+   "end": 2128.35,
+   "text": "Trace 상세 · tool_user_error"
+  },
+  {
+   "start": 2128.6,
+   "end": 2131.2,
+   "text": "선택 실습 10~16 · 하네스부터 비용까지"
+  },
+  {
+   "start": 2136.134,
+   "end": 2143.98,
+   "text": "Build → Agents 목록의 Harness 열"
+  },
+  {
+   "start": 2144.03,
+   "end": 2150.376,
+   "text": "Models · 배포한 gpt-6.1-terra"
+  },
+  {
+   "start": 2150.426,
+   "end": 2157.1,
+   "text": "gpt-6.1-terra Playground · Save as agent"
+  },
+  {
+   "start": 2157.15,
+   "end": 2165.15,
+   "text": "Instructions에 지시문 입력"
+  },
+  {
+   "start": 2166.583,
+   "end": 2174.583,
+   "text": "Create an agent · 하네스 선택"
+  },
+  {
+   "start": 2176.361,
+   "end": 2181.811,
+   "text": "하네스 에이전트 Playground · gpt-6.1-terra · Version 1"
+  },
+  {
+   "start": 2181.861,
+   "end": 2186.344,
+   "text": "Harness tools · 기본값"
+  },
+  {
+   "start": 2186.394,
+   "end": 2189.455,
+   "text": "필요 없는 도구 끄기"
+  },
+  {
+   "start": 2189.505,
+   "end": 2197.505,
+   "text": "Done 다음 Save and start new chat으로 저장"
+  },
+  {
+   "start": 2198.292,
+   "end": 2205.841,
+   "text": "저장하면 Version 2"
+  },
+  {
+   "start": 2205.891,
+   "end": 2213.891,
+   "text": "모델을 바꾸면 Unsupported tools 경고 · Cancel로 모델 유지"
+  },
+  {
+   "start": 2215.337,
+   "end": 2218.45,
+   "text": "YAML 탭으로 저장된 설정 확인"
+  },
+  {
+   "start": 2218.5,
+   "end": 2226.5,
+   "text": "YAML · filesystem_write와 shell이 enabled: false"
+  },
+  {
+   "start": 2228.799,
+   "end": 2236.799,
+   "text": "웹 페이지를 읽게 하는 질문 입력"
+  },
+  {
+   "start": 2237.15,
+   "end": 2245.15,
+   "text": "gpt-6.1-terra로 실행"
+  },
+  {
+   "start": 2246.16,
+   "end": 2254.16,
+   "text": "Details 탭 · 엔드포인트와 채널"
+  },
+  {
+   "start": 2255.952,
+   "end": 2258.868,
+   "text": "에이전트 Guardrail(Preview) 섹션"
+  },
+  {
+   "start": 2258.918,
+   "end": 2266.918,
+   "text": "Manage guardrail 메뉴"
+  },
+  {
+   "start": 2268.237,
+   "end": 2272.876,
+   "text": "하네스 에이전트가 생긴 Agents 목록"
+  },
+  {
+   "start": 2272.926,
+   "end": 2277.408,
+   "text": "Routines 탭"
+  },
+  {
+   "start": 2277.458,
+   "end": 2285.458,
+   "text": "Workflows 탭 · 종료 예정 안내"
+  },
+  {
+   "start": 2289.98,
+   "end": 2297.98,
+   "text": "Traces 목록"
+  },
+  {
+   "start": 2302.323,
+   "end": 2310.323,
+   "text": "에이전트 Monitor · Overview"
+  },
+  {
+   "start": 2313.998,
+   "end": 2321.998,
+   "text": "Agent runs 차트 · 기간을 Last Day로"
+  },
+  {
+   "start": 2324.04,
+   "end": 2332.04,
+   "text": "Monitor → Cost (Preview)"
+  },
+  {
+   "start": 2332.633,
+   "end": 2340.633,
+   "text": "Agents · 하네스 에이전트 열기"
+  },
+  {
+   "start": 2344.884,
+   "end": 2349.176,
+   "text": "Insights 탭 · 스캔 설정"
+  },
+  {
+   "start": 2349.226,
+   "end": 2354.243,
+   "text": "Judge model · GPT-5 이상 모델만 사용"
+  },
+  {
+   "start": 2354.293,
+   "end": 2359.816,
+   "text": "Judge model 목록 · 선택하지 않고 닫기"
+  },
+  {
+   "start": 2359.866,
+   "end": 2367.866,
+   "text": "Estimated cost for your first scan"
+  },
+  {
+   "start": 2369.421,
+   "end": 2374.718,
+   "text": "Run now · 스캔 진행 중"
+  },
+  {
+   "start": 2374.768,
+   "end": 2382.768,
+   "text": "스캔 완료 · 결과 화면"
+  },
+  {
+   "start": 2387.871,
+   "end": 2395.871,
+   "text": "Agents · 하네스 에이전트 열기"
+  },
+  {
+   "start": 2403.867,
+   "end": 2411.867,
+   "text": "에이전트 Evaluation 탭"
+  },
+  {
+   "start": 2416.847,
+   "end": 2422.483,
+   "text": "Evaluations → Evaluator catalog"
+  },
+  {
+   "start": 2422.533,
+   "end": 2430.533,
+   "text": "Create evaluator 대화상자"
+  },
+  {
+   "start": 2445.473,
+   "end": 2450.105,
+   "text": "평가자 정보 입력"
+  },
+  {
+   "start": 2450.155,
+   "end": 2458.155,
+   "text": "컨텍스트(트레이스) 설정"
+  },
+  {
+   "start": 2459.181,
+   "end": 2467.181,
+   "text": "Date range를 오늘로 좁혀 트레이스 확인"
+  },
+  {
+   "start": 2479.175,
+   "end": 2487.175,
+   "text": "Generate rubric · 루브릭 자동 생성"
+  },
+  {
+   "start": 2487.283,
+   "end": 2495.283,
+   "text": "Save evaluator · 평가자 상세"
+  },
+  {
+   "start": 2496.105,
+   "end": 2500.645,
+   "text": "Create evaluation 1/5 · Target"
+  },
+  {
+   "start": 2500.695,
+   "end": 2508.695,
+   "text": "2/5 · Scope"
+  },
+  {
+   "start": 2513.717,
+   "end": 2519.466,
+   "text": "3/5 · Data · 합성 데이터 생성"
+  },
+  {
+   "start": 2519.516,
+   "end": 2527.516,
+   "text": "4/5 · Criteria · 평가자 선택"
+  },
+  {
+   "start": 2528.542,
+   "end": 2536.542,
+   "text": "Custom 평가자만 선택"
+  },
+  {
+   "start": 2537.416,
+   "end": 2545.416,
+   "text": "5/5 · Review → Submit"
+  },
+  {
+   "start": 2549.628,
+   "end": 2557.628,
+   "text": "평가 실행 상태"
+  },
+  {
+   "start": 2560.547,
+   "end": 2568.547,
+   "text": "평가 실행 중 · Evaluation runs의 Status는 In progress"
+  },
+  {
+   "start": 2570.109,
+   "end": 2578.109,
+   "text": "합성 질문을 하네스 에이전트에 보내고 평가자가 점수를 매깁니다"
+  },
+  {
+   "start": 2579.713,
+   "end": 2587.713,
+   "text": "몇 분 이상 걸릴 수 있습니다 · 대기 구간은 빠르게 재생"
+  },
+  {
+   "start": 2589.427,
+   "end": 2597.427,
+   "text": "Status가 바뀔 때까지 기다립니다"
+  },
+  {
+   "start": 2598.25,
+   "end": 2606.25,
+   "text": "평가 실행 중 · Evaluation runs의 Status는 In progress"
+  },
+  {
+   "start": 2607.674,
+   "end": 2615.674,
+   "text": "합성 질문을 하네스 에이전트에 보내고 평가자가 점수를 매깁니다"
+  },
+  {
+   "start": 2618.128,
+   "end": 2626.128,
+   "text": "몇 분 이상 걸릴 수 있습니다 · 대기 구간은 빠르게 재생"
+  },
+  {
+   "start": 2626.365,
+   "end": 2634.365,
+   "text": "Status가 바뀔 때까지 기다립니다"
+  },
+  {
+   "start": 2635.878,
+   "end": 2643.878,
+   "text": "평가 실행 중 · Evaluation runs의 Status는 In progress"
+  },
+  {
+   "start": 2644.823,
+   "end": 2652.823,
+   "text": "합성 질문을 하네스 에이전트에 보내고 평가자가 점수를 매깁니다"
+  },
+  {
+   "start": 2655.245,
+   "end": 2663.245,
+   "text": "몇 분 이상 걸릴 수 있습니다 · 대기 구간은 빠르게 재생"
+  },
+  {
+   "start": 2667.555,
+   "end": 2675.555,
+   "text": "평가 결과 · Evaluation runs"
+  },
+  {
+   "start": 2681.468,
+   "end": 2689.468,
+   "text": "실행 상세 · 행별 결과"
+  },
+  {
+   "start": 2692.426,
+   "end": 2700.426,
+   "text": "행 상세 · 차원별 점수와 이유"
+  },
+  {
+   "start": 2702.112,
+   "end": 2710.112,
+   "text": "Agents · Prompt Agent workshop-assistant 열기"
+  },
+  {
+   "start": 2714.89,
+   "end": 2720.63,
+   "text": "Optimize 탭 소개"
+  },
+  {
+   "start": 2720.68,
+   "end": 2726.392,
+   "text": "Optimize 시작 메뉴"
+  },
+  {
+   "start": 2726.442,
+   "end": 2732.169,
+   "text": "Optimize 마법사 · Target"
+  },
+  {
+   "start": 2732.219,
+   "end": 2740.219,
+   "text": "Optimize 마법사 · Data 준비 방법"
+  },
+  {
+   "start": 2744.314,
+   "end": 2749.853,
+   "text": "Optimize 마법사 · 데이터셋 선택"
+  },
+  {
+   "start": 2749.903,
+   "end": 2754.192,
+   "text": "Optimize 마법사 · 평가자 선택"
+  },
+  {
+   "start": 2754.242,
+   "end": 2762.242,
+   "text": "평가자 Threshold 설정"
+  },
+  {
+   "start": 2763.469,
+   "end": 2771.469,
+   "text": "Optimize 마법사 · Review와 예상 비용"
+  },
+  {
+   "start": 2778.62,
+   "end": 2786.62,
+   "text": "최적화 실행 진행 중"
+  },
+  {
+   "start": 2789.631,
+   "end": 2797.631,
+   "text": "최적화 실행 중 · Status는 In progress"
+  },
+  {
+   "start": 2799.115,
+   "end": 2807.115,
+   "text": "후보를 만들고 평가자로 점수를 매깁니다"
+  },
+  {
+   "start": 2808.549,
+   "end": 2816.549,
+   "text": "몇 분 걸립니다 · 대기 구간은 빠르게 재생"
+  },
+  {
+   "start": 2817.756,
+   "end": 2825.756,
+   "text": "Candidates와 Best score가 채워집니다"
+  },
+  {
+   "start": 2832.005,
+   "end": 2840.005,
+   "text": "최적화 완료 · 점수 확인"
+  },
+  {
+   "start": 2841.634,
+   "end": 2848.831,
+   "text": "실행 상세 · 후보 점수 비교"
+  },
+  {
+   "start": 2848.881,
+   "end": 2856.881,
+   "text": "후보가 바꾼 내용 보기"
+  },
+  {
+   "start": 2859.518,
+   "end": 2866.032,
+   "text": "Foundry 홈"
+  },
+  {
+   "start": 2866.082,
+   "end": 2874.082,
+   "text": "Agents 목록에서 Hosted 에이전트 찾기"
+  },
+  {
+   "start": 2874.53,
+   "end": 2877.933,
+   "text": "Hosted 에이전트 Playground 열기 · Agent info (Kind: hosted)"
+  },
+  {
+   "start": 2877.983,
+   "end": 2881.398,
+   "text": "Code asset: 올려 둔 code.zip"
+  },
+  {
+   "start": 2881.448,
+   "end": 2886.054,
+   "text": "Hosted 에이전트 Playground (세션 시작 전)"
+  },
+  {
+   "start": 2886.104,
+   "end": 2894.104,
+   "text": "Hosted 에이전트에 보낼 질문 입력"
+  },
+  {
+   "start": 2895.214,
+   "end": 2900.174,
+   "text": "Playground에서 메시지 보내기"
+  },
+  {
+   "start": 2900.224,
+   "end": 2908.224,
+   "text": "Log stream: 컨테이너 로그와 Session 식별자"
+  },
+  {
+   "start": 2908.908,
+   "end": 2914.644,
+   "text": "Details: 상태·버전·에이전트 ID·엔드포인트"
+  },
+  {
+   "start": 2914.694,
+   "end": 2918.839,
+   "text": "Traces: 새 trace가 올라오기를 기다리는 중 (보통 1분 안, 안 보이면 잠시 뒤 새로고침)"
+  },
+  {
+   "start": 2918.889,
+   "end": 2923.277,
+   "text": "Traces 목록 (Trace view)"
+  },
+  {
+   "start": 2923.327,
+   "end": 2928.872,
+   "text": "Traces: Conversation view"
+  },
+  {
+   "start": 2928.922,
+   "end": 2936.922,
+   "text": "Traces: Session view"
+  },
+  {
+   "start": 2939.666,
+   "end": 2945.79,
+   "text": "Trace 상세: invoke_agent와 chat 스팬"
+  },
+  {
+   "start": 2945.84,
+   "end": 2953.84,
+   "text": "chat 스팬: Instructions · User input · Output"
+  },
+  {
+   "start": 2955.169,
+   "end": 2960.437,
+   "text": "Monitor 개요"
+  },
+  {
+   "start": 2960.487,
+   "end": 2967.714,
+   "text": "Monitor: Hosting compute·Hosting memory"
+  },
+  {
+   "start": 2967.764,
+   "end": 2972.806,
+   "text": "Continue in code: 코드로 호출하기"
+  },
+  {
+   "start": 2972.856,
+   "end": 2980.856,
+   "text": "Continue in code: 샘플 코드"
+  },
+  {
+   "start": 2981.788,
+   "end": 2989.788,
+   "text": "Foundry 홈"
+  },
+  {
+   "start": 2991.81,
+   "end": 2997.914,
+   "text": "Manage → Fleet 개요 (Preview)"
+  },
+  {
+   "start": 2997.964,
+   "end": 3003.105,
+   "text": "Fleet: Assets in this scope · Agents 탭"
+  },
+  {
+   "start": 3003.155,
+   "end": 3011.155,
+   "text": "Fleet: Assets in this scope · Models 탭"
+  },
+  {
+   "start": 3011.624,
+   "end": 3016.695,
+   "text": "Manage → Operations (Preview)"
+  },
+  {
+   "start": 3016.745,
+   "end": 3022.219,
+   "text": "Operations: Tokens 탭"
+  },
+  {
+   "start": 3022.269,
+   "end": 3027.478,
+   "text": "Operations: Errors 탭"
+  },
+  {
+   "start": 3027.528,
+   "end": 3034.56,
+   "text": "Operations: Latency 탭"
+  },
+  {
+   "start": 3034.61,
+   "end": 3042.61,
+   "text": "Operations: Assets with invocations 표"
+  },
+  {
+   "start": 3045.499,
+   "end": 3050.822,
+   "text": "Manage → Cost (Preview)"
+  },
+  {
+   "start": 3050.872,
+   "end": 3056.594,
+   "text": "Cost: Highest spend assets와 Cost by project"
+  },
+  {
+   "start": 3056.644,
+   "end": 3064.644,
+   "text": "Cost by project: Agent 기준으로 묶기"
+  },
+  {
+   "start": 3065.775,
+   "end": 3073.122,
+   "text": "Manage → Compliance"
+  },
+  {
+   "start": 3073.172,
+   "end": 3079.683,
+   "text": "Compliance: Asset 탭"
+  },
+  {
+   "start": 3079.733,
+   "end": 3087.733,
+   "text": "Manage → Gateways · AI Gateway (Preview)"
+  },
+  {
+   "start": 3090.557,
+   "end": 3098.557,
+   "text": "Foundry 홈"
+  },
+  {
+   "start": 3099.117,
+   "end": 3103.407,
+   "text": "Monitor → Cost (Preview) · 카드와 Cost by agent"
+  },
+  {
+   "start": 3103.457,
+   "end": 3108.0,
+   "text": "Cost by agent: 에이전트별 모델 배포와 호출 수"
+  },
+  {
+   "start": 3108.05,
+   "end": 3112.112,
+   "text": "Cost by agent · Token usage 보기"
+  },
+  {
+   "start": 3112.162,
+   "end": 3119.124,
+   "text": "Token usage 보기: 에이전트별 토큰 표"
+  },
+  {
+   "start": 3119.174,
+   "end": 3127.174,
+   "text": "Monitor → Cost Control (Preview) · 예산 없음"
+  },
+  {
+   "start": 3128.257,
+   "end": 3134.841,
+   "text": "Create cost control · 이름·범위·공유 방식"
+  },
+  {
+   "start": 3134.891,
+   "end": 3141.107,
+   "text": "Set the budget · Tokens 10M · Monthly"
+  },
+  {
+   "start": 3141.157,
+   "end": 3147.932,
+   "text": "Threshold actions · 선택지만 확인"
+  },
+  {
+   "start": 3147.982,
+   "end": 3155.982,
+   "text": "Usage data · 연결된 Application Insights와 Create"
+  },
+  {
+   "start": 3158.013,
+   "end": 3164.066,
+   "text": "Cost Control 목록 · 새 예산"
+  },
+  {
+   "start": 3164.116,
+   "end": 3171.084,
+   "text": "예산 상세 · Edit·Delete"
+  },
+  {
+   "start": 3171.134,
+   "end": 3177.953,
+   "text": "Cost 탭의 Project budget 카드"
+  },
+  {
+   "start": 3178.003,
+   "end": 3183.894,
+   "text": "Delete cost control? · 삭제 확인"
+  },
+  {
+   "start": 3183.944,
+   "end": 3188.75,
+   "text": "정리 완료 · Cost Control 목록이 다시 비어 있음"
   }
  ]
 };

@@ -374,6 +374,163 @@ class GuideDataTests(unittest.TestCase):
         self.assertLessEqual(video.stat().st_size + summary.stat().st_size, 100 * 1024 * 1024, "English videos must stay inside the GitHub size guidance")
 
 
+class FullVideoTests(unittest.TestCase):
+    """The key summary and the full video cover all of Labs 1-16. assets/guide-data[.en].js lists the chapters, the three parts and the caption cues of the full video
+    (Labs 1-5, then a 3-second title card, Labs 6-9, a title card, Labs 10-16), so the data, the MP4 and VTT files, the Labs 6-16 video data and the page text must agree."""
+
+    GROUP_OF_PART = {"labs-6-9": "video-iq", "labs-10-16": "video-optional"}
+
+    @staticmethod
+    def load(lang="ko"):
+        return load_data("guide", lang)
+
+    @staticmethod
+    def seconds_label(seconds: float, lang: str) -> str:
+        whole = int(seconds)
+        return f"{whole // 60}분 {whole % 60}초" if lang == "ko" else f"{whole // 60} min {whole % 60} s"
+
+    @staticmethod
+    def ffprobe(path: Path, *entries: str) -> dict:
+        probe = subprocess.run(["ffprobe", "-v", "error", "-show_entries", ":".join(entries), "-show_chapters", "-of", "json", str(path)], capture_output=True, text=True, check=True)
+        return json.loads(probe.stdout)
+
+    def test_three_parts_cover_labs_1_to_16_in_order(self):
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                data = self.load(lang)
+                parts, chapters = data["parts"], data["chapters"]
+                self.assertEqual(["labs-1-5", "labs-6-9", "labs-10-16"], [part["id"] for part in parts])
+                self.assertEqual(list(range(1, len(LabVideoTests.enabled_labs(lang)) + 1)), [number for part in parts for number in part["labs"]])
+                self.assertEqual(["2026-11-18", "2026-11-22", "2026-11-22"], [part["recorded"] for part in parts])
+                self.assertEqual([0, 3.0, 3.0], [part["slateSeconds"] for part in parts], "a title card separates the parts")
+                self.assertEqual(0, parts[0]["videoSeconds"])
+                self.assertEqual(sorted(part["videoSeconds"] for part in parts), [part["videoSeconds"] for part in parts])
+                by_id = {chapter["id"]: chapter for chapter in chapters}
+                for part in parts:
+                    first = next(chapter for chapter in chapters if chapter["part"] == part["id"])
+                    self.assertEqual(part["firstChapter"], first["id"], "the part starts with its first chapter")
+                    self.assertEqual(part["videoSeconds"], by_id[part["firstChapter"]]["videoSeconds"])
+                self.assertEqual(sorted({chapter["part"] for chapter in chapters}, key=[part["id"] for part in parts].index), [part["id"] for part in parts])
+                order = [[part["id"] for part in parts].index(chapter["part"]) for chapter in chapters]
+                self.assertEqual(sorted(order), order, "the chapters follow the parts")
+
+    def test_chapters_are_ordered_inside_the_video_and_part_two_and_three_repeat_the_lab_videos(self):
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                data = self.load(lang)
+                duration = data["recording"]["nativeDurationSeconds"]
+                chapters = data["chapters"]
+                seconds = [chapter["videoSeconds"] for chapter in chapters]
+                self.assertEqual(sorted(set(seconds)), seconds, "chapters are in ascending time order")
+                self.assertTrue(seconds[0] == 0 and seconds[-1] < duration)
+                self.assertTrue(all(chapter["seconds"] == chapter["videoSeconds"] for chapter in chapters))
+                videos = {video["id"]: video for video in load_data("video", lang)["videos"]}
+                steps = {section: (number, step) for number, lab in enumerate(LabVideoTests.enabled_labs(lang), 1) for step, ids in enumerate(lab["steps"], 1) for section in ids}
+                existing = known_ids(GUIDES[lang][0])
+                for part in data["parts"][1:]:
+                    video = videos[self.GROUP_OF_PART[part["id"]]]
+                    mine = [chapter for chapter in chapters if chapter["part"] == part["id"]]
+                    self.assertEqual([(c["id"], c["title"], c["lab"], c["step"]) for c in video["chapters"]], [(c["id"], c["title"], c["lab"], c["step"]) for c in mine],
+                                     f"{part['id']} has the chapters of the {video['id']} video")
+                    self.assertEqual(video["labs"], part["labs"])
+                    base = part["videoSeconds"] + part["slateSeconds"]
+                    for index, (chapter, original) in enumerate(zip(mine, video["chapters"])):
+                        # The first chapter starts at the title card so that its button also shows the part title.
+                        expected = part["videoSeconds"] if index == 0 else base + original["seconds"]
+                        self.assertAlmostEqual(expected, chapter["videoSeconds"], places=2, msg=chapter["id"])
+                        self.assertIn(chapter["id"], existing, "the chapter links to an element of the page")
+                        number, step = steps[chapter["id"]]
+                        self.assertEqual(f"{number}-{step}", chapter["step"])
+                    self.assertAlmostEqual(base + video["durationSeconds"], duration if part is data["parts"][-1] else data["parts"][data["parts"].index(part) + 1]["videoSeconds"], places=2)
+
+    def test_korean_and_english_full_video_data_have_the_same_structure(self):
+        ko, en = self.load("ko"), self.load("en")
+        self.assertEqual([(c["id"], c["part"], c.get("lab"), c.get("step")) for c in ko["chapters"]], [(c["id"], c["part"], c.get("lab"), c.get("step")) for c in en["chapters"]])
+        for key in ("id", "labs", "recorded", "firstChapter", "slateSeconds"):
+            self.assertEqual([part[key] for part in ko["parts"]], [part[key] for part in en["parts"]], key)
+
+    def test_embedded_cues_match_the_downloadable_captions_and_repeat_the_lab_video_cues(self):
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                data = self.load(lang)
+                duration = data["recording"]["nativeDurationSeconds"]
+                cues = data["videoCues"]
+                for left, right in zip(cues, cues[1:]):
+                    self.assertLessEqual(left["end"], right["start"] + 1e-6, "cues do not overlap")
+                self.assertTrue(all(cue["start"] < cue["end"] for cue in cues))
+                self.assertLessEqual(cues[-1]["end"], duration + 0.5)
+                vtt = vtt_cues(ROOT / "assets" / "video" / f"captions.{lang}.vtt")
+                self.assertEqual(len(vtt), len(cues))
+                for (start, end, text), cue in zip(vtt, cues):
+                    self.assertAlmostEqual(start, cue["start"], places=2)
+                    self.assertAlmostEqual(end, cue["end"], places=2)
+                    self.assertEqual(text, cue["text"])
+                videos = {video["id"]: video for video in load_data("video", lang)["videos"]}
+                for part in data["parts"][1:]:
+                    video = videos[self.GROUP_OF_PART[part["id"]]]
+                    card = [index for index, cue in enumerate(cues) if part["videoSeconds"] <= cue["start"] < part["videoSeconds"] + part["slateSeconds"]]
+                    self.assertEqual(1, len(card), f"{part['id']}: one caption names the title card")
+                    base = part["videoSeconds"] + part["slateSeconds"]
+                    mine = cues[card[0] + 1:card[0] + 1 + len(video["cues"])]
+                    self.assertEqual(len(video["cues"]), len(mine))
+                    for cue, original in zip(mine, video["cues"]):
+                        self.assertEqual(original["text"], cue["text"])
+                        self.assertAlmostEqual(original["start"] + base, cue["start"], places=2)
+                        self.assertAlmostEqual(original["end"] + base, cue["end"], places=2)
+
+    def test_full_video_file_matches_the_data_and_stays_inside_the_size_limit(self):
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                data = self.load(lang)
+                path = ROOT / data["recording"]["video"]
+                self.assertEqual(lang == "en", path.name.endswith(".en.mp4"))
+                self.assertAlmostEqual(mp4_seconds(path), data["recording"]["nativeDurationSeconds"], delta=0.1)
+                self.assertEqual(data["recording"]["durationSeconds"], data["recording"]["nativeDurationSeconds"])
+                self.assertLess(path.stat().st_size, 50 * 1024 * 1024, f"{path.name} must stay under GitHub's recommended 50 MiB")
+
+    @unittest.skipUnless(shutil.which("ffprobe"), "ffprobe is not installed")
+    def test_full_video_streams_and_embedded_chapters(self):
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                data = self.load(lang)
+                info = self.ffprobe(ROOT / data["recording"]["video"], "stream=codec_type,codec_name,width,height,r_frame_rate", "format=duration")
+                self.assertNotIn("audio", [stream["codec_type"] for stream in info["streams"]], "the pages promise silent videos")
+                stream = next(stream for stream in info["streams"] if stream["codec_type"] == "video")
+                self.assertEqual(("h264", 1600, 900, "25/1"), (stream["codec_name"], stream["width"], stream["height"], stream["r_frame_rate"]))
+                self.assertEqual([chapter["title"] for chapter in data["chapters"]], [chapter["tags"]["title"] for chapter in info["chapters"]], "the MP4 carries the same chapters as the page")
+                for chapter, embedded in zip(data["chapters"], info["chapters"]):
+                    self.assertAlmostEqual(chapter["videoSeconds"], float(embedded["start_time"]), places=2)
+
+    @unittest.skipUnless(shutil.which("ffprobe"), "ffprobe is not installed")
+    def test_summary_video_covers_every_lab(self):
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                path = ROOT / "assets" / "video" / ("summary-walkthrough.mp4" if lang == "ko" else "summary-walkthrough.en.mp4")
+                info = self.ffprobe(path, "stream=codec_type,codec_name,width,height", "format=duration")
+                self.assertNotIn("audio", [stream["codec_type"] for stream in info["streams"]])
+                stream = next(stream for stream in info["streams"] if stream["codec_type"] == "video")
+                self.assertEqual(("h264", 1600, 1000), (stream["codec_name"], stream["width"], stream["height"]), "1600x900 recording plus the 100 px label bar")
+                self.assertTrue(300 <= float(info["format"]["duration"]) <= 420, "a key summary of 16 labs runs about six minutes")
+                self.assertLess(path.stat().st_size, 50 * 1024 * 1024)
+                titles = [chapter["tags"]["title"] for chapter in info["chapters"]]
+                self.assertTrue(all(re.match(r"(?:실습|Lab) \d+\s", title) for title in titles), "every summary chapter starts with its lab number")
+                labs = {int(re.match(r"(?:실습|Lab) (\d+)", title).group(1)) for title in titles}
+                self.assertEqual(set(range(1, len(LabVideoTests.enabled_labs(lang)) + 1)), labs, "the label bar names every lab")
+
+    def test_pages_state_the_real_durations(self):
+        for lang in ("ko", "en"):
+            with self.subTest(lang=lang):
+                data = self.load(lang)
+                page = parse(GUIDES[lang][0])[1]
+                summary = ROOT / "assets" / "video" / ("summary-walkthrough.mp4" if lang == "ko" else "summary-walkthrough.en.mp4")
+                label = self.seconds_label(mp4_seconds(summary), lang)
+                self.assertIn(f"<strong>{label} {'핵심 요약' if lang == 'ko' else 'key summary'}</strong>", page, "the hero names the summary length")
+                whole = int(data["recording"]["nativeDurationSeconds"] + 0.5)
+                self.assertIn(f'<b id="duration-label">{whole // 60}:{whole % 60:02d}</b>', page, "the static fallback shows the full video length")
+                self.assertIn(f'<b id="chapter-count">{len(data["chapters"])}</b>', page)
+                self.assertNotIn("2분 37초" if lang == "ko" else "2 min 38 s", page)
+
+
 class LabVideoTests(unittest.TestCase):
     """Labs 6-9 and 10-16 have one video each per language. assets/ignite/video-data[.en].js feeds the players of assets/lab-video.js,
     so the data, the MP4 and VTT files and the guide's step anchors must agree."""
@@ -866,7 +1023,8 @@ class LabMapTests(unittest.TestCase):
             "ignite-insights", "ignite-evaluator", "ignite-evaluation", "ignite-optimize",
             "ignite-hosted-agent", "ignite-fleet", "ignite-cost",
             "video-iq", "video-optional",
-        } | {f"step-{chapter['id']}" for chapter in GuideDataTests.load(lang)["chapters"] if chapter["id"] != "monitoring-setup"}
+        } | {f"step-{chapter['id']}" for chapter in GuideDataTests.load(lang)["chapters"]
+             if chapter["id"] != "monitoring-setup" and chapter["part"] == "labs-1-5"}
         self.assertEqual(original, set(assigned))
         existing = known_ids(GUIDES[lang][0])
         page = parse(GUIDES[lang][0])[1]
