@@ -75,6 +75,8 @@ main{min-width:0}
 .toc .lab-child{display:none;font-size:11px;padding-left:22px}
 .toc .lab-child.lab-visible{display:flex}
 .intro-card{margin-top:22px;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--bg);font-size:13px}
+.learn-group{font-size:20px;line-height:1.5;margin-top:34px;padding-top:18px;border-top:2px solid var(--line);color:var(--navy)}
+.learn-group+.intro{margin-top:8px}
 .intro-card h3{color:var(--navy);font-size:18px;line-height:1.5;margin-bottom:10px}
 .intro-card p+p{margin-top:8px}
 .intro-try{margin-top:10px}

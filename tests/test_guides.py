@@ -754,8 +754,19 @@ class IntroCardTests(unittest.TestCase):
                   "foundry-mcp-server", "foundry-safety", "training", "new-models", "azure-windows", "cost-management"),
             "C": ("foundry-iq", "web-iq", "work-iq", "fabric-iq", "hosted-agents"),
         }
-        official_hosts = {"learn.microsoft.com", "azure.microsoft.com", "news.microsoft.com", "techcommunity.microsoft.com", "commandline.microsoft.com", "aka.ms"}
+        official_hosts = {"learn.microsoft.com", "azure.microsoft.com", "news.microsoft.com", "techcommunity.microsoft.com", "commandline.microsoft.com", "devblogs.microsoft.com", "aka.ms"}
         self.assertEqual(sum(map(len, tiers.values())), len(re.findall(r'<article\b', section.group(1))))
+        # The section holds cards for features that have a lab and cards for features we did not run, so each group has its own heading and the title does not call everything "not run".
+        not_run_title = {"ko": r"실행하지 않", "en": r"(?i)not run|does not run"}[lang]
+        opening = re.search(r'<section[^>]*id="ignite-learn-more"[^>]*>', text).group(0)
+        for label in (opening, re.search(r"<h2>(.*?)</h2>", section.group(1), re.S).group(1)):
+            self.assertNotRegex(label, not_run_title, f"{lang}: the section title also covers cards tied to labs")
+        labs_part, _, docs_part = section.group(1).partition('id="learn-group-docs"')
+        self.assertIn('id="learn-group-labs"', labs_part, f"{lang}: the cards tied to labs have their own heading")
+        self.assertTrue(docs_part, f"{lang}: the cards we did not run have their own heading")
+        for tier, keys in tiers.items():
+            for key in keys:
+                self.assertIn(f'id="learn-{key}"', labs_part if tier == "C" else docs_part, f"{lang}: {key} sits in the group of its tier")
         for tier, keys in tiers.items():
             for key in keys:
                 with self.subTest(card=key):
